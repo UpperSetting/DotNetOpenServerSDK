@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="HelloMobileClient.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HelloMobileClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0">
+            <TextBlock Text="Hello Mobile Client" Margin="24,24,8,16" FontSize="{StaticResource TextStyleLargeFontSize}" FontWeight="Bold"/>
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Host/IP:"  
+               VerticalAlignment="Center" HorizontalAlignment="Right" 
+               FontSize="{StaticResource TextStyleMediumFontSize}" Margin="0,0,8,0" />
+
+            <TextBox x:Name="txtHost" Grid.Row="0" Grid.Column="1"  Height="{StaticResource TextControlThemeMinHeight}" 
+                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                FontSize="{StaticResource TextStyleMediumFontSize}" Margin="10" Width="112"  />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Username:" 
+                VerticalAlignment="Center" HorizontalAlignment="Right" 
+                FontSize="{StaticResource TextStyleMediumFontSize}" Margin="0,0,8,0" />
+
+            <TextBox x:Name="txtUserName" Grid.Row="1" Grid.Column="1" Height="{StaticResource TextControlThemeMinHeight}"  
+                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                FontSize="{StaticResource TextStyleMediumFontSize}" FontFamily="Global User Interface" Margin="10" Width="112" />
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Password:" 
+               VerticalAlignment="Center" HorizontalAlignment="Right" 
+               FontSize="{StaticResource TextStyleMediumFontSize}" Margin="0,0,8,0" />
+
+            <PasswordBox x:Name="txtPassword" Grid.Row="2" Grid.Column="1" Height="{StaticResource TextControlThemeMinHeight}"  
+               VerticalAlignment="Center" HorizontalAlignment="Center" 
+               FontSize="{StaticResource TextStyleMediumFontSize}" FontFamily="Global User Interface" Margin="10" Width="112" />
+
+            <Button x:Name="btnConnect" Grid.Row="3" Grid.Column="1" Height="{StaticResource PhoneButtonMinHeight}" 
+               Width="112" Content="Connect" 
+               FontSize="{StaticResource TextStyleMediumFontSize}" Click="btnConnect_Click" Margin="10" HorizontalAlignment="Center" Padding="0"/>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="Configuration.Windows" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        DotNetOpenServer enables you to configure the
+        <codeEntityReference>T:US.OpenServer.Server</codeEntityReference> and
+        <codeEntityReference>T:US.OpenServer.Client</codeEntityReference> either
+        using the app.config file or programatically. For more information, follow the
+        links below.
+      </para>
+    </introduction>
+
+    <relatedTopics>
+      <link xlink:href="Configuration.Windows.App.Config">App.Config Reference Document</link>
+      <link xlink:href="ClientSideComponents"/>
+      <link xlink:href="ServerSideComponents"/>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

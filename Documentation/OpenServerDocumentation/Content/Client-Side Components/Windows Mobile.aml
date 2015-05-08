@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ClientSideComponents.WindowsMobile" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <autoOutline>0</autoOutline>
+    </introduction>
+
+    <section address="Application">
+      <title>Create a .Net Windows Phone Application</title>
+      <content>
+        <procedure>
+          <title>To create your .Net Phone Application from Visual Studio:</title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Select <legacyBold>File > New > Project</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>New Project</legacyBold> form, select <legacyBold>Templates > Visual C# > Store Apps > Blank App (Windows Phone)</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Specify a <legacyBold>Name</legacyBold> and <legacyBold>Location</legacyBold>, then click <legacyBold>OK</legacyBold>.
+                </para>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="Reference">
+      <title>Reference .Net Assemblies</title>
+      <content>
+        <procedure>
+          <title>To reference the DotNetOpenServer SDK .Net assemblies:</title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click on <legacyBold>References</legacyBold> then select <legacyBold>Add Reference</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Reference Manager</legacyBold> form, click the <legacyBold>Browse</legacyBold> button.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Select the files to reference</legacyBold> form, navigate
+                  to the DotNetOpenServer SDK's <legacyBold>Protable Binary</legacyBold>
+                  directory. By default this is <codeInline>c:\Program Files\Upper
+                  Setting\DotNetOpenServer SDK\bin\Portable</codeInline>.
+                </para>
+              </content>
+            </step>            
+            <step>
+              <content>
+                <para>
+                  Select the following assemblies:
+                </para>
+                <list class="bullet">
+                  <listItem><para>HelloProtocolClient.dll</para></listItem>
+                  <listItem><para>HelloProtocolShared.dll</para></listItem>
+                  <listItem><para>KeepAliveProtocol.dll</para></listItem>
+                  <listItem><para>OpenServerClient.dll</para></listItem>
+                  <listItem><para>OpenServerShared.dll</para></listItem>
+                  <listItem><para>WinAuthProtocolClient.dll</para></listItem>
+                  <listItem><para>WinAuthProtocolShared.dll</para></listItem>
+                </list>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Select the files to reference</legacyBold> form, navigate
+                  to the DotNetOpenServer SDK's <legacyBold>Windows Mobile Binary</legacyBold>
+                  directory. By default this is <codeInline>c:\Program Files\Upper
+                  Setting\DotNetOpenServer SDK\bin\Windows Mobile</codeInline>.
+                </para>
+              </content>
+            </step>            
+            <step>
+              <content>
+                <para>
+                  Select the following assembly:
+                </para>
+                <list class="bullet">
+                  <listItem><para>OpenServerWindowsMobile.dll</para></listItem>
+                </list>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="AddXaml">
+      <title>Create the User Interface</title>
+      <content>
+        <procedure>
+          <title>To create the user interface:</title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Modify the MainPage.xaml to contain the following controls: host text box,
+                  username text box, password text box and a button. For example:
+                </para>
+                <mediaLink><image xlink:href="WindowsMobile"/></mediaLink>                
+                <codeReference>WindowsMobile#Xaml</codeReference>
+              </content>
+            </step>
+          </steps>
+        </procedure>        
+      </content>
+    </section>
+
+    <section address="AddCode">
+      <title>Add the User Interface Code</title>
+      <content>
+        <procedure>
+          <title>To add the user interface code:</title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Create the <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>,
+                  create the <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference> then set any properties you want to override,
+                  create the <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects then add them to A Dictionary keyed with the each unique protocol identifier,
+                  create the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>,
+                  connect,
+                  authenticate using the <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>,
+                  initialize the <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>,
+                  initialize the <codeEntityReference>T:US.OpenServer.Protocols.Hello.HelloProtocolClient</codeEntityReference>,
+                  add an event handler for <codeEntityReference>E:US.OpenServer.Protocols.Hello.HelloProtocolClient.OnHelloComplete</codeEntityReference> so the result can be posted to the screen,
+                  finally, call <codeEntityReference>M:US.OpenServer.Protocols.Hello.HelloProtocolClient.HelloAsync(System.String)</codeEntityReference>.
+                  For example:
+                </para>
+                <codeReference>WindowsMobile#Code</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Compile and run the application.
+                </para>
+              </content>
+            </step>            
+          </steps>
+        </procedure>
+      </content>
+    </section>
+    
+    <relatedTopics>
+
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="Protocols" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        DotNetOpenServer is implemented on Windows using the .Net Framework 4.5.
+        The server is implemented as an asynchronous TCP socket server.
+        .Net components are used to negotiate SSL/TLS 1.2.
+        Protocols are implemented in stand-alone assemblies which are loaded through Reflection when requested by the client.
+        The information required for the server to load the assemblies is contained within the app.config file.        
+      </para>
+
+      <table>
+        <title>This SDK includes 3 protocol implementations:</title>
+        <row>
+          <entry>
+            <para>Windows Authentication Protocol (WinAuthP)</para>
+          </entry>
+          <entry>
+            <para>Authenticates user supplied credentials against either local or domain accounts.</para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>Keep-Alive Protocol (KAP)</para>
+          </entry>
+          <entry>
+            <para>
+              Both the client and server send tiny packets back
+              and forth. As soon as the heartbeat stops the framework notifies the application
+              the network has failed enabling server-side component objects to release
+              associated resources and notifies the end user a network failure has occurred.
+            </para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>Hello Protocol</para>
+          </entry>
+          <entry>
+            <para>
+              Shows how to create a simple application layer protocol. The client sends a
+              text hello message to the server. The server responds by sending back a text
+              greeting message.
+            </para>
+          </entry>
+        </row>
+      </table>
+    </introduction>
+
+    <relatedTopics>
+      <link xlink:href="CreatingProtocols" />
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

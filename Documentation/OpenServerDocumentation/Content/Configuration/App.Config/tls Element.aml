@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="Configuration.Windows.App.Config.Server.TLS" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>Specifies the SSL/TLS 1.2 properties.</para>
+    </introduction>
+
+    <section>
+      <content>
+        <codeReference>Windows#AppConfigServerTLS</codeReference>
+      </content>
+    </section>
+
+    <section>
+      <title>Attributes and Elements</title>
+      <content>
+        <para>The following sections describe attributes, child elements, and parent elements.</para>
+
+        <table>
+          <title>Attributes</title>
+          <tableHeader>
+            <row>
+              <entry>
+                <para>Attribute</para>
+              </entry>
+              <entry>
+                <para>Description</para>
+              </entry>
+            </row>
+          </tableHeader>
+          <row>
+            <entry>
+              <para>value</para>
+            </entry>
+            <entry>
+              <para>True to enable TLS, otherwise False.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>certificate</para>
+            </entry>
+            <entry>
+              <para>The X509Certificate used to authenticate.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>requireRemoteCertificate</para>
+            </entry>
+            <entry>
+              <para>True to require the end point to supply a certificate for authentication, otherwise False.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>allowSelfSignedCertificate</para>
+            </entry>
+            <entry>
+              <para>True to enable self-signed certificates, otherwise False.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>checkCertificateRevocation</para>
+            </entry>
+            <entry>
+              <para>True to check the certificate revocation list during authentication, otherwise False.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>allowCertificateChainErrors</para>
+            </entry>
+            <entry>
+              <para>True to check the certificate chain during authentication.</para>
+            </entry>
+          </row>
+        </table>
+      </content>
+    </section>
+
+    <section>
+      <title>Server-Side Sample</title>
+      <content>
+        <codeReference>WindowsServer#AppConfigServerSample</codeReference>
+      </content>
+    </section>
+
+    <section>
+      <title>Client-Side Sample</title>
+      <content>
+        <codeReference>WindowsClient#AppConfigServerSample</codeReference>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="Configuration.Windows.App.Config"/>
+      <link xlink:href="Configuration.Windows.App.Config.Server"/>      
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

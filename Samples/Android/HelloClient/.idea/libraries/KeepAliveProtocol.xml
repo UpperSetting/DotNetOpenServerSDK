@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="KeepAliveProtocol">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/KeepAliveProtocol.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

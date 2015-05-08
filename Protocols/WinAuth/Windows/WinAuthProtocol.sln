@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinAuthProtocolShared", "WinAuthProtocolShared\WinAuthProtocolShared.csproj", "{5B876E49-A1BF-46D4-8588-AB5F1534F24A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinAuthProtocolClient", "WinAuthProtocolClient\WinAuthProtocolClient.csproj", "{CD17C787-7662-4E0B-9667-8D5EC9BF9C09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinAuthProtocolServer", "WinAuthProtocolServer\WinAuthProtocolServer.csproj", "{099E0C10-E92A-4D63-9522-1EDAC8E53BE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B876E49-A1BF-46D4-8588-AB5F1534F24A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B876E49-A1BF-46D4-8588-AB5F1534F24A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B876E49-A1BF-46D4-8588-AB5F1534F24A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B876E49-A1BF-46D4-8588-AB5F1534F24A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD17C787-7662-4E0B-9667-8D5EC9BF9C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD17C787-7662-4E0B-9667-8D5EC9BF9C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD17C787-7662-4E0B-9667-8D5EC9BF9C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD17C787-7662-4E0B-9667-8D5EC9BF9C09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{099E0C10-E92A-4D63-9522-1EDAC8E53BE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{099E0C10-E92A-4D63-9522-1EDAC8E53BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{099E0C10-E92A-4D63-9522-1EDAC8E53BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{099E0C10-E92A-4D63-9522-1EDAC8E53BE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

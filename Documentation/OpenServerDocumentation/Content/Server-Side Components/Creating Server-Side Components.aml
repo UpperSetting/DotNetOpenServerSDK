@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="CreatingServerSideComponents" revisionNumber="1">
+  <developerWalkthroughDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <autoOutline>0</autoOutline>
+    </introduction>
+    
+    <section address="Application">
+      <title>Create a .Net Console Application</title>
+      <content>
+        <procedure>
+          <title>To create your .Net Console Application from Visual Studio:</title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>Select <legacyBold>File > Project</legacyBold>.</para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>From the <legacyBold>New Project</legacyBold> form, select <legacyBold>Console Application</legacyBold>.</para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>Specify a <legacyBold>Name</legacyBold> and <legacyBold>Location</legacyBold>, then click <legacyBold>OK</legacyBold>.
+                </para>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="App.Config">
+      <title>Create an Instance of the Server using the App.Config</title>
+      <content>
+        <procedure>
+          <title>To create an instance of the Server:</title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click on <legacyBold>References</legacyBold> then select <legacyBold>Add Reference</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Reference Manager</legacyBold> form, click the <legacyBold>Browse</legacyBold> button.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Select the files to reference</legacyBold> form, navigate to the DotNetOpenServer SDK's <legacyBold>bin</legacyBold> directory. By default this is <legacyBold>c:\Program Files\Upper Setting\DotNetOpenServer SDK\bin</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Select the following assemblies:
+                </para>
+                <list class="bullet">
+                  <listItem><para>OpenServer.dll</para></listItem>
+                  <listItem><para>OpenServerShared.dll</para></listItem>
+                </list>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click <legacyBold>Program.cs</legacyBold> then select <legacyBold>Open</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Add the following using statement:
+                </para>
+                <codeReference>Server#AppConfigUsing</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Create the <codeEntityReference>T:US.OpenServer.Server</codeEntityReference>.  For example:
+                </para>
+                <codeReference>Server#AppConfigServer</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click <legacyBold>app.config</legacyBold> then select <legacyBold>Open</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Add the configuration.
+                  For more information see: <link xlink:href="Configuration.Windows.App.Config" />
+                </para>                
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="Programatically">
+      <title>Create an Instance of the Server Programatically</title>
+      <content>
+        <procedure>
+          <title>To create an instance of the Server:</title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click on <legacyBold>References</legacyBold> then select <legacyBold>Add Reference</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Reference Manager</legacyBold> form, click the <legacyBold>Browse</legacyBold> button.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Select the files to reference</legacyBold> form, navigate to the DotNetOpenServer SDK's <legacyBold>bin</legacyBold> directory. By default this is <legacyBold>c:\Program Files\Upper Setting\DotNetOpenServer SDK\bin</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Select the following assemblies:
+                </para>
+                <list class="bullet">
+                  <listItem><para>KeepAlive.dll</para></listItem>
+                  <listItem><para>OpenServer.dll</para></listItem>
+                  <listItem><para>OpenServerShared.dll</para></listItem>
+                  <listItem><para>OpenServerWindowsShared.dll</para></listItem>
+                  <listItem><para>WinAuthServer.dll</para></listItem>
+                  <listItem><para>WinAuthShared.dll</para></listItem>
+                </list>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click <legacyBold>Program.cs</legacyBold> then select <legacyBold>Open</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Add the following using statements:
+                </para>
+                <codeReference>Server#Using</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Create the <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>,
+                  create the <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference> then set any properties you want to override,
+                  create the <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects then add them to A Dictionary keyed with the each unique protocol identifier,
+                  finally, create the <codeEntityReference>T:US.OpenServer.Server</codeEntityReference>.
+                  For example:
+                </para>
+                <codeReference>Server#Programatically</codeReference>
+                <para>
+                  Please note if you set any of the <codeEntityReference>T:US.OpenServer.Server</codeEntityReference> constructor parameters to null, those parameters are read from the App.Config.
+                </para>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+       
+    <relatedTopics>
+      <link xlink:href="Configuration.Windows.App.Config"/>
+      <link xlink:href="ServerSideComponents"/>
+    </relatedTopics>
+  </developerWalkthroughDocument>
+</topic>

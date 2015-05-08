@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="Configuration.Windows.App.Config.Protocols.Item" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        Specifies the protocol, how to load the assembly the implementation resides,
+        how to load custom protocol property assemblies and custom protocol properties.
+      </para>
+    </introduction>
+
+    <section>
+      <content>
+        <codeReference>Windows#AppConfigProtocols</codeReference>
+      </content>
+    </section>
+
+    <section>
+      <title>Attributes and Elements</title>
+      <content>
+        <para>The following sections describe attributes, child elements, and parent elements.</para>
+
+        <table>
+          <title>Attributes</title>
+          <tableHeader>
+            <row>
+              <entry>
+                <para>Attribute</para>
+              </entry>
+              <entry>
+                <para>Description</para>
+              </entry>
+            </row>
+          </tableHeader>
+          <row>
+            <entry>
+              <para>id</para>
+            </entry>
+            <entry>
+              <para>Specifies the protocol identifier.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>assembly</para>
+            </entry>
+            <entry>
+              <para>Specifies the assembly the protocol is implemented.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>classPath</para>
+            </entry>
+            <entry>
+              <para>Specifies the class path of the class the protocol is implemented.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>configSectionAssembly</para>
+            </entry>
+            <entry>
+              <para>When including custom protocol properties within the app.config file, specifies the assembly that contains the protocol configuration reader class.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>configSectionClassPath</para>
+            </entry>
+            <entry>
+              <para>When including custom protocol properties within the app.config file, specifies the class path of the class the protocol configuration reader is implemented.</para>
+            </entry>
+          </row>         
+        </table>
+        <codeReference>WindowsServer#AppConfigProtocolsSample</codeReference>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="Configuration.Windows.App.Config"/>
+      <link xlink:href="Configuration.Windows.App.Config.Protocols"/>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

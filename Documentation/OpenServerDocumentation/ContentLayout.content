@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="1a1266e7-3e53-47e6-a408-669e70daf556" visible="True" isDefault="true" title="Welcome">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="Welcome" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="AboutUS" visible="True" title="About US" />
+  <Topic id="ServerSideComponents" visible="True" isExpanded="true" title="Server-Side Components">
+    <Topic id="CreatingServerSideComponents" visible="True" title="Creating Server-Side Components" />
+  </Topic>
+  <Topic id="ClientSideComponents" visible="True" isExpanded="true">
+    <Topic id="ClientSideComponents.Android" visible="True" />
+    <Topic id="ClientSideComponents.iOS" visible="True" />
+    <Topic id="ClientSideComponents.Windows" visible="True" />
+    <Topic id="ClientSideComponents.WindowsMobile" visible="True" />
+  </Topic>
+  <Topic id="Configuration.Windows" visible="True" isExpanded="true">
+    <Topic id="Configuration.Windows.App.Config" visible="True" isExpanded="true">
+      <Topic id="Configuration.Windows.App.Config.Protocols" visible="True" isExpanded="true">
+        <Topic id="Configuration.Windows.App.Config.Protocols.Item" visible="True" />
+      </Topic>
+      <Topic id="Configuration.Windows.App.Config.Server" visible="True" isExpanded="true">
+        <Topic id="Configuration.Windows.App.Config.Server.TLS" visible="True" />
+      </Topic>
+    </Topic>
+  </Topic>
+  <Topic id="Protocols" visible="True" isExpanded="true" isSelected="true" title="Protocols">
+    <Topic id="CreatingProtocols" visible="True" title="Creating Protocols" />
+  </Topic>
+  <Topic id="Logging" visible="True" />
+</Topics>

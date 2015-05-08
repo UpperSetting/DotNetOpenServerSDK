@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="Configuration.Server" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <!--
+    <summary>
+      <para>Optional summary abstract</para>
+    </summary>
+    -->
+
+    <introduction>
+      <para>
+        Specifies the socket server properties.
+      </para>
+    </introduction>
+
+    <section>
+      <content>
+        <para>
+          <externalLink>
+            <linkText>configuration Element (General Settings Schema) FOOBAR</linkText>
+            <linkUri>https://msdn.microsoft.com/en-us/library/vstudio/ms228147(v=vs.100).aspx</linkUri>
+          </externalLink>
+        </para>        
+        <codeReference>WindowsServer#AppConfigServer</codeReference>
+      </content>
+    </section>
+
+    <section>
+      <title>Attributes and Elements FOOBAR</title>
+      <content>
+        <para>The following sections describe attributes, child elements, and parent elements.</para>
+        
+        <table>
+          <title>Child Elements</title>
+          <tableHeader>
+            <row>
+              <entry>
+                <para>Element</para>
+              </entry>
+              <entry>
+                <para>Description</para>
+              </entry>
+            </row>
+
+          </tableHeader>
+
+          <row>
+            <entry>
+              <para>bindAddress</para>
+            </entry>
+            <entry>
+              <para>The IP address to bind the TCP socket server. Defaults to 0.0.0.0 (all IP addresses).</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>port</para>
+            </entry>
+            <entry>
+              <para>The TCP port the server is to run.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <link xlink:href="TLS"></link>
+              </para>
+            </entry>
+            <entry>
+              <para>The SSL/TLS 1.2 configuration properties.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>idleTimeout</para>
+            </entry>
+            <entry>
+              <para>The number of seconds a connection can remain idle before the connection automatically closed.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>receiveTimeout</para>
+            </entry>
+            <entry>
+              <para>The amount of time that a read operation blocks waiting for data in seconds.</para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>sendTimeout</para>
+            </entry>
+            <entry>
+              <para>The amount of time that a write operation blocks waiting for data in seconds.</para>
+            </entry>
+          </row>
+        </table>
+      </content>
+    </section>
+
+  
+    <relatedTopics>
+     
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="AboutUS" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <introduction></introduction>
+    <section address="Section1">
+      <title>Mission Statement</title>
+      <content>
+        <para>
+          Upper Setting is a small Utah USA based software publishing and consulting
+          organization focused on providing software engineers with off the shelf SDK
+          tools and services to quickly create powerful, secure, robust and lightning fast
+          client/server cloud based applications targeted for any server, desktop or smart
+          mobile device.
+        </para>
+      </content>
+    </section>
+    <section address="Section2">
+      <title>Our History</title>
+      <content>
+        <para>
+          In 2015, frustrated with application server solutions based on slow stateless
+          HTTP based protocols such as REST, JSON and SOAP, we created our own fast
+          stateful binary protocol stack from the ground up and warped it up in a
+          powerful, secure, robust and lighting fast application server framework targeted
+          at Android, iOS, Windows Phone, Windows, Mac and Linux. Our protocol stack
+          <externalLink>
+            <linkText>FASTack</linkText>
+            <linkUri>http://UpperSetting.com/Technology</linkUri>
+            <linkTarget>_blank</linkTarget>
+          </externalLink>, short for Fast Access STack, is implemented in our easy to use
+          <externalLink>
+            <linkText>DotNetCloudServer SDK</linkText>
+            <linkUri>http://UpperSetting.com/Products</linkUri>
+            <linkTarget>_blank</linkTarget>
+          </externalLink>.
+        </para>
+      </content>
+    </section>
+    <section address="Section3">
+      <title>Service and Support</title>
+      <content>
+        <para>
+          At Upper Setting we pride ourselves on customer satisfaction and are so
+          confident in our products we offer free email and phone support throughout the
+          duration of your develop cycle. Our DotNetCloudServer SDK contains
+          extensive documentation and sample code, however; if you would like help
+          implementing your application components we offer consulting services as well.
+          Send us an email or give us a call and we will help get your project completed
+          on time and within budget.
+        </para>
+      </content>
+    </section>
+    <relatedTopics>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

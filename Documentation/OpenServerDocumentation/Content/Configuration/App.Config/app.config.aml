@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="Configuration.Windows.App.Config" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        The App.Config file can optionally contain all the Server and Client
+        configuration properties. For more information on each of the App.Config
+        elements, follow the links below.
+      </para>
+    </introduction>
+
+    <section>
+      <title>Sample Server App.Config File</title>
+      <content>
+        <codeReference>WindowsServer#AppConfigSample</codeReference>
+      </content>
+    </section>
+
+    <section>
+      <title>Sample Client App.Config File</title>
+      <content>
+        <codeReference>WindowsClient#AppConfigSample</codeReference>
+      </content>
+    </section>
+    
+    <relatedTopics>
+      <link xlink:href="Configuration.Windows.App.Config.Server" />
+      <link xlink:href="Configuration.Windows.App.Config.Server.TLS" />
+      <link xlink:href="Configuration.Windows.App.Config.Protocols" />
+      <link xlink:href="Configuration.Windows.App.Config.Protocols.Item" />
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="Configuration.Windows.App.Config.Protocols" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>Specifies the supported protocols, how to load the assemblies the implementations reside, how to load custom protocol property assemblies and custom protocol properties.</para>
+    </introduction>
+
+    <section>
+      <content>
+        <codeReference>Windows#AppConfigProtocols</codeReference>
+      </content>
+    </section>
+
+    <section>
+      <title>Attributes and Elements</title>
+      <content>
+        <para>The following sections describe attributes, child elements, and parent elements.</para>
+
+        <table>
+          <title>Child Elements</title>
+          <tableHeader>
+            <row>
+              <entry>
+                <para>Element</para>
+              </entry>
+              <entry>
+                <para>Description</para>
+              </entry>
+            </row>
+          </tableHeader>
+
+          <row>
+            <entry>
+              <para>
+                <link xlink:href="Configuration.Windows.App.Config.Protocols.Item">item</link>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Specifies the protocol, how to load the assembly the implementation resides,
+                how to load custom protocol property assemblies and custom protocol properties.
+              </para>
+            </entry>
+          </row>          
+        </table>
+        <codeReference>WindowsServer#AppConfigProtocolsSample</codeReference>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="Configuration.Windows.App.Config"/>
+      <link xlink:href="Configuration.Windows.App.Config.Protocols.Item" />
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>
