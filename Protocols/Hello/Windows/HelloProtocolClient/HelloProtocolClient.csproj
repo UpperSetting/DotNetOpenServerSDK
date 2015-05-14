@@ -8,8 +8,8 @@
     <ProjectGuid>{9AF06216-9994-4CF0-80EE-D20B76C1ED9B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HelloProtocolClient</RootNamespace>
-    <AssemblyName>HelloProtocolClient</AssemblyName>
+    <RootNamespace>US.OpenServer.Protocols.Hello</RootNamespace>
+    <AssemblyName>US.OpenServer.Protocols.Hello.Client</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\HelloProtocolClient.xml</DocumentationFile>
+    <DocumentationFile>..\bin\US.OpenServer.Protocols.Hello.Client.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
@@ -46,8 +46,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="OpenServerShared">
-      <HintPath>..\..\..\..\bin\Portable\OpenServerShared.dll</HintPath>
+    <Reference Include="US.OpenServer.Shared">
+      <HintPath>..\..\..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

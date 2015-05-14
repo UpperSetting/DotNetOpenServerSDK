@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>US.OpenServer.Protocols.WinAuth</RootNamespace>
-    <AssemblyName>WinAuthProtocolShared</AssemblyName>
+    <AssemblyName>US.OpenServer.Protocols.WinAuth.Shared</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\WinAuthProtocolShared.xml</DocumentationFile>
+    <DocumentationFile>..\bin\US.OpenServer.Protocols.WinAuth.Shared.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -40,8 +40,8 @@
     <Compile Include="WinAuthProtocolCommands.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="OpenServerShared">
-      <HintPath>..\..\..\..\bin\Portable\OpenServerShared.dll</HintPath>
+    <Reference Include="US.OpenServer.Shared">
+      <HintPath>..\..\..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
