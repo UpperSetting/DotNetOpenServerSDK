@@ -35,9 +35,11 @@ namespace TestClient
             Client client = null;
             try
             {
-                //load configuration from the App.config
-                //Client client = new Client();
+                #region Load configuration from the app.config
+                //client = new Client();
+                #endregion
 
+                #region Configure programatically
                 Logger logger = new Logger("DotNetOpenClient");
 
                 ServerConfiguration cfg = new ServerConfiguration();
@@ -56,6 +58,8 @@ namespace TestClient
                     new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
 
                 client = new Client(logger, cfg, protocolConfigurations);
+                #endregion
+
                 client.Connect();
 
                 string userName = "TestUser";
