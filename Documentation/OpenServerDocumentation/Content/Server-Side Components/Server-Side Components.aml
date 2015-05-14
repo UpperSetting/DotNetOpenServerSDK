@@ -11,7 +11,7 @@
         The server is implemented as an asynchronous TCP socket server.
         .Net components are used to negotiate SSL/TLS 1.2.
         Protocols are implemented in stand-alone assemblies which are loaded through Reflection when requested by the client.
-        The information required for the server to load the assemblies is contained within the App.Config file or can be programatically set.
+        The information required for the server to load the assemblies is contained within the app.config file or can be programatically set.
       </para>
 
       <table>

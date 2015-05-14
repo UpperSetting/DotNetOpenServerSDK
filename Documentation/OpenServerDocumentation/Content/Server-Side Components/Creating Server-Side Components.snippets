@@ -33,9 +33,10 @@
     <sampleCode language="CSharp">
       using US.OpenServer;
       using US.OpenServer.Configuration;
+      using US.OpenServer.Protocols;
+      using US.OpenServer.Protocols.Hello;
       using US.OpenServer.Protocols.KeepAlive;
       using US.OpenServer.Protocols.WinAuth;
-      using US.OpenServer.Protocols.WinAuth.Server;
     </sampleCode>
   </item>
   
@@ -45,35 +46,35 @@
       using System.Collections.Generic;
       using US.OpenServer;
       using US.OpenServer.Configuration;
+      using US.OpenServer.Protocols;
+      using US.OpenServer.Protocols.Hello;
       using US.OpenServer.Protocols.KeepAlive;
       using US.OpenServer.Protocols.WinAuth;
-      using US.OpenServer.Protocols.WinAuth.Server;
 
-      namespace TestServer
+      namespace HelloServer
       {
           class Program
           {
               static void Main(string[] args)
-              {            
-                  Logger logger = new Logger("DotNetOpenServer");
-            
+              {
+                  ConsoleLogger logger = new ConsoleLogger();
+
                   ServerConfiguration cfg = new ServerConfiguration();
 
                   Dictionary&lt;ushort, ProtocolConfiguration&gt; protocolConfigurations =
                       new Dictionary&lt;ushort, ProtocolConfiguration&gt;();
-            
-                  protocolConfigurations.Add(KeepAliveProtocol.PROTOCAL_IDENTIFIER,
-                      new ProtocolConfiguration(KeepAliveProtocol.PROTOCAL_IDENTIFIER, typeof(KeepAliveProtocol)));
 
-                  WinAuthProtocolConfigurationServer winAuthCfg = 
-                      new WinAuthProtocolConfigurationServer(
-                          WinAuthProtocol.PROTOCAL_IDENTIFIER,
-                          typeof(WinAuthProtocolServer));
+                  protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
+                      new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
+
+                  WinAuthProtocolConfigurationServer winAuthCfg =
+                      new WinAuthProtocolConfigurationServer(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolServer));
                   winAuthCfg.Roles.Add("Administrators");
-                  winAuthCfg.Roles.Add("Power Users");
-                  winAuthCfg.Users.Add("User1");
-                  winAuthCfg.Users.Add("User2");
-                  protocolConfigurations.Add(WinAuthProtocol.PROTOCAL_IDENTIFIER, winAuthCfg);
+                  winAuthCfg.Users.Add("TestUser");
+                  protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER, winAuthCfg);
+
+                  protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
+                      new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolServer)));
 
                   Server server = new Server(logger, cfg, protocolConfigurations);
 

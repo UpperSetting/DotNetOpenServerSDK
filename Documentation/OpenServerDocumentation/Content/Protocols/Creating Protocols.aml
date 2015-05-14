@@ -62,7 +62,7 @@
             <step>
               <content>
                 <para>
-                  From all three projects add a reference to the OpenServerShared.dll located in the SDK's portable binary directory.  
+                  From all three projects add a reference to the US.OpenServer.Shared.dll located in the SDK's portable binary directory.  
                   By default that is <codeInline>c:\program files\upper setting\DotNetOpenServerSDK\Portable\bin</codeInline>.
                 </para>
               </content>

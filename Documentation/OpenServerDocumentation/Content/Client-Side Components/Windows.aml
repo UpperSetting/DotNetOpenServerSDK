@@ -81,13 +81,12 @@
                   Select the following assemblies:
                 </para>
                 <list class="bullet">
-                  <listItem><para>HelloProtocolClient.dll</para></listItem>
-                  <listItem><para>HelloProtocolShared.dll</para></listItem>
-                  <listItem><para>KeepAliveProtocol.dll</para></listItem>
-                  <listItem><para>OpenServerClient.dll</para></listItem>
-                  <listItem><para>OpenServerShared.dll</para></listItem>
-                  <listItem><para>WinAuthProtocolClient.dll</para></listItem>
-                  <listItem><para>WinAuthProtocolShared.dll</para></listItem>
+                  <listItem><para>US.OpenServer.Protocols.Hello.Client.dll</para></listItem>
+                  <listItem><para>US.OpenServer.Protocols.Hello.Shared.dll</para></listItem>
+                  <listItem><para>US.OpenServer.Protocols.KeepAlive.dll</para></listItem>
+                  <listItem><para>US.OpenServer.Shared.dll</para></listItem>
+                  <listItem><para>US.OpenServer.Protocols.WinAuth.Client.dll</para></listItem>
+                  <listItem><para>US.OpenServer.Protocols.WinAuth.Shared.dll</para></listItem>
                 </list>
               </content>
             </step>
@@ -117,8 +116,8 @@
       </content>
     </section>
 
-    <section address="App.Config">
-      <title>Create an Instance of the Client using the App.Config</title>
+    <section address="app.config">
+      <title>Create an Instance of the Client using the app.config</title>
       <content>
         <procedure>
           <title>To create an instance of the Client:</title>
@@ -161,7 +160,7 @@
               <content>
                 <para>
                   Add the configuration.
-                  For more information see: <link xlink:href="Configuration.Windows.App.Config" />
+                  For more information see: <link xlink:href="Configuration.Windows.app.config" />
                 </para>
               </content>
             </step>
@@ -212,7 +211,7 @@
                 </para>
                 <codeReference>WindowsClient#Programatically</codeReference>
                 <para>
-                  Please note if you set any of the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference> constructor parameters to null, those parameters are read from the App.Config.
+                  Please note if you set any of the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference> constructor parameters to null, those parameters are read from the app.config.
                 </para>
               </content>
             </step>
@@ -229,7 +228,7 @@
     </section>
     
     <relatedTopics>
-      <link xlink:href="Configuration.Windows.App.Config">App.Config Reference Document</link>
+      <link xlink:href="Configuration.Windows.app.config">app.config Reference Document</link>
       <link xlink:href="ClientSideComponents"/>
     </relatedTopics>
   </developerConceptualDocument>

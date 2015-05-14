@@ -28,7 +28,7 @@
     </introduction>
 
     <section address="Section1">
-      <title>Configuring the Default Logger using the App.Config</title>
+      <title>Configuring the Default Logger using the app.config</title>
       <content>
         <procedure>
           <title>To configure the default Logger using the App.config file:</title>

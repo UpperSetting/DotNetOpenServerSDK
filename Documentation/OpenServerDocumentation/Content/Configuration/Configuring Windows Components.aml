@@ -15,7 +15,7 @@
     </introduction>
 
     <relatedTopics>
-      <link xlink:href="Configuration.Windows.App.Config">App.Config Reference Document</link>
+      <link xlink:href="Configuration.Windows.app.config">app.config Reference Document</link>
       <link xlink:href="ClientSideComponents"/>
       <link xlink:href="ServerSideComponents"/>
     </relatedTopics>

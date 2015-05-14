@@ -16,12 +16,12 @@
     <Topic id="ClientSideComponents.WindowsMobile" visible="True" />
   </Topic>
   <Topic id="Configuration.Windows" visible="True" isExpanded="true">
-    <Topic id="Configuration.Windows.App.Config" visible="True" isExpanded="true">
-      <Topic id="Configuration.Windows.App.Config.Protocols" visible="True" isExpanded="true">
-        <Topic id="Configuration.Windows.App.Config.Protocols.Item" visible="True" />
+    <Topic id="Configuration.Windows.app.config" visible="True" isExpanded="true">
+      <Topic id="Configuration.Windows.app.config.Protocols" visible="True" isExpanded="true">
+        <Topic id="Configuration.Windows.app.config.Protocols.Item" visible="True" />
       </Topic>
-      <Topic id="Configuration.Windows.App.Config.Server" visible="True" isExpanded="true">
-        <Topic id="Configuration.Windows.App.Config.Server.TLS" visible="True" />
+      <Topic id="Configuration.Windows.app.config.Server" visible="True" isExpanded="true">
+        <Topic id="Configuration.Windows.app.config.Server.TLS" visible="True" />
       </Topic>
     </Topic>
   </Topic>

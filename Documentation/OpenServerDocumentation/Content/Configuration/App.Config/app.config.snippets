@@ -7,8 +7,8 @@
       <configuration>
         <configSections>
           <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,Log4net"/>
-          <section name="server" type="US.OpenServer.Configuration.ServerConfigurationSectionHandler,OpenServer"/>
-          <section name="protocols" type="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler,OpenServerWindowsShared"/>
+          <section name="server" type="US.OpenServer.Configuration.ServerConfigurationSectionHandler,US.OpenServer.Windows.Shared"/>
+          <section name="protocols" type="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler,US.OpenServer.Windows.Shared"/>
         </configSections>
         ...
       </configuration>]]>
@@ -55,7 +55,7 @@
       <configuration>
         ...
         <server>
-          <bindAddress value="0.0.0.0" />
+          <host value="0.0.0.0" />
           <port value="21843" />
           <tls value="true"
                certificate="UpperSetting.com"
@@ -114,26 +114,27 @@
       <configuration>
         ...
         <protocols>
-          <item id="1" 
-                assembly="KeepAlive.dll" 
-                classPath="US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol" />
-          <item id="2" 
-                assembly="WinAuthServer.dll" 
-                classPath="US.OpenServer.Protocols.WinAuth.WinAuthProtocolServer"
-                configSectionAssembly="WinAuthServer.dll" 
-                configSectionClassPath="US.OpenServer.Protocols.WinAuth.WinAuthProtocolConfigurationServer">
-            <permissions>
-              <roles>
-                <role value="Administrators" />
-                <role value="Power Users" />
-              </roles>
-              <users>
-                <user value="User1" />
-                <user value="User2" />
-              </users>
-            </permissions>
-          </item>
-        </protocols>
+            <item id="1" 
+                  assembly="US.OpenServer.Protocols.KeepAlive.KeepAlive.dll" 
+                  classPath="US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol" />
+            <item id="2" 
+                  assembly="US.OpenServer.Protocols.WinAuth.Server.dll" 
+                  classPath="US.OpenServer.Protocols.WinAuth.WinAuthProtocolServer"
+                  configSectionAssembly="US.OpenServer.Protocols.WinAuth.Server.dll" 
+                  configSectionClassPath="US.OpenServer.Protocols.WinAuth.WinAuthProtocolConfigurationServer">
+              <permissions>
+                <roles>
+                  <role value="Administrators" />
+                </roles>
+                <users>
+                  <user value="TestUser" />          
+                </users>
+              </permissions>
+            </item>
+            <item id="10"
+                  assembly="US.OpenServer.Protocols.Hello.Server.dll"
+                  classPath="US.OpenServer.Protocols.Hello.HelloProtocolServer" />
+          </protocols>
         ...
       </configuration>]]>
     </sampleCode>
@@ -145,8 +146,8 @@
       <configuration>
         <configSections>
           <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,Log4net"/>
-          <section name="server" type="US.OpenServer.Configuration.ServerConfigurationSectionHandler,OpenServer"/>
-          <section name="protocols" type="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler,OpenServerWindowsShared"/>
+          <section name="server" type="US.OpenServer.Configuration.ServerConfigurationSectionHandler,US.OpenServer.Windows.Shared"/>
+          <section name="protocols" type="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler,US.OpenServer.Windows.Shared"/>
         </configSections>
 
         <startup>
@@ -167,7 +168,7 @@
           </appender>
 
           <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
-            <file value="C:\ApplicationServerSDK\server.log"/>
+            <file value="server.log"/>
             <appendToFile value="true"/>
             <rollingStyle value="Size"/>
             <maxSizeRollBackups value="5"/>
@@ -180,7 +181,7 @@
         </log4net>
 
         <server>
-          <bindAddress value="0.0.0.0" />
+          <host value="0.0.0.0" />
           <port value="21843" />
           <tls value="true"
                certificate="UpperSetting.com"
@@ -225,8 +226,8 @@
       <configuration>
         <configSections>
           <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,Log4net"/>
-          <section name="server" type="US.OpenServer.Client.Configuration.ServerConfigurationSectionHandler,OpenServerWindowsClient"/>
-          <section name="protocols" type="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler,OpenServerWindowsShared"/>
+          <section name="server" type="US.OpenServer.Configuration.ServerConfigurationSectionHandler,US.OpenServer.Windows.Shared"/>
+          <section name="protocols" type="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler,US.OpenServer.Windows.Shared"/>
         </configSections>
 
         <startup>
@@ -247,7 +248,7 @@
           </appender>
     
           <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
-            <file value="C:\ApplicationServerSDK\client.log"/>
+            <file value="client.log"/>
             <appendToFile value="true"/>
             <rollingStyle value="Size"/>
             <maxSizeRollBackups value="5"/>
@@ -273,13 +274,16 @@
           <writeTimeout value="120" />
         </server>
 
-        <protocols>
-          <item id="1" 
-                assembly="KeepAlive.dll" 
+         <protocols>
+          <item id="1"
+                assembly="US.OpenServer.Protocols.KeepAlive.KeepAlive.dll"
                 classPath="US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol" />
-          <item id="2" 
-                assembly="WinAuthClient.dll" 
+          <item id="2"
+                assembly="US.OpenServer.Protocols.WinAuth.Client.dll"
                 classPath="US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient" />
+          <item id="10"
+                assembly="US.OpenServer.Protocols.Hello.Client.dll"
+                classPath="US.OpenServer.Protocols.Hello.HelloProtocolClient" />
         </protocols>
 
       </configuration>]]>

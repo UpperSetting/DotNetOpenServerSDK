@@ -35,8 +35,8 @@
       </content>
     </section>
 
-    <section address="App.Config">
-      <title>Create an Instance of the Server using the App.Config</title>
+    <section address="app.config">
+      <title>Create an Instance of the Server using the app.config</title>
       <content>
         <procedure>
           <title>To create an instance of the Server:</title>
@@ -69,7 +69,7 @@
                 </para>
                 <list class="bullet">
                   <listItem><para>OpenServer.dll</para></listItem>
-                  <listItem><para>OpenServerShared.dll</para></listItem>
+                  <listItem><para>US.OpenServer.Shared.dll</para></listItem>
                 </list>
               </content>
             </step>
@@ -107,7 +107,7 @@
               <content>
                 <para>
                   Add the configuration.
-                  For more information see: <link xlink:href="Configuration.Windows.App.Config" />
+                  For more information see: <link xlink:href="Configuration.Windows.app.config" />
                 </para>                
               </content>
             </step>
@@ -149,12 +149,12 @@
                   Select the following assemblies:
                 </para>
                 <list class="bullet">
-                  <listItem><para>KeepAlive.dll</para></listItem>
-                  <listItem><para>OpenServer.dll</para></listItem>
-                  <listItem><para>OpenServerShared.dll</para></listItem>
-                  <listItem><para>OpenServerWindowsShared.dll</para></listItem>
-                  <listItem><para>WinAuthServer.dll</para></listItem>
-                  <listItem><para>WinAuthShared.dll</para></listItem>
+                  <listItem><para>US.OpenServer.Protocols.KeepAlive.dll</para></listItem>
+                  <listItem><para>US.OpenServer.dll</para></listItem>
+                  <listItem><para>US.OpenServer.Shared.dll</para></listItem>
+                  <listItem><para>US.OpenServer.Windows.Shared.dll</para></listItem>
+                  <listItem><para>US.OpenServer.Protocols.WinAuth.Server.dll</para></listItem>
+                  <listItem><para>US.OpenServer.Protocols.WinAuth.Shared.dll</para></listItem>
                 </list>
               </content>
             </step>
@@ -184,7 +184,7 @@
                 </para>
                 <codeReference>Server#Programatically</codeReference>
                 <para>
-                  Please note if you set any of the <codeEntityReference>T:US.OpenServer.Server</codeEntityReference> constructor parameters to null, those parameters are read from the App.Config.
+                  Please note if you set any of the <codeEntityReference>T:US.OpenServer.Server</codeEntityReference> constructor parameters to null, those parameters are configured using values found in the app.config file.
                 </para>
               </content>
             </step>
@@ -194,7 +194,7 @@
     </section>
        
     <relatedTopics>
-      <link xlink:href="Configuration.Windows.App.Config"/>
+      <link xlink:href="Configuration.Windows.app.config"/>
       <link xlink:href="ServerSideComponents"/>
     </relatedTopics>
   </developerWalkthroughDocument>
