@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>UpperSetting.OpenServer.Shared</id>
+        <version>1.0.0.0</version>
+        <title>DotNetOpenServer SDK Shared DLL</title>
+        <authors>Upper Setting Corporation</authors>
+        <owners>Upper Setting Corporation</owners>
+        <licenseUrl>http://www.UpperSetting.com/Licenses/GNUv3.txt</licenseUrl>
+        <projectUrl>http://github.com/UpperSetting/DotNetOpenServerSDK</projectUrl>
+        <iconUrl>http://www.UpperSetting.com/favicon.png</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>A portable assembly that contains shared classes, interfaces, enumerations and extensions used by DotNetOpenServer SDK derived Windows server, client and mobile applications.</description>
+        <releaseNotes />
+        <copyright>Copyright 2015 Upper Setting Corporation</copyright>
+        <language>en-US</language>
+        <tags>Upper Setting Corporation DotNetOpenServer SDK Shared DLL</tags>
+    </metadata>
+    <files>
+        <file src="lib\net451\US.OpenServer.Shared.dll" target="lib\net451\US.OpenServer.Shared.dll" />
+        <file src="lib\netcore451\US.OpenServer.Shared.dll" target="lib\netcore451\US.OpenServer.Shared.dll" />
+        <file src="lib\wpa81\US.OpenServer.Shared.dll" target="lib\wpa81\US.OpenServer.Shared.dll" />
+    </files>
+</package>
