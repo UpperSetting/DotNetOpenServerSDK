@@ -62,8 +62,9 @@ https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Server/
 `PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client`
 
 ## Android and Java
-The client JAR files required to create both Android and Java clients applications are available 
-[link](http://github.com/UpperSetting/DotNetOpenServerSDK/releases)here.
+The client JAR files necessary to create Android and Java client applications
+have been made available
+[here](http://github.com/UpperSetting/DotNetOpenServerSDK/releases).
 
 ## Documentation
 Detailed documentation and tutorials can be found online at the following location:
