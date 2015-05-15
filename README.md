@@ -61,7 +61,7 @@ https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Server/
 `PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client`
 
 ## Documentation
-Documentation can be found online at the following location:
+Detailed documentation and tutorials can be found online at the following location:
 http://www.UpperSetting.com/docs/DotNetOpenServerSDK/
 
 ## Source Code Structure
