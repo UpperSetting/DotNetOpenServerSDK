@@ -17,8 +17,8 @@
         <tags>Upper Setting Corporation DotNetOpenServer SDK Shared DLL</tags>
     </metadata>
     <files>
-        <file src="lib\net451\US.OpenServer.Shared.dll" target="lib\net451\US.OpenServer.Shared.dll" />
-        <file src="lib\netcore451\US.OpenServer.Shared.dll" target="lib\netcore451\US.OpenServer.Shared.dll" />
-        <file src="lib\wpa81\US.OpenServer.Shared.dll" target="lib\wpa81\US.OpenServer.Shared.dll" />
+        <file src="bin\US.OpenServer.Shared.dll" target="lib\net451\US.OpenServer.Shared.dll" />
+        <file src="bin\US.OpenServer.Shared.dll" target="lib\netcore451\US.OpenServer.Shared.dll" />
+        <file src="bin\US.OpenServer.Shared.dll" target="lib\wpa81\US.OpenServer.Shared.dll" />
     </files>
 </package>
