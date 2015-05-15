@@ -111,31 +111,36 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="HelloProtocolClient">
-      <HintPath>..\..\..\bin\Portable\HelloProtocolClient.dll</HintPath>
-    </Reference>
-    <Reference Include="HelloProtocolShared">
-      <HintPath>..\..\..\bin\Portable\HelloProtocolShared.dll</HintPath>
-    </Reference>
-    <Reference Include="KeepAliveProtocol">
-      <HintPath>..\..\..\bin\Portable\KeepAliveProtocol.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenServerShared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Portable\OpenServerShared.dll</HintPath>
-    </Reference>
-    <Reference Include="WinAuthProtocolClient">
-      <HintPath>..\..\..\bin\Portable\WinAuthProtocolClient.dll</HintPath>
-    </Reference>
-    <Reference Include="WinAuthProtocolShared">
-      <HintPath>..\..\..\bin\Portable\WinAuthProtocolShared.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\OpenServerWindowsMobile\OpenServerWindowsMobile.csproj">
       <Project>{4d314e7d-688d-45b2-af71-adfba7b0a1d8}</Project>
       <Name>OpenServerWindowsMobile</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="US.OpenServer.Protocols.Hello.Client, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.Hello.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Protocols.Hello.Shared, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.Hello.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Protocols.KeepAlive, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.KeepAlive.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Protocols.WinAuth.Client, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.WinAuth.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Protocols.WinAuth.Shared, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.WinAuth.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Shared, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
