@@ -18,7 +18,7 @@ built from the ground up with highly efficient stateful binary protocols.
 
 ## .Net
 ### NuGet
-DotNetOpenServer SDK .Net libraries are available via NuGet from the following locations:
+The DotNetOpenServer SDK .Net libraries are available via NuGet from the following locations:
 https://www.nuget.org/packages/UpperSetting.OpenServer.Shared/
 https://www.nuget.org/packages/UpperSetting.OpenServer.Windows.Shared/
 https://www.nuget.org/packages/UpperSetting.OpenServer/
@@ -62,10 +62,10 @@ https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Server/
 
 ## Android and Java
 The client JAR files necessary to create Android and Java client applications
-have been made available
-[here](http://github.com/UpperSetting/DotNetOpenServerSDK/releases).
+have been made available in the [DotNetOpenServer SDK Java Client
+Release](http://github.com/UpperSetting/DotNetOpenServerSDK/releases).
 
-The DotNetOpenServer SDK Java release contains 4 JAR files:
+The DotNetOpenServer SDK Java Client release contains 4 JAR files:
 * OpenServerClient.jar - Contains the client implementation. 
 * KeepAliveProtocol.jar - Contains the client side Keep-Alive proptocol implemetantion.
 * WinAuthProtocol.jar - Contains the client side Windows Authentication protocol implementation.
