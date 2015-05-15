@@ -20,6 +20,6 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="lib\net451\US.OpenServer.Windows.Client.dll" target="lib\net451\US.OpenServer.Windows.Client.dll" />
+        <file src="bin\US.OpenServer.Windows.Client.dll" target="lib\net451\US.OpenServer.Windows.Client.dll" />
     </files>
 </package>
