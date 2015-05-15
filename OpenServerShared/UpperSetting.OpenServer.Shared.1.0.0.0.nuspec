@@ -14,7 +14,7 @@
         <releaseNotes />
         <copyright>Copyright 2015 Upper Setting Corporation</copyright>
         <language>en-US</language>
-        <tags>Upper Setting Corporation DotNetOpenServer SDK Shared DLL</tags>
+        <tags>TCP Socket Server</tags>
     </metadata>
     <files>
         <file src="bin\US.OpenServer.Shared.dll" target="lib\net451\US.OpenServer.Shared.dll" />
