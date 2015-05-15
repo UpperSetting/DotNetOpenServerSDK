@@ -10,7 +10,11 @@ stateless protocols such as HTTP, REST, JSON or SOAP, DotNetOpenServer has been
 built from the ground up with highly efficient stateful binary protocols.
 
 ## Prerequisites
-Requires .NET 4.5.1 or later and Microsoft&reg; Visual Studio 2013 or later
+* .NET 4.5.1 or later
+* Microsoft&reg; Visual Studio 2013 or later
+* Java SE Development Kit 7 Update 75 or later
+* Eclipse (optional)
+* Android Studio (optional)
 
 ## NuGet
 DotNetOpenServer SDK libraries are available via NuGet from the following locations:
