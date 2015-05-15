@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>UpperSetting.OpenServer.Windows.Shared</id>
@@ -15,6 +15,9 @@
         <copyright>Copyright 2015 Upper Setting Corporation</copyright>
         <language>en-US</language>
         <tags>TCP Socket Server</tags>
+        <dependencies>
+            <dependency id="UpperSetting.OpenServer.Shared" version="[1.0.0.0]" />
+        </dependencies>
     </metadata>
     <files>
         <file src="bin\US.OpenServer.Windows.Shared.dll" target="lib\net451\US.OpenServer.Windows.Shared.dll" />
