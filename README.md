@@ -12,7 +12,7 @@ built from the ground up with highly efficient stateful binary protocols.
 ## Prerequisites
 * .NET 4.5.1 or later
 * Microsoft&reg; Visual Studio 2013 or later
-* log4Net
+* log4Net (optional)
 * Java SE Development Kit 7 Update 75 or later
 * Eclipse (optional)
 * Android Studio (optional)
