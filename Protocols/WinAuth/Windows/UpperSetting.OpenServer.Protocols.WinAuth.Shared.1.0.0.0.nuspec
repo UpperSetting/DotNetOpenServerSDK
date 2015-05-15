@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>UpperSetting.OpenServer.Protocols.WinAuth.Shared</id>
+        <version>1.0.0.0</version>
+        <title>DotNetOpenServer SDK Windows Authentication Protocol Shared DLL</title>
+        <authors>Michael Janulaitis</authors>
+        <owners>Upper Setting Corporation</owners>
+        <licenseUrl>http://www.UpperSetting.com/Licenses/GNUv3.txt</licenseUrl>
+        <projectUrl>http://github.com/UpperSetting/DotNetOpenServerSDK</projectUrl>
+        <iconUrl>http://www.UpperSetting.com/favicon.png</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>A portable assembly that contains shared classes, interfaces, enumerations and extensions used by DotNetOpenServer SDK derived server, client and mobile applications.</description>
+        <releaseNotes />
+        <copyright>Copyright 2015 Upper Setting Corporation</copyright>
+        <language>en-US</language>
+        <tags>TCP Socket Server</tags>
+        <dependencies>
+            <dependency id="UpperSetting.OpenServer.Shared" version="[1.0.0.0]" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\US.OpenServer.Protocols.WinAuth.Shared.dll" target="lib\net451\US.OpenServer.Protocols.WinAuth.Shared.dll" />
+        <file src="bin\US.OpenServer.Protocols.WinAuth.Shared.dll" target="lib\wpa81\US.OpenServer.Protocols.WinAuth.Shared.dll" />
+    </files>
+</package>
