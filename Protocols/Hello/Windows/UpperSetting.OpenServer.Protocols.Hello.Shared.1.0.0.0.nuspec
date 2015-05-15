@@ -21,7 +21,6 @@
     </metadata>
     <files>
         <file src="bin\US.OpenServer.Protocols.Hello.Shared.dll" target="lib\net451\US.OpenServer.Protocols.Hello.Shared.dll" />
-        <file src="bin\US.OpenServer.Protocols.Hello.Shared.dll" target="lib\netcore451\US.OpenServer.Protocols.Hello.Shared.dll" />
         <file src="bin\US.OpenServer.Protocols.Hello.Shared.dll" target="lib\wpa81\US.OpenServer.Protocols.Hello.Shared.dll" />
     </files>
 </package>
