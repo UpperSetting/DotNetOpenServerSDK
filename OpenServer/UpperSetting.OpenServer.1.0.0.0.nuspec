@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>UpperSetting.OpenServer</id>
+        <version>1.0.0.0</version>
+        <title>DotNetOpenServer SDK Windows Server DLL</title>
+        <authors>Michael Janulaitis</authors>
+        <owners>Upper Setting Corporation</owners>
+        <licenseUrl>http://www.UpperSetting.com/Licenses/GNUv3.txt</licenseUrl>
+        <projectUrl>http://github.com/UpperSetting/DotNetOpenServerSDK</projectUrl>
+        <iconUrl>http://www.UpperSetting.com/favicon.png</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>A Windows assembly that contains server classes, interfaces, enumerations and extensions used by DotNetOpenServer SDK derived Windows server applications.</description>
+        <releaseNotes />
+        <copyright>Copyright 2015 Upper Setting Corporation</copyright>
+        <language>en-US</language>
+        <tags>TCP Socket Server</tags>
+    </metadata>
+    <files>
+        <file src="bin\US.OpenServer.dll" target="lib\net451\US.OpenServer.dll" />
+    </files>
+</package>
