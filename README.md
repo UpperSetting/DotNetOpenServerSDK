@@ -1,7 +1,6 @@
 # DotNetOpenServer SDK
 
 ## Overview
-
 DotNetOpenServer SDK is an open source lightweight fully extendable
 client/server application framework enabling developers to create robust, secure
 and fast cloud based smart mobile device and desktop applications. Why? Unlike
@@ -65,6 +64,12 @@ https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Server/
 The client JAR files necessary to create Android and Java client applications
 have been made available
 [here](http://github.com/UpperSetting/DotNetOpenServerSDK/releases).
+
+The DotNetOpenServer SDK Java release contains 4 JAR files:
+* OpenServerClient.jar - Contains the client implementation. 
+* KeepAliveProtocol.jar - Contains the client side Keep-Alive proptocol implemetantion.
+* WinAuthProtocol.jar - Contains the client side Windows Authentication protocol implementation.
+* HelloProtocol.jar - Contains the client side Hello Protocol implementation.
 
 ## Documentation
 Detailed documentation and tutorials can be found online at the following location:
