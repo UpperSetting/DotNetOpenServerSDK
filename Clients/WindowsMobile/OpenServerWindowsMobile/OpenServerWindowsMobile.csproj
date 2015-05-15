@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>US.OpenServer.WindowsMobile</RootNamespace>
-    <AssemblyName>OpenServerWindowsMobile</AssemblyName>
+    <AssemblyName>US.OpenServer.WindowsMobile</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
