@@ -17,8 +17,9 @@ built from the ground up with highly efficient stateful binary protocols.
 * Eclipse (optional)
 * Android Studio (optional)
 
-## NuGet
-DotNetOpenServer SDK libraries are available via NuGet from the following locations:
+## .Net
+### NuGet
+DotNetOpenServer SDK .Net libraries are available via NuGet from the following locations:
 https://www.nuget.org/packages/UpperSetting.OpenServer.Shared/
 https://www.nuget.org/packages/UpperSetting.OpenServer.Windows.Shared/
 https://www.nuget.org/packages/UpperSetting.OpenServer/
@@ -32,8 +33,8 @@ https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Shared/
 https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Client/
 https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Server/
 
-## Installation
-### To create a Windows Server application, run the following commands in the Package Manager Console:
+### Installation
+#### To create a Windows Server application, run the following commands in the Package Manager Console:
 `PM> Install-Package UpperSetting.OpenServer`
 
 `PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Server`
@@ -42,7 +43,7 @@ https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Server/
 
 `PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Server`
 
-### To create a Windows Client application, run the following commands in the Package Manager Console:
+#### To create a Windows Client application, run the following commands in the Package Manager Console:
 `PM> Install-Package UpperSetting.OpenServer.Windows.Client`
 
 `PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client`
@@ -51,7 +52,7 @@ https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Server/
 
 `PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client`
 
-### To create a Windows Mobile application, run the following commands in the Package Manager Console:
+#### To create a Windows Mobile application, run the following commands in the Package Manager Console:
 `PM> Install-Package UpperSetting.OpenServer.WindowsMobile`
 
 `PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client`
@@ -59,6 +60,10 @@ https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Server/
 `PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive`
 
 `PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client`
+
+## Android and Java
+The client JAR files required to create both Android and Java clients applications are available 
+[link](http://github.com/UpperSetting/DotNetOpenServerSDK/releases)here.
 
 ## Documentation
 Detailed documentation and tutorials can be found online at the following location:
@@ -71,4 +76,4 @@ http://www.UpperSetting.com/docs/DotNetOpenServerSDK/
 * OpenServer - Contains the Windows server source code
 * OpenServerShared - Contains protable Windows and Windows Mobile source code
 * Protocols - Contains both client and server application layer protocol implementation source code
-* Samples - Contains sample client and server applications source code
+* Samples - Contains sample client and server application source code
