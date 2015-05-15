@@ -48,7 +48,7 @@ To create a Windows Mobile application, run the following commands in the Packag
 
 ## Documentation
 Documentation can be found online at the following location:
-http://www.UpperSetting.com/docs/DotNetOpenServerSDK/index.htm
+http://www.UpperSetting.com/docs/DotNetOpenServerSDK/
 
 > ## Source Code Structure
 > 
