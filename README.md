@@ -59,12 +59,11 @@ https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Server/
 Documentation can be found online at the following location:
 http://www.UpperSetting.com/docs/DotNetOpenServerSDK/
 
-> ## Source Code Structure
-> 
-> > bin - Contains dependent 3rd party libaries
-> > Clients - Contains, Android, iOS, Windows Mobile, Windows and Java client source code
-> > Documentation - Contains source files to generate Sandcastle based help
-> > OpenServer - Contains the Windows server source code
-> > OpenServerShared - Contains protable Windows and Windows Mobile source code
-> > Protocols - Contains both client and server application layer protocol implementation source code
-> > Samples - Contains sample client and server applications source code
+## Source Code Structure
+* bin - Contains dependent 3rd party libaries
+* Clients - Contains, Android, iOS, Windows Mobile, Windows and Java client source code
+* Documentation - Contains source files to generate Sandcastle based help
+* OpenServer - Contains the Windows server source code
+* OpenServerShared - Contains protable Windows and Windows Mobile source code
+* Protocols - Contains both client and server application layer protocol implementation source code
+* Samples - Contains sample client and server applications source code
