@@ -17,6 +17,7 @@ You should have received a copy of the GNU General Public License along with
 DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
+using System;
 
 namespace US.OpenServer.Protocols
 {
@@ -37,5 +38,15 @@ namespace US.OpenServer.Protocols
         /// </summary>
         /// <value>A string that specifies the user's name.</value>
         public string UserName { get; protected set; }
+
+        /// <summary>
+        /// Checks if the authenticated user is a member of the passed role.
+        /// </summary>
+        /// <param name="role">A String that contains the name of the role.</param>
+        /// <returns></returns>
+        public bool IsInRole(string role)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
