@@ -103,13 +103,14 @@ namespace US.OpenServer.Protocols.WinAuth
         /// when loading the configuration from the app.config file.
         /// </summary>
         /// <remarks>
-        /// To configure add configSectionAssemply and
-        /// configSectionClassPath to the app.config's protocols/item section. Use the
-        /// following syntax:
+        /// To configure add configClassPath configSectionClassPath to the app.config's
+        /// protocols/item section. Use the following syntax:
         /// <code>
         /// <protocols>
-        ///     <item id="2" assembly="WinAuthServer.dll" classPath="US.OpenServer.Protocols.WinAuth.WinAuthProtocolServer"
-        ///         configSectionAssemply="WinAuthServer.dll" configSectionClassPath="US.OpenServer.Protocols.WinAuth.WinAuthProtocolConfigurationServer">
+        ///     <item id="2" 
+        ///           assembly="WinAuthServer.dll" 
+        ///           classPath="US.OpenServer.Protocols.WinAuth.WinAuthProtocolServer"
+        ///           configClassPath="US.OpenServer.Protocols.WinAuth.WinAuthProtocolConfigurationServer">
         ///         <permissions>
         ///             <roles>
         ///                 <role value="Administrators" />

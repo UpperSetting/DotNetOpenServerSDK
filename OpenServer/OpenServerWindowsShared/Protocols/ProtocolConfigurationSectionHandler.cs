@@ -34,9 +34,8 @@ namespace US.OpenServer.Protocols
         /// </summary>
         /// <remarks>
         /// To configure the framework to extend a protocol configuration add
-        /// 'configSectionAssemply' and 'configSectionClassPath' to the app.config's
-        /// 'protocols/item' section. Use the XML interior to configure your own
-        /// configuration properties.
+        /// 'configClassPath' to the app.config's 'protocols/item' section. Use the XML
+        /// interior to configure your own configuration properties.
         /// </remarks>
         /// <param name="parent">The parent object. This parameter is not used.</param>
         /// <param name="configContext">The Configuration context object. This parameter
@@ -53,14 +52,13 @@ namespace US.OpenServer.Protocols
                 ushort id = ushort.Parse(node.Attributes["id"].Value);
                 string asm = node.Attributes["assembly"].Value;
                 string classPath = node.Attributes["classPath"].Value;
-                XmlNode csaNode = node.Attributes["configSectionAssembly"];
-                XmlNode cscpNode = node.Attributes["configSectionClassPath"];
+                XmlNode cfgClassPathNode = node.Attributes["configClassPath"];
 
                 ProtocolConfigurationEx plc;
-                if (csaNode != null && cscpNode != null)
+                if (cfgClassPathNode != null)
                 {
-                    Assembly assembly = Assembly.LoadFrom(csaNode.Value);
-                    plc = (ProtocolConfigurationEx)assembly.CreateInstance(cscpNode.Value);
+                    Assembly assembly = Assembly.LoadFrom(asm);
+                    plc = (ProtocolConfigurationEx)assembly.CreateInstance(cfgClassPathNode.Value);
                     plc.Initialize(id, asm, classPath, node);
                 }
                 else
