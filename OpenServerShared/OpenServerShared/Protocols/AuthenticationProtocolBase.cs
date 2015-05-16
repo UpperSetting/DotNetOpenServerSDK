@@ -42,6 +42,10 @@ namespace US.OpenServer.Protocols
         /// <summary>
         /// Checks if the authenticated user is a member of the passed role.
         /// </summary>
+        /// <remarks>
+        /// This function is made available so application layer protocols can include
+        /// fine grained security.
+        /// </remarks>
         /// <param name="role">A String that contains the name of the role.</param>
         /// <returns></returns>
         public bool IsInRole(string role)
