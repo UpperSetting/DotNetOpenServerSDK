@@ -177,6 +177,20 @@ namespace US.OpenServer.Protocols.WinAuth
                 }
             }
         }
+        
+        /// <summary>
+        /// Checks if the authenticated user is a member of the passed role.
+        /// </summary>
+        /// <remarks>
+        /// This function is made available so application layer protocols can include
+        /// fine grained security.
+        /// </remarks>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        public override bool IsInRole(string role)
+        {
+            return wp.IsInRole(role);
+        }
         #endregion
 
         #region Private Functions
