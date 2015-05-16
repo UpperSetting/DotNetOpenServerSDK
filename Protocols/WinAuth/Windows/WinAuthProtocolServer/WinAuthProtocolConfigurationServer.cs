@@ -103,8 +103,8 @@ namespace US.OpenServer.Protocols.WinAuth
         /// when loading the configuration from the app.config file.
         /// </summary>
         /// <remarks>
-        /// To configure add configClassPath configSectionClassPath to the app.config's
-        /// protocols/item section. Use the following syntax:
+        /// To configure add configClassPath to the app.config's protocols/item section.
+        /// Use the following syntax:
         /// <code>
         /// <protocols>
         ///     <item id="2" 
