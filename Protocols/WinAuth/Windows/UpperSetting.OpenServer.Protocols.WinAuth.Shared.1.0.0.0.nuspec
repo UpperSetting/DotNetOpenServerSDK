@@ -20,8 +20,6 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\US.OpenServer.Protocols.WinAuth.Shared.dll" target="lib\net451\US.OpenServer.Protocols.WinAuth.Shared.dll" />
-        <file src="bin\US.OpenServer.Protocols.WinAuth.Shared.dll" target="lib\netcore451\US.OpenServer.Protocols.WinAuth.Shared.dll" />
-        <file src="bin\US.OpenServer.Protocols.WinAuth.Shared.dll" target="lib\wpa81\US.OpenServer.Protocols.WinAuth.Shared.dll" />
+        <file src="bin\US.OpenServer.Protocols.WinAuth.Shared.dll" target="lib\portable-net451+win81+wpa81\US.OpenServer.Protocols.WinAuth.Shared.dll" />
     </files>
 </package>
