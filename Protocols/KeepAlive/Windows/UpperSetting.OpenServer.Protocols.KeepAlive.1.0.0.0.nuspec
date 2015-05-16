@@ -21,6 +21,7 @@
     </metadata>
     <files>
         <file src="bin\US.OpenServer.Protocols.KeepAlive.dll" target="lib\net451\US.OpenServer.Protocols.KeepAlive.dll" />
+        <file src="bin\US.OpenServer.Protocols.KeepAlive.dll" target="lib\netcore451\US.OpenServer.Protocols.KeepAlive.dll" />
         <file src="bin\US.OpenServer.Protocols.KeepAlive.dll" target="lib\wpa81\US.OpenServer.Protocols.KeepAlive.dll" />
     </files>
 </package>

@@ -21,6 +21,7 @@
     </metadata>
     <files>
         <file src="bin\US.OpenServer.Protocols.Hello.Client.dll" target="lib\net451\US.OpenServer.Protocols.Hello.Client.dll" />
+        <file src="bin\US.OpenServer.Protocols.Hello.Client.dll" target="lib\netcore451\US.OpenServer.Protocols.Hello.Client.dll" />
         <file src="bin\US.OpenServer.Protocols.Hello.Client.dll" target="lib\wpa81\US.OpenServer.Protocols.Hello.Client.dll" />
     </files>
 </package>
