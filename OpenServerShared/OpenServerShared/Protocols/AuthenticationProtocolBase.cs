@@ -48,7 +48,7 @@ namespace US.OpenServer.Protocols
         /// </remarks>
         /// <param name="role">A String that contains the name of the role.</param>
         /// <returns></returns>
-        public bool IsInRole(string role)
+        public virtual bool IsInRole(string role)
         {
             throw new NotImplementedException();
         }
