@@ -74,8 +74,9 @@ namespace US.OpenServer
         /// <param name="address">The IP address of the remote end point.</param>
         /// <param name="tlsConfiguration">The SSL/TLS configuration object.</param>
         /// <param name="logger">The ILogger.</param>
-        public Session(Stream stream, string address, TlsConfiguration tlsConfiguration, ILogger logger)
-            : base(logger)
+        /// <param name="userData">An optional Object the user can pass through to each protocol.</param>
+        public Session(Stream stream, string address, TlsConfiguration tlsConfiguration, ILogger logger, object userData = null)
+            : base(logger, userData)
         {
             this.stream = stream;
             this.Address = address;

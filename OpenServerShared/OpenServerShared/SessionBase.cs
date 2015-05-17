@@ -52,6 +52,11 @@ namespace US.OpenServer
         private Dictionary<ushort, IProtocol> protocolImplementations = new Dictionary<ushort, IProtocol>();
 
         /// <summary>
+        /// An Object the user can pass through to each protocol.
+        /// </summary>
+        private object userData;
+
+        /// <summary>
         /// An object used to protect from Dispose being called multiple times from different threads.
         /// </summary>
         protected object syncObject = new object();
@@ -62,9 +67,11 @@ namespace US.OpenServer
         /// Creates a SessionBase.
         /// </summary>
         /// <param name="logger">An ILogger to log messages.</param>
-        protected SessionBase(ILogger logger)
+        /// <param name="userData">An optional Object the user can pass through to each protocol.</param>
+        protected SessionBase(ILogger logger, object userData = null)
         {
             this.Logger = logger;
+            this.userData = userData;
             LastActivityAt = DateTime.Now;
         }
         #endregion
@@ -198,15 +205,17 @@ namespace US.OpenServer
                     if (!ProtocolConfigurations.ContainsKey(protocolId))
                         throw new Exception(ErrorTypes.INVALID_PROTOCOL);
 
-                    ProtocolConfiguration plc = ProtocolConfigurations.Get(protocolId);
-                    p = plc.CreateInstance();
+                    ProtocolConfiguration pc = ProtocolConfigurations.Get(protocolId);
+                    p = pc.CreateInstance();
                     if (p == null)
-                        throw new Exception(string.Format(ErrorTypes.CLASS_NOT_FOUND, plc));
+                        throw new Exception(string.Format(ErrorTypes.CLASS_NOT_FOUND, pc));
 
                     protocolImplementations.Add(protocolId, p);
 
                     Log(Level.Debug, string.Format("Initializing protocol {0}...", protocolId));
-                    p.Initialize(this, plc, userData);
+                    if (userData == null)
+                        userData = this.userData;
+                    p.Initialize(this, pc, userData);
                     LastActivityAt = DateTime.Now;
                 }
                 else
@@ -289,18 +298,18 @@ namespace US.OpenServer
                     if (!ProtocolConfigurations.ContainsKey(protocolId))
                         throw new Exception(ErrorTypes.INVALID_PROTOCOL);
 
-                    ProtocolConfiguration plc = ProtocolConfigurations.Get(protocolId);
-                    pli = plc.CreateInstance();
+                    ProtocolConfiguration pc = ProtocolConfigurations.Get(protocolId);
+                    pli = pc.CreateInstance();
                     if (pli == null)
-                        throw new Exception(string.Format(ErrorTypes.CLASS_NOT_FOUND, plc));
+                        throw new Exception(string.Format(ErrorTypes.CLASS_NOT_FOUND, pc));
 
                     if (!IsAuthenticated && !(pli is AuthenticationProtocolBase))
-                        throw new Exception(string.Format(ErrorTypes.NOT_AUTHENTICATED, plc));
+                        throw new Exception(string.Format(ErrorTypes.NOT_AUTHENTICATED, pc));
 
                     protocolImplementations.Add(protocolId, pli);
 
                     Log(Level.Debug, string.Format("Initializing protocol {0}...", protocolId));
-                    pli.Initialize(this, plc);
+                    pli.Initialize(this, pc, userData);
                 }
                 LastActivityAt = DateTime.Now;
             }

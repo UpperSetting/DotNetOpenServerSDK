@@ -56,6 +56,11 @@ namespace US.OpenServer
         private ServerConfiguration cfg;
 
         /// <summary>
+        /// An object the caller can pass through to each protocol.
+        /// </summary>
+        private object userData;
+
+        /// <summary>
         /// A reference to the server socket.
         /// </summary>
         private Socket socket;
@@ -99,10 +104,12 @@ namespace US.OpenServer
         /// ProtocolConfiguration objects keyed with each protocol's unique identifier.
         /// If null is passed, the configuration is read from the app.config's
         /// 'protocols' XML section node.</param>
+        /// <param name="userData">An Object the caller can pass through to each protocol.</param>
         public Server(
             ILogger logger = null, 
             ServerConfiguration cfg = null,
-            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations = null)
+            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations = null,
+            object userData = null)
         {
             if (logger == null)
                 logger = new Logger("DotNetOpenServer");
@@ -115,6 +122,8 @@ namespace US.OpenServer
             if (protocolConfigurations == null)
                 protocolConfigurations = (Dictionary<ushort, ProtocolConfiguration>)ConfigurationManager.GetSection("protocols");
             ProtocolConfigurations.Items = protocolConfigurations;
+
+            this.userData = userData;
 
             t = new Thread(new ThreadStart(Run));
             t.Start();
@@ -145,7 +154,7 @@ namespace US.OpenServer
                 {
                     Socket client = socket.Accept();
                     string address = ((IPEndPoint)client.RemoteEndPoint).Address.ToString();
-                    Session session = new Session(new NetworkStream(client), address, cfg.TlsConfiguration, logger);
+                    Session session = new Session(new NetworkStream(client), address, cfg.TlsConfiguration, logger, userData);
                     
                     if (cfg.TlsConfiguration != null && cfg.TlsConfiguration.Enabled)
                         EnableTls(session);
