@@ -68,15 +68,5 @@ namespace US.OpenServer.Protocols
             return ProtocolType != null ? 
                 (IProtocol)Activator.CreateInstance(ProtocolType) : null;
         }
-
-        /// <summary>
-        /// Returns the name of the Type of the IProtocol class.
-        /// </summary>
-        /// <returns>A string that specifies the name of the Type of the IProtocol
-        /// class.</returns>
-        public override string ToString()
-        {
-            return ProtocolType.Name.ToString();
-        }
     }
 }

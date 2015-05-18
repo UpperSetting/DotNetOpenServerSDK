@@ -65,7 +65,7 @@ namespace US.OpenServer
         /// A reference to an object that contains the required properties to connect to
         /// the TCP socket server.
         /// </summary>
-        private ServerConfiguration cfg;
+        private ServerConfiguration serverConfiguration;
 
         /// <summary>
         /// A reference to an object that implements the connection session.
@@ -94,7 +94,7 @@ namespace US.OpenServer
         {
             if (cfg == null)
                 cfg = (ServerConfiguration)ConfigurationManager.GetSection("server");
-            this.cfg = cfg;
+            this.serverConfiguration = cfg;
 
             if (protocolConfigurations == null)
                 protocolConfigurations = (Dictionary<ushort, ProtocolConfiguration>)ConfigurationManager.GetSection("protocols");
@@ -115,23 +115,30 @@ namespace US.OpenServer
         {
             Close();
 
+            session.Log(Level.Info, string.Format("Connecting to {0}:{1}...", serverConfiguration.Host, serverConfiguration.Port));
+
             Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            server.ReceiveTimeout = cfg.ReceiveTimeoutInMS;
-            server.SendTimeout = cfg.SendTimeoutInMS;
+            server.ReceiveTimeout = serverConfiguration.ReceiveTimeoutInMS;
+            server.SendTimeout = serverConfiguration.SendTimeoutInMS;
             server.LingerState = new LingerOption(true, 10);
             server.NoDelay = true;
-            if (string.IsNullOrEmpty(cfg.Host))
-                cfg.Host = ServerConfiguration.DEFAULT_HOST;
-            server.Connect(cfg.Host, cfg.Port);
+            if (string.IsNullOrEmpty(serverConfiguration.Host))
+                serverConfiguration.Host = ServerConfiguration.DEFAULT_HOST;
+            server.Connect(serverConfiguration.Host, serverConfiguration.Port);
             string address = ((IPEndPoint)server.RemoteEndPoint).Address.ToString();
             
-            session = new Session(new NetworkStream(server), address, cfg.TlsConfiguration, protocolConfigurations, logger);
+            session = new Session(
+                new NetworkStream(server), 
+                address, 
+                serverConfiguration.TlsConfiguration, 
+                protocolConfigurations, 
+                logger);
             session.OnConnectionLost += session_OnConnectionLost;
 
-            if (cfg.TlsConfiguration != null && cfg.TlsConfiguration.Enabled)
+            if (serverConfiguration.TlsConfiguration != null && serverConfiguration.TlsConfiguration.Enabled)
                 EnableTls();
 
-            session.Log(Level.Info, string.Format("Connected to {0}:{1}.", cfg.Host, cfg.Port));
+            session.Log(Level.Info, string.Format("Connected to {0}:{1}.", serverConfiguration.Host, serverConfiguration.Port));
 
             session.BeginRead();
         }
@@ -210,13 +217,13 @@ namespace US.OpenServer
             SslStream sslStream = new SslStream(session.Stream, true, validationCallback, selectionCallback, EncryptionPolicy.RequireEncryption);
             session.Stream = sslStream;
 
-            X509Certificate2 certificate = session.GetCertificateFromStore(string.Format("CN={0}", cfg.TlsConfiguration.Certificate));
+            X509Certificate2 certificate = session.GetCertificateFromStore(string.Format("CN={0}", serverConfiguration.TlsConfiguration.Certificate));
             X509CertificateCollection certificates = new X509CertificateCollection();
             if (certificate != null)
                 certificates.Add(certificate);
 
             ((SslStream)session.Stream).AuthenticateAsClient(
-                cfg.Host, certificates, SslProtocols.Tls, cfg.TlsConfiguration.CheckCertificateRevocation);
+                serverConfiguration.Host, certificates, SslProtocols.Tls, serverConfiguration.TlsConfiguration.CheckCertificateRevocation);
         }
         #endregion
     }
