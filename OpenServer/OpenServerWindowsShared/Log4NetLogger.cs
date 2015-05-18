@@ -18,56 +18,87 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
+using System.Reflection;
+using log4net;
 using log4net.Core;
 
 namespace US.OpenServer
 {
     /// <summary>
-    /// Class that wraps and extends a log4net.ILog object around an <see cref="US.OpenServer.ILogger"/>
-    /// interface.
+    /// Class that logs to log4net.
     /// </summary>
-    public class Logger : ILogger
+    public class Log4NetLogger : ILogger
     {
         #region Private Variables
         /// <summary>
-        /// The Log4Net logger.
+        /// The log4Net logger.
         /// </summary>
         private log4net.ILog log;
         #endregion
-
-        #region Properties
-        /// <summary>
-        /// Gets or sets whether to log debug messages.
-        /// </summary>
-        public bool LogDebug { get; set; }
-
-        /// <summary>
-        /// Gets or sets whether to log packets in hexadecimal format.
-        /// </summary>
-        public bool LogPackets { get; set; }
-        #endregion
-
-        #region Construction/Destruction
+        
+        #region Constructor
         /// <summary>
         /// Creates a Logger object.
         /// </summary>
-        /// <remarks> When run within the debugger, automatically enables <see cref="LogDebug"/>
-        /// and <see cref="LogPackets"/>. Logs a message stating the application has
-        /// started and then another message showing the name of the user the process is
-        /// running as.</remarks>
+        /// <remarks>
+        /// Reads the log4net configuration from the app.config file.  For example:
+        /// <code>
+        /// <![CDATA[
+        /// <?xml version="1.0"?>
+        /// <configuration>
+        ///   <configSections>
+        /// 
+        ///     ...
+        /// 
+        ///     <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler,Log4net"/>
+        /// 
+        ///     ...
+        /// 
+        ///   </configSections>
+        /// 
+        ///   ...
+        /// 
+        ///   <log4net>
+        ///     <root>
+        ///       <level value="ALL"/>
+        ///       <appender-ref ref="ConsoleAppender" />
+        ///       <appender-ref ref="RollingFileAppender"/>
+        ///     </root>
+        /// 
+        ///     <appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender">
+        ///       <layout type="log4net.Layout.PatternLayout">
+        ///         <conversionPattern value="%date %thread %level - %message%newline"/>
+        ///       </layout>
+        ///     </appender>
+        ///     
+        ///     <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+        ///       <file value="application.log"/>
+        ///       <appendToFile value="true"/>
+        ///       <rollingStyle value="Size"/>
+        ///       <maxSizeRollBackups value="5"/>
+        ///       <maximumFileSize value="10MB"/>
+        ///       <staticLogFileName value="true"/>
+        ///       <layout type="log4net.Layout.PatternLayout">
+        ///         <conversionPattern value="%date %thread %level - %message%newline"/>
+        ///       </layout>
+        ///     </appender>
+        ///   </log4net>
+        /// 
+        ///   ...
+        /// 
+        /// </configuration>
+        /// ]]>
+        /// </code>
+        /// 
+        /// Then Logs a message stating the application has started and then another
+        /// message showing the name of the user the process is running under.</remarks>
         /// <param name="name">A string that specifies the name of the application.</param>
-        public Logger(string name)
+        public Log4NetLogger(string name)
+            : base ()
         {
-            if (log == null)
-            {
-                log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-#if DEBUG 
-                LogDebug = true;
-                LogPackets = true;
-#endif
-                Log(Level.Info, string.Format("{0} started", name));
-                Log(Level.Info, string.Format("Running as {0}", Environment.UserName));
-            }
+            log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            Log(Level.Info, string.Format("{0} started", name));
+            Log(Level.Info, string.Format("Running as {0}", Environment.UserName));
         }
         #endregion
 
@@ -77,8 +108,10 @@ namespace US.OpenServer
         /// </summary>
         /// <param name="level">The level of the message.</param>
         /// <param name="message">The message.</param>
-        public void Log(US.OpenServer.Level level, string message)
+        public override void Log(US.OpenServer.Level level, string message)
         {
+            base.Log(level, message);
+
             if (level == US.OpenServer.Level.Debug && !LogDebug)
                 return;
 
@@ -91,17 +124,6 @@ namespace US.OpenServer
             d.Message = message;
             LoggingEvent le = new LoggingEvent(d);
             log.Logger.Log(le);
-        }
-
-        /// <summary>
-        /// Logs an <see cref="US.OpenServer.Level.Error"/> message given an <see cref="System.Exception"/>.
-        /// Writes the exception's message, a carriage return line feed, then the
-        /// exception's stack trace.
-        /// </summary>
-        /// <param name="ex">The <see cref="System.Exception"/> to log.</param>
-        public void Log(Exception ex)
-        {
-            Log(Level.Error, string.Format("{0}\r\n{1}", ex.Message, ex.StackTrace));
         }
         #endregion
 

@@ -56,7 +56,14 @@ namespace US.OpenServer
         private ServerConfiguration cfg;
 
         /// <summary>
-        /// An object the caller can pass through to each protocol.
+        /// A Dictionary of <see cref="ProtocolConfiguration"/> objects keyed by each
+        /// protocol's unique identifier.
+        /// </summary>
+        private Dictionary<ushort, ProtocolConfiguration> protocolConfigurations;
+
+        /// <summary>
+        /// A user defined Object that is passed through to each <see cref="IProtocol"/>
+        /// object.
         /// </summary>
         private object userData;
 
@@ -95,7 +102,7 @@ namespace US.OpenServer
         /// <remarks> All parameters are optional. If null is passed, the object's
         /// configuration is read from the app.config file. </remarks>
         /// <param name="logger">An optional ILogger to log messages. If null is passed,
-        /// a <see cref="US.OpenServer.Logger"/> object is created.</param>
+        /// a <see cref="US.OpenServer.ILogger"/> object is created.</param>
         /// <param name="cfg">An optional ServerConfiguration that contains the
         /// properties necessary to create the server. If null is passed, the
         /// configuration is read from the app.config's 'server' XML section
@@ -112,7 +119,7 @@ namespace US.OpenServer
             object userData = null)
         {
             if (logger == null)
-                logger = new Logger("DotNetOpenServer");
+                logger = new ConsoleLogger();
             this.logger = logger;
             
             if (cfg == null)
@@ -121,7 +128,7 @@ namespace US.OpenServer
 
             if (protocolConfigurations == null)
                 protocolConfigurations = (Dictionary<ushort, ProtocolConfiguration>)ConfigurationManager.GetSection("protocols");
-            ProtocolConfigurations.Items = protocolConfigurations;
+            this.protocolConfigurations = protocolConfigurations;
 
             this.userData = userData;
 
@@ -154,7 +161,7 @@ namespace US.OpenServer
                 {
                     Socket client = socket.Accept();
                     string address = ((IPEndPoint)client.RemoteEndPoint).Address.ToString();
-                    Session session = new Session(new NetworkStream(client), address, cfg.TlsConfiguration, logger, userData);
+                    Session session = new Session(new NetworkStream(client), address, cfg.TlsConfiguration, protocolConfigurations, logger, userData);
                     
                     if (cfg.TlsConfiguration != null && cfg.TlsConfiguration.Enabled)
                         EnableTls(session);

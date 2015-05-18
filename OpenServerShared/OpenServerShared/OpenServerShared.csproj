@@ -39,7 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Protocols\ProtocolConfiguration.cs" />
-    <Compile Include="Protocols\ProtocolConfigurations.cs" />
     <Compile Include="Configuration\ServerConfiguration.cs" />
     <Compile Include="Configuration\TlsConfiguration.cs" />
     <Compile Include="ErrorTypes.cs" />

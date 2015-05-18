@@ -47,17 +47,26 @@ namespace US.OpenServer
 
         #region Variables
         /// <summary>
-        /// A Dictionary of enabled and configured IProtocol items.
+        /// A Dictionary of <see cref="ProtocolConfiguration"/> objects keyed by each
+        /// protocol's unique identifier.
+        /// </summary>
+        private Dictionary<ushort, ProtocolConfiguration> protocolConfigurations;
+
+        /// <summary>
+        /// A Dictionary of <see cref="IProtocol"/> objects keyed by each protocol's
+        /// unique identifier.
         /// </summary>
         private Dictionary<ushort, IProtocol> protocolImplementations = new Dictionary<ushort, IProtocol>();
 
         /// <summary>
-        /// An Object the user can pass through to each protocol.
+        /// A user defined Object that is passed through to each <see cref="IProtocol"/>
+        /// object.
         /// </summary>
         private object userData;
 
         /// <summary>
-        /// An object used to protect from Dispose being called multiple times from different threads.
+        /// An Object used to protect from Dispose being called multiple times from
+        /// different threads.
         /// </summary>
         protected object syncObject = new object();
         #endregion
@@ -67,9 +76,16 @@ namespace US.OpenServer
         /// Creates a SessionBase.
         /// </summary>
         /// <param name="logger">An ILogger to log messages.</param>
-        /// <param name="userData">An optional Object the user can pass through to each protocol.</param>
-        protected SessionBase(ILogger logger, object userData = null)
+        /// <param name="protocolConfigurations">A Dictionary that specifies the
+        /// configured protocols.</param>
+        /// <param name="userData">An optional Object the user can pass through to each
+        /// protocol.</param>
+        protected SessionBase(            
+            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations,
+            ILogger logger, 
+            object userData = null)
         {
+            this.protocolConfigurations = protocolConfigurations;
             this.Logger = logger;
             this.userData = userData;
             LastActivityAt = DateTime.Now;
@@ -202,10 +218,10 @@ namespace US.OpenServer
             {
                 if (!protocolImplementations.ContainsKey(protocolId))
                 {
-                    if (!ProtocolConfigurations.ContainsKey(protocolId))
+                    if (!protocolConfigurations.ContainsKey(protocolId))
                         throw new Exception(ErrorTypes.INVALID_PROTOCOL);
 
-                    ProtocolConfiguration pc = ProtocolConfigurations.Get(protocolId);
+                    ProtocolConfiguration pc = protocolConfigurations[protocolId];
                     p = pc.CreateInstance();
                     if (p == null)
                         throw new Exception(string.Format(ErrorTypes.CLASS_NOT_FOUND, pc));
@@ -295,10 +311,10 @@ namespace US.OpenServer
                     pli = protocolImplementations[protocolId];
                 else
                 {
-                    if (!ProtocolConfigurations.ContainsKey(protocolId))
+                    if (!protocolConfigurations.ContainsKey(protocolId))
                         throw new Exception(ErrorTypes.INVALID_PROTOCOL);
 
-                    ProtocolConfiguration pc = ProtocolConfigurations.Get(protocolId);
+                    ProtocolConfiguration pc = protocolConfigurations[protocolId];
                     pli = pc.CreateInstance();
                     if (pli == null)
                         throw new Exception(string.Format(ErrorTypes.CLASS_NOT_FOUND, pc));

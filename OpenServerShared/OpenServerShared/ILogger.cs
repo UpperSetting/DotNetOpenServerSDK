@@ -22,28 +22,86 @@ using System;
 namespace US.OpenServer
 {
     /// <summary>
-    /// Interface for logging implementations.
+    /// Class for logging messages.
     /// </summary>
-    public interface ILogger
+    public class ILogger
     {
         /// <summary>
-        /// Gets or sets whether to log packets to the console when debugging.
+        /// Delegate that defines the event callback for the <see cref="OnLogMessage"/>
+        /// event.
         /// </summary>
-        /// <value>A Boolean that specifies whether to log packets to the console when
-        /// debugging.</value>
-        bool LogPackets { get; set; }
+        /// <param name="level">A Level that specifies the priority of the message.</param>
+        /// <param name="message">A string that contains the message.</param>
+        public delegate void OnLogMessageDelegate(Level level, string message);
+
+        /// <summary>
+        /// Event that is triggered when a message is logged.
+        /// </summary>
+        /// <remarks>This event was included to enabled users to display messages in a
+        /// list within the user interface. </remarks>
+        public event OnLogMessageDelegate OnLogMessage;
+
+        /// <summary>
+        /// Gets or sets whether to log <see cref="Level.DEBUG"/> messages.
+        /// </summary>
+        /// <remarks>Automatically enabled when run in DEBUG mode.</remarks>
+        /// <value>A Boolean that specifies whether to log <see cref="Level.DEBUG"/>
+        /// messages.</value>
+        public bool LogDebug { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether to log packets.
+        /// </summary>
+        /// <remarks>The connection session uses this value to determine if packets
+        /// should be logged. Packets are logged in hexadecimal.</remarks>
+        /// <value>A Boolean that specifies whether to log packets.</value>
+        public bool LogPackets { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether to log to the Visual Studio debugger output view.
+        /// </summary>
+        /// <remarks>Automatically enabled when run in DEBUG mode.</remarks>
+        /// <value>A Boolean that specifies whether to log to the Visual Studio debugger
+        /// output view.</value>
+        public bool LogToDebuggerOutputView { get; set; }
+
+        /// <summary>
+        /// Creates an ILogger object.
+        /// </summary>
+        /// <remarks>When run in DEBUG mode, automatically enables <see cref="LogDebug"/>
+        /// and <see cref="LogToDebuggerOutputView"/>. </remarks>
+        public ILogger()
+        {
+#if DEBUG
+            LogDebug = true;            
+            LogToDebuggerOutputView = true;
+#endif
+        }
 
         /// <summary>
         /// Log's a message.
         /// </summary>
         /// <param name="level">A Level that specifies the priority of the message.</param>
         /// <param name="message">A string that contains the message.</param>
-        void Log(Level level, string message);
+        public virtual void Log(Level level, string message)
+        {
+            if (level == Level.Debug && !LogDebug)
+                return;
+
+            if (LogToDebuggerOutputView)
+                System.Diagnostics.Debug.WriteLine(string.Format("{0} {1}", level, message));
+
+            if (OnLogMessage != null)
+                OnLogMessage(level, message);
+        }
 
         /// <summary>
         /// Log's an exception.
         /// </summary>
         /// <param name="ex">An Exception to log.</param>
-        void Log(Exception ex);
+        public virtual void Log(Exception ex)
+        {
+            Log(Level.Error, string.Format("{0}\r\n{1}", ex.Message, ex.StackTrace));
+        }
     }
 }

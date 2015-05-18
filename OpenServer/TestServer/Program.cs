@@ -39,7 +39,7 @@ namespace TestServer
                 server = new Server();
 
                 //set the configuration programatically
-                //Logger logger = new Logger("DotNetOpenServer");
+                //ILogger logger = new Log4NetLogger("DotNetOpenServer");
                 //logger.LogPackets = true;
 
                 //ServerConfiguration cfg = new ServerConfiguration();

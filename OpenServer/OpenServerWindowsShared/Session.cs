@@ -18,6 +18,7 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
@@ -73,10 +74,18 @@ namespace US.OpenServer
         /// <param name="stream">The socket stream.</param>
         /// <param name="address">The IP address of the remote end point.</param>
         /// <param name="tlsConfiguration">The SSL/TLS configuration object.</param>
+        /// <param name="protocolConfigurations">A Dictionary of ProtocolConfiguration
+        /// objects keyed by each protocol's unique identifier.</param>
         /// <param name="logger">The ILogger.</param>
         /// <param name="userData">An optional Object the user can pass through to each protocol.</param>
-        public Session(Stream stream, string address, TlsConfiguration tlsConfiguration, ILogger logger, object userData = null)
-            : base(logger, userData)
+        public Session(
+            Stream stream, 
+            string address, 
+            TlsConfiguration tlsConfiguration, 
+            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations,
+            ILogger logger, 
+            object userData = null)
+            : base(protocolConfigurations, logger, userData)
         {
             this.stream = stream;
             this.Address = address;

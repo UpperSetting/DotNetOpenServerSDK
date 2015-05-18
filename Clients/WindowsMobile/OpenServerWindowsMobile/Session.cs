@@ -18,6 +18,7 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,8 +37,13 @@ namespace US.OpenServer.WindowsMobile
         #endregion
 
         #region Constructor
-        public Session(StreamSocket streamSocket, string address, TlsConfiguration tlsConfiguration, ILogger logger)
-            : base(logger)
+        public Session(
+            StreamSocket streamSocket, 
+            string address, 
+            TlsConfiguration tlsConfiguration,
+            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations, 
+            ILogger logger)
+            : base(protocolConfigurations, logger)
         {
             this.streamSocket = streamSocket;
             this.iS = streamSocket.InputStream.AsStreamForRead();

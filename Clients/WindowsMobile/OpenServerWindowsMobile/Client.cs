@@ -19,6 +19,7 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
 using System.Collections.Generic;
+using US.OpenServer;
 using US.OpenServer.Configuration;
 using US.OpenServer.Protocols;
 using Windows.Foundation;
@@ -36,30 +37,42 @@ namespace US.OpenServer.WindowsMobile
         #endregion
 
         #region Variables
-        private ILogger logger;
+        /// <summary>
+        /// Gets the application logger.
+        /// </summary>
+        public ILogger Logger { get; private set; }
+
+        /// <summary>
+        /// Contains the required properties to connect to the TCP socket server.
+        /// </summary>
         private ServerConfiguration cfg;
+
+        /// <summary>
+        /// A Dictionary of <see cref="ProtocolConfiguration"/> objects keyed by each
+        /// protocol's unique identifier.
+        /// </summary>
+        private Dictionary<ushort, ProtocolConfiguration> protocolConfigurations = new Dictionary<ushort, ProtocolConfiguration>();
+
+        /// <summary>
+        /// Implements the connection session.
+        /// </summary>
         private Session session;
+
         private StreamSocket streamSocket;
         #endregion
 
         #region Constructor
         public Client(
-            ServerConfiguration cfg,
-            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations)
-        {
-            this.cfg = cfg;
-            this.logger = new Logger();
-            ProtocolConfigurations.Items = protocolConfigurations;
-        }
-
-        public Client(
             ServerConfiguration cfg, 
-            ILogger logger, 
-            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations)
+            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations,
+            ILogger logger = null)
         {
-            this.cfg = cfg;
-            this.logger = logger;
-            ProtocolConfigurations.Items = protocolConfigurations;
+            this.cfg = cfg;            
+            this.protocolConfigurations = protocolConfigurations;
+
+            if (logger == null)
+                logger = new ILogger();
+            Logger = logger;
         }
         #endregion
 
@@ -129,7 +142,7 @@ namespace US.OpenServer.WindowsMobile
                 }
             }
 
-            session = new Session(streamSocket, hostName.DisplayName, cfg.TlsConfiguration, logger);
+            session = new Session(streamSocket, hostName.DisplayName, cfg.TlsConfiguration, protocolConfigurations, Logger);
             session.OnConnectionLost += session_OnConnectionLost;
             session.Log(Level.Info, string.Format("Connected to {0}:{1}...", cfg.Host, cfg.Port));
             session.BeginRead();

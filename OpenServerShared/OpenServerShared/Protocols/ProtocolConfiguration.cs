@@ -74,7 +74,6 @@ namespace US.OpenServer.Protocols
         /// </summary>
         /// <returns>A string that specifies the name of the Type of the IProtocol
         /// class.</returns>
-
         public override string ToString()
         {
             return ProtocolType.Name.ToString();

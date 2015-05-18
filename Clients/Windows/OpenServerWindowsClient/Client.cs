@@ -51,17 +51,24 @@ namespace US.OpenServer
 
         #region Variables
         /// <summary>
-        /// A reference to the logger.
+        /// A reference to an object that implements application logging.
         /// </summary>
         private ILogger logger;
 
         /// <summary>
-        /// A reference to the server configuration.
+        /// A reference to a Dictionary of <see cref="ProtocolConfiguration"/> objects
+        /// keyed by each protocol's unique identifier.
+        /// </summary>
+        private Dictionary<ushort, ProtocolConfiguration> protocolConfigurations;
+
+        /// <summary>
+        /// A reference to an object that contains the required properties to connect to
+        /// the TCP socket server.
         /// </summary>
         private ServerConfiguration cfg;
 
         /// <summary>
-        /// A reference to the connection session.
+        /// A reference to an object that implements the connection session.
         /// </summary>
         private Session session;
         #endregion
@@ -95,7 +102,7 @@ namespace US.OpenServer
 
             if (protocolConfigurations == null)
                 protocolConfigurations = (Dictionary<ushort, ProtocolConfiguration>)ConfigurationManager.GetSection("protocols");
-            ProtocolConfigurations.Items = protocolConfigurations;
+            this.protocolConfigurations = protocolConfigurations;
         }
         #endregion
 
@@ -118,7 +125,7 @@ namespace US.OpenServer
             server.Connect(cfg.Host, cfg.Port);
             string address = ((IPEndPoint)server.RemoteEndPoint).Address.ToString();
             
-            session = new Session(new NetworkStream(server), address, cfg.TlsConfiguration, logger);
+            session = new Session(new NetworkStream(server), address, cfg.TlsConfiguration, protocolConfigurations, logger);
             session.OnConnectionLost += session_OnConnectionLost;
 
             if (cfg.TlsConfiguration != null && cfg.TlsConfiguration.Enabled)
