@@ -40,7 +40,7 @@ namespace TestClient
                 #endregion
 
                 #region Configure programatically
-                Logger logger = new Logger("DotNetOpenClient");
+                ILogger logger = new Log4NetLogger("DotNetOpenClient");
 
                 ServerConfiguration cfg = new ServerConfiguration();
                 //cfg.Host = "UpperSetting.com";
@@ -57,7 +57,7 @@ namespace TestClient
                 protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
                     new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
 
-                client = new Client(logger, cfg, protocolConfigurations);
+                client = new Client(cfg, protocolConfigurations, logger);
                 #endregion
 
                 client.Connect();

@@ -88,14 +88,10 @@ namespace US.OpenServer
         /// If null is passed, the configuration is read from the app.config's
         /// 'protocols' XML section node.</param>
         public Client(
-            ILogger logger = null,
             ServerConfiguration cfg = null,
-            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations = null)
+            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations = null,
+            ILogger logger = null)
         {
-            if (logger == null)
-                logger = new Logger("DotNetOpenClient");
-            this.logger = logger;
-
             if (cfg == null)
                 cfg = (ServerConfiguration)ConfigurationManager.GetSection("server");
             this.cfg = cfg;
@@ -103,6 +99,10 @@ namespace US.OpenServer
             if (protocolConfigurations == null)
                 protocolConfigurations = (Dictionary<ushort, ProtocolConfiguration>)ConfigurationManager.GetSection("protocols");
             this.protocolConfigurations = protocolConfigurations;
+
+            if (logger == null)
+                logger = new ConsoleLogger();
+            this.logger = logger;
         }
         #endregion
 
