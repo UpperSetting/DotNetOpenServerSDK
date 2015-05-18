@@ -115,7 +115,7 @@ namespace US.OpenServer
         {
             Close();
 
-            session.Log(Level.Info, string.Format("Connecting to {0}:{1}...", serverConfiguration.Host, serverConfiguration.Port));
+            logger.Log(Level.Info, string.Format("Connecting to {0}:{1}...", serverConfiguration.Host, serverConfiguration.Port));
 
             Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             server.ReceiveTimeout = serverConfiguration.ReceiveTimeoutInMS;
@@ -138,7 +138,7 @@ namespace US.OpenServer
             if (serverConfiguration.TlsConfiguration != null && serverConfiguration.TlsConfiguration.Enabled)
                 EnableTls();
 
-            session.Log(Level.Info, string.Format("Connected to {0}:{1}.", serverConfiguration.Host, serverConfiguration.Port));
+            logger.Log(Level.Info, string.Format("Connected to {0}:{1}.", serverConfiguration.Host, serverConfiguration.Port));
 
             session.BeginRead();
         }
