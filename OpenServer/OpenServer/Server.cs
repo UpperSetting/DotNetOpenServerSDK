@@ -20,6 +20,7 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
@@ -37,36 +38,31 @@ namespace US.OpenServer
     /// </summary>
     public class Server
     {
+        #region Properties
         /// <summary>
-        /// A reference to the logger.
+        /// Gets the application logger.
         /// </summary>
-        private ILogger logger;
+        public ILogger Logger { get; private set; }
 
         /// <summary>
-        /// Gets the ILogger.
+        /// Gets a Dictionary of <see cref="ProtocolConfiguration"/> objects keyed by
+        /// each protocol's unique identifier.
         /// </summary>
-        public ILogger Logger
-        {
-            get { return logger; }
-        }
+        public Dictionary<ushort, ProtocolConfiguration> ProtocolConfigurations { get; private set; }
 
         /// <summary>
-        /// A reference to the server configuration.
+        /// Gets the server configuration.
         /// </summary>
-        private ServerConfiguration cfg;
+        public ServerConfiguration ServerConfiguration { get; private set; }
 
         /// <summary>
-        /// A Dictionary of <see cref="ProtocolConfiguration"/> objects keyed by each
-        /// protocol's unique identifier.
-        /// </summary>
-        private Dictionary<ushort, ProtocolConfiguration> protocolConfigurations;
-
-        /// <summary>
-        /// A user defined Object that is passed through to each <see cref="IProtocol"/>
+        /// Gets the optional user defined Object that is passed through to each <see cref="IProtocol"/>
         /// object.
         /// </summary>
-        private object userData;
+        public object UserData { get; private set; }
+        #endregion
 
+        #region Variables
         /// <summary>
         /// A reference to the server socket.
         /// </summary>
@@ -96,14 +92,15 @@ namespace US.OpenServer
         /// The interval which the idle time-out Timer runs.
         /// </summary>
         private const int TIMER_INTERVAL = 5000;
+        #endregion
 
-
+        #region Constructor
         /// <summary> Creates an instance of Server. </summary>
         /// <remarks> All parameters are optional. If null is passed, the object's
         /// configuration is read from the app.config file. </remarks>
         /// <param name="logger">An optional ILogger to log messages. If null is passed,
         /// a <see cref="US.OpenServer.ILogger"/> object is created.</param>
-        /// <param name="cfg">An optional ServerConfiguration that contains the
+        /// <param name="serverConfiguration">An optional ServerConfiguration that contains the
         /// properties necessary to create the server. If null is passed, the
         /// configuration is read from the app.config's 'server' XML section
         /// node.</param>
@@ -113,81 +110,32 @@ namespace US.OpenServer
         /// 'protocols' XML section node.</param>
         /// <param name="userData">An Object the caller can pass through to each protocol.</param>
         public Server(
-            ILogger logger = null, 
-            ServerConfiguration cfg = null,
+            ServerConfiguration serverConfiguration = null,
             Dictionary<ushort, ProtocolConfiguration> protocolConfigurations = null,
+            ILogger logger = null,
             object userData = null)
         {
             if (logger == null)
                 logger = new ConsoleLogger();
-            this.logger = logger;
-            
-            if (cfg == null)
-                cfg = (ServerConfiguration)ConfigurationManager.GetSection("server");
-            this.cfg = cfg;
+            Logger = logger;
+            Logger.Log(Level.Info, string.Format("Execution Mode: {0}", Debugger.IsAttached ? "Debug" : "Release"));
+
+            if (serverConfiguration == null)
+                serverConfiguration = (ServerConfiguration)ConfigurationManager.GetSection("server");
+            ServerConfiguration = serverConfiguration;
 
             if (protocolConfigurations == null)
                 protocolConfigurations = (Dictionary<ushort, ProtocolConfiguration>)ConfigurationManager.GetSection("protocols");
-            this.protocolConfigurations = protocolConfigurations;
+            ProtocolConfigurations = protocolConfigurations;
 
-            this.userData = userData;
+            UserData = userData;
 
             t = new Thread(new ThreadStart(Run));
             t.Start();
         }
-        
-        /// <summary>
-        /// The server socket listener thread. Creates the server socket, creates the
-        /// idle timeout Timer then loops accepting connections. When a client connects,
-        /// creates the Session, optionally enables SSL/TLS 1.2, caches the Session and
-        /// begins an asynchronous socket read operation.
-        /// </summary>
-        private void Run()
-        {
-            try
-            {
-                socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                socket.ReceiveTimeout = cfg.ReceiveTimeoutInMS;
-                socket.SendTimeout = cfg.SendTimeoutInMS;
-                if (string.IsNullOrEmpty(cfg.Host))
-                    cfg.Host = ServerConfiguration.DEFAULT_BIND_ADDRESS;
-                socket.Bind(new IPEndPoint(IPAddress.Parse(cfg.Host), cfg.Port));
-                socket.Listen(64);//config value                
-                logger.Log(Level.Info, string.Format("Listening on {0}:{1}...", cfg.Host, cfg.Port));
+        #endregion
 
-                idleTimeoutTimer = new Timer(IdleTimeOutTimerCallback, null, TIMER_INTERVAL, TIMER_INTERVAL);
-
-                while (!signalClose)
-                {
-                    Socket client = socket.Accept();
-                    string address = ((IPEndPoint)client.RemoteEndPoint).Address.ToString();
-                    Session session = new Session(new NetworkStream(client), address, cfg.TlsConfiguration, protocolConfigurations, logger, userData);
-                    
-                    if (cfg.TlsConfiguration != null && cfg.TlsConfiguration.Enabled)
-                        EnableTls(session);
-
-                    session.Log(Level.Info, "Connected.");
-
-                    lock (sessions)
-                        sessions.Add(session);
-
-                    session.BeginRead();
-
-                    if (signalClose)
-                        break;
-                }
-            }
-            catch (SocketException ex)
-            {
-                if (!signalClose)
-                    logger.Log(Level.Error, ex.Message);
-            }
-            catch (Exception ex)
-            {
-                logger.Log(Level.Error, ex.Message);
-            }
-        }
-
+        #region Public Functions
         /// <summary>
         /// Shuts down the server. The socket listener thread is signaled to close, the
         /// idle timeout Timer is disposed, the server socket is closed and the list of
@@ -200,6 +148,42 @@ namespace US.OpenServer
             socket.Close();
             lock (sessions)
                 sessions.Clear();
+        }
+        #endregion
+
+        #region Private Functions
+        /// <summary>
+        /// Enables SSL/TLS 1.2.
+        /// </summary>
+        /// <remarks> Registers the <see cref="Session.TlsCertificateValidationCallback"/>
+        /// and <see cref="Session.TlsCertificateSelectionCallback"/> with the
+        /// SslStream, gets the server side SSL certificate from the local
+        /// certificate store, then authenticates the connection. </remarks>
+        /// <param name="session">The Session object to enable TLS.</param>
+        private void EnableTls(Session session)
+        {
+            RemoteCertificateValidationCallback validationCallback =
+              new RemoteCertificateValidationCallback(session.TlsCertificateValidationCallback);
+
+            LocalCertificateSelectionCallback selectionCallback =
+              new LocalCertificateSelectionCallback(session.TlsCertificateSelectionCallback);
+
+            SslStream sslStream = new SslStream(
+                session.Stream, 
+                true, 
+                validationCallback, 
+                selectionCallback, 
+                EncryptionPolicy.AllowNoEncryption);
+            session.Stream = sslStream;
+
+            X509Certificate2 certificate = session.GetCertificateFromStore(
+                string.Format("CN={0}", ServerConfiguration.TlsConfiguration.Certificate));
+
+            ((SslStream)session.Stream).AuthenticateAsServer(
+                certificate, 
+                ServerConfiguration.TlsConfiguration.RequireRemoteCertificate, 
+                SslProtocols.Ssl3 | SslProtocols.Tls,
+                ServerConfiguration.TlsConfiguration.CheckCertificateRevocation);
         }
 
         /// <summary>
@@ -221,7 +205,7 @@ namespace US.OpenServer
                     foreach (Session session in sessions)
                     {
                         if (session.IsClosed ||
-                            now.Ticks - session.LastActivityAt.Ticks > cfg.IdleTimeoutInTicks)
+                            now.Ticks - session.LastActivityAt.Ticks > ServerConfiguration.IdleTimeoutInTicks)
                         {
                             if (sessionsToClose == null)
                                 sessionsToClose = new List<Session>();
@@ -248,34 +232,66 @@ namespace US.OpenServer
             }
             catch (Exception ex)
             {
-                logger.Log(ex);
+                Logger.Log(ex);
             }
         }
 
-        #region TLS
         /// <summary>
-        /// Enables SSL/TLS 1.2.
+        /// The server socket listener thread. Creates the server socket, creates the
+        /// idle timeout Timer then loops accepting connections. When a client connects,
+        /// creates the Session, optionally enables SSL/TLS 1.2, caches the Session and
+        /// begins an asynchronous socket read operation.
         /// </summary>
-        /// <remarks> Registers the <see cref="Session.TlsCertificateValidationCallback"/>
-        /// and <see cref="Session.TlsCertificateSelectionCallback"/> with the
-        /// SslStream, gets the server side SSL certificate from the local
-        /// certificate store, then authenticates the connection. </remarks>
-        /// <param name="session">The Session object to enable TLS.</param>
-        private void EnableTls(Session session)
+        private void Run()
         {
-            RemoteCertificateValidationCallback validationCallback =
-              new RemoteCertificateValidationCallback(session.TlsCertificateValidationCallback);
+            try
+            {
+                socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                socket.ReceiveTimeout = ServerConfiguration.ReceiveTimeoutInMS;
+                socket.SendTimeout = ServerConfiguration.SendTimeoutInMS;
+                if (string.IsNullOrEmpty(ServerConfiguration.Host))
+                    ServerConfiguration.Host = ServerConfiguration.DEFAULT_BIND_ADDRESS;
+                socket.Bind(new IPEndPoint(IPAddress.Parse(ServerConfiguration.Host), ServerConfiguration.Port));
+                socket.Listen(64);//config value                
+                Logger.Log(Level.Info, string.Format("Listening on {0}:{1}...", ServerConfiguration.Host, ServerConfiguration.Port));
 
-            LocalCertificateSelectionCallback selectionCallback =
-              new LocalCertificateSelectionCallback(session.TlsCertificateSelectionCallback);
+                idleTimeoutTimer = new Timer(IdleTimeOutTimerCallback, null, TIMER_INTERVAL, TIMER_INTERVAL);
 
-            SslStream sslStream = new SslStream(session.Stream, true, validationCallback, selectionCallback, EncryptionPolicy.AllowNoEncryption);
-            session.Stream = sslStream;
+                while (!signalClose)
+                {
+                    Socket client = socket.Accept();
+                    string address = ((IPEndPoint)client.RemoteEndPoint).Address.ToString();
+                    Session session = new Session(
+                        new NetworkStream(client),
+                        address,
+                        ServerConfiguration.TlsConfiguration,
+                        ProtocolConfigurations,
+                        Logger,
+                        UserData);
 
-            X509Certificate2 certificate = session.GetCertificateFromStore(string.Format("CN={0}", cfg.TlsConfiguration.Certificate));
+                    if (ServerConfiguration.TlsConfiguration != null && ServerConfiguration.TlsConfiguration.Enabled)
+                        EnableTls(session);
 
-            ((SslStream)session.Stream).AuthenticateAsServer(
-                certificate, cfg.TlsConfiguration.RequireRemoteCertificate, SslProtocols.Ssl3 | SslProtocols.Tls, cfg.TlsConfiguration.CheckCertificateRevocation);
+                    session.Log(Level.Info, "Connected.");
+
+                    lock (sessions)
+                        sessions.Add(session);
+
+                    session.BeginRead();
+
+                    if (signalClose)
+                        break;
+                }
+            }
+            catch (SocketException ex)
+            {
+                if (!signalClose)
+                    Logger.Log(Level.Error, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(Level.Error, ex.Message);
+            }
         }
         #endregion
     }
