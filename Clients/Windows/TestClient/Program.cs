@@ -36,35 +36,35 @@ namespace TestClient
             try
             {
                 #region Load configuration from the app.config
-                //client = new Client();
+                client = new Client();
                 #endregion
 
                 #region Configure programatically
-                ILogger logger = new Log4NetLogger("DotNetOpenClient");
+                //ILogger logger = new Log4NetLogger();
 
-                ServerConfiguration cfg = new ServerConfiguration();
-                //cfg.Host = "UpperSetting.com";
+                //ServerConfiguration cfg = new ServerConfiguration();
+                ////cfg.Host = "UpperSetting.com";
 
-                Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
-                    new Dictionary<ushort, ProtocolConfiguration>();
+                //Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
+                //    new Dictionary<ushort, ProtocolConfiguration>();
 
-                protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
-                    new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
+                //protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
+                //    new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
 
-                protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER,
-                    new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolClient)));
+                //protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER,
+                //    new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolClient)));
 
-                protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
-                    new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
+                //protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
+                //    new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
 
-                client = new Client(cfg, protocolConfigurations, logger);
+                //client = new Client(cfg, protocolConfigurations, logger);
                 #endregion
 
                 client.Connect();
 
                 string userName = "TestUser";
                 WinAuthProtocolClient wap = client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER) as WinAuthProtocolClient;
-                wap.Authenticate(Environment.UserName, "T3stus3r", null);
+                wap.Authenticate(userName, "T3stus3r", null);
                 if (!wap.IsAuthenticated)
                     throw new Exception("Access denied.");
 

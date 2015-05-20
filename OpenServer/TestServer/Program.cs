@@ -35,10 +35,11 @@ namespace TestServer
             Server server = null;
             try
             {
-                //load configuration from the App.config
+                #region Load configuration from the app.config
                 server = new Server();
+                #endregion
 
-                //set the configuration programatically
+                #region Configure programatically
                 //ILogger logger = new Log4NetLogger("DotNetOpenServer");
                 //logger.LogPackets = true;
 
@@ -62,6 +63,7 @@ namespace TestServer
                 //    new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolServer)));
 
                 //Server server = new Server(logger, cfg, protocolConfigurations);
+                #endregion
 
                 server.Logger.Log(Level.Info, "Press any key to quit.");                
             }
