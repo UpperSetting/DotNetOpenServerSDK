@@ -52,12 +52,12 @@ namespace HelloClient
                 protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
                     new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
 
-                client = new Client(logger, cfg, protocolConfigurations);
+                client = new Client(cfg, protocolConfigurations, logger);
                 client.Connect();
 
                 string userName = "TestUser";
                 WinAuthProtocolClient wap = client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER) as WinAuthProtocolClient;
-                wap.Authenticate(Environment.UserName, "T3stus3r", null);
+                wap.Authenticate(userName, "T3stus3r", null);
                 if (!wap.IsAuthenticated)
                     throw new Exception("Access denied.");
 

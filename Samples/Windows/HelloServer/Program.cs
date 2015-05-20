@@ -44,8 +44,8 @@ namespace HelloServer
 
             WinAuthProtocolConfigurationServer winAuthCfg =
                 new WinAuthProtocolConfigurationServer(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolServer));
-            winAuthCfg.Roles.Add("Administrators");
-            winAuthCfg.Users.Add("TestUser");
+            winAuthCfg.AddRole("Administrators");
+            winAuthCfg.AddUser("TestUser");
             protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER, winAuthCfg);
 
             protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
