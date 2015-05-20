@@ -33,24 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HelloProtocolServer">
-      <HintPath>..\..\..\bin\Windows\HelloProtocolServer.dll</HintPath>
-    </Reference>
-    <Reference Include="HelloProtocolShared">
-      <HintPath>..\..\..\bin\Portable\HelloProtocolShared.dll</HintPath>
-    </Reference>
-    <Reference Include="KeepAliveProtocol">
-      <HintPath>..\..\..\bin\Portable\KeepAliveProtocol.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenServer">
-      <HintPath>..\..\..\bin\Windows\OpenServer.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenServerShared">
-      <HintPath>..\..\..\bin\Portable\OpenServerShared.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenServerWindowsShared">
-      <HintPath>..\..\..\bin\Windows\OpenServerWindowsShared.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,11 +40,29 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WinAuthProtocolServer">
-      <HintPath>..\..\..\bin\Windows\WinAuthProtocolServer.dll</HintPath>
+    <Reference Include="US.OpenServer">
+      <HintPath>..\..\..\bin\Windows\US.OpenServer.dll</HintPath>
     </Reference>
-    <Reference Include="WinAuthProtocolShared">
-      <HintPath>..\..\..\bin\Portable\WinAuthProtocolShared.dll</HintPath>
+    <Reference Include="US.OpenServer.Protocols.Hello.Server">
+      <HintPath>..\..\..\bin\Windows\US.OpenServer.Protocols.Hello.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Protocols.Hello.Shared">
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.Hello.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Protocols.KeepAlive">
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.KeepAlive.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Protocols.WinAuth.Server">
+      <HintPath>..\..\..\bin\Windows\US.OpenServer.Protocols.WinAuth.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Protocols.WinAuth.Shared">
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.WinAuth.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Shared">
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Windows.Shared">
+      <HintPath>..\..\..\bin\Windows\US.OpenServer.Windows.Shared.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

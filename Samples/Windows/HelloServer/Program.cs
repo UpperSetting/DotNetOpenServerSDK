@@ -51,7 +51,7 @@ namespace HelloServer
             protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
                 new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolServer)));
 
-            Server server = new Server(logger, cfg, protocolConfigurations);
+            Server server = new Server(cfg, protocolConfigurations, logger);
 
             server.Logger.Log(Level.Info, "Press any key to quit.");
             Console.ReadKey();
