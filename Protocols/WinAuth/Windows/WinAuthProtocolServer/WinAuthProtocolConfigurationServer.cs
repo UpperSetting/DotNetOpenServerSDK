@@ -70,8 +70,8 @@ namespace US.OpenServer.Protocols.WinAuth
         /// <remarks>
         /// This constructor is called by <see cref="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler"/>
         /// when loading protocol configurations from the app.config file and the
-        /// app.config file includes a configSectionAssemply and configSectionClassPath
-        /// within the protocols/item section.
+        /// app.config file includes a configClassPath within the protocols/item
+        /// section.
         /// </remarks>
         public WinAuthProtocolConfigurationServer()
         {
@@ -97,6 +97,28 @@ namespace US.OpenServer.Protocols.WinAuth
         #endregion
 
         #region Public Functions
+        /// <summary>
+        /// Adds a role.
+        /// </summary>
+        /// <param name="userName">A String that contains the name of the role.</param>
+        public void AddRole(string role)
+        {
+            role = role.ToLower();
+            if (!Roles.Contains(role))
+                Roles.Add(role);
+        }
+
+        /// <summary>
+        /// Adds a user.
+        /// </summary>
+        /// <param name="userName">A String that contains the user's name.</param>
+        public void AddUser(string userName)
+        {
+            userName = userName.ToLower();
+            if (!Users.Contains(userName))
+                Users.Add(userName);
+        }
+
         /// <summary>
         /// Initializes this class then loads the permissions from the app.config file.
         /// This function is called by the <see cref="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler"/> 
@@ -148,6 +170,7 @@ namespace US.OpenServer.Protocols.WinAuth
                     string role = roleNode.Attributes[VALUE].Value;
                     if (!string.IsNullOrEmpty(role))
                     {
+                        role = role.ToLower();
                         if (!roles.Contains(role))
                             roles.Add(role);
                     }
