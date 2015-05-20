@@ -304,32 +304,32 @@ namespace US.OpenServer
         {
             ushort protocolId = br.ReadUInt16();
 
-            IProtocol pli;
+            IProtocol p;
             lock (protocolImplementations)
             {
                 if (protocolImplementations.ContainsKey(protocolId))
-                    pli = protocolImplementations[protocolId];
+                    p = protocolImplementations[protocolId];
                 else
                 {
                     if (!protocolConfigurations.ContainsKey(protocolId))
                         throw new Exception(ErrorTypes.INVALID_PROTOCOL);
 
                     ProtocolConfiguration pc = protocolConfigurations[protocolId];
-                    pli = pc.CreateInstance();
-                    if (pli == null)
+                    p = pc.CreateInstance();
+                    if (p == null)
                         throw new Exception(string.Format(ErrorTypes.CLASS_NOT_FOUND, pc));
 
-                    if (!IsAuthenticated && !(pli is AuthenticationProtocolBase))
+                    if (!IsAuthenticated && !(p is AuthenticationProtocolBase))
                         throw new Exception(string.Format(ErrorTypes.NOT_AUTHENTICATED, pc));
 
-                    protocolImplementations.Add(protocolId, pli);
+                    protocolImplementations.Add(protocolId, p);
 
                     Log(Level.Debug, string.Format("Initializing protocol {0}...", protocolId));
-                    pli.Initialize(this, pc, userData);
+                    p.Initialize(this, pc, userData);
                 }
                 LastActivityAt = DateTime.Now;
             }
-            pli.OnPacketReceived(br);
+            p.OnPacketReceived(br);
         }
 
         /// <summary>

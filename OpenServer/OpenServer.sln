@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{6179F1EF-8B82-4A10-B32D-7F596D6650F2}"
-	ProjectSection(SolutionItems) = preProject
-		bin\log4net.dll = bin\log4net.dll
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenServerWindowsShared", "OpenServerWindowsShared\OpenServerWindowsShared.csproj", "{FD59CEA4-C9EE-470C-9C49-934785967EE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenServer", "OpenServer\OpenServer.csproj", "{BD8CE1FD-0702-4CED-9592-5B81D55E13A9}"
