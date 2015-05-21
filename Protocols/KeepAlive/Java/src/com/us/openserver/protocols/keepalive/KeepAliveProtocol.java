@@ -20,14 +20,11 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 package com.us.openserver.protocols.keepalive;
 
 import com.us.openserver.*;
-import com.us.openserver.configuration.*;
 import com.us.openserver.protocols.*;
-import com.us.openserver.util.*;
-
 import java.io.IOException;
 import java.util.concurrent.*;
 
-public class KeepAliveProtocol extends IProtocol implements Runnable
+public class KeepAliveProtocol extends ProtocolBase implements Runnable
 {
 	public static final int PROTOCOL_IDENTIFIER = 0x0001;
     public static final int INTERVAL = 10000;
@@ -38,9 +35,9 @@ public class KeepAliveProtocol extends IProtocol implements Runnable
     {
     }
 
-    public void initialize(Session session, ProtocolConfiguration pc)
+    public void initialize(Session session, ProtocolConfiguration pc, Object userData)
     {
-    	super.initialize(session, pc);
+    	super.initialize(session, pc, userData);
     	
         synchronized (this)
         {
