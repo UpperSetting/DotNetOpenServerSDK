@@ -19,11 +19,9 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver;
 
+import com.us.openserver.configuration.*;
 import java.net.*;
 import javax.net.ssl.*;
-
-import com.us.openserver.configuration.*;
-import com.us.openserver.util.*;
 
 public class SessionOpener implements Runnable
 {

@@ -19,25 +19,23 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver;
 
+import com.us.openserver.protocols.*;
 import java.io.*;
 import java.net.Socket;
 import java.util.*;
 
-import com.us.openserver.configuration.*;
-import com.us.openserver.protocols.*;
-import com.us.openserver.util.*;
-
 public class Session implements Runnable
 {
-    public boolean IsAuthenticated;
-    public Date LastActivityAt;
+    public boolean IsAuthenticated;    
     public String UserName;
 
-    private boolean isClosed;
-    private HashMap<Integer, IProtocol> protocolImplementations = new HashMap<Integer, IProtocol>();
+    private boolean isClosed;        
     private Client client;
-    private ILogger logger;
+    private HashMap<Integer, ProtocolConfiguration> protocolConfigurations;
+    private HashMap<Integer, ProtocolBase> protocolImplementations = new HashMap<Integer, ProtocolBase>();
+    private ILogger logger;    
     private InputStream is;
+    private Object userData;
     private Object syncObject = new Object();
     private OutputStream os;    
     private String address;    
@@ -47,10 +45,12 @@ public class Session implements Runnable
     public Session(Client client, Socket socket, String address) throws IOException
     {
     	this.client = client;
+    	this.protocolConfigurations = client.getProtocolConfigurations();
+	    this.logger = client.getLogger();
+	    this.userData = client.getUserData();	    
 	    this.is = socket.getInputStream();
 	    this.os = socket.getOutputStream();
 	    this.address = address;
-	    this.logger = client.getLogger();
 	    id = ++sessionId;
 	}
 
@@ -62,7 +62,7 @@ public class Session implements Runnable
     		
 	        synchronized (protocolImplementations)
 	        {
-	            for (IProtocol pl : protocolImplementations.values())
+	            for (ProtocolBase pl : protocolImplementations.values())
 	                pl.close();
 	
 	            protocolImplementations.clear();
@@ -83,7 +83,7 @@ public class Session implements Runnable
 	    		
 		    	synchronized (protocolImplementations)
 		        {
-		            for (IProtocol pl : protocolImplementations.values())
+		            for (ProtocolBase pl : protocolImplementations.values())
 		                pl.dispose();
 		
 		            protocolImplementations.clear();
@@ -118,26 +118,25 @@ public class Session implements Runnable
     
     public String getAddress() { return address; }
     
-    public IProtocol initialize(int protocolId) throws Exception
+    public ProtocolBase initialize(int protocolId, Object userData) throws Exception
     {
-        IProtocol p = null;
+        ProtocolBase p = null;
         synchronized (protocolImplementations)
         {
             if (!protocolImplementations.containsKey(protocolId))
             {
-                if (!ProtocolConfigurations.ContainsKey(protocolId))
+                if (!protocolConfigurations.containsKey(protocolId))
                     throw new Exception("Invalid or unsupported protocol.");
 
-                ProtocolConfiguration plc = ProtocolConfigurations.Get(protocolId);
+                ProtocolConfiguration pc = protocolConfigurations.get(protocolId);
 
-                Class<?> cls = Class.forName(plc.getClassPath());
-                p = (IProtocol)cls.newInstance();
+                Class<?> cls = Class.forName(pc.getClassPath());
+                p = (ProtocolBase)cls.newInstance();
 
                 protocolImplementations.put(protocolId, p);
 
                 log(Level.Debug, String.format("Initializing protocol %1$s...", protocolId));
-                p.initialize(this, plc);
-                LastActivityAt = new Date();
+                p.initialize(this, pc, userData);
             }
             else
                 p = protocolImplementations.get(protocolId);
@@ -149,32 +148,31 @@ public class Session implements Runnable
     {
         int protocolId = br.readUInt16();
 
-        IProtocol p;
+        ProtocolBase p;
         synchronized (protocolImplementations)
         {
             if (protocolImplementations.containsKey(protocolId))
                 p = protocolImplementations.get(protocolId);
             else
             {
-                if (!ProtocolConfigurations.ContainsKey(protocolId))
+                if (!protocolConfigurations.containsKey(protocolId))
                     throw new Exception("Invalid or unsupported protocol.");
 
-                ProtocolConfiguration plc = ProtocolConfigurations.Get(protocolId);
+                ProtocolConfiguration pc = protocolConfigurations.get(protocolId);
 
-                Class<?> cls = Class.forName(plc.getClassPath());
-                p = (IProtocol)cls.newInstance();
+                Class<?> cls = Class.forName(pc.getClassPath());
+                p = (ProtocolBase)cls.newInstance();
                 if (p == null)
-                    throw new Exception("Unable to create protocol layer.  Class not found.  Class: " + plc.getClassPath());
+                    throw new Exception("Unable to create protocol layer.  Class not found.  Class: " + pc.getClassPath());
 
                 if (!IsAuthenticated && !(p instanceof AuthenticationProtocolBase))
-                    throw new Exception("Unable to add protocol layer.  Access Denied.  Class: " + plc.getClassPath());
+                    throw new Exception("Unable to add protocol layer.  Access Denied.  Class: " + pc.getClassPath());
 
                 protocolImplementations.put(protocolId, p);
 
                 log(Level.Debug, "Initializing protocol " + protocolId + "...");
-                p.initialize(this, plc);
+                p.initialize(this, pc, userData);
             }
-            LastActivityAt = new Date();
         }
         p.onPacketReceived(br);
     }

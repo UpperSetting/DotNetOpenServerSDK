@@ -19,13 +19,13 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver;
 
-import com.us.openserver.protocols.IProtocol;
+import com.us.openserver.protocols.ProtocolBase;
 
 public class SessionInitializer implements Runnable
 {
     private Client client;    
     private int protocolId;
-    private IProtocol p;
+    private ProtocolBase p;
     private Exception exception;
     private static int id;
 
@@ -35,7 +35,7 @@ public class SessionInitializer implements Runnable
         this.protocolId = protocolId;
     }
 
-    public IProtocol initializeAsync() throws Exception
+    public ProtocolBase initializeAsync() throws Exception
     {
     	synchronized (this)
         {
@@ -66,9 +66,9 @@ public class SessionInitializer implements Runnable
         }
     }
     
-    public IProtocol initialize(int protocolId) throws Exception
+    public ProtocolBase initialize(int protocolId) throws Exception
     {
-    	p = client.getSession().initialize(protocolId);
+    	p = client.getSession().initialize(protocolId, client.getUserData());
     	return p;
     }
 }

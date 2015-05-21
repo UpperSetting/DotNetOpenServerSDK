@@ -19,7 +19,7 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver.protocols;
 
-public abstract class AuthenticationProtocolBase extends IProtocol
+public abstract class AuthenticationProtocolBase extends ProtocolBase
 {
     protected boolean isAuthenticated;
     public boolean getIsAuthenticated()

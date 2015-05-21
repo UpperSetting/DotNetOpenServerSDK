@@ -19,48 +19,54 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver;
 
-import java.util.HashMap;
-
 import com.us.openserver.configuration.*;
-import com.us.openserver.protocols.IProtocol;
-import com.us.openserver.util.*;
+import com.us.openserver.protocols.ProtocolBase;
+import com.us.openserver.protocols.ProtocolConfiguration;
+import java.util.HashMap;
 
 public class Client
 {
+	private IClientObserver clientObserver;
+	
 	private ILogger logger;
 	public ILogger getLogger() { return logger; }
 	
-	private IClientObserver clientObserver;
+	private HashMap<Integer, ProtocolConfiguration> protocolConfigurations;
+	public HashMap<Integer, ProtocolConfiguration> getProtocolConfigurations() { return protocolConfigurations; }
 	
-    private ServerConfiguration cfg;
-    public ServerConfiguration getServerConfiguration() { return cfg; }
+	private ServerConfiguration serverConfiguration;
+    public ServerConfiguration getServerConfiguration() { return serverConfiguration; }
+    
+    private Object userData;
+    public Object getUserData() { return userData; }    
     
     private Session session;
     public Session getSession() { return session; }
     
     public Client(
 		IClientObserver clientObserver,
-        ServerConfiguration cfg,
-        HashMap<Integer, ProtocolConfiguration> protocolConfigurations)
+        ServerConfiguration serverConfiguration,
+        HashMap<Integer, ProtocolConfiguration> protocolConfigurations,
+        ILogger logger,
+        Object userData)
     {
     	this.clientObserver = clientObserver;
-        this.cfg = cfg;
-        this.logger = new ConsoleLogger();
-        ProtocolConfigurations.Items = protocolConfigurations;
+    	
+    	if (logger == null)
+            logger = new ConsoleLogger();
+        this.logger = logger;
+
+        if (serverConfiguration == null)
+            serverConfiguration = new ServerConfiguration();
+        this.serverConfiguration = serverConfiguration;
+
+        if (protocolConfigurations == null)
+            protocolConfigurations = new HashMap<Integer, ProtocolConfiguration>();
+        this.protocolConfigurations = protocolConfigurations;
+
+        this.userData = userData;
     }
 
-    public Client(
-		IClientObserver clientObserver,
-        ServerConfiguration cfg, 
-        HashMap<Integer, ProtocolConfiguration> protocolConfigurations,
-        ILogger logger)
-    {
-    	this.clientObserver = clientObserver;
-        this.cfg = cfg;
-        this.logger = logger;
-        ProtocolConfigurations.Items = protocolConfigurations;
-    }
-        
 	public void connect() throws Exception
 	{
 		SessionOpener sessionOpener = new SessionOpener(this);
@@ -93,14 +99,14 @@ public class Client
     	}
 	}
 	
-	public IProtocol initialize(int protocolId) throws Exception
+	public ProtocolBase initialize(int protocolId) throws Exception
     {
-         return session != null ? session.initialize(protocolId) : null;
+         return session != null ? session.initialize(protocolId, userData) : null;
     }
 	
-	public IProtocol initializeAsync(int protocolId) throws Exception
+	public ProtocolBase initializeAsync(int protocolId) throws Exception
     {
-         return session != null ? session.initialize(protocolId) : null;
+         return session != null ? session.initialize(protocolId, userData) : null;
     }
 	
     public void onConnectionLost(Exception ex)
