@@ -16,7 +16,7 @@
         <language>en-US</language>
         <tags>TCP Socket Server</tags>
         <dependencies>
-            <dependency id="UpperSetting.OpenServer.Windows.Shared" version="[1.0.0.0]" />
+            <dependency id="UpperSetting.OpenServer.Shared" version="[1.0.0.0]" />
         </dependencies>
     </metadata>
     <files>
