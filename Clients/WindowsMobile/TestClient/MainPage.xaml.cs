@@ -104,7 +104,7 @@ namespace TestClient
 
             try
             {
-                client.OnConnectionLost += client_OnConnectionLostEvent;
+                client.OnConnectionLost += client_OnConnectionLost;
                 client.Connect();
 
                 WinAuthProtocolClient wap = (WinAuthProtocolClient)client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
@@ -126,7 +126,7 @@ namespace TestClient
             }
         }
 
-        private async void client_OnConnectionLostEvent(object sender, Exception ex)
+        private async void client_OnConnectionLost(object sender, Exception ex)
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
