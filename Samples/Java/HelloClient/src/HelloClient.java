@@ -17,14 +17,14 @@ You should have received a copy of the GNU General Public License along with
 DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
-import java.util.HashMap;
-
 import com.us.openserver.*;
 import com.us.openserver.configuration.*;
-import com.us.openserver.util.*;
+import com.us.openserver.protocols.*;
 import com.us.openserver.protocols.hello.*;
 import com.us.openserver.protocols.keepalive.*;
 import com.us.openserver.protocols.winauth.*;
+import java.io.IOException;
+import java.util.HashMap;
 
 public class HelloClient implements IClientObserver, IHelloProtocolObserver
 {
@@ -39,10 +39,12 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
 	{
 		try
 		{
-			ServerConfiguration cfg = new ServerConfiguration();
 			ConsoleLogger logger = new ConsoleLogger();
 			logger.setLogPackets(true);
-	                    
+			
+			ServerConfiguration cfg = new ServerConfiguration();
+			//cfg.setHost("UpperSetting.com");
+			            
 	        HashMap<Integer, ProtocolConfiguration> protocolConfigurations =
 	            new HashMap<Integer, ProtocolConfiguration>();
 	        
@@ -52,19 +54,20 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
 	        protocolConfigurations.put(WinAuthProtocol.PROTOCOL_IDENTIFIER,
 	            new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.winauth.WinAuthProtocolClient"));
 	
-	        protocolConfigurations.put(HelloProtocolClient.PROTOCOL_IDENTIFIER,
-	            new ProtocolConfiguration(HelloProtocolClient.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
+	        protocolConfigurations.put(HelloProtocol.PROTOCOL_IDENTIFIER,
+	            new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
 	
-	        client = new Client(this, cfg, protocolConfigurations, logger);
+	        client = new Client(this, cfg, protocolConfigurations, logger, null);
 	        client.connect();
 	        
-			WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
-	        if (!wap.authenticate("Michael", "Ramp5050", null))
-	            throw new Exception("Access denied.");
-	        
+	        String userName = "TestUser";
+            WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
+            if (!wap.authenticate(userName, "T3stus3r", null))
+                throw new Exception("Access denied.");
+            			
 	        client.initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
-	        HelloProtocolClient hpc = (HelloProtocolClient)client.initialize(HelloProtocol.PROTOCOL_IDENTIFIER);
 	        
+	        HelloProtocolClient hpc = (HelloProtocolClient)client.initialize(HelloProtocol.PROTOCOL_IDENTIFIER);	        
 	        {
 	        	String serverResponse = hpc.hello("Software Engineer");
 	        	System.out.println("Hello(Sync): " + serverResponse);
@@ -73,13 +76,22 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
 	        	hpc.setHelloObserver(this);
 	        	hpc.helloAsync("Software Engineer");
 	        }
-	        
-	        System.in.read();
-	        client.close();	        
 		}
 		catch (Exception ex)
 		{
 			System.out.println(ex.getMessage());
+		}
+		finally
+		{
+			try 
+			{ 
+				System.in.read(); 
+				if (client != null)
+					client.close();
+			} 
+			catch (IOException ex) 
+			{
+			}
 		}
 	}
     

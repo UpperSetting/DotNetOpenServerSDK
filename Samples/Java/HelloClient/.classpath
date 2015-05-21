@@ -3,8 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/HelloProtocol"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/OpenServerClient"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/KeepAliveProtocol"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/WinAuthProtocol"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/OpenServerClient"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
