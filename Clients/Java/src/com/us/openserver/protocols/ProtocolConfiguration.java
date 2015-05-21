@@ -17,11 +17,38 @@ You should have received a copy of the GNU General Public License along with
 DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.us.openserver;
+package com.us.openserver.protocols;
 
-public class PacketReadTypes
+public class ProtocolConfiguration
 {
-    public static final byte Header = 0x00;
-    public static final byte HeaderComplete = 0x01;
-    public static final byte Payload = 0x02;
+    private int id;
+    private String classPath;
+
+    protected ProtocolConfiguration()
+    {
+    }
+
+    public ProtocolConfiguration(int id, String classPath)
+    {
+        this();
+
+        this.id = id;
+        this.classPath = classPath;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public String getClassPath() {
+        return classPath;
+    }
+
+    public void setClassPath(String classPath) {
+        this.classPath = classPath;
+    }
 }

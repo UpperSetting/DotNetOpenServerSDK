@@ -19,13 +19,42 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver.protocols;
 
-public class SessionLayerProtocol
+import com.us.openserver.*;
+
+public class PacketHandler implements Runnable
 {
-    public static final int PROTOCAL_IDENTIFIER = 21843;//U 0x55, S 0x53
+    private Session session;
+    private BinaryReader br;
+    private Exception exception;
+    private Thread t;
+    private static int id;
 
-    public static final int PROTOCOL_IDENTIFIER_LENGTH = 2;
-    public static final int LENGTH_LENGTH = 4;
-    public static final int HEADER_LENGTH = PROTOCOL_IDENTIFIER_LENGTH + LENGTH_LENGTH;
+    public PacketHandler(Session session, BinaryReader br)
+    {
+        this.session = session;
+        this.br = br;
+    }
 
-    public static final int PORT = 21843;
+    public void execute()
+    {
+        t = new Thread(this, "PacketHandler" + id++);
+        t.start();
+    }
+
+    public void run()
+    {
+        try
+        {
+            session.onPacketReceived(br);
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+        }
+    }
+
+    public Exception getException()
+    {
+        return exception;
+    }
 }

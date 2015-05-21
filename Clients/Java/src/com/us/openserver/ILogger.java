@@ -19,9 +19,10 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver;
 
-public class PacketReadTypes
+public interface ILogger
 {
-    public static final byte Header = 0x00;
-    public static final byte HeaderComplete = 0x01;
-    public static final byte Payload = 0x02;
+	public boolean getLogPackets();
+	public void setLogPackets(boolean value);
+    public void log(Level level, String message);
+    public void log(Exception ex);
 }

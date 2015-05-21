@@ -17,11 +17,29 @@ You should have received a copy of the GNU General Public License along with
 DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.us.openserver;
+package com.us.openserver.protocols;
 
-public class PacketReadTypes
+import java.io.IOException;
+import com.us.openserver.*;
+
+public abstract class ProtocolBase
 {
-    public static final byte Header = 0x00;
-    public static final byte HeaderComplete = 0x01;
-    public static final byte Payload = 0x02;
+	protected Session session;
+	
+    public void initialize(Session session, ProtocolConfiguration pc, Object userData)
+    {
+    	this.session = session;
+    }
+    
+    public void close()
+    {
+    }
+    
+    public void dispose()
+    {    	
+    }
+    
+    public void onPacketReceived(BinaryReader br) throws IOException
+    {
+    }
 }

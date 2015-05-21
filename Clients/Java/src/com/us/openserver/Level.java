@@ -19,9 +19,11 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver;
 
-public class PacketReadTypes
+public enum Level 
 {
-    public static final byte Header = 0x00;
-    public static final byte HeaderComplete = 0x01;
-    public static final byte Payload = 0x02;
+    Debug,
+    Info,
+    Notice,
+    Critical,
+    Error
 }
