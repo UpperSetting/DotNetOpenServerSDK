@@ -15,7 +15,7 @@
     <!-- SHFB properties -->
     <FrameworkVersion>.NET for Windows Store Apps (8.1)</FrameworkVersion>
     <OutputPath>.\Help\</OutputPath>
-    <HtmlHelpName>DotNetOpenServer</HtmlHelpName>
+    <HtmlHelpName>DotNetOpenServerSDK</HtmlHelpName>
     <Language>en-US</Language>
     <TransformComponentArguments>
       <Argument Key="logoFile" Value="Help.png" xmlns="" />
@@ -41,7 +41,7 @@
     <PresentationStyle>VS2013</PresentationStyle>
     <Preliminary>False</Preliminary>
     <NamingMethod>MemberName</NamingMethod>
-    <HelpTitle>Upper Setting DotNetOpenServer Documentation</HelpTitle>
+    <HelpTitle>Upper Setting DotNetOpenServer SDK Documentation</HelpTitle>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
     <VisibleItems>Protected, ProtectedInternalAsProtected</VisibleItems>
     <DocumentationSources>
