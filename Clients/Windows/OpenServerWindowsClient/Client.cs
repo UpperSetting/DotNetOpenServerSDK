@@ -171,6 +171,18 @@ namespace US.OpenServer
         }
 
         /// <summary>
+        /// Closes the <see cref="Session"/>.
+        /// </summary>
+        public void Close()
+        {
+            if (session != null)
+            {
+                session.Close();
+                session = null;
+            }
+        }
+
+        /// <summary>
         /// Closes the protocol.
         /// </summary>
         /// <param name="protocolId">A UInt16 that specifies the unique protocol
@@ -180,18 +192,6 @@ namespace US.OpenServer
             if (session != null)
             {
                 session.Close(protocolId);
-            }
-        }
-
-        /// <summary>
-        /// Closes the <see cref="Session"/>.
-        /// </summary>
-        public void Close()
-        {
-            if (session != null)
-            {
-                session.Close();
-                session = null;
             }
         }
         #endregion
