@@ -97,8 +97,8 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>mkdir "..\..\..\bin\Windows Mobile"
-copy $(OutDir)$(TargetFileName) "..\..\..\bin\Windows Mobile\$(TargetFileName)"</PostBuildEvent>
+    <PostBuildEvent>mkdir "..\..\..\bin\WindowsMobile"
+copy $(OutDir)$(TargetFileName) "..\..\..\bin\WindowsMobile\$(TargetFileName)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
