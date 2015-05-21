@@ -57,8 +57,7 @@ namespace HelloClient
 
                 string userName = "TestUser";
                 WinAuthProtocolClient wap = client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER) as WinAuthProtocolClient;
-                wap.Authenticate(userName, "T3stus3r", null);
-                if (!wap.IsAuthenticated)
+                if (!wap.Authenticate(userName, "T3stus3r", null))
                     throw new Exception("Access denied.");
 
                 client.Initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
