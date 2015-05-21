@@ -19,7 +19,8 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver.protocols.hello;
 
-import com.us.openserver.util.*;
+import com.us.openserver.*;
+import com.us.openserver.protocols.*;
 
 import java.io.IOException;
 
@@ -51,8 +52,7 @@ public class HelloProtocolClient extends HelloProtocol
     {
 		synchronized (this)
         {
-			helloAsync(message);
-	        
+			helloAsync(message);	        
 	        wait(10000);            
         }
 		return serverResponse;

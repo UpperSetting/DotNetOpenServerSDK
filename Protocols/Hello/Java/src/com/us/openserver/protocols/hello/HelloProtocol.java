@@ -19,10 +19,10 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver.protocols.hello;
 
-import com.us.openserver.protocols.IProtocol;
-import com.us.openserver.util.Level;
+import com.us.openserver.Level;
+import com.us.openserver.protocols.ProtocolBase;
 
-public class HelloProtocol extends IProtocol
+public class HelloProtocol extends ProtocolBase
 {
 	public static final int PROTOCOL_IDENTIFIER = 0x000A;	
 	
