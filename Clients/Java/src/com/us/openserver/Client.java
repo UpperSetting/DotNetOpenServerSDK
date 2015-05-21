@@ -99,6 +99,26 @@ public class Client
     	}
 	}
 	
+	public void close(int protocolId)
+	{
+		if (session != null)
+    	{
+			SessionCloser sessionCloser = new SessionCloser(session);
+			sessionCloser.close(protocolId);
+			session = null;
+    	}
+	}
+	
+	public void closeAsync(int protocolId)
+	{
+		if (session != null)
+    	{
+			SessionCloser sessionCloser = new SessionCloser(session);
+			sessionCloser.closeAsync(protocolId);
+			session = null;
+    	}
+	}
+	
 	public ProtocolBase initialize(int protocolId) throws Exception
     {
          return session != null ? session.initialize(protocolId, userData) : null;

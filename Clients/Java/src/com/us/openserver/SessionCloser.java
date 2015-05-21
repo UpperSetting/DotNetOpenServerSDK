@@ -23,27 +23,48 @@ import com.us.openserver.Session;
 
 public class SessionCloser implements Runnable
 {
-    private Session session;    
+    private Session session; 
+    private int protocolId;
     private static int id;
 
     public SessionCloser(Session session)
     {
         this.session  = session;
     }
-
-    public void closeAsync()
-    {
-        Thread t = new Thread(this, "SessionCloser" + ++id);
-        t.start();
-    }
-    
-    public void run()
-    {
-        close();
-    }
     
     public void close()
     {
-    	try { session.close(); } catch (Exception ex) { }
+    	close(0);    	
+    }
+    
+    public void close(int protocolId)
+    {
+    	try 
+    	{ 
+    		if (protocolId > 0)
+    			session.close(protocolId);
+    		else
+    			session.close();
+		} 
+    	catch (Exception ex) 
+    	{
+    	}
+    }
+    
+    public void closeAsync()
+    {
+    	closeAsync(0);
+    }
+    
+    public void closeAsync(int protocolId)
+    {
+    	this.protocolId  = protocolId;
+        Thread t = new Thread(this, "SessionCloser" + ++id);
+        t.start();
+    }
+
+    public void run()
+    {
+    	close(protocolId);    	
     }
 }

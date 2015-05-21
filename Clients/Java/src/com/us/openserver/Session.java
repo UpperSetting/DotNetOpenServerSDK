@@ -73,6 +73,22 @@ public class Session implements Runnable
     	}
     }
     
+    public void close(int protocolId)
+    {
+    	ProtocolBase p = null;
+	    synchronized (protocolImplementations)
+        {
+	    	if (protocolImplementations.containsKey(protocolId))
+            {
+                p = protocolImplementations.get(protocolId);
+                protocolImplementations.remove(protocolId);
+            }
+        }
+	    
+	    if (p != null)
+            p.close();
+    }
+    
     public void dispose()
     {    
     	synchronized (syncObject)
