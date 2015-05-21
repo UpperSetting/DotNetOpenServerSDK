@@ -3,7 +3,7 @@
     <metadata>
         <id>UpperSetting.OpenServer.Protocols.WinAuth.Client</id>
         <version>1.0.0.0</version>
-        <title>DotNetOpenServer SDK WinAuth Protocol Client DLL</title>
+        <title>DotNetOpenServer SDK Windows Authentication Protocol Client DLL</title>
         <authors>Michael Janulaitis</authors>
         <owners>Upper Setting Corporation</owners>
         <licenseUrl>http://www.UpperSetting.com/Licenses/GNUv3.txt</licenseUrl>
