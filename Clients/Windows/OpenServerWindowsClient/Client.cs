@@ -20,6 +20,7 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
@@ -49,26 +50,33 @@ namespace US.OpenServer
         public event OnConnectionLostHandler OnConnectionLost;
         #endregion
 
+        #region Properties
+        /// <summary>
+        /// Gets the application logger.
+        /// </summary>
+        public ILogger Logger { get; private set; }
+
+        /// <summary>
+        /// Gets a Dictionary of <see cref="ProtocolConfiguration"/> objects keyed by
+        /// each protocol's unique identifier.
+        /// </summary>
+        public Dictionary<ushort, ProtocolConfiguration> ProtocolConfigurations { get; private set; }
+
+        /// <summary>
+        /// Gets the server configuration.
+        /// </summary>
+        public ServerConfiguration ServerConfiguration { get; private set; }
+
+        /// <summary>
+        /// Gets the optional user defined Object that is passed through to each <see cref="IProtocol"/>
+        /// object.
+        /// </summary>
+        public object UserData { get; private set; }
+        #endregion
+
         #region Variables
         /// <summary>
-        /// A reference to an object that implements application logging.
-        /// </summary>
-        private ILogger logger;
-
-        /// <summary>
-        /// A reference to a Dictionary of <see cref="ProtocolConfiguration"/> objects
-        /// keyed by each protocol's unique identifier.
-        /// </summary>
-        private Dictionary<ushort, ProtocolConfiguration> protocolConfigurations;
-
-        /// <summary>
-        /// A reference to an object that contains the required properties to connect to
-        /// the TCP socket server.
-        /// </summary>
-        private ServerConfiguration serverConfiguration;
-
-        /// <summary>
-        /// A reference to an object that implements the connection session.
+        /// Implements the connection session.
         /// </summary>
         private Session session;
         #endregion
@@ -79,7 +87,7 @@ namespace US.OpenServer
         /// configuration is read from the app.config file. </remarks>
         /// <param name="logger">An optional ILogger to log messages. If null is passed,
         /// a <see cref="US.OpenServer.Logger"/> object is created.</param>
-        /// <param name="cfg">An optional ServerConfiguration that contains the
+        /// <param name="serverConfiguration">An optional ServerConfiguration that contains the
         /// properties necessary to connect to the server. If null is passed, the
         /// configuration is read from the app.config's 'server' XML section
         /// node.</param>
@@ -87,22 +95,27 @@ namespace US.OpenServer
         /// ProtocolConfiguration objects keyed with each protocol's unique identifier.
         /// If null is passed, the configuration is read from the app.config's
         /// 'protocols' XML section node.</param>
+        /// <param name="userData">An Object the caller can pass through to each protocol.</param>
         public Client(
-            ServerConfiguration cfg = null,
+            ServerConfiguration serverConfiguration = null,
             Dictionary<ushort, ProtocolConfiguration> protocolConfigurations = null,
-            ILogger logger = null)
+            ILogger logger = null,
+            object userData = null)
         {
-            if (cfg == null)
-                cfg = (ServerConfiguration)ConfigurationManager.GetSection("server");
-            this.serverConfiguration = cfg;
+            if (logger == null)
+                logger = new ConsoleLogger();
+            Logger = logger;
+            Logger.Log(Level.Info, string.Format("Execution Mode: {0}", Debugger.IsAttached ? "Debug" : "Release"));
+
+            if (serverConfiguration == null)
+                serverConfiguration = (ServerConfiguration)ConfigurationManager.GetSection("server");
+            ServerConfiguration = serverConfiguration;
 
             if (protocolConfigurations == null)
                 protocolConfigurations = (Dictionary<ushort, ProtocolConfiguration>)ConfigurationManager.GetSection("protocols");
-            this.protocolConfigurations = protocolConfigurations;
+            ProtocolConfigurations = protocolConfigurations;
 
-            if (logger == null)
-                logger = new ConsoleLogger();
-            this.logger = logger;
+            UserData = userData;
         }
         #endregion
 
@@ -115,30 +128,32 @@ namespace US.OpenServer
         {
             Close();
 
-            logger.Log(Level.Info, string.Format("Connecting to {0}:{1}...", serverConfiguration.Host, serverConfiguration.Port));
+            Logger.Log(Level.Info, string.Format("Connecting to {0}:{1}...", ServerConfiguration.Host, ServerConfiguration.Port));
 
             Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            server.ReceiveTimeout = serverConfiguration.ReceiveTimeoutInMS;
-            server.SendTimeout = serverConfiguration.SendTimeoutInMS;
+            server.ReceiveTimeout = ServerConfiguration.ReceiveTimeoutInMS;
+            server.SendTimeout = ServerConfiguration.SendTimeoutInMS;
             server.LingerState = new LingerOption(true, 10);
             server.NoDelay = true;
-            if (string.IsNullOrEmpty(serverConfiguration.Host))
-                serverConfiguration.Host = ServerConfiguration.DEFAULT_HOST;
-            server.Connect(serverConfiguration.Host, serverConfiguration.Port);
+            if (string.IsNullOrEmpty(ServerConfiguration.Host))
+                ServerConfiguration.Host = ServerConfiguration.DEFAULT_HOST;
+            server.Connect(ServerConfiguration.Host, ServerConfiguration.Port);
             string address = ((IPEndPoint)server.RemoteEndPoint).Address.ToString();
             
             session = new Session(
                 new NetworkStream(server), 
                 address, 
-                serverConfiguration.TlsConfiguration, 
-                protocolConfigurations, 
-                logger);
+                ServerConfiguration.TlsConfiguration, 
+                ProtocolConfigurations, 
+                Logger,
+                UserData);
+
             session.OnConnectionLost += session_OnConnectionLost;
 
-            if (serverConfiguration.TlsConfiguration != null && serverConfiguration.TlsConfiguration.Enabled)
+            if (ServerConfiguration.TlsConfiguration != null && ServerConfiguration.TlsConfiguration.Enabled)
                 EnableTls();
 
-            logger.Log(Level.Info, string.Format("Connected to {0}:{1}.", serverConfiguration.Host, serverConfiguration.Port));
+            Logger.Log(Level.Info, string.Format("Connected to {0}:{1}.", ServerConfiguration.Host, ServerConfiguration.Port));
 
             session.BeginRead();
         }
@@ -149,12 +164,10 @@ namespace US.OpenServer
         /// </summary>
         /// <param name="protocolId">A UInt16 that specifies the unique protocol
         /// identifier.</param>
-        /// <param name="userData">An object that may be used client applications to pass
-        /// objects or data to client side protocol implementations.</param>
         /// <returns>An IProtocol that implements the protocol layer.</returns>
-        public IProtocol Initialize(ushort protocolId, object userData = null)
+        public IProtocol Initialize(ushort protocolId)
         {
-             return session != null ? session.Initialize(protocolId, userData) : null;
+             return session != null ? session.Initialize(protocolId, UserData) : null;
         }
 
         /// <summary>
@@ -214,16 +227,19 @@ namespace US.OpenServer
             LocalCertificateSelectionCallback selectionCallback =
               new LocalCertificateSelectionCallback(session.TlsCertificateSelectionCallback);
 
-            SslStream sslStream = new SslStream(session.Stream, true, validationCallback, selectionCallback, EncryptionPolicy.RequireEncryption);
+            SslStream sslStream = new SslStream(
+                session.Stream, true, validationCallback, selectionCallback, EncryptionPolicy.RequireEncryption);
             session.Stream = sslStream;
 
-            X509Certificate2 certificate = session.GetCertificateFromStore(string.Format("CN={0}", serverConfiguration.TlsConfiguration.Certificate));
+            X509Certificate2 certificate = session.GetCertificateFromStore(
+                string.Format("CN={0}", ServerConfiguration.TlsConfiguration.Certificate));
+
             X509CertificateCollection certificates = new X509CertificateCollection();
             if (certificate != null)
                 certificates.Add(certificate);
 
             ((SslStream)session.Stream).AuthenticateAsClient(
-                serverConfiguration.Host, certificates, SslProtocols.Tls, serverConfiguration.TlsConfiguration.CheckCertificateRevocation);
+                ServerConfiguration.Host, certificates, SslProtocols.Tls, ServerConfiguration.TlsConfiguration.CheckCertificateRevocation);
         }
         #endregion
     }

@@ -104,7 +104,7 @@ namespace TestClient
 
             try
             {
-                client.OnConnectionLostEvent += client_OnConnectionLostEvent;
+                client.OnConnectionLost += client_OnConnectionLostEvent;
                 client.Connect();
 
                 WinAuthProtocolClient wap = (WinAuthProtocolClient)client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);

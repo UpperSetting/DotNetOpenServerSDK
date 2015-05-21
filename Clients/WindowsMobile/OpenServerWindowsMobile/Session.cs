@@ -42,8 +42,9 @@ namespace US.OpenServer.WindowsMobile
             string address, 
             TlsConfiguration tlsConfiguration,
             Dictionary<ushort, ProtocolConfiguration> protocolConfigurations, 
-            ILogger logger)
-            : base(protocolConfigurations, logger)
+            ILogger logger,
+            object userData = null)
+            : base(protocolConfigurations, logger, userData)
         {
             this.streamSocket = streamSocket;
             this.iS = streamSocket.InputStream.AsStreamForRead();

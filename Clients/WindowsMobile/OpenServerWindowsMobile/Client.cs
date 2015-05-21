@@ -19,6 +19,7 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using US.OpenServer;
 using US.OpenServer.Configuration;
 using US.OpenServer.Protocols;
@@ -32,47 +33,70 @@ namespace US.OpenServer.WindowsMobile
     public class Client
     {
         #region Events
+        /// <summary>
+        /// Delegate that defines the event callback for the <see cref="OnConnectionLost"/> event.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="ex">An Exception that contains the reason the connection was lost.</param>
         public delegate void OnConnectionLostHandler(object sender, Exception ex);
-        public event OnConnectionLostHandler OnConnectionLostEvent;
+
+        /// <summary>
+        /// Event that is triggered when the connection to the server is lost.
+        /// </summary>
+        public event OnConnectionLostHandler OnConnectionLost;
         #endregion
 
-        #region Variables
+        #region Properties
         /// <summary>
         /// Gets the application logger.
         /// </summary>
         public ILogger Logger { get; private set; }
 
         /// <summary>
-        /// Contains the required properties to connect to the TCP socket server.
+        /// Gets a Dictionary of <see cref="ProtocolConfiguration"/> objects keyed by
+        /// each protocol's unique identifier.
         /// </summary>
-        private ServerConfiguration cfg;
+        public Dictionary<ushort, ProtocolConfiguration> ProtocolConfigurations { get; private set; }
 
         /// <summary>
-        /// A Dictionary of <see cref="ProtocolConfiguration"/> objects keyed by each
-        /// protocol's unique identifier.
+        /// Gets the server configuration.
         /// </summary>
-        private Dictionary<ushort, ProtocolConfiguration> protocolConfigurations = new Dictionary<ushort, ProtocolConfiguration>();
+        public ServerConfiguration ServerConfiguration { get; private set; }
 
+        /// <summary>
+        /// Gets the optional user defined Object that is passed through to each <see cref="IProtocol"/>
+        /// object.
+        /// </summary>
+        public object UserData { get; private set; }
+        #endregion
+
+        #region Variables
         /// <summary>
         /// Implements the connection session.
         /// </summary>
         private Session session;
 
+        /// <summary>
+        /// The connection socket.
+        /// </summary>
         private StreamSocket streamSocket;
         #endregion
 
         #region Constructor
         public Client(
-            ServerConfiguration cfg, 
-            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations,
-            ILogger logger = null)
+            ServerConfiguration serverConfiguration = null,
+            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations = null,
+            ILogger logger = null,
+            object userData = null)
         {
-            this.cfg = cfg;            
-            this.protocolConfigurations = protocolConfigurations;
-
             if (logger == null)
                 logger = new ILogger();
             Logger = logger;
+            Logger.Log(Level.Info, string.Format("Execution Mode: {0}", Debugger.IsAttached ? "Debug" : "Release"));
+
+            ServerConfiguration = serverConfiguration;
+            ProtocolConfigurations = protocolConfigurations;
+            UserData = userData;
         }
         #endregion
 
@@ -83,13 +107,13 @@ namespace US.OpenServer.WindowsMobile
 
             streamSocket = new StreamSocket();
             streamSocket.Control.NoDelay = true;
-            HostName hostName = new HostName(cfg.Host);
+            HostName hostName = new HostName(ServerConfiguration.Host);
 
-            if (cfg.TlsConfiguration != null && cfg.TlsConfiguration.Enabled)
+            if (ServerConfiguration.TlsConfiguration != null && ServerConfiguration.TlsConfiguration.Enabled)
             {
                 try
                 {
-                    IAsyncAction aa = streamSocket.ConnectAsync(hostName, cfg.Port.ToString(), SocketProtectionLevel.Tls12);
+                    IAsyncAction aa = streamSocket.ConnectAsync(hostName, ServerConfiguration.Port.ToString(), SocketProtectionLevel.Tls12);
                     aa.AsTask().Wait();
                 }
                 catch (Exception ex)
@@ -102,15 +126,15 @@ namespace US.OpenServer.WindowsMobile
                         switch (error)
                         {
                             case ChainValidationResult.IncompleteChain:
-                                if (cfg.TlsConfiguration.AllowCertificateChainErrors)
+                                if (ServerConfiguration.TlsConfiguration.AllowCertificateChainErrors)
                                     streamSocket.Control.IgnorableServerCertificateErrors.Add(error);
                                 break;
                             case ChainValidationResult.Untrusted:
-                                if (cfg.TlsConfiguration.AllowSelfSignedCertificate)
+                                if (ServerConfiguration.TlsConfiguration.AllowSelfSignedCertificate)
                                     streamSocket.Control.IgnorableServerCertificateErrors.Add(error);
                                 break;
                             case ChainValidationResult.Revoked:
-                                if (cfg.TlsConfiguration.CheckCertificateRevocation)
+                                if (ServerConfiguration.TlsConfiguration.CheckCertificateRevocation)
                                     streamSocket.Control.IgnorableServerCertificateErrors.Add(error);
                                 break;
                             default:
@@ -118,7 +142,7 @@ namespace US.OpenServer.WindowsMobile
                         }
                     }
 
-                    IAsyncAction aa = streamSocket.ConnectAsync(hostName, cfg.Port.ToString(), SocketProtectionLevel.Tls12);
+                    IAsyncAction aa = streamSocket.ConnectAsync(hostName, ServerConfiguration.Port.ToString(), SocketProtectionLevel.Tls12);
                     try
                     {
                         aa.AsTask().Wait();
@@ -131,7 +155,7 @@ namespace US.OpenServer.WindowsMobile
             }
             else
             {
-                IAsyncAction aa = streamSocket.ConnectAsync(hostName, cfg.Port.ToString());
+                IAsyncAction aa = streamSocket.ConnectAsync(hostName, ServerConfiguration.Port.ToString());
                 try
                 {
                     aa.AsTask().Wait();
@@ -142,9 +166,9 @@ namespace US.OpenServer.WindowsMobile
                 }
             }
 
-            session = new Session(streamSocket, hostName.DisplayName, cfg.TlsConfiguration, protocolConfigurations, Logger);
+            session = new Session(streamSocket, hostName.DisplayName, ServerConfiguration.TlsConfiguration, ProtocolConfigurations, Logger, UserData);
             session.OnConnectionLost += session_OnConnectionLost;
-            session.Log(Level.Info, string.Format("Connected to {0}:{1}...", cfg.Host, cfg.Port));
+            session.Log(Level.Info, string.Format("Connected to {0}:{1}...", ServerConfiguration.Host, ServerConfiguration.Port));
             session.BeginRead();
         }
 
@@ -174,8 +198,8 @@ namespace US.OpenServer.WindowsMobile
         #region Private Functions
         private void session_OnConnectionLost(object sender, Exception ex)
         {
-            if (OnConnectionLostEvent != null)
-                OnConnectionLostEvent(this, ex);
+            if (OnConnectionLost != null)
+                OnConnectionLost(this, ex);
         }
         #endregion
     }
