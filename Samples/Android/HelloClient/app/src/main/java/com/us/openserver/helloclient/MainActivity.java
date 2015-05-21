@@ -27,6 +27,7 @@ import android.widget.*;
 
 import com.us.openserver.*;
 import com.us.openserver.configuration.*;
+import com.us.openserver.protocols.*;
 import com.us.openserver.protocols.hello.*;
 import com.us.openserver.protocols.keepalive.*;
 import com.us.openserver.protocols.winauth.*;
@@ -127,19 +128,18 @@ public class MainActivity extends ActionBarActivity implements IClientObserver
         tls.setRequireRemoteCertificate(true);
         */
 
-        HashMap<Integer, ProtocolConfiguration> protocolConfigurations =
-            new HashMap<Integer, ProtocolConfiguration>();
+        HashMap<Integer, ProtocolConfiguration> protocolConfigurations = new HashMap<>();
 
         protocolConfigurations.put(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
-            new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.keepalive.KeepAliveProtocol"));
+                new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.keepalive.KeepAliveProtocol"));
 
         protocolConfigurations.put(WinAuthProtocol.PROTOCOL_IDENTIFIER,
-            new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.winauth.WinAuthProtocolClient"));
+                new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.winauth.WinAuthProtocolClient"));
 
-        protocolConfigurations.put(HelloProtocolClient.PROTOCOL_IDENTIFIER,
-            new ProtocolConfiguration(HelloProtocolClient.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
+        protocolConfigurations.put(HelloProtocol.PROTOCOL_IDENTIFIER,
+                new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
 
-        client = new Client(this, cfg, protocolConfigurations);
+        client = new Client(this, cfg, protocolConfigurations, null, null);
 
         try
         {
@@ -180,7 +180,7 @@ public class MainActivity extends ActionBarActivity implements IClientObserver
         AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 
         dlgAlert.setMessage(message);
-        dlgAlert.setTitle("DotNetOpenServer");
+        dlgAlert.setTitle("DotNetOpenServer SDK");
         dlgAlert.setPositiveButton("OK", null);
         dlgAlert.setCancelable(true);
         dlgAlert.create().show();
