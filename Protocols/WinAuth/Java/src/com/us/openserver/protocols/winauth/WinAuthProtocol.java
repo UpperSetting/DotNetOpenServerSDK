@@ -19,8 +19,8 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver.protocols.winauth;
 
+import com.us.openserver.Level;
 import com.us.openserver.protocols.AuthenticationProtocolBase;
-import com.us.openserver.util.Level;
 
 public class WinAuthProtocol extends AuthenticationProtocolBase
 {
