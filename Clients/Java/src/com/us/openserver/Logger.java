@@ -21,10 +21,10 @@ package com.us.openserver;
 
 public class Logger
 {
-	protected ILoggerObserver callback;
+	private ILoggerObserver callback;
 	
 	protected boolean logDebug;
-    public boolean isLogDebug() {
+    public boolean getLogDebug() {
 		return logDebug;
 	}
 	public void setLogDebug(boolean logDebug) {
@@ -37,6 +37,15 @@ public class Logger
 	}
 	public void setLogPackets(boolean logPackets) {
 		this.logPackets = logPackets;
+	}
+	
+	public Logger()
+	{
+	}
+	
+	public Logger(ILoggerObserver callback)
+	{
+		this.callback = callback;
 	}
 	
 	public void log(Level level, String message)
