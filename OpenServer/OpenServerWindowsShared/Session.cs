@@ -76,14 +76,14 @@ namespace US.OpenServer
         /// <param name="tlsConfiguration">The SSL/TLS configuration object.</param>
         /// <param name="protocolConfigurations">A Dictionary of ProtocolConfiguration
         /// objects keyed by each protocol's unique identifier.</param>
-        /// <param name="logger">The ILogger.</param>
+        /// <param name="logger">The Logger.</param>
         /// <param name="userData">An optional Object the user can pass through to each protocol.</param>
         public Session(
             Stream stream, 
             string address, 
             TlsConfiguration tlsConfiguration, 
             Dictionary<ushort, ProtocolConfiguration> protocolConfigurations,
-            ILogger logger, 
+            Logger logger, 
             object userData = null)
             : base(protocolConfigurations, logger, userData)
         {

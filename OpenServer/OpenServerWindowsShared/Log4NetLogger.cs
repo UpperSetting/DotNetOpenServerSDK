@@ -27,7 +27,7 @@ namespace US.OpenServer
     /// <summary>
     /// Class that logs to log4net.
     /// </summary>
-    public class Log4NetLogger : ILogger
+    public class Log4NetLogger : Logger
     {
         #region Private Variables
         /// <summary>

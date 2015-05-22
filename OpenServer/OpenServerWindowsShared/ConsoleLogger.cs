@@ -24,7 +24,7 @@ namespace US.OpenServer
     /// <summary>
     /// Class that logs to the console.
     /// </summary>
-    public class ConsoleLogger : ILogger
+    public class ConsoleLogger : Logger
     {
         #region Public Functions
         /// <summary>

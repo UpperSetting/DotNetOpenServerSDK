@@ -40,7 +40,7 @@ namespace TestServer
                 #endregion
 
                 #region Configure programatically
-                //ILogger logger = new Log4NetLogger("DotNetOpenServer");
+                //Logger logger = new Log4NetLogger("DotNetOpenServer");
                 //logger.LogPackets = true;
 
                 //ServerConfiguration cfg = new ServerConfiguration();
