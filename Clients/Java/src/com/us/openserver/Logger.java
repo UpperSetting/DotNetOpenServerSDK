@@ -19,10 +19,39 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver;
 
-public interface ILogger
+public class Logger
 {
-	public boolean getLogPackets();
-	public void setLogPackets(boolean value);
-    public void log(Level level, String message);
-    public void log(Exception ex);
+	protected ILoggerObserver callback;
+	
+	protected boolean logDebug;
+    public boolean isLogDebug() {
+		return logDebug;
+	}
+	public void setLogDebug(boolean logDebug) {
+		this.logDebug = logDebug;
+	}
+	
+	protected boolean logPackets;
+	public boolean getLogPackets() {
+		return logPackets;
+	}
+	public void setLogPackets(boolean logPackets) {
+		this.logPackets = logPackets;
+	}
+	
+	public void log(Level level, String message)
+    {
+        if (level == Level.Debug && !logDebug)
+            return;
+
+        if (callback != null)
+        	callback.onLogMessage(level, message);
+    }
+   
+    public void log(Exception ex)
+    {
+        log(Level.Error, String.format("%1$s\r\n%2$s", ex.getMessage(), ex.getStackTrace()));
+    }
 }
+
+

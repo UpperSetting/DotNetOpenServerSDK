@@ -28,8 +28,8 @@ public class Client
 {
 	private IClientObserver clientObserver;
 	
-	private ILogger logger;
-	public ILogger getLogger() { return logger; }
+	private Logger logger;
+	public Logger getLogger() { return logger; }
 	
 	private HashMap<Integer, ProtocolConfiguration> protocolConfigurations;
 	public HashMap<Integer, ProtocolConfiguration> getProtocolConfigurations() { return protocolConfigurations; }
@@ -47,13 +47,13 @@ public class Client
 		IClientObserver clientObserver,
         ServerConfiguration serverConfiguration,
         HashMap<Integer, ProtocolConfiguration> protocolConfigurations,
-        ILogger logger,
+        Logger logger,
         Object userData)
     {
     	this.clientObserver = clientObserver;
     	
     	if (logger == null)
-            logger = new ConsoleLogger();
+            logger = new Logger();
         this.logger = logger;
 
         if (serverConfiguration == null)

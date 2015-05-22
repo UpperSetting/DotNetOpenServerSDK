@@ -33,7 +33,7 @@ public class Session implements Runnable
     private Client client;
     private HashMap<Integer, ProtocolConfiguration> protocolConfigurations;
     private HashMap<Integer, ProtocolBase> protocolImplementations = new HashMap<Integer, ProtocolBase>();
-    private ILogger logger;    
+    private Logger logger;    
     private InputStream is;
     private Object userData;
     private Object syncObject = new Object();
