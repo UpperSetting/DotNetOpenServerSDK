@@ -100,7 +100,7 @@ namespace US.OpenServer.Protocols.WinAuth
         /// <summary>
         /// Adds a role.
         /// </summary>
-        /// <param name="userName">A String that contains the name of the role.</param>
+        /// <param name="role">A String that contains the name of the role.</param>
         public void AddRole(string role)
         {
             role = role.ToLower();
@@ -151,7 +151,7 @@ namespace US.OpenServer.Protocols.WinAuth
         /// <param name="assembly">A string that specifies the assembly the class is
         /// contained.</param>
         /// <param name="classPath">A string that specifies the full path to the class. The
-        /// class must extend <see cref="us.openserver.protocols.ProtocolBase"/>.</param>
+        /// class must extend <see cref="US.OpenServer.Protocols.ProtocolBase"/>.</param>
         /// <param name="node">A XmlNode that contains the permissions.</param>
         public override void Initialize(ushort id, string assembly, string classPath, XmlNode node)
         {
