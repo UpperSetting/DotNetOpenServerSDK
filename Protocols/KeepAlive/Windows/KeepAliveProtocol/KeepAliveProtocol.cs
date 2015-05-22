@@ -39,7 +39,7 @@ namespace US.OpenServer.Protocols.KeepAlive
     /// command packet, the <see cref="US.OpenServer.SessionBase"/>.<see
     /// cref="US.OpenServer.SessionBase.OnConnectionLost"/> event is triggered.
     /// </remarks>
-    public class KeepAliveProtocol : IProtocol
+    public class KeepAliveProtocol : ProtocolBase
     {
         #region Constants
         /// <summary>

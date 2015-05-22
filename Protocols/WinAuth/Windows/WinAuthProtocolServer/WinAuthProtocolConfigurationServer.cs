@@ -151,7 +151,7 @@ namespace US.OpenServer.Protocols.WinAuth
         /// <param name="assembly">A string that specifies the assembly the class is
         /// contained.</param>
         /// <param name="classPath">A string that specifies the full path to the class. The
-        /// class must extend IProtocol.</param>
+        /// class must extend <see cref="us.openserver.protocols.ProtocolBase"/>.</param>
         /// <param name="node">A XmlNode that contains the permissions.</param>
         public override void Initialize(ushort id, string assembly, string classPath, XmlNode node)
         {

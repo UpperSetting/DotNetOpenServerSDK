@@ -56,7 +56,7 @@ namespace US.OpenServer
         public ServerConfiguration ServerConfiguration { get; private set; }
 
         /// <summary>
-        /// Gets the optional user defined Object that is passed through to each <see cref="IProtocol"/>
+        /// Gets the optional user defined Object that is passed through to each <see cref="ProtocolBase"/>
         /// object.
         /// </summary>
         public object UserData { get; private set; }

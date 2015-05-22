@@ -93,7 +93,7 @@ namespace US.OpenServer.Protocols.WinAuth
 
         #region Public Functions
         /// <summary>
-        /// Calls the base <see cref="US.OpenServer.Protocols.IProtocol.Initialize"/>
+        /// Calls the base <see cref="US.OpenServer.Protocols.ProtocolBase.Initialize"/>
         /// function then saves a reference to the Session and WinAuthProtocolConfigurationServer.
         /// </summary>
         /// <param name="session">A SessionBase that encapsulates the connection

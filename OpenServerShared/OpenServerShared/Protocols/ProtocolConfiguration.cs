@@ -23,7 +23,7 @@ namespace US.OpenServer.Protocols
 {
     /// <summary>
     /// Class that encapsulates the properties necessary for Reflection to load
-    /// IProtocol classes.
+    /// ProtocolBase classes.
     /// </summary>
     public class ProtocolConfiguration
     {
@@ -34,9 +34,9 @@ namespace US.OpenServer.Protocols
         public ushort Id { get; protected set; }
 
         /// <summary>
-        /// Gets or sets the class type of the IProtocol.
+        /// Gets or sets the class type of the ProtocolBase.
         /// </summary>
-        /// <value>A Type that specifies the type of the IProtocol.</value>
+        /// <value>A Type that specifies the type of the ProtocolBase.</value>
         public Type ProtocolType { get; protected set; }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace US.OpenServer.Protocols
         /// </summary>
         /// <param name="id">A UInt16 that specifies the protocol identifier.</param>
         /// <param name="protocolType">A Type that specifies the protocol class. The class
-        /// must extend IProtocol.</param>
+        /// must extend ProtocolBase.</param>
         public ProtocolConfiguration(ushort id, Type protocolType)
         {
             Id = id;
@@ -60,13 +60,13 @@ namespace US.OpenServer.Protocols
         }
 
         /// <summary>
-        /// Creates an instances of the IProtocol class.
+        /// Creates an instances of the ProtocolBase class.
         /// </summary>
-        /// <returns>An IProtocol.</returns>
-        public virtual IProtocol CreateInstance()
+        /// <returns>A ProtocolBase.</returns>
+        public virtual ProtocolBase CreateInstance()
         {
             return ProtocolType != null ? 
-                (IProtocol)Activator.CreateInstance(ProtocolType) : null;
+                (ProtocolBase)Activator.CreateInstance(ProtocolType) : null;
         }
     }
 }

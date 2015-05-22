@@ -23,7 +23,7 @@ namespace US.OpenServer.Protocols.Hello
     /// <summary>
     /// Base abstract class for the Hello Protocol implementation.
     /// </summary>
-    public abstract class HelloProtocol : IProtocol
+    public abstract class HelloProtocol : ProtocolBase
     {
         /// <summary>
         /// The unique protocol identifier

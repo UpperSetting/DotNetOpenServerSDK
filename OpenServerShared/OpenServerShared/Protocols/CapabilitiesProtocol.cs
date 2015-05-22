@@ -30,7 +30,7 @@ namespace US.OpenServer.Protocols
     /// a list of available protocols and pass protocol configuration errors back to
     /// the remote connection.
     /// </summary>
-    public class CapabilitiesProtocol : IProtocol
+    public class CapabilitiesProtocol : ProtocolBase
     {
         /// <summary>
         /// The unique protocol identifier

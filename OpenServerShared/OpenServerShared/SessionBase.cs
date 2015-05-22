@@ -59,13 +59,13 @@ namespace US.OpenServer
         private Dictionary<ushort, ProtocolConfiguration> protocolConfigurations;
 
         /// <summary>
-        /// A Dictionary of <see cref="IProtocol"/> objects keyed by each protocol's
+        /// A Dictionary of <see cref="ProtocolBase"/> objects keyed by each protocol's
         /// unique identifier.
         /// </summary>
-        private Dictionary<ushort, IProtocol> protocolImplementations = new Dictionary<ushort, IProtocol>();
+        private Dictionary<ushort, ProtocolBase> protocolImplementations = new Dictionary<ushort, ProtocolBase>();
 
         /// <summary>
-        /// A user defined Object that is passed through to each <see cref="IProtocol"/>
+        /// A user defined Object that is passed through to each <see cref="ProtocolBase"/>
         /// object.
         /// </summary>
         private object userData;
@@ -166,7 +166,7 @@ namespace US.OpenServer
         {
             lock (protocolImplementations)
             {
-                foreach (IProtocol pl in protocolImplementations.Values)
+                foreach (ProtocolBase pl in protocolImplementations.Values)
                     pl.Close();
 
                 protocolImplementations.Clear();
@@ -181,7 +181,7 @@ namespace US.OpenServer
         /// identifier.</param>
         public void Close(ushort protocolId)
         {
-            IProtocol p = null;
+            ProtocolBase p = null;
             lock (protocolImplementations)
             {
                 if (protocolImplementations.ContainsKey(protocolId))
@@ -202,7 +202,7 @@ namespace US.OpenServer
         {
             lock (protocolImplementations)
             {
-                foreach (IProtocol p in protocolImplementations.Values)
+                foreach (ProtocolBase p in protocolImplementations.Values)
                     p.Dispose();
 
                 protocolImplementations.Clear();
@@ -217,10 +217,10 @@ namespace US.OpenServer
         /// identifier.</param>
         /// <param name="userData">An object that may be used client applications to pass
         /// objects or data to client side protocol implementations.</param>
-        /// <returns>An IProtocol that implements the protocol layer.</returns>
-        public IProtocol Initialize(ushort protocolId, object userData = null)
+        /// <returns>A ProtocolBase that implements the protocol layer.</returns>
+        public ProtocolBase Initialize(ushort protocolId, object userData = null)
         {
-            IProtocol p = null;
+            ProtocolBase p = null;
             lock (protocolImplementations)
             {
                 if (!protocolImplementations.ContainsKey(protocolId))
@@ -298,7 +298,7 @@ namespace US.OpenServer
         /// <param name="message">A String that contains the error message.</param>
         public void OnCapabilitiesError(ushort protocolId, string message)
         {
-            IProtocol p = null;
+            ProtocolBase p = null;
             lock (protocolImplementations)
             {
                 if (protocolImplementations.ContainsKey(protocolId))
@@ -356,7 +356,7 @@ namespace US.OpenServer
 
             try
             {
-                IProtocol p;
+                ProtocolBase p;
                 lock (protocolImplementations)
                 {
                     if (protocolImplementations.ContainsKey(protocolId))

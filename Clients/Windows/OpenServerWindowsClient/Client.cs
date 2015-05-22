@@ -68,7 +68,7 @@ namespace US.OpenServer
         public ServerConfiguration ServerConfiguration { get; private set; }
 
         /// <summary>
-        /// Gets the optional user defined Object that is passed through to each <see cref="IProtocol"/>
+        /// Gets the optional user defined Object that is passed through to each <see cref="ProtocolBase"/>
         /// object.
         /// </summary>
         public object UserData { get; private set; }
@@ -176,8 +176,8 @@ namespace US.OpenServer
         /// </summary>
         /// <param name="protocolId">A UInt16 that specifies the unique protocol
         /// identifier.</param>
-        /// <returns>An IProtocol that implements the protocol layer.</returns>
-        public IProtocol Initialize(ushort protocolId)
+        /// <returns>A ProtocolBase that implements the protocol.</returns>
+        public ProtocolBase Initialize(ushort protocolId)
         {
              return session != null ? session.Initialize(protocolId, UserData) : null;
         }

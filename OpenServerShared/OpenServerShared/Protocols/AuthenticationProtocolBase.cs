@@ -24,7 +24,7 @@ namespace US.OpenServer.Protocols
     /// <summary>
     /// Base class for all authentication protocol implementations.
     /// </summary>
-    public abstract class AuthenticationProtocolBase : IProtocol
+    public abstract class AuthenticationProtocolBase : ProtocolBase
     {
         /// <summary>
         /// Gets or sets whether user has been authenticated.

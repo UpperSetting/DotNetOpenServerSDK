@@ -25,24 +25,24 @@ namespace US.OpenServer.Protocols
 {
     /// <summary>
     /// Class that contains the required properties for Reflection to
-    /// dynamically load objects that implement the <see cref="US.OpenServer.Protocols.IProtocol"/>
+    /// dynamically load objects that implement the <see cref="US.OpenServer.Protocols.ProtocolBase"/>
     /// interface.
     /// </summary>
     public class ProtocolConfigurationEx : ProtocolConfiguration
     {
         /// <summary>
-        /// Gets or sets the assembly the <see cref="US.OpenServer.Protocols.IProtocol"/>
+        /// Gets or sets the assembly the <see cref="US.OpenServer.Protocols.ProtocolBase"/>
         /// class is contained.
         /// </summary>
-        /// <value>A string that specifies the assembly the <see cref="US.OpenServer.Protocols.IProtocol"/>
+        /// <value>A string that specifies the assembly the <see cref="US.OpenServer.Protocols.ProtocolBase"/>
         /// class is contained.</value>
         public string Assembly { get; protected set; }
 
         /// <summary>
-        /// Gets or sets the class path the <see cref="US.OpenServer.Protocols.IProtocol"/>
+        /// Gets or sets the class path the <see cref="US.OpenServer.Protocols.ProtocolBase"/>
         /// class is contained.
         /// </summary>
-        /// <value>A string that specifies the class path the <see cref="US.OpenServer.Protocols.IProtocol"/>
+        /// <value>A string that specifies the class path the <see cref="US.OpenServer.Protocols.ProtocolBase"/>
         /// class is contained.</value>
         public string ClassPath { get; protected set; }
 
@@ -70,7 +70,7 @@ namespace US.OpenServer.Protocols
         /// </remarks>
         /// <param name="id">A UInt16 that specifies the protocol identifier.</param>
         /// <param name="protocolType">A Type that specifies the protocol class. The class
-        /// must extend IProtocol.</param>
+        /// must extend ProtocolBase.</param>
         protected ProtocolConfigurationEx(ushort id, Type protocolType)
             : base(id, protocolType)
         {
@@ -88,7 +88,7 @@ namespace US.OpenServer.Protocols
         /// <param name="assembly">A string that specifies the assembly the class is
         /// contained.</param>
         /// <param name="classPath">A string that specifies the full path to the class. The
-        /// class must extend IProtocol.</param>
+        /// class must extend ProtocolBase.</param>
         public ProtocolConfigurationEx(ushort id, string assembly, string classPath)
         {
             Id = id;
@@ -109,7 +109,7 @@ namespace US.OpenServer.Protocols
         /// <param name="assembly">A string that specifies the assembly the class is
         /// contained.</param>
         /// <param name="classPath">A string that specifies the full path to the class. The
-        /// class must extend IProtocol.</param>
+        /// class must extend ProtocolBase.</param>
         /// <param name="xmlNode">A XmlNode that contains the configuration properties.</param>
         public virtual void Initialize(ushort id, string assembly, string classPath, XmlNode xmlNode)
         {
@@ -119,17 +119,17 @@ namespace US.OpenServer.Protocols
         }
 
         /// <summary>
-        /// Creates an instance of the <see cref="US.OpenServer.Protocols.IProtocol"/>
+        /// Creates an instance of the <see cref="US.OpenServer.Protocols.ProtocolBase"/>
         /// class.
         /// </summary>
-        /// <returns>An IProtocol.</returns>
-        public override IProtocol CreateInstance()
+        /// <returns>A ProtocolBase.</returns>
+        public override ProtocolBase CreateInstance()
         {
-            IProtocol p = base.CreateInstance();
+            ProtocolBase p = base.CreateInstance();
             if (p == null)
             {
                 Assembly assembly = System.Reflection.Assembly.LoadFrom(Assembly);
-                p = (IProtocol)assembly.CreateInstance(ClassPath);
+                p = (ProtocolBase)assembly.CreateInstance(ClassPath);
             }
             return p;
         }
