@@ -81,14 +81,14 @@ namespace US.OpenServer
         /// <summary>
         /// Creates a SessionBase.
         /// </summary>
-        /// <param name="logger">An ILogger to log messages.</param>
+        /// <param name="logger">A Logger to log messages.</param>
         /// <param name="protocolConfigurations">A Dictionary that specifies the
         /// configured protocols.</param>
         /// <param name="userData">An optional Object the user can pass through to each
         /// protocol.</param>
         protected SessionBase(
             Dictionary<ushort, ProtocolConfiguration> protocolConfigurations,
-            ILogger logger, 
+            Logger logger, 
             object userData = null)
         {
             capabilitiesProtocol = new CapabilitiesProtocol(this);
@@ -146,10 +146,10 @@ namespace US.OpenServer
         public TlsConfiguration TlsConfiguration { get; protected set; }
 
         /// <summary>
-        /// Gets or sets the ILogger.
+        /// Gets or sets the Logger.
         /// </summary>
-        /// <value>An ILogger.</value>
-        public ILogger Logger { get; protected set; }
+        /// <value>A Logger.</value>
+        public Logger Logger { get; protected set; }
         
         /// <summary>
         /// Gets the user's name.

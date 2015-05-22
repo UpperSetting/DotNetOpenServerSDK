@@ -43,7 +43,7 @@
     <Compile Include="Configuration\ServerConfiguration.cs" />
     <Compile Include="Configuration\TlsConfiguration.cs" />
     <Compile Include="ErrorTypes.cs" />
-    <Compile Include="ILogger.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="IO\BinaryReaderExtensions.cs" />
     <Compile Include="IO\BinaryWriterExtension.cs" />
     <Compile Include="Level.cs" />
