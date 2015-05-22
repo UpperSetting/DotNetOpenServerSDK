@@ -42,7 +42,7 @@ namespace US.OpenServer.Protocols.Hello
         /// </summary>
         /// <param name="level">A Level that specifies the priority of the message.</param>
         /// <param name="message">A string that contains the message.</param>
-        protected void Log(Level level, string message)
+        protected override void Log(Level level, string message)
         {
             session.Log(level, string.Format("[Hello] {0}", message));
         }

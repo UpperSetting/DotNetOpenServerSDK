@@ -19,23 +19,26 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 namespace US.OpenServer.Protocols
 {
+    /// <summary>
+    /// Enumeration that defines the available commands.
+    /// </summary>
     public enum CapabilitiesProtocolCommands : byte
     {
         /// <summary>
         /// Sent by clients to get a list of server supported protocol IDs.
         /// </summary>
-        GET_PROTOCOL_IDS              = 0x01,
+        GET_PROTOCOL_IDS = 0x01,
 
         /// <summary>
         /// Sent by the server in response to a <see cref="GET_PROTOCOL_IDS"/> command
         /// packet.
         /// </summary>
-        PROTOCOL_IDS                  = 0x02,
+        PROTOCOL_IDS = 0x02,
 
         /// <summary>
         /// Sent by the server when the client requests a protocol that is not supported
         /// by the server.
         /// </summary>
-        ERROR                         = 0xFF,        
+        ERROR = 0xFF,        
     }
 }
