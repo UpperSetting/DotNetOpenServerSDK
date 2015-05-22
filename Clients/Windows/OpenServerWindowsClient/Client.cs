@@ -54,7 +54,7 @@ namespace US.OpenServer
         /// <summary>
         /// Gets the application logger.
         /// </summary>
-        public ILogger Logger { get; private set; }
+        public Logger Logger { get; private set; }
 
         /// <summary>
         /// Gets a Dictionary of <see cref="ProtocolConfiguration"/> objects keyed by
@@ -85,7 +85,7 @@ namespace US.OpenServer
         /// <summary> Creates an instance of Client. </summary>
         /// <remarks> All parameters are optional. If null is passed, the object's
         /// configuration is read from the app.config file. </remarks>
-        /// <param name="logger">An optional ILogger to log messages. If null is passed,
+        /// <param name="logger">An optional Logger to log messages. If null is passed,
         /// a <see cref="US.OpenServer.Logger"/> object is created.</param>
         /// <param name="serverConfiguration">An optional ServerConfiguration that contains the
         /// properties necessary to connect to the server. If null is passed, the
@@ -99,7 +99,7 @@ namespace US.OpenServer
         public Client(
             ServerConfiguration serverConfiguration = null,
             Dictionary<ushort, ProtocolConfiguration> protocolConfigurations = null,
-            ILogger logger = null,
+            Logger logger = null,
             object userData = null)
         {
             if (logger == null)

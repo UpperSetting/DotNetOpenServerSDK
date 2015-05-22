@@ -40,7 +40,7 @@ namespace TestClient
                 #endregion
 
                 #region Configure programatically
-                //ILogger logger = new Log4NetLogger();
+                //Logger logger = new Log4NetLogger();
 
                 //ServerConfiguration cfg = new ServerConfiguration();
                 ////cfg.Host = "UpperSetting.com";
