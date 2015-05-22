@@ -18,9 +18,8 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
-using System.Threading;
 using System.IO;
-using US.OpenServer.Configuration;
+using System.Threading;
 
 namespace US.OpenServer.Protocols
 {
@@ -75,8 +74,8 @@ namespace US.OpenServer.Protocols
         /// Handles remote protocol configuration errors.
         /// </summary>
         /// <remarks>
-        /// Locks this object, logs an <see cref="us.openserver.Level.Error"/> message
-        /// to the <see cref="us.openserver.Logger"/> then calls Monitor.PulseAll(this)
+        /// Locks this object, logs an <see cref="US.OpenServer.Level.Error"/> message
+        /// to the <see cref="US.OpenServer.Logger"/> then calls Monitor.PulseAll(this)
         /// to release any locks the derived class may currently have waiting for a
         /// command response. If the lock is undesirable, override this function.
         /// </remarks>

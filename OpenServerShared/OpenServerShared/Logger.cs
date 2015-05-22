@@ -42,10 +42,10 @@ namespace US.OpenServer
         public event OnLogMessageDelegate OnLogMessage;
 
         /// <summary>
-        /// Gets or sets whether to log <see cref="Level.DEBUG"/> messages.
+        /// Gets or sets whether to log <see cref="Level.Debug"/> messages.
         /// </summary>
         /// <remarks>Automatically enabled when run in DEBUG mode.</remarks>
-        /// <value>A Boolean that specifies whether to log <see cref="Level.DEBUG"/>
+        /// <value>A Boolean that specifies whether to log <see cref="Level.Debug"/>
         /// messages.</value>
         public bool LogDebug { get; set; }
 
