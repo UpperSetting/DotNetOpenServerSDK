@@ -113,5 +113,24 @@ namespace System.IO
                     bw.Write(i);
             }
         }
+
+        /// <summary>
+        /// Writes an Int32 that contains the number of UInt16s then writes each UInt16.
+        /// </summary>
+        /// <param name="bw">The BinaryWriter to write to.</param>
+        /// <param name="value">An array of UInt16s to write.</param>
+        public static void WriteUInt16s(this BinaryWriter bw, ushort[] value)
+        {
+            if (value == null)
+            {
+                bw.Write((int)0);
+            }
+            else
+            {
+                bw.Write(value.Length);
+                foreach (ushort i in value)
+                    bw.Write(i);
+            }
+        }
     }
 }

@@ -159,6 +159,18 @@ namespace US.OpenServer
         }
 
         /// <summary>
+        /// Gets a list of protocols the server supports.
+        /// </summary>
+        /// <returns>A UInt16 array of unique protocol IDs.</returns>
+        public ushort[] GetServerSupportedProtocolIds()
+        {
+            if (session == null)
+                return new ushort[0];
+
+            return session.GetRemoteSupportedProtocolIds();
+        }
+
+        /// <summary>
         /// A function that wraps the <see cref="US.OpenServer.SessionBase.Initialize(ushort, object = null)"/>
         /// function which creates then initializes the protocol.
         /// </summary>

@@ -62,6 +62,11 @@ namespace TestClient
 
                 client.Connect();
 
+                ushort[] serverSupportedProtocolIds = client.GetServerSupportedProtocolIds();
+                Console.WriteLine(string.Format(
+                    "Server Supported Protocol IDs: {0}", 
+                    string.Join(", ", serverSupportedProtocolIds)));
+
                 string userName = "TestUser";
                 WinAuthProtocolClient wap = client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER) as WinAuthProtocolClient;
                 wap.Authenticate(userName, "T3stus3r", null);

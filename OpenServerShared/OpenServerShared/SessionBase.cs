@@ -47,6 +47,12 @@ namespace US.OpenServer
 
         #region Variables
         /// <summary>
+        /// A reference to the <see cref="CapabilitiesProtocol"/>.
+        /// </summary>
+        /// <remarks>This protocol is automatically created.</remarks>
+        private CapabilitiesProtocol capabilitiesProtocol;
+
+        /// <summary>
         /// A Dictionary of <see cref="ProtocolConfiguration"/> objects keyed by each
         /// protocol's unique identifier.
         /// </summary>
@@ -80,11 +86,12 @@ namespace US.OpenServer
         /// configured protocols.</param>
         /// <param name="userData">An optional Object the user can pass through to each
         /// protocol.</param>
-        protected SessionBase(            
+        protected SessionBase(
             Dictionary<ushort, ProtocolConfiguration> protocolConfigurations,
             ILogger logger, 
             object userData = null)
         {
+            capabilitiesProtocol = new CapabilitiesProtocol(this);
             this.protocolConfigurations = protocolConfigurations;
             this.Logger = logger;
             this.userData = userData;
@@ -264,6 +271,44 @@ namespace US.OpenServer
         }
 
         /// <summary>
+        /// Gets a list of available protocol IDs on the remote connection from <see cref="CapabilitiesProtocol"/>.
+        /// </summary>
+        /// <returns>A UInt16 array of protocol IDs.</returns>
+        public ushort[] GetRemoteSupportedProtocolIds()
+        {
+            return capabilitiesProtocol.GetRemoteSupportedProtocolIds();
+        }
+
+        /// <summary>
+        /// Gets a list of locally available protocol IDs.
+        /// </summary>
+        /// <returns>A UInt16 array of protocol IDs.</returns>
+        public ushort[] GetLocalSupportedProtocolIds()
+        {
+            ushort[] protocolIds = new ushort[protocolConfigurations.Count];
+            protocolConfigurations.Keys.CopyTo(protocolIds, 0);
+            return protocolIds;
+        }
+
+        /// <summary>
+        /// Forwards remote protocol configuration errors to the local protocol.
+        /// </summary>
+        /// <param name="protocolId">A UInt16 that specifies the unique protocol
+        /// identifier.</param>
+        /// <param name="message">A String that contains the error message.</param>
+        public void OnCapabilitiesError(ushort protocolId, string message)
+        {
+            IProtocol p = null;
+            lock (protocolImplementations)
+            {
+                if (protocolImplementations.ContainsKey(protocolId))
+                    p = protocolImplementations[protocolId];
+            }
+            if (p != null)
+                p.OnErrorReceived(message);
+        }
+
+        /// <summary>
         /// Wraps the command packet around the Session Layer Protocol then sends the
         /// packet to the to the remote connection.
         /// </summary>
@@ -303,33 +348,45 @@ namespace US.OpenServer
         protected void OnPacketReceived(BinaryReader br)
         {
             ushort protocolId = br.ReadUInt16();
-
-            IProtocol p;
-            lock (protocolImplementations)
+            if (protocolId == 0)
             {
-                if (protocolImplementations.ContainsKey(protocolId))
-                    p = protocolImplementations[protocolId];
-                else
-                {
-                    if (!protocolConfigurations.ContainsKey(protocolId))
-                        throw new Exception(ErrorTypes.INVALID_PROTOCOL);
-
-                    ProtocolConfiguration pc = protocolConfigurations[protocolId];
-                    p = pc.CreateInstance();
-                    if (p == null)
-                        throw new Exception(string.Format(ErrorTypes.CLASS_NOT_FOUND, pc));
-
-                    if (!IsAuthenticated && !(p is AuthenticationProtocolBase))
-                        throw new Exception(string.Format(ErrorTypes.NOT_AUTHENTICATED, pc));
-
-                    protocolImplementations.Add(protocolId, p);
-
-                    Log(Level.Debug, string.Format("Initializing protocol {0}...", protocolId));
-                    p.Initialize(this, pc, userData);
-                }
-                LastActivityAt = DateTime.Now;
+                capabilitiesProtocol.OnPacketReceived(br);
+                return;
             }
-            p.OnPacketReceived(br);
+
+            try
+            {
+                IProtocol p;
+                lock (protocolImplementations)
+                {
+                    if (protocolImplementations.ContainsKey(protocolId))
+                        p = protocolImplementations[protocolId];
+                    else
+                    {
+                        if (!protocolConfigurations.ContainsKey(protocolId))
+                            throw new Exception(ErrorTypes.INVALID_PROTOCOL);
+
+                        ProtocolConfiguration pc = protocolConfigurations[protocolId];
+                        p = pc.CreateInstance();
+                        if (p == null)
+                            throw new Exception(string.Format(ErrorTypes.CLASS_NOT_FOUND, pc));
+
+                        if (!IsAuthenticated && !(p is AuthenticationProtocolBase))
+                            throw new Exception(string.Format(ErrorTypes.NOT_AUTHENTICATED, pc));
+
+                        protocolImplementations.Add(protocolId, p);
+
+                        Log(Level.Debug, string.Format("Initializing protocol {0}...", protocolId));
+                        p.Initialize(this, pc, userData);
+                    }
+                    LastActivityAt = DateTime.Now;
+                }
+                p.OnPacketReceived(br);
+            }
+            catch (Exception ex)
+            {
+                capabilitiesProtocol.SendError(protocolId, ex.Message);
+            }
         }
 
         /// <summary>

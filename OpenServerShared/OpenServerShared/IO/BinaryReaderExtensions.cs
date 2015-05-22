@@ -75,5 +75,20 @@ namespace System.IO
 
             return retVal;
         }
+
+        /// <summary>
+        /// Reads an Int32 that contains the number of UInt16s to read then reads each UInt16.
+        /// </summary>
+        /// <param name="br">The BinaryReader object to read from.</param>
+        /// <returns>An array of UInt16s.</returns>
+        public static ushort[] ReadUInt16s(this BinaryReader br)
+        {
+            int count = br.ReadInt32();
+            ushort[] retVal = new ushort[count];
+            for (int i = 0; i < count; i++)
+                retVal[i] = br.ReadUInt16();
+
+            return retVal;
+        }
     }
 }

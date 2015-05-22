@@ -8,7 +8,7 @@
     <ProjectGuid>{28525B70-8554-4541-A703-5EFD768B782B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>US.OpenServer.Shared</RootNamespace>
+    <RootNamespace>US.OpenServer</RootNamespace>
     <AssemblyName>US.OpenServer.Shared</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
@@ -38,6 +38,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Protocols\CapabilitiesProtocol.cs" />
     <Compile Include="Protocols\ProtocolConfiguration.cs" />
     <Compile Include="Configuration\ServerConfiguration.cs" />
     <Compile Include="Configuration\TlsConfiguration.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocols\AuthenticationProtocolBase.cs" />
     <Compile Include="Protocols\IProtocol.cs" />
+    <Compile Include="Protocols\CapabilitiesProtocolCommands.cs" />
     <Compile Include="Protocols\SessionLayerProtocol.cs" />
     <Compile Include="SessionBase.cs" />
     <Compile Include="SessionId.cs" />

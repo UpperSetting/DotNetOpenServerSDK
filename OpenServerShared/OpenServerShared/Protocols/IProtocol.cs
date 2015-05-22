@@ -69,5 +69,13 @@ namespace US.OpenServer.Protocols
         public virtual void OnPacketReceived(BinaryReader br)
         {
         }
+
+        /// <summary>
+        /// Handles remote protocol configuration errors.
+        /// </summary>
+        /// <param name="message">A String that contains the error message.</param>
+        public virtual void OnErrorReceived(string message)
+        {
+        }
     }
 }
