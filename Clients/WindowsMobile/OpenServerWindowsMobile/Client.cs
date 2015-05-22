@@ -172,6 +172,18 @@ namespace US.OpenServer.WindowsMobile
             session.BeginRead();
         }
 
+        /// <summary>
+        /// Gets a list of protocols the server supports.
+        /// </summary>
+        /// <returns>A UInt16 array of unique protocol IDs.</returns>
+        public ushort[] GetServerSupportedProtocolIds()
+        {
+            if (session == null)
+                return new ushort[0];
+
+            return session.GetRemoteSupportedProtocolIds();
+        }
+
         public IProtocol Initialize(ushort protocolId, object userData = null)
         {
              return session != null ? session.Initialize(protocolId, userData) : null;
