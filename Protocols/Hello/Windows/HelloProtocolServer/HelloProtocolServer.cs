@@ -39,9 +39,9 @@ namespace US.OpenServer.Protocols.Hello
         /// Handles the Hello command packet request.
         /// </summary>
         /// <remarks>
-        /// Reads a String, logs the request to the <see cref="US.OpenServer.ILogger"/>,
+        /// Reads a String, logs the request to the <see cref="US.OpenServer.Logger"/>,
         /// generates a response message, creates a response command packet, sends the
-        /// response to the client, then finally, logs the response to the <see cref="US.OpenServer.ILogger"/>.
+        /// response to the client, then finally, logs the response to the <see cref="US.OpenServer.Logger"/>.
         /// </remarks>
         /// <param name="br">A BinaryReader that contains the command packet.</param>
         public override void OnPacketReceived(BinaryReader br)

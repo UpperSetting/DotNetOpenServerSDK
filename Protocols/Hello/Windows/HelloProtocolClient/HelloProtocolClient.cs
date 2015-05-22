@@ -57,7 +57,7 @@ namespace US.OpenServer.Protocols.Hello
         /// Handles the response to the <see cref="Hello"/> command packet. 
         /// </summary>
         /// <remarks>
-        /// Reads a String, logs the response to the <see cref="US.OpenServer.ILogger"/>,
+        /// Reads a String, logs the response to the <see cref="US.OpenServer.Logger"/>,
         /// then forwards the response to the <see cref="OnHelloComplete"/> event
         /// handlers.
         /// </remarks>
