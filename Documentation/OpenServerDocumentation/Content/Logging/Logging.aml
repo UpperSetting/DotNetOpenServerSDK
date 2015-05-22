@@ -7,7 +7,7 @@
     <summary>
       <para>
         DotNetOpenServer implements application logging through the
-        <codeEntityReference>T:US.OpenServer.ILogger</codeEntityReference> Interface.
+        <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference> Interface.
         Included in this SDK is a
         <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference> class that
         wraps and extends the open source <externalLink>
@@ -15,10 +15,10 @@
           <linkUri>http://logging.apache.org/log4net/</linkUri>
         </externalLink>.ILog
         object around an
-        <codeEntityReference>T:US.OpenServer.ILogger</codeEntityReference> interface.
+        <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference> interface.
         You have the option of using our default logger or any logger of your choice by
         simply implementing the
-        <codeEntityReference>T:US.OpenServer.ILogger</codeEntityReference> interface
+        <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference> interface
         then configuring the server and clients to use your logger.
       </para>
     </summary>
@@ -57,7 +57,7 @@
                 <para>
                   From your server application, create the
                   <codeEntityReference>T:US.OpenServer.Server</codeEntityReference> object passing
-                  null for the ILogger parameter.
+                  null for the Logger parameter.
                 </para>
               </content>
             </step>
@@ -66,7 +66,7 @@
                 <para>
                   From your Windows client application, create the
                   <codeEntityReference>T:US.OpenServer.Client</codeEntityReference> object
-                  passing null for the ILogger parameter.
+                  passing null for the Logger parameter.
                 </para>
               </content>
             </step>
@@ -93,7 +93,7 @@
                 <para>
                   From your server application, create the
                   <codeEntityReference>T:US.OpenServer.Server</codeEntityReference> object passing
-                  your custom logger for the ILogger parameter.
+                  your custom logger for the Logger parameter.
                 </para>
               </content>
             </step>
@@ -102,7 +102,7 @@
                 <para>
                   From your Windows client application, create the
                   <codeEntityReference>T:US.OpenServer.Client</codeEntityReference> object
-                  passing your custom logger for the ILogger parameter.
+                  passing your custom logger for the Logger parameter.
                 </para>
               </content>
             </step>
@@ -113,7 +113,7 @@
     
 
     <relatedTopics>
-      <codeEntityReference>T:US.OpenServer.ILogger</codeEntityReference>
+      <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>
       <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>
       <externalLink>
         <linkText>log4Net</linkText>
