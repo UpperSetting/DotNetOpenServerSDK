@@ -17,7 +17,6 @@ You should have received a copy of the GNU General Public License along with
 DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 namespace US.OpenServer.Protocols.WinAuth
 {
     /// <summary>
@@ -31,19 +30,19 @@ namespace US.OpenServer.Protocols.WinAuth
         AUTHENTICATE = 0x01,
 
         /// <summary>
-        /// Sent by the Windows Server in response to a successful authentication
+        /// Sent by the server in response to a successful authentication
         /// request.
         /// </summary>
         AUTHENTICATED = 0x02,
 
         /// <summary>
-        /// Sent by the Windows Server in response to a failed authentication attempt.
+        /// Sent by the server in response to a failed authentication attempt.
         /// </summary>
         ACCESS_DENIED = 0x03,
 
         /// <summary>
-        /// Sent by the Windows Server when an authentication attempt errors or an
-        /// invalid or unsupported command is received.
+        /// Sent by the server when an authentication attempt errors or an invalid or
+        /// unsupported command is received.
         /// </summary>
         ERROR = 0xFF,
     }

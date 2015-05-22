@@ -21,17 +21,21 @@ namespace US.OpenServer.Protocols
 {
     public enum CapabilitiesProtocolCommands : byte
     {
+        /// <summary>
+        /// Sent by clients to get a list of server supported protocol IDs.
+        /// </summary>
         GET_PROTOCOL_IDS              = 0x01,
-        PROTOCOL_IDS                  = 0x02,
-        ERROR                         = 0xFF,        
-    }
 
-    public enum CapabilitiesProtocolErrors : byte
-    {
-        PROTOCOL_NOT_CONFIGURED         = 0x01,
-        PROTOCOL_CLASS_NOT_FOUND        = 0x02,
-        PROTOCOL_NOT_AUTHENTICATED      = 0x03,
-        PROTOCOL_INITIALIZATION_FAILED  = 0x04,
-        GENERAL                         = 0xFF,     
+        /// <summary>
+        /// Sent by the server in response to a <see cref="GET_PROTOCOL_IDS"/> command
+        /// packet.
+        /// </summary>
+        PROTOCOL_IDS                  = 0x02,
+
+        /// <summary>
+        /// Sent by the server when the client requests a protocol that is not supported
+        /// by the server.
+        /// </summary>
+        ERROR                         = 0xFF,        
     }
 }

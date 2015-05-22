@@ -42,7 +42,10 @@ namespace US.OpenServer.Protocols
         /// </summary>
         private const int TIMEOUT = 120000;
 
-        public ushort[] AvailableProtocolIds { get; private set; }
+        /// <summary>
+        /// A list of available protocol IDs on the remote connection.
+        /// </summary>
+        private ushort[] supportedRemoteProtocolIds;
 
         /// <summary>
         /// Creates a CapabilitiesProtocol object.
@@ -68,7 +71,7 @@ namespace US.OpenServer.Protocols
                 if (!Monitor.Wait(this, TIMEOUT))
                     throw new TimeoutException();
 
-                return AvailableProtocolIds;
+                return supportedRemoteProtocolIds;
             }
         }
 
@@ -115,8 +118,8 @@ namespace US.OpenServer.Protocols
                 case CapabilitiesProtocolCommands.PROTOCOL_IDS:
                     lock (this)
                     {
-                        AvailableProtocolIds = br.ReadUInt16s();
-                        Log(Level.Debug, string.Format("Received Protocol IDs: {0}", string.Join(", ", AvailableProtocolIds.ToArray())));
+                        supportedRemoteProtocolIds = br.ReadUInt16s();
+                        Log(Level.Debug, string.Format("Received Protocol IDs: {0}", string.Join(", ", supportedRemoteProtocolIds.ToArray())));
                         Monitor.PulseAll(this);
                     }
                     break;
