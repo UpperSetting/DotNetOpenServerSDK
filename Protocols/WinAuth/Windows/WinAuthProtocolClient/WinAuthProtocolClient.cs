@@ -137,18 +137,5 @@ namespace US.OpenServer.Protocols.WinAuth
                 }
             }
         }
-
-        /// <summary>
-        /// Handles remote protocol configuration errors.
-        /// </summary>
-        /// <param name="message">A String that contains the error message.</param>
-        public override void OnErrorReceived(string message)
-        {
-            lock (this)
-            {
-                Log(Level.Debug, message);
-                Monitor.PulseAll(this);
-            }
-        }
     }
 }
