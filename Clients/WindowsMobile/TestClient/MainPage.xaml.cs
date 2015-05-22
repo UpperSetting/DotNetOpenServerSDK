@@ -39,7 +39,7 @@ namespace TestClient
     {
         #region Variables
         private Client client;
-        private ILogger logger;
+        private Logger logger;
         private bool grayback;
         #endregion
 
@@ -50,7 +50,7 @@ namespace TestClient
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
             
-            logger = new ILogger();
+            logger = new Logger();
             logger.LogDebug = true;
             logger.LogPackets = true;
             logger.OnLogMessage += logger_OnLogMessage;

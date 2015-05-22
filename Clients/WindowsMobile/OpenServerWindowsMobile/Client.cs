@@ -30,6 +30,9 @@ using Windows.Security.Cryptography.Certificates;
 
 namespace US.OpenServer.WindowsMobile
 {
+    /// <summary>
+    /// Class that connects to the server and optionally enables SSL/TLS 1.2.
+    /// </summary>
     public class Client
     {
         #region Events
@@ -50,7 +53,7 @@ namespace US.OpenServer.WindowsMobile
         /// <summary>
         /// Gets the application logger.
         /// </summary>
-        public ILogger Logger { get; private set; }
+        public Logger Logger { get; private set; }
 
         /// <summary>
         /// Gets a Dictionary of <see cref="ProtocolConfiguration"/> objects keyed by
@@ -83,14 +86,25 @@ namespace US.OpenServer.WindowsMobile
         #endregion
 
         #region Constructor
+        /// <summary> Creates an instance of Client. </summary>
+        /// <remarks> All parameters are optional. If null is passed, the object's
+        /// configuration is read from the app.config file. </remarks>
+        /// <param name="logger">An optional Logger to log messages. If null is passed,
+        /// a <see cref="US.OpenServer.Logger"/> object is created.</param>
+        /// <param name="serverConfiguration">An optional ServerConfiguration that contains the
+        /// properties necessary to connect to the server. If null is passed, the
+        /// server host is set to localhost.</param>
+        /// <param name="protocolConfigurations">An optional Dictionary of
+        /// ProtocolConfiguration objects keyed with each protocol's unique identifier.</param>
+        /// <param name="userData">An Object the caller can pass through to each protocol.</param>
         public Client(
             ServerConfiguration serverConfiguration = null,
             Dictionary<ushort, ProtocolConfiguration> protocolConfigurations = null,
-            ILogger logger = null,
+            Logger logger = null,
             object userData = null)
         {
             if (logger == null)
-                logger = new ILogger();
+                logger = new Logger();
             Logger = logger;
             Logger.Log(Level.Info, string.Format("Execution Mode: {0}", Debugger.IsAttached ? "Debug" : "Release"));
 
@@ -101,6 +115,10 @@ namespace US.OpenServer.WindowsMobile
         #endregion
 
         #region Public Functions
+        /// <summary>
+        /// Connects to the server, creates a Session, optionally enables SSL/TLS 1.2
+        /// and begins an asynchronous socket read operation.
+        /// </summary>
         public void Connect()
         {
             Close();
@@ -184,19 +202,21 @@ namespace US.OpenServer.WindowsMobile
             return session.GetRemoteSupportedProtocolIds();
         }
 
-        public IProtocol Initialize(ushort protocolId, object userData = null)
+        /// <summary>
+        /// A function that wraps the <see cref="US.OpenServer.SessionBase.Initialize(ushort, object = null)"/>
+        /// function which creates then initializes the protocol.
+        /// </summary>
+        /// <param name="protocolId">A UInt16 that specifies the unique protocol
+        /// identifier.</param>
+        /// <returns>An IProtocol that implements the protocol layer.</returns>
+        public IProtocol Initialize(ushort protocolId)
         {
-             return session != null ? session.Initialize(protocolId, userData) : null;
+            return session != null ? session.Initialize(protocolId, UserData) : null;
         }
 
-        public void Close(ushort protocolId)
-        {
-            if (session != null)
-            {
-                session.Close(protocolId);
-            }
-        }
-
+        /// <summary>
+        /// Closes the <see cref="Session"/>.
+        /// </summary>
         public void Close()
         {
             if (session != null)
@@ -205,9 +225,29 @@ namespace US.OpenServer.WindowsMobile
                 session = null;
             }
         }
+
+        /// <summary>
+        /// Closes the protocol.
+        /// </summary>
+        /// <param name="protocolId">A UInt16 that specifies the unique protocol
+        /// identifier.</param>
+        public void Close(ushort protocolId)
+        {
+            if (session != null)
+            {
+                session.Close(protocolId);
+            }
+        }
         #endregion
 
         #region Private Functions
+        /// <summary>
+        /// Event handler for <see cref="SessionBase.OnConnectionLost"/> events.
+        /// </summary>
+        /// <remarks> When a connection is lost, the Exception is forwarded to objects
+        /// that have subscribed to <see cref="OnConnectionLost"/> events.</remarks>
+        /// <param name="sender">An object that contains state information for this validation.</param>
+        /// <param name="ex">An Exception that contains the error the connection was lost.</param>
         private void session_OnConnectionLost(object sender, Exception ex)
         {
             if (OnConnectionLost != null)

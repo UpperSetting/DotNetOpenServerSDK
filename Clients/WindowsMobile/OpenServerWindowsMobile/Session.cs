@@ -42,7 +42,7 @@ namespace US.OpenServer.WindowsMobile
             string address, 
             TlsConfiguration tlsConfiguration,
             Dictionary<ushort, ProtocolConfiguration> protocolConfigurations, 
-            ILogger logger,
+            Logger logger,
             object userData = null)
             : base(protocolConfigurations, logger, userData)
         {
