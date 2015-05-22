@@ -28,7 +28,7 @@ namespace US.OpenServer
         /// <summary>
         /// The specified protocol has not been configured.
         /// </summary>
-        public const string INVALID_PROTOCOL = "Invalid or unsupported protocol.";
+        public const string INVALID_PROTOCOL = "Invalid or unsupported protocol.  Protocol ID: {0}";
 
         /// <summary>
         /// The specified protocol has been configured, however; the class can not be

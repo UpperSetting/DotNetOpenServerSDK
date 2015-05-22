@@ -226,7 +226,7 @@ namespace US.OpenServer
                 if (!protocolImplementations.ContainsKey(protocolId))
                 {
                     if (!protocolConfigurations.ContainsKey(protocolId))
-                        throw new Exception(ErrorTypes.INVALID_PROTOCOL);
+                        throw new Exception(string.Format(ErrorTypes.INVALID_PROTOCOL, protocolId));
 
                     ProtocolConfiguration pc = protocolConfigurations[protocolId];
                     p = pc.CreateInstance();
@@ -364,7 +364,7 @@ namespace US.OpenServer
                     else
                     {
                         if (!protocolConfigurations.ContainsKey(protocolId))
-                            throw new Exception(ErrorTypes.INVALID_PROTOCOL);
+                            throw new Exception(string.Format(ErrorTypes.INVALID_PROTOCOL, protocolId));
 
                         ProtocolConfiguration pc = protocolConfigurations[protocolId];
                         p = pc.CreateInstance();
