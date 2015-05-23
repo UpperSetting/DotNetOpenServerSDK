@@ -131,13 +131,13 @@ public class MainActivity extends ActionBarActivity implements IClientObserver
         HashMap<Integer, ProtocolConfiguration> protocolConfigurations = new HashMap<>();
 
         protocolConfigurations.put(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
-                new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.keepalive.KeepAliveProtocol"));
+            new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.keepalive.KeepAliveProtocol"));
 
         protocolConfigurations.put(WinAuthProtocol.PROTOCOL_IDENTIFIER,
-                new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.winauth.WinAuthProtocolClient"));
+            new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.winauth.WinAuthProtocolClient"));
 
         protocolConfigurations.put(HelloProtocol.PROTOCOL_IDENTIFIER,
-                new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
+            new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
 
         client = new Client(this, cfg, protocolConfigurations, null, null);
 
