@@ -87,6 +87,7 @@ namespace US.OpenServer.Protocols
                 BinaryWriter bw = GetBinaryWriter(ms, CapabilitiesProtocolCommands.ERROR);
                 bw.Write(protocolId);
                 bw.WriteString(message);
+                Log(Level.Notice, message);
                 session.Send(ms);
             }
         }

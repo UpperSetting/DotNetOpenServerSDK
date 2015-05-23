@@ -69,6 +69,7 @@ public class CapabilitiesProtocol extends ProtocolBase
 	            bw.write((byte)CapabilitiesProtocolCommands.ERROR);
 	            bw.write(protocolId);
 	            bw.writeString(message);
+	            log(Level.Notice, message);
 	            
 	            PacketWriter pw = new PacketWriter(session, bw.toByteArray());
 	            pw.execute();
