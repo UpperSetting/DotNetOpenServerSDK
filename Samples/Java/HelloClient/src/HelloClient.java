@@ -40,7 +40,8 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
 		try
 		{
 			ConsoleLogger logger = new ConsoleLogger();
-			logger.setLogPackets(true);
+			logger.setLogDebug(true);
+			//logger.setLogPackets(true);
 			
 			ServerConfiguration cfg = new ServerConfiguration();
 			//cfg.setHost("UpperSetting.com");
@@ -60,6 +61,13 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
 	        client = new Client(this, cfg, protocolConfigurations, logger, null);
 	        client.connect();
 	        
+	        int[] serverSupportedProtocolIds = client.getServerSupportedProtocolIds();
+	        
+	        String str = "";
+        	for (int p : serverSupportedProtocolIds)
+        		str += p + ", ";
+            log(Level.Debug, String.format("serverSupportedProtocolIds %1$s", str));
+            
 	        String userName = "TestUser";
             WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
             if (!wap.authenticate(userName, "T3stus3r", null))
