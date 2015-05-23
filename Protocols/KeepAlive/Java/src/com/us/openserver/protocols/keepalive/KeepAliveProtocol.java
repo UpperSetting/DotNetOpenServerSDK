@@ -110,7 +110,7 @@ public class KeepAliveProtocol extends ProtocolBase implements Runnable
             session.dispose();
     }
 
-	private void log(Level level, String message)
+	protected void log(Level level, String message)
 	{
 	    session.log(level, String.format("[Keep-Alive] %1$s", message));
 	}

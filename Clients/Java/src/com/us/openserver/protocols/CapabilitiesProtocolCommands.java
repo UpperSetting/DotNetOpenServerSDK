@@ -19,42 +19,9 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver.protocols;
 
-import java.io.IOException;
-
-import com.us.openserver.*;
-
-public abstract class ProtocolBase
+public class CapabilitiesProtocolCommands
 {
-	protected Session session;
-	
-    public void initialize(Session session, ProtocolConfiguration pc, Object userData)
-    {
-    	this.session = session;
-    }
-    
-    public void close()
-    {
-    }
-    
-    public void dispose()
-    {    	
-    }
-    
-    public void onPacketReceived(BinaryReader br) throws IOException
-    {
-    }
-    
-    public void onErrorReceived(String message)
-    {
-    	synchronized(this)
-    	{
-    		log(Level.Error, message);
-    		notifyAll();
-    	}
-    }
-    
-    protected void log(Level level, String message)
-    {
-    	session.log(level, String.format("[ProtocolBase] %1$s", message));
-    }
+    public static final int GET_PROTOCOL_IDS = 0x01;
+    public static final int PROTOCOL_IDS = 0x02;
+    public static final int ERROR = 0xFF;
 }

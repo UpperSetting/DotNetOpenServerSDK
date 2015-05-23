@@ -31,6 +31,7 @@ public class Session implements Runnable
 
     private boolean isClosed;        
     private Client client;
+    private CapabilitiesProtocol capabilitiesProtocol;
     private HashMap<Integer, ProtocolConfiguration> protocolConfigurations;
     private HashMap<Integer, ProtocolBase> protocolImplementations = new HashMap<Integer, ProtocolBase>();
     private Logger logger;    
@@ -45,6 +46,7 @@ public class Session implements Runnable
     public Session(Client client, Socket socket, String address) throws IOException
     {
     	this.client = client;
+    	capabilitiesProtocol = new CapabilitiesProtocol(this);
     	this.protocolConfigurations = client.getProtocolConfigurations();
 	    this.logger = client.getLogger();
 	    this.userData = client.getUserData();	    
@@ -132,6 +134,32 @@ public class Session implements Runnable
     		client.onConnectionLost(ex);
     }
     
+    public int[] getRemoteSupportedProtocolIds()
+    {
+        return capabilitiesProtocol.getRemoteSupportedProtocolIds();
+    }
+    
+    public int[] getLocalSupportedProtocolIds()
+    {
+        int[] protocolIds = new int[protocolConfigurations.size()];
+        int i = 0;
+        for (int protcolId : protocolConfigurations.keySet())
+        	protocolIds[i++] = protcolId;
+        return protocolIds;
+    }
+    
+    public void onCapabilitiesError(int protocolId, String message)
+    {
+        ProtocolBase p = null;
+        synchronized (protocolImplementations)
+        {
+            if (protocolImplementations.containsKey(protocolId))
+                p = protocolImplementations.get(protocolId);
+        }
+        if (p != null)
+            p.onErrorReceived(message);
+    }
+    
     public String getAddress() { return address; }
     
     public ProtocolBase initialize(int protocolId, Object userData) throws Exception
@@ -162,7 +190,12 @@ public class Session implements Runnable
 
     public void onPacketReceived(BinaryReader br) throws Exception
     {
-        int protocolId = br.readUInt16();
+    	int protocolId = br.readUInt16();
+        if (protocolId == 0)
+        {
+            capabilitiesProtocol.onPacketReceived(br);
+            return;
+        }
 
         ProtocolBase p;
         synchronized (protocolImplementations)

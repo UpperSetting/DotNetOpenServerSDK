@@ -119,6 +119,14 @@ public class Client
     	}
 	}
 	
+	public int[] getServerSupportedProtocolIds()
+    {
+        if (session == null)
+            return new int[0];
+
+        return session.getRemoteSupportedProtocolIds();
+    }
+	
 	public ProtocolBase initialize(int protocolId) throws Exception
     {
          return session != null ? session.initialize(protocolId, userData) : null;

@@ -91,5 +91,19 @@ public class BinaryWriter extends ByteArrayOutputStream
     {
         writeString(value.toString());
     }
+    
+    public void writeUInt16s(int[] value)
+    {
+        if (value == null)
+        {
+            write((int)0);
+        }
+        else
+        {
+            write(value.length);
+            for (int i : value)
+                writeUInt16(i);
+        }
+    }
 }
 
