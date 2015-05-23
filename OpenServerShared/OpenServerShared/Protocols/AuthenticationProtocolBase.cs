@@ -52,5 +52,12 @@ namespace US.OpenServer.Protocols
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Creates a ProtocolBase object.
+        /// </summary>
+        protected AuthenticationProtocolBase()
+        {
+        }
     }
 }

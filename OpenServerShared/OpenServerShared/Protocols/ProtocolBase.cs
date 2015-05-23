@@ -34,6 +34,13 @@ namespace US.OpenServer.Protocols
         protected SessionBase session;
 
         /// <summary>
+        /// Creates a ProtocolBase object.
+        /// </summary>
+        protected ProtocolBase()
+        {
+        }
+
+        /// <summary>
         /// Initializes the class.
         /// </summary>
         /// <param name="session">A SessionBase that encapsulates the connection
