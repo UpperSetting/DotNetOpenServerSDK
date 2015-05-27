@@ -18,6 +18,7 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
+using System.IO;
 using System.Reflection;
 using System.Xml;
 
@@ -128,7 +129,9 @@ namespace US.OpenServer.Protocols
             ProtocolBase p = base.CreateInstance();
             if (p == null)
             {
-                Assembly assembly = System.Reflection.Assembly.LoadFrom(Assembly);
+                FileInfo fi = new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location);
+                string fullName = string.Format(@"{0}\{1}", fi.Directory.FullName, Assembly);
+                Assembly assembly = System.Reflection.Assembly.LoadFrom(fullName);
                 p = (ProtocolBase)assembly.CreateInstance(ClassPath);
             }
             return p;
