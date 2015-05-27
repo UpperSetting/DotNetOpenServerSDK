@@ -144,8 +144,13 @@ namespace US.OpenServer
         public void Close()
         {
             signalClose = true;
-            idleTimeoutTimer.Dispose();
-            socket.Close();
+
+            if (idleTimeoutTimer != null)
+                idleTimeoutTimer.Dispose();
+
+            if (socket != null)
+                socket.Close();
+
             lock (sessions)
                 sessions.Clear();
         }
