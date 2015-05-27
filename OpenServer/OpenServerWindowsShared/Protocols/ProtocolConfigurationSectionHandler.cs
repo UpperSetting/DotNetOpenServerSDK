@@ -58,7 +58,7 @@ namespace US.OpenServer.Protocols
                 ProtocolConfigurationEx plc;
                 if (cfgClassPathNode != null)
                 {
-                    FileInfo fi = new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location);
+                    FileInfo fi = new FileInfo(Assembly.GetEntryAssembly().Location);
                     string fullName = string.Format(@"{0}\{1}", fi.Directory.FullName, assembly);
                     Assembly a = Assembly.LoadFrom(fullName);
                     plc = (ProtocolConfigurationEx)a.CreateInstance(cfgClassPathNode.Value);
