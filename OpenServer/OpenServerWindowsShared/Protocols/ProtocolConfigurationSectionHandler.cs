@@ -19,6 +19,7 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Reflection;
 using System.Xml;
 
@@ -50,20 +51,22 @@ namespace US.OpenServer.Protocols
             foreach (XmlNode node in section.ChildNodes)
             {
                 ushort id = ushort.Parse(node.Attributes["id"].Value);
-                string asm = node.Attributes["assembly"].Value;
+                string assembly = node.Attributes["assembly"].Value;
                 string classPath = node.Attributes["classPath"].Value;
                 XmlNode cfgClassPathNode = node.Attributes["configClassPath"];
 
                 ProtocolConfigurationEx plc;
                 if (cfgClassPathNode != null)
                 {
-                    Assembly assembly = Assembly.LoadFrom(asm);
-                    plc = (ProtocolConfigurationEx)assembly.CreateInstance(cfgClassPathNode.Value);
-                    plc.Initialize(id, asm, classPath, node);
+                    FileInfo fi = new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location);
+                    string fullName = string.Format(@"{0}\{1}", fi.Directory.FullName, assembly);
+                    Assembly a = Assembly.LoadFrom(fullName);
+                    plc = (ProtocolConfigurationEx)a.CreateInstance(cfgClassPathNode.Value);
+                    plc.Initialize(id, assembly, classPath, node);
                 }
                 else
                 {
-                    plc = new ProtocolConfigurationEx(id, asm, classPath);
+                    plc = new ProtocolConfigurationEx(id, assembly, classPath);
                 }
                 
                 retVal.Add(plc.Id, plc);
