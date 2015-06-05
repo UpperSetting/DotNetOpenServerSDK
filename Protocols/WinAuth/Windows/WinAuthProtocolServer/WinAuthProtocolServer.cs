@@ -185,8 +185,8 @@ namespace US.OpenServer.Protocols.WinAuth
         /// This function is made available so application layer protocols can include
         /// fine grained security.
         /// </remarks>
-        /// <param name="role"></param>
-        /// <returns></returns>
+        /// <param name="role">A String that contains the name of the role.</param>
+        /// <returns>True if user is a member of the role, otherwise False.</returns>
         public override bool IsInRole(string role)
         {
             return wp.IsInRole(role);
