@@ -78,7 +78,8 @@ namespace US.OpenServer.Protocols
         /// <summary>
         /// Sends the protocol ID and message to the remote connection.
         /// </summary>
-        /// <returns>A UInt16 array of protocol IDs.</returns>
+        /// <param name="protocolId">A UInt16 that contains the protocol identifier.</param>
+        /// <param name="message">A String that contains the error message.</param>
         public void SendError(ushort protocolId, string message)
         {
             lock (this)

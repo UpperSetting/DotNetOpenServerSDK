@@ -47,7 +47,7 @@ namespace US.OpenServer.Protocols
         /// fine grained security.
         /// </remarks>
         /// <param name="role">A String that contains the name of the role.</param>
-        /// <returns></returns>
+        /// <returns>True if user is a member of the role, otherwise False.</returns>
         public virtual bool IsInRole(string role)
         {
             throw new NotImplementedException();
