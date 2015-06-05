@@ -145,6 +145,10 @@
     <CodeSnippets Include="Content\Server-Side Components\Creating Server-Side Components.snippets" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Content\Architecture.png">
+      <ImageId>Architecture</ImageId>
+      <AlternateText>Architecture</AlternateText>
+    </Image>
     <Image Include="Content\Client-Side Components\Android.png">
       <ImageId>Android</ImageId>
       <AlternateText>Android</AlternateText>

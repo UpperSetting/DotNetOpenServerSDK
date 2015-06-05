@@ -1,19 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <topic id="1a1266e7-3e53-47e6-a408-669e70daf556" revisionNumber="1">
 	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
-		<introduction>
-      <para>
-        Upper Setting's DotNetOpenServer SDK is an open source lightweight fully
-        extendable client/server application framework enabling developers to create
-        robust, secure and fast cloud based smart mobile device and desktop applications.
-      </para>
-      <para>
-        This manual includes detailed tutorials for creating Windows server
-        applications, client applications including Android, iOS, Windows Phone and
-        Windows and implementing custom application layer protocols. C# reference
-        documentation has also been included.
-      </para>
-		</introduction>
+
+    <section address="DotNetOpenServer SDK">
+      <title>DotNetOpenServer SDK</title>
+      <content>
+        <para>
+          Upper Setting's DotNetOpenServer SDK is an open source lightweight fully
+          extendable client/server application framework enabling developers to create
+          robust, secure and fast cloud based smart mobile device and desktop applications.
+        </para>
+      </content>
+    </section>
+
+    <section address="Manual">
+      <title>What is in this manual?</title>
+      <content>
+        <para>
+          This manual includes detailed tutorials for creating Windows server
+          applications, client applications including Android, iOS, Windows Phone, Windows
+          and implementing custom application layer protocols. This manual also includes
+          source code reference documentation.
+        </para>
+      </content>
+    </section>
+
+    <section address="Why?">
+      <title>Why?</title>
+      <content>
+        <para>
+          In 2015, frustrated with application server solutions based on slow stateless
+          HTTP based protocols such as REST, JSON and SOAP, we created our own fast
+          stateful binary protocol stack from the ground up and warped it up in a
+          powerful, secure, robust and lighting fast application server framework targeted
+          at Android, iOS, Windows Phone, Windows, Mac and Linux. Our protocol stack
+          <externalLink>
+            <linkText>FASTack</linkText>
+            <linkUri>http://UpperSetting.com/Technology</linkUri>
+            <linkTarget>_blank</linkTarget>
+          </externalLink>, short for Fast Access STack, is implemented in our easy to use
+          <externalLink>
+            <linkText>DotNetCloudServer SDK</linkText>
+            <linkUri>http://UpperSetting.com/DotNetCloudServer</linkUri>
+            <linkTarget>_blank</linkTarget>
+          </externalLink>built on top our open source 
+          <externalLink>
+            <linkText>DotNetOpenServer SDK</linkText>
+            <linkUri>http://github.com/UpperSetting/DotNetOpenServerSDK</linkUri>
+            <linkTarget>_blank</linkTarget>.
+          </externalLink>
+        </para>     
+      </content>
+    </section>
+
+    <section address="Architecture">
+      <title>Architecture</title>
+      <content>
+        <para>
+          <mediaLink>
+            <image xlink:href="Architecture"/>
+          </mediaLink>
+        </para>
+      </content>
+    </section>
+
+    <section address="SSL/TLS 1.2">
+      <title>SSL/TLS 1.2</title>
+      <content>
+        <para>
+          Support is included for the latest security and encryption protocol used on the
+          Internet now, SSL/TLS 1.2, enabling both the financial and defense industry to
+          implement data sensitive client/server applications with our framework.
+        </para>
+      </content>
+    </section>
+
+    <section address="Session Layer Protocol">
+      <title>Session Layer Protocol</title>
+      <content>
+        <para>
+          Our session layer protocol found within our DotNetOpenServer has been
+          designed to minimize the amount of damage denial of service (DOS) attacks can
+          impose yet supports large packets.
+        </para>
+      </content>
+    </section>
+
+    <section address="Authentication Protocol (AUTHP)">
+      <title>Authentication Protocol (AUTHP)</title>
+      <content>
+        <para>
+          We have implemented an Authentication Protocol (AUTHP) layer that is fully
+          extendable. Out of the box, DotNetOpenServer supports Windows Authentication,
+          however; any authentication method can be implemented by simply extending our
+          simple base authentication class.
+        </para>
+      </content>
+    </section>
+
+    <section address="Keep-Alive Protocol (KAP)">
+      <title>Keep-Alive Protocol (KAP)</title>
+      <content>
+        <para>
+          A common problem many stateful client/server applications encounter is the
+          ability to expose network failures in a timely fashion. DotNetCloudServer solves
+          this problem with our Keep-Alive Protocol (KAP) commonly referred to as a
+          heartbeat protocol. Both the client and server send tiny packets back and forth.
+          As soon as the heartbeat stops the framework notifies the application the
+          network has failed enabling server-side component objects to release associated
+          resources and notifies the end user a network failure has occurred.
+        </para>
+      </content>
+    </section>
+
+    <section address="Remote Object Access Protocol (ROAP)">
+      <title>Remote Object Access Protocol (ROAP)</title>
+      <content>
+        <para>
+          The core of our
+          <externalLink>
+            <linkText>DotNetCloudServer</linkText>
+            <linkUri>http://UpperSetting.com/DotNetCloudServer</linkUri>
+            <linkTarget>_blank</linkTarget>
+          </externalLink>
+          is our Remote Object Access Protocol (ROAP). ROAP exposes your server-side
+          component objects, functions, events and variables to your client applications.
+          Developers create their own objects in a stand-alone assembly DLL which are then
+          automatically loaded and started by the DotNetCloudServer. Your applications can
+          not only remotely invoke server-side functions but can also receive immediate
+          event notification and variable updates as they happen without costly polling
+          mechanisms found in our competitor's products based on REST, JSON or SOAP.
+        </para>
+        <para>
+          Granular role and user authorization (security access permissions) can be
+          assigned to each function, variable and event enabling systems administrators to
+          regulate who can execute functions, receive event notifications and read as well
+          as write variables. For example, a variable can be configured so users can read
+          the value but only administrators can update the value.
+        </para>
+      </content>
+    </section>
 
     <relatedTopics>
       <link xlink:href="AboutUS"/>

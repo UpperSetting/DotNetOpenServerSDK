@@ -33,9 +33,14 @@
           </externalLink>, short for Fast Access STack, is implemented in our easy to use
           <externalLink>
             <linkText>DotNetCloudServer SDK</linkText>
-            <linkUri>http://UpperSetting.com/Products</linkUri>
+            <linkUri>http://UpperSetting.com/DotNetCloudServer</linkUri>
             <linkTarget>_blank</linkTarget>
-          </externalLink>.
+          </externalLink>built on top our open source
+          <externalLink>
+            <linkText>DotNetOpenServer SDK</linkText>
+            <linkUri>http://github.com/UpperSetting/DotNetOpenServerSDK</linkUri>
+            <linkTarget>_blank</linkTarget>.
+          </externalLink>
         </para>
       </content>
     </section>
@@ -45,7 +50,7 @@
         <para>
           At Upper Setting we pride ourselves on customer satisfaction and are so
           confident in our products we offer free email and phone support throughout the
-          duration of your develop cycle. Our DotNetCloudServer SDK contains
+          duration of your develop cycle. Our DotNetOpenServer SDK contains
           extensive documentation and sample code, however; if you would like help
           implementing your application components we offer consulting services as well.
           Send us an email or give us a call and we will help get your project completed
