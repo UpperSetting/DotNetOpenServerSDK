@@ -82,25 +82,25 @@
                 <para>
                   The next step is to implement the server and client protocol layers. This is
                   accomplished by creating a class that is derived from
-                  <codeEntityReference>T:US.OpenServer.Protocols.IProtocol</codeEntityReference>.
+                  <codeEntityReference>T:US.OpenServer.Protocols.ProtocolBase</codeEntityReference>.
                 </para>
                 <para>
                   Use the
-                  <codeEntityReference>M:US.OpenServer.Protocols.IProtocol.Initialize(US.OpenServer.SessionBase,US.OpenServer.Protocols.ProtocolConfiguration,System.Object)</codeEntityReference>
+                  <codeEntityReference>M:US.OpenServer.Protocols.ProtocolBase.Initialize(US.OpenServer.SessionBase,US.OpenServer.Protocols.ProtocolConfiguration,System.Object)</codeEntityReference>
                   function to initialize the protocol. The Keep-Alive protocol, for example,
                   creates a Timer that kicks off <legacyBold>Keep-Alive</legacyBold> command
                   packets.
                 </para>
                 <para>
                   Use the
-                  <codeEntityReference>M:US.OpenServer.Protocols.IProtocol.OnPacketReceived(System.IO.BinaryReader)</codeEntityReference>
+                  <codeEntityReference>M:US.OpenServer.Protocols.ProtocolBase.OnPacketReceived(System.IO.BinaryReader)</codeEntityReference>
                   function to read command packets. On the server this is typically command
                   packets while on the client this is typically response packets, however; either
                   end can receive command packets.
                 </para>
                 <para>
                   Use the
-                  <codeEntityReference>M:US.OpenServer.Protocols.IProtocol.Close</codeEntityReference>
+                  <codeEntityReference>M:US.OpenServer.Protocols.ProtocolBase.Close</codeEntityReference>
                   function to release associated resources. The
                   <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>,
                   for example, sends a
@@ -109,7 +109,7 @@
                 </para>
                 <para>
                   Use the
-                  <codeEntityReference>M:US.OpenServer.Protocols.IProtocol.Dispose</codeEntityReference>
+                  <codeEntityReference>M:US.OpenServer.Protocols.ProtocolBase.Dispose</codeEntityReference>
                   function to immediately release associated resources without allowing for
                   command packets to be transmitted.
                 </para>
@@ -139,7 +139,7 @@
       </content>
     </section>
 
-    <section address="CreateWindowsSolution">
+    <section address="CreateAndroidSolution">
       <title>Create the Android JAR in Eclipse</title>
       <content>
         <procedure>
@@ -158,7 +158,7 @@
       </content>
     </section>
 
-      <section address="CreateWindowsSolution">
+      <section address="CreateiOSSolution">
         <title>Create the iOS C Library in ???</title>
         <content>
           <procedure>
@@ -190,7 +190,7 @@
       <link xlink:href="Protocols" />
       <link xlink:href="ServerSideComponents" />
       <link xlink:href="ClientSideComponents" />      
-      <codeEntityReference>T:US.OpenServer.Protocols.IProtocol</codeEntityReference>
+      <codeEntityReference>T:US.OpenServer.Protocols.ProtocolBase</codeEntityReference>
     </relatedTopics>
   </developerWalkthroughDocument>
 </topic>

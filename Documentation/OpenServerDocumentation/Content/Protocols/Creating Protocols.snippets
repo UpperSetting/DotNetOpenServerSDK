@@ -9,9 +9,9 @@
     </sampleCode>
   </item>
 
-  <item id="SampleProtocol#IProtocol">
+  <item id="SampleProtocol#ProtocolBase">
     <sampleCode language="CSharp">
-      public class SampleProtocol : IProtocolLayer
+      public class SampleProtocol : ProtocolBaseLayer
     </sampleCode>
   </item>
 
@@ -38,7 +38,7 @@
     <sampleCode language="CSharp">  
       namespace US.OpenServer.Protocols.Hello
       {
-          public class HelloProtocol : IProtocol
+          public class HelloProtocol : ProtocolBase
           {
               public const ushort PROTOCOL_IDENTIFIER = 0x000A;
           }
@@ -128,10 +128,10 @@
     <sampleCode language="Java">
       package com.us.openserver.protocols.hello;
 
-      import com.us.openserver.protocols.IProtocol;
+      import com.us.openserver.protocols.ProtocolBase;
       import com.us.openserver.util.Level;
 
-      public class HelloProtocol extends IProtocol
+      public class HelloProtocol extends ProtocolBase
       {
 	        public static final int PROTOCOL_IDENTIFIER = 0x000A;	
 	

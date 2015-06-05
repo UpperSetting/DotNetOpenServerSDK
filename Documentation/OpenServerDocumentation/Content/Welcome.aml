@@ -2,19 +2,16 @@
 <topic id="1a1266e7-3e53-47e6-a408-669e70daf556" revisionNumber="1">
 	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <section address="DotNetOpenServer SDK">
-      <title>DotNetOpenServer SDK</title>
-      <content>
-        <para>
-          Upper Setting's DotNetOpenServer SDK is an open source lightweight fully
-          extendable client/server application framework enabling developers to create
-          robust, secure and fast cloud based smart mobile device and desktop applications.
-        </para>
-      </content>
-    </section>
-
+    <introduction>
+      <para>
+        Upper Setting's DotNetOpenServer SDK is an open source lightweight fully
+        extendable client/server application framework enabling developers to create
+        robust, secure and fast cloud based smart mobile device and desktop applications.
+      </para>
+    </introduction>
+    
     <section address="Manual">
-      <title>What is in this manual?</title>
+      <title>What is in this Manual?</title>
       <content>
         <para>
           This manual includes detailed tutorials for creating Windows server
@@ -25,7 +22,7 @@
       </content>
     </section>
 
-    <section address="Why?">
+    <section address="Why">
       <title>Why?</title>
       <content>
         <para>
@@ -56,15 +53,13 @@
     <section address="Architecture">
       <title>Architecture</title>
       <content>
-        <para>
-          <mediaLink>
-            <image xlink:href="Architecture"/>
-          </mediaLink>
-        </para>
+        <mediaLink>
+          <image xlink:href="Architecture"/>
+        </mediaLink>
       </content>
     </section>
 
-    <section address="SSL/TLS 1.2">
+    <section address="SSL">
       <title>SSL/TLS 1.2</title>
       <content>
         <para>
@@ -75,7 +70,7 @@
       </content>
     </section>
 
-    <section address="Session Layer Protocol">
+    <section address="SLP">
       <title>Session Layer Protocol</title>
       <content>
         <para>
@@ -86,7 +81,7 @@
       </content>
     </section>
 
-    <section address="Authentication Protocol (AUTHP)">
+    <section address="AUTHP">
       <title>Authentication Protocol (AUTHP)</title>
       <content>
         <para>
@@ -98,7 +93,7 @@
       </content>
     </section>
 
-    <section address="Keep-Alive Protocol (KAP)">
+    <section address="KAP">
       <title>Keep-Alive Protocol (KAP)</title>
       <content>
         <para>
@@ -113,7 +108,7 @@
       </content>
     </section>
 
-    <section address="Remote Object Access Protocol (ROAP)">
+    <section address="ROAP">
       <title>Remote Object Access Protocol (ROAP)</title>
       <content>
         <para>
