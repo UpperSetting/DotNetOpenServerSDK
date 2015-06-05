@@ -138,7 +138,7 @@
 
     <relatedTopics>
       <link xlink:href="AboutUS"/>
-      <link xlink:href="CreatingServerSideComponents"/>
+      <link xlink:href="ServerSideComponents"/>
       <link xlink:href="ClientSideComponents"/>
 		</relatedTopics>
 	</developerConceptualDocument>
