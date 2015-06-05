@@ -43,12 +43,12 @@
             <linkText>DotNetCloudServer SDK</linkText>
             <linkUri>http://UpperSetting.com/DotNetCloudServer</linkUri>
             <linkTarget>_blank</linkTarget>
-          </externalLink>built on top our open source 
+          </externalLink> built on top our open source 
           <externalLink>
             <linkText>DotNetOpenServer SDK</linkText>
             <linkUri>http://github.com/UpperSetting/DotNetOpenServerSDK</linkUri>
-            <linkTarget>_blank</linkTarget>.
-          </externalLink>
+            <linkTarget>_blank</linkTarget>
+          </externalLink>.
         </para>     
       </content>
     </section>

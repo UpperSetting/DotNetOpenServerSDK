@@ -7,19 +7,16 @@
     <summary>
       <para>
         DotNetOpenServer implements application logging through the
-        <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference> Interface.
+        <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference> base class.
         Included in this SDK is a
-        <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference> class that
+        <codeEntityReference>T:US.OpenServer.Log4NetLogger</codeEntityReference> class that
         wraps and extends the open source <externalLink>
           <linkText>log4Net</linkText>
           <linkUri>http://logging.apache.org/log4net/</linkUri>
-        </externalLink>.ILog
-        object around an
-        <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference> interface.
-        You have the option of using our default logger or any logger of your choice by
-        simply implementing the
-        <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference> interface
-        then configuring the server and clients to use your logger.
+        </externalLink>.ILog.
+        You have the option of using our base logger, our log4Net logger or any logger
+        of your choice by simply extending the
+        <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference> base class.
       </para>
     </summary>
 
@@ -110,10 +107,8 @@
         </procedure>
       </content>
     </section>
-    
 
     <relatedTopics>
-      <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>
       <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>
       <externalLink>
         <linkText>log4Net</linkText>
