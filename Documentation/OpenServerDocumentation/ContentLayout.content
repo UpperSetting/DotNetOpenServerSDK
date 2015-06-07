@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Topics>
-  <Topic id="1a1266e7-3e53-47e6-a408-669e70daf556" visible="True" isDefault="true" title="Welcome">
-    <HelpKeywords>
-      <HelpKeyword index="K" term="Welcome" />
-    </HelpKeywords>
-  </Topic>
+  <Topic id="Welcome" visible="True" isDefault="true" />
   <Topic id="AboutUS" visible="True" title="About US" />
   <Topic id="ServerSideComponents" visible="True" isExpanded="true" title="Server-Side Components">
     <Topic id="CreatingServerSideComponents" visible="True" title="Creating Server-Side Components" />
@@ -25,8 +21,12 @@
       </Topic>
     </Topic>
   </Topic>
-  <Topic id="Protocols" visible="True" isExpanded="true" isSelected="true" title="Protocols">
-    <Topic id="CreatingProtocols" visible="True" title="Creating Protocols" />
+  <Topic id="Protocols" visible="True" isExpanded="true" title="Protocols">
+    <Topic id="CreatingProtocols" visible="True" isExpanded="true" title="Creating Protocols">
+      <Topic id="CreatingProtocols.CSharp" visible="True" title="Creating Procotols in C# for Windows and Windows Mobile Applications" />
+      <Topic id="CreatingProtocols.Java" visible="True" title="Creating Procotols in Java for Java and Android Applications" />
+      <Topic id="CreatingProtocols.iOS" visible="True" isSelected="true" title="Creating Procotols in C for iOS Applications" />
+    </Topic>
   </Topic>
   <Topic id="Logging" visible="True" />
 </Topics>

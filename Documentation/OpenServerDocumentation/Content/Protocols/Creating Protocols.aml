@@ -1,196 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <topic id="CreatingProtocols" revisionNumber="1">
-  <developerWalkthroughDocument
+  <developerConceptualDocument
     xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
     xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <summary>
-      <para>
-        This topic shows you how to implement your own application layer protocol.
-        When implementing your protocol you will typically create a Windows Server assembly then
-        a component for each target platform.
-
-        In this tutorial we will show you how to create a Windows Server protocol assembly,
-        a Windows Client protocol assembly that can also be used for Windows Mobile applications,
-        an Android protocol JAR file and an iOS C library.
-      </para>
-    </summary>
-
     <introduction>
-      <autoOutline>0</autoOutline>
+      <para>
+        This topic lists 3 tutorials that will show you how to implement your own application layer
+        protocol in C# for Windows and Windows Mobile applications, in Java for standard Java and Android applications,
+        and in C for iOS applications.
+      </para>      
     </introduction>
 
-    <section address="CreateWindowsSolution">
-      <title>Create the Windows Assemblies in Visual Studio 2013</title>
+    <section address="Links">
+      <title>Platforms</title>
       <content>
-        <procedure>
-          <title>
-          </title>
-          <steps class="ordered">
-            <step>
-              <content>
-                <para>
-                  Create a new solution, then add three projects:          
-                </para>
-                <table>
-                  <tableHeader><row><entry><para>Name</para></entry><entry><para>Project Type</para></entry><entry><para>Description</para></entry></row></tableHeader>
-                  <row><entry><para>HelloProtocolShared</para></entry><entry><para>Class Library (Portable)</para></entry><entry><para>Contains common code used by both the client and server assemblies.</para></entry></row>
-                  <row><entry><para>HelloProtocolServer</para></entry><entry><para>Class Library</para></entry><entry><para>Contains the server-side protocol implementation.</para></entry></row>
-                  <row><entry><para>HelloProtocolClient</para></entry><entry><para>Class Library (Portable)</para></entry><entry><para>Contains the client-side protocol implementation.</para></entry></row>
-                </table>
-                <alert>
-                  <para>
-                    When creating the Portable Class Libraries, set the Targets to:
-                  </para>
-                  <list class="bullet">
-                    <listItem><para>.NET Framework 4.5.1</para></listItem>
-                    <listItem><para>Windows 8.1</para></listItem>
-                    <listItem><para>Windows Phone 8.1</para></listItem>
-                  </list>
-                </alert>
-              </content>
-            </step>
-
-            <step>
-              <content>
-                <para>
-                  Once you have created the projects, add a reference to the HelloProtocolShared project from both the HelloProtocolServer and HelloProtocolClient projects.
-                </para>
-              </content>
-            </step>
-
-            <step>
-              <content>
-                <para>
-                  From all three projects add a reference to the US.OpenServer.Shared.dll located in the SDK's portable binary directory.  
-                  By default that is <codeInline>c:\program files\upper setting\DotNetOpenServerSDK\Portable\bin</codeInline>.
-                </para>
-              </content>
-            </step>
-
-            <step>              
-              <content>                
-                <para>                  
-                  From the HelloProtocolShared project rename the Class1.cs file to HelloProtocol.cs then replace the code with the following code:
-                </para>
-                <codeReference>HelloProtocol#Shared</codeReference>
-              </content>
-            </step>
-            
-            <step>
-              <content>
-                <para>
-                  The next step is to implement the server and client protocol layers. This is
-                  accomplished by creating a class that is derived from
-                  <codeEntityReference>T:US.OpenServer.Protocols.ProtocolBase</codeEntityReference>.
-                </para>
-                <para>
-                  Use the
-                  <codeEntityReference>M:US.OpenServer.Protocols.ProtocolBase.Initialize(US.OpenServer.SessionBase,US.OpenServer.Protocols.ProtocolConfiguration,System.Object)</codeEntityReference>
-                  function to initialize the protocol. The Keep-Alive protocol, for example,
-                  creates a Timer that kicks off <legacyBold>Keep-Alive</legacyBold> command
-                  packets.
-                </para>
-                <para>
-                  Use the
-                  <codeEntityReference>M:US.OpenServer.Protocols.ProtocolBase.OnPacketReceived(System.IO.BinaryReader)</codeEntityReference>
-                  function to read command packets. On the server this is typically command
-                  packets while on the client this is typically response packets, however; either
-                  end can receive command packets.
-                </para>
-                <para>
-                  Use the
-                  <codeEntityReference>M:US.OpenServer.Protocols.ProtocolBase.Close</codeEntityReference>
-                  function to release associated resources. The
-                  <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>,
-                  for example, sends a
-                  <codeEntityReference>F:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocolCommands.QUIT</codeEntityReference>
-                  command packet enabling the listening side to cleanly shutdown the connection.
-                </para>
-                <para>
-                  Use the
-                  <codeEntityReference>M:US.OpenServer.Protocols.ProtocolBase.Dispose</codeEntityReference>
-                  function to immediately release associated resources without allowing for
-                  command packets to be transmitted.
-                </para>
-                <para>
-                  From the HelloProtocolServer project rename the Class1.cs file to HelloProtocolServer.cs then replace the code with the following code:
-                </para>
-                <codeReference>HelloProtocol#Server</codeReference>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  From the HelloProtocolClient project rename the Class1.cs file to HelloProtocolClient.cs then replace the code with the following code:
-                </para>
-                <codeReference>HelloProtocol#Client</codeReference>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  Finally, build the solution.
-                </para>
-              </content>
-            </step>
-          </steps>
-        </procedure>
+        <list class="bullet">
+          <listItem>
+            <para>
+              <link xlink:href="CreatingProtocols.CSharp" />
+            </para>
+            <para>
+              <link xlink:href="CreatingProtocols.Java" />
+            </para>
+            <para>
+              <link xlink:href="CreatingProtocols.iOS" />
+            </para>
+          </listItem>
+        </list>
       </content>
     </section>
-
-    <section address="CreateAndroidSolution">
-      <title>Create the Android JAR in Eclipse</title>
-      <content>
-        <procedure>
-          <title>
-          </title>
-          <steps class="ordered">
-            <step>
-              <content>
-                <para>
-                  TODO
-                </para>
-              </content>
-            </step>
-          </steps>
-        </procedure>
-      </content>
-    </section>
-
-      <section address="CreateiOSSolution">
-        <title>Create the iOS C Library in ???</title>
-        <content>
-          <procedure>
-            <title>
-            </title>
-            <steps class="ordered">
-              <step>
-                <content>
-                  <para>
-                    TODO
-                  </para>
-                </content>
-              </step>
-            </steps>
-          </procedure>
-        </content>
-      </section>
-
-    <nextSteps>
-      <content>
-        <para>
-          Once you have created your protocol components, the next step is to integrate your protocol into your
-          <link xlink:href="ServerSideComponents" /> and <link xlink:href="ClientSideComponents" />.
-        </para>
-      </content>
-    </nextSteps>
-
+    
     <relatedTopics>
       <link xlink:href="Protocols" />
       <link xlink:href="ServerSideComponents" />
-      <link xlink:href="ClientSideComponents" />      
-      <codeEntityReference>T:US.OpenServer.Protocols.ProtocolBase</codeEntityReference>
+      <link xlink:href="ClientSideComponents" />
     </relatedTopics>
-  </developerWalkthroughDocument>
+  </developerConceptualDocument>
 </topic>

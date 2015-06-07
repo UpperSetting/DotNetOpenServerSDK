@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="CreatingProtocols.Java" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <summary>
+      <para>
+        In this tutorial we will show you how to implement an application layer
+        protocol in Java that can be used by both standard Java applications as well as
+        Android applications.
+      </para>
+    </summary>
+
+    <section address="Section1">
+      <title>Create the Java Classes using Eclipse</title>
+      <content>
+        <procedure>
+          <title>
+          </title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Download 
+                  <externalLink>
+                    <linkText>DotNetOpenServerSDK_JavaClient.zip</linkText>
+                    <linkUri>http://github.com/UpperSetting/DotNetOpenServerSDK/releases</linkUri>
+                    <linkTarget>_blank</linkTarget>
+                  </externalLink>
+                  from GitHub then extract the contents.
+                </para>
+              </content>
+            </step>
+            <step><content><para>
+              If you have not already downloaded Eclipse, click
+              <externalLink>
+                <linkText>here</linkText>
+                <linkUri>http://www.eclipse.org/downloads/</linkUri>
+                <linkTarget>_blank</linkTarget>
+              </externalLink>
+              and you will be re-directed to the Eclipse download page. Once downloaded, launch Eclipse.
+            </para></content></step>
+            <step><content><para>Select <legacyBold>File > New > Java Project</legacyBold></para></content></step>
+            <step><content><para>From the <legacyBold>New Java Project</legacyBold> dialog set:</para>
+              <list class="bullet">
+                <listItem><para>the <legacyBold>Project name</legacyBold> to <legacyBold>HelloProtocol</legacyBold></para></listItem>
+              </list>
+              <para>Click <legacyBold>Next</legacyBold>.</para>
+            </content></step>
+            <step><content><para>Select the <legacyBold>Libraries</legacyBold> tab then click <legacyBold>Add External Jars</legacyBold>.
+              Navigate to the directory you previously extracted the zip file contents then select the <legacyBold>OpenServerClient.jar</legacyBold> file located in the <legacyBold>bin\Java</legacyBold> sub-directory.
+              Finally, click <legacyBold>Finish</legacyBold>.</para>
+            </content></step>
+
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Package Explorer</legacyBold> view, navigate to the <legacyBold>src</legacyBold> node, right-click then select <legacyBold>New > Class</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content><para>From the <legacyBold>New Java Class</legacyBold> dialog set:</para>
+                <list class="bullet">
+                  <listItem><para>the <legacyBold>Package</legacyBold> to <legacyBold>com.us.openserver.protocols.hello</legacyBold></para></listItem>
+                  <listItem><para>the <legacyBold>Name</legacyBold> to <legacyBold>HelloProtocol</legacyBold></para></listItem>
+                  <listItem><para>the <legacyBold>Superclass</legacyBold> to <legacyBold>com.us.openserver.protocols.ProtocolBase</legacyBold></para></listItem>
+                </list>
+                <para>Click <legacyBold>Finish</legacyBold>.</para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Package Explorer</legacyBold> view, navigate to the <legacyBold>src</legacyBold> node, right-click then select <legacyBold>New > Interface</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step><content><para>From the <legacyBold>New Java Interface</legacyBold> dialog set:</para>
+              <list class="bullet">
+                <listItem><para>the <legacyBold>Package</legacyBold> to <legacyBold>com.us.openserver.protocols.hello</legacyBold></para></listItem>
+                <listItem><para>the <legacyBold>Name</legacyBold> to <legacyBold>IHelloProtocolObserver</legacyBold></para></listItem>
+              </list>
+              <para>Click <legacyBold>Finish</legacyBold>.</para>
+            </content></step>
+            <step><content>
+              <para>
+                From the <legacyBold>Package Explorer</legacyBold> view, double-click <legacyBold>HelloProtocol.java</legacyBold>.
+              </para>
+              <para>
+                To read command packets, override: <codeInline>public void onPacketReceived(BinaryReader br) throws IOException</codeInline>
+              </para>
+              <para>
+                To write command packets, call: <codeInline>com.us.openserver.Session.send(byte[] buf)</codeInline>
+              </para>
+              <para>
+                On Android, sockets can only be written to from background threads. The
+                <legacyBold>com.us.openserver.protocols.PacketWriter</legacyBold> class handles
+                this requirement by writing the command packet from a background thread.
+              </para>
+              <para>
+                The synchronous
+                <codeInline>public String hello(String message) throws Exception</codeInline> 
+                function writes the command packet from the calling thread then blocks and waits for server response.
+              </para>
+              <para>
+                The asynchronous
+                <codeInline>public void helloAsync(String message) throws Exception</codeInline>
+                function writes the command packet from the calling thread then immediately returns.
+              </para>
+              <para>
+                The synchronous
+                The <codeInline>public String helloBackgroundThread(String message) throws Exception</codeInline> function uses the com.us.openserver.protocols.PacketWriter to write the command packet from a background thread then blocks and waits for server response.
+              </para>
+              <para>
+                The asynchronous
+                The <codeInline>public void helloBackgroundThreadAsync(String message) throws Exception</codeInline> uses the com.us.openserver.protocols.PacketWriter to write the command packet from a background thread then immediately returns.
+              </para>
+              <para>
+                When calling the asynchronous functions, to receive the server response, call:
+                <codeInline>public void setHelloObserver(IHelloProtocolObserver callbackInterface)</codeInline>
+              </para>
+              <codeReference>Java#HelloProtocol</codeReference>
+              <codeReference>Java#IHelloProtocolObserver</codeReference>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="NextSteps">
+      <title>Next Steps</title>
+      <content>
+        <para>
+          Integrate your protocol into your client applications.
+        </para>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="CreatingProtocols" />
+    </relatedTopics>
+  
+</developerConceptualDocument>
+</topic>
