@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<examples>
+   <item id="HelloProtocol#Shared">
+    <sampleCode language="CSharp">  
+      namespace US.OpenServer.Protocols.Hello
+      {
+          public class HelloProtocol : ProtocolBase
+          {
+              public const ushort PROTOCOL_IDENTIFIER = 0x000A;
+          }
+          
+          protected HelloProtocol()
+          {
+          }
+          
+          protected void Log(Level level, string message)
+          {
+              session.Log(level, string.Format("[Hello] {0}", message));
+          }
+      }
+    </sampleCode>
+  </item>
+  
+  <item id="HelloProtocol#Server">
+    <sampleCode language="CSharp">  
+      using System.IO;
+      using System.Text;
+
+      namespace US.OpenServer.Protocols.Hello
+      {
+          public class HelloProtocolServer : HelloProtocol
+          {
+              public HelloProtocolServer()
+              {
+              }
+              
+              public override void OnPacketReceived(BinaryReader br)
+              {
+                  string clientHello = br.ReadString();
+                  Log(Level.Info, string.Format("Client says: {0}", clientHello));
+                  string serverResponse = string.Format("Hello {0}", clientHello);
+                  MemoryStream ms = new MemoryStream();
+                  BinaryWriter bw = new BinaryWriter(ms, Encoding.UTF8);
+                  bw.Write(HelloProtocol.PROTOCOL_IDENTIFIER);
+                  bw.Write(serverResponse);
+                  session.Send(ms);
+                  Log(Level.Info, string.Format("Server responded: {0}", serverResponse));
+              }
+          }
+      }
+    </sampleCode>
+  </item>
+  
+  <item id="HelloProtocol#Client">
+    <sampleCode language="CSharp">  
+      using System.IO;
+      using System.Text;
+
+      namespace US.OpenServer.Protocols.Hello
+      {
+          public class HelloProtocolClient : HelloProtocol
+          {
+              public delegate void OnHelloCompleteDelegate(string serverResponse);
+              public event OnHelloCompleteDelegate OnHelloComplete;
+
+              public HelloProtocolClient()
+              {
+              }
+
+              public override void OnPacketReceived(BinaryReader br)
+              {
+                  string serverResponse = br.ReadString();
+                  Log(Level.Info, string.Format("Server responded: {0}", serverResponse));
+
+                  if (OnHelloComplete != null)
+                      OnHelloComplete(serverResponse);
+              }
+
+              public void Hello(string message)
+              {
+                  MemoryStream ms = new MemoryStream();
+                  BinaryWriter bw = new BinaryWriter(ms, Encoding.UTF8);
+                  bw.Write(HelloProtocol.PROTOCOL_IDENTIFIER);
+                  bw.WriteString(message);
+                  session.Send(ms);
+                  Log(Level.Info, string.Format("Client says: {0}", message));
+              }
+          }
+      }
+    </sampleCode>
+  </item>
+
+  <item id="HelloProtocol#Java">
+    <sampleCode language="Java">
+      package com.us.openserver.protocols.hello;
+
+      import com.us.openserver.protocols.ProtocolBase;
+      import com.us.openserver.util.Level;
+
+      public class HelloProtocol extends ProtocolBase
+      {
+	        public static final int PROTOCOL_IDENTIFIER = 0x000A;	
+	
+	        protected HelloProtocol()
+          {
+          }
+	
+	        protected void log(Level level, String message)
+	        {
+	            session.log(level, String.format("[Hello] %1$s", message));
+	        }
+      }
+    </sampleCode>
+  </item>
+
+  <item id="HelloProtocolClient#Java">
+    <sampleCode language="Java">
+      package com.us.openserver.protocols.hello;
+
+      import com.us.openserver.util.*;
+
+      import java.io.IOException;
+
+      public class HelloProtocolClient extends HelloProtocol
+      {
+	        private String serverResponse;
+	
+	        public void onPacketReceived(BinaryReader br) throws IOException
+          {
+		          synchronized (this)
+              {
+	              serverResponse = br.readString();
+			          log(Level.Info, String.format("Server responded: %1$s", serverResponse));
+			
+			          notifyAll();
+              }
+          }
+	
+	        public String hello(String message) throws Exception
+          {
+		          synchronized (this)
+              {
+	                BinaryWriter bw = new BinaryWriter();
+	                try
+	                {
+		                  bw.writeUInt16(PROTOCOL_IDENTIFIER);
+		                  bw.writeString(message);	        
+		                  log(Level.Info, String.format("Client says: %1$s", message));
+	        	          PacketWriter pw = new PacketWriter(session, bw.toByteArray());
+	                    pw.execute();
+	                }
+	                finally { try { bw.close(); } catch (IOException ex) { } }
+	        
+	                try { wait(10000); }
+                  catch (InterruptedException ex) { throw ex; }
+              }
+		          return serverResponse;
+          }
+      }
+    </sampleCode>
+  </item>
+</examples>
+

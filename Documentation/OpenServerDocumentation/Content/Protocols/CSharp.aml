@@ -94,7 +94,8 @@
             <step>
               <content>
                 <para>
-                  Once you have created the projects, add a reference to the HelloProtocolShared project from both the HelloProtocolServer and HelloProtocolClient projects.
+                  Once you have created the projects, add a reference to the HelloProtocolShared
+                  project from both the HelloProtocolServer and HelloProtocolClient projects.
                 </para>
               </content>
             </step>
@@ -102,8 +103,18 @@
             <step>
               <content>
                 <para>
-                  From all three projects add a reference to the US.OpenServer.Shared.dll located in the SDK's portable binary directory.
-                  By default that is <codeInline>c:\program files\upper setting\DotNetOpenServerSDK\Portable\bin</codeInline>.
+                  Use NuGet to add a reference to the US.OpenServer.Shared.dll. To add the
+                  reference select<legacyBold>Tools > NuGet Package Manager > Package Manager
+                  Console</legacyBold>. From the <legacyBold>Package Manager Console</legacyBold>
+                  set the <legacyBold>Package Source</legacyBold> to
+                  <legacyBold>nuget.org</legacyBold>. Set the <legacyBold>Default
+                  project</legacyBold> to <legacyBold>HelloProtocolShared</legacyBold> then from
+                  the command-line type:
+                </para>
+                <code>Install-Package UpperSetting.OpenServer.Shared</code>
+                <para>
+                  Repeat these steps for both the HelloProtocolServer and HelloProtocolClient
+                  projects.
                 </para>
               </content>
             </step>

@@ -111,11 +111,13 @@
               </para>
               <para>
                 The synchronous
-                The <codeInline>public String helloBackgroundThread(String message) throws Exception</codeInline> function uses the com.us.openserver.protocols.PacketWriter to write the command packet from a background thread then blocks and waits for server response.
+                The <codeInline>public String helloBackgroundThread(String message) throws Exception</codeInline> function uses the 
+                <legacyBold>com.us.openserver.protocols.PacketWriter</legacyBold> to write the command packet from a background thread then blocks and waits for server response.
               </para>
               <para>
                 The asynchronous
-                The <codeInline>public void helloBackgroundThreadAsync(String message) throws Exception</codeInline> uses the com.us.openserver.protocols.PacketWriter to write the command packet from a background thread then immediately returns.
+                The <codeInline>public void helloBackgroundThreadAsync(String message) throws Exception</codeInline> uses the 
+                <legacyBold>com.us.openserver.protocols.PacketWriter</legacyBold> to write the command packet from a background thread then immediately returns.
               </para>
               <para>
                 When calling the asynchronous functions, to receive the server response, call:

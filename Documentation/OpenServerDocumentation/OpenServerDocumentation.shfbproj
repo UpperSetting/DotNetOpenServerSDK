@@ -144,8 +144,8 @@
     <CodeSnippets Include="Content\Client-Side Components\Windows.snippets" />
     <CodeSnippets Include="Content\Configuration\App.Config\app.config.snippets" />
     <CodeSnippets Include="Content\Logging\Logging.snippets" />
+    <CodeSnippets Include="Content\Protocols\CSharp.snippets" />
     <CodeSnippets Include="Content\Protocols\Java.snippets" />
-    <CodeSnippets Include="Content\Protocols\Creating Protocols.snippets" />
     <CodeSnippets Include="Content\Server-Side Components\Creating Server-Side Components.snippets" />
   </ItemGroup>
   <ItemGroup>
