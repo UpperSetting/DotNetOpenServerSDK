@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0">
-            <TextBlock Text="Hello Mobile Client" Margin="24,24,8,16" FontSize="{StaticResource TextStyleLargeFontSize}" FontWeight="Bold"/>
+            <TextBlock Text="Hello Windows Mobile Client" Margin="24,24,8,16" FontSize="{StaticResource TextStyleLargeFontSize}" FontWeight="Bold"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0">

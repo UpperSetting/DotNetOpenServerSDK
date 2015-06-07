@@ -87,7 +87,7 @@ namespace HelloMobileClient
 
                 try
                 {
-                    client.OnConnectionLostEvent += client_OnConnectionLostEvent;
+                    client.OnConnectionLost += client_OnConnectionLost;
                     client.Connect();
 
                     WinAuthProtocolClient wap = (WinAuthProtocolClient)client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
@@ -114,7 +114,7 @@ namespace HelloMobileClient
             }
         }
 
-        private async void client_OnConnectionLostEvent(object sender, Exception ex)
+        private async void client_OnConnectionLost(object sender, Exception ex)
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
