@@ -1,7 +1,7 @@
 # DotNetOpenServer SDK
 
 ## Overview
-[DotNetOpenServer SDK](http://www.uppersetting.com/DotNetOpenServer) is an open source lightweight fully extendable TCP socket
+[DotNetOpenServer SDK](http://www.UpperSetting.com/DotNetOpenServer) is an open source lightweight fully extendable TCP socket
 client/server application framework enabling developers to create highly
 efficient, fast, secure and robust cloud based smart mobile device and desktop
 applications. Why? Unlike most application server frameworks, which are
