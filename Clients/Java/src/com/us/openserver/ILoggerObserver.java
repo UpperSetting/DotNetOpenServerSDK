@@ -21,5 +21,5 @@ package com.us.openserver;
 
 public interface ILoggerObserver
 {
-	void onLogMessage(Level level, String message);
+    void onLogMessage(Level level, String message);
 }

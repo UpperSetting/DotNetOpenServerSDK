@@ -45,93 +45,93 @@ public class Session implements Runnable
     
     public Session(Client client, Socket socket, String address) throws IOException
     {
-    	this.client = client;
-    	capabilitiesProtocol = new CapabilitiesProtocol(this);
-    	this.protocolConfigurations = client.getProtocolConfigurations();
-	    this.logger = client.getLogger();
-	    this.userData = client.getUserData();	    
-	    this.is = socket.getInputStream();
-	    this.os = socket.getOutputStream();
-	    this.address = address;
-	    id = ++sessionId;
-	}
+        this.client = client;
+        capabilitiesProtocol = new CapabilitiesProtocol(this);
+        this.protocolConfigurations = client.getProtocolConfigurations();
+        this.logger = client.getLogger();
+        this.userData = client.getUserData();        
+        this.is = socket.getInputStream();
+        this.os = socket.getOutputStream();
+        this.address = address;
+        id = ++sessionId;
+    }
 
     public void close()
     {
-    	if (!isClosed)
-    	{
-    		isClosed = true;
-    		
-	        synchronized (protocolImplementations)
-	        {
-	            for (ProtocolBase pl : protocolImplementations.values())
-	                pl.close();
-	
-	            protocolImplementations.clear();
-	        }
-	
-	        try { is.close(); } catch (IOException ex) {}
-	        try { os.close(); } catch (IOException ex) {}	        
-    	}
+        if (!isClosed)
+        {
+            isClosed = true;
+            
+            synchronized (protocolImplementations)
+            {
+                for (ProtocolBase pl : protocolImplementations.values())
+                    pl.close();
+    
+                protocolImplementations.clear();
+            }
+    
+            try { is.close(); } catch (IOException ex) {}
+            try { os.close(); } catch (IOException ex) {}            
+        }
     }
     
     public void close(int protocolId)
     {
-    	ProtocolBase p = null;
-	    synchronized (protocolImplementations)
+        ProtocolBase p = null;
+        synchronized (protocolImplementations)
         {
-	    	if (protocolImplementations.containsKey(protocolId))
+            if (protocolImplementations.containsKey(protocolId))
             {
                 p = protocolImplementations.get(protocolId);
                 protocolImplementations.remove(protocolId);
             }
         }
-	    
-	    if (p != null)
+        
+        if (p != null)
             p.close();
     }
     
     public void dispose()
     {    
-    	synchronized (syncObject)
+        synchronized (syncObject)
         {
-	    	if (!isClosed)
-	    	{
-	    		isClosed = true;
-	    		
-		    	synchronized (protocolImplementations)
-		        {
-		            for (ProtocolBase pl : protocolImplementations.values())
-		                pl.dispose();
-		
-		            protocolImplementations.clear();
-		        }
-		    	
-		    	try { is.close(); } catch (IOException ex) {}
-		        try { os.close(); } catch (IOException ex) {}
-	    	}
+            if (!isClosed)
+            {
+                isClosed = true;
+                
+                synchronized (protocolImplementations)
+                {
+                    for (ProtocolBase pl : protocolImplementations.values())
+                        pl.dispose();
+        
+                    protocolImplementations.clear();
+                }
+                
+                try { is.close(); } catch (IOException ex) {}
+                try { os.close(); } catch (IOException ex) {}
+            }
         }
     }
     
     public void beginRead()
     {
-    	new Thread(this, "SessionThread").start();    	
+        new Thread(this, "SessionThread").start();        
     }
 
     public void connectionLost(Exception ex)
     {
-    	boolean tmp;
-    	synchronized (syncObject)
-    	{
-    		tmp = isClosed;
-    		if (!isClosed)
-    		{
-	    		log(Level.Critical, String.format("The socket connection has been lost.  %1$s", ex.getMessage()));
-	    		dispose();
-    		}
-    	}
-    	if (!tmp)
-    		client.onConnectionLost(ex);
+        boolean tmp;
+        synchronized (syncObject)
+        {
+            tmp = isClosed;
+            if (!isClosed)
+            {
+                log(Level.Critical, String.format("The socket connection has been lost.  %1$s", ex.getMessage()));
+                dispose();
+            }
+        }
+        if (!tmp)
+            client.onConnectionLost(ex);
     }
     
     public int[] getRemoteSupportedProtocolIds()
@@ -144,7 +144,7 @@ public class Session implements Runnable
         int[] protocolIds = new int[protocolConfigurations.size()];
         int i = 0;
         for (int protcolId : protocolConfigurations.keySet())
-        	protocolIds[i++] = protcolId;
+            protocolIds[i++] = protcolId;
         return protocolIds;
     }
     
@@ -190,7 +190,7 @@ public class Session implements Runnable
 
     public void onPacketReceived(BinaryReader br) throws Exception
     {
-    	int protocolId = br.readUInt16();
+        int protocolId = br.readUInt16();
         if (protocolId == 0)
         {
             capabilitiesProtocol.onPacketReceived(br);
@@ -262,16 +262,16 @@ public class Session implements Runnable
                     if (readState == PacketReadTypes.HeaderComplete)
                     {
                         BinaryReader br = new BinaryReader(packet.toByteArray());
-						try
-						{
-	                        int protocolId = br.readUInt16();
-	                        if (protocolId != SessionLayerProtocol.PROTOCAL_IDENTIFIER)
-	                            throw new Exception("Invalid or unsupported protocol.");
-	
-	                        payloadLength = br.readInt32();
+                        try
+                        {
+                            int protocolId = br.readUInt16();
+                            if (protocolId != SessionLayerProtocol.PROTOCAL_IDENTIFIER)
+                                throw new Exception("Invalid or unsupported protocol.");
+    
+                            payloadLength = br.readInt32();
                         }
                         finally {
-                        	try {br.close();}catch (IOException ex) {}
+                            try {br.close();}catch (IOException ex) {}
                         }
                         
                         readState = PacketReadTypes.Payload;
@@ -291,7 +291,7 @@ public class Session implements Runnable
                         if (packet.size() >= SessionLayerProtocol.HEADER_LENGTH + payloadLength)
                         {
                             if (logger.getLogPackets())
-                            	log(Level.Debug, "RECV: " + toHexString(packet.toByteArray(), 0, packet.size()));
+                                log(Level.Debug, "RECV: " + toHexString(packet.toByteArray(), 0, packet.size()));
 
                             BinaryReader br = new BinaryReader(packet.toByteArray());
                             br.skip(SessionLayerProtocol.HEADER_LENGTH);
@@ -310,7 +310,7 @@ public class Session implements Runnable
         }
         catch (Exception ex)
         {
-        	connectionLost(ex);
+            connectionLost(ex);
         }
     }
     
@@ -319,28 +319,28 @@ public class Session implements Runnable
         BinaryWriter bw = new BinaryWriter();
         try
         {
-	        bw.writeUInt16(SessionLayerProtocol.PROTOCAL_IDENTIFIER);
-	        bw.writeUInt(buf.length);
-	        bw.write(buf);
-	
-	        buf = bw.toByteArray();
-	        if (logger.getLogPackets())
-	        	log(Level.Debug, "SEND: " + toHexString(buf, 0, buf.length));
-	
-	        synchronized (os)
-	        {
-	            bw.writeTo(os);
-	        }
+            bw.writeUInt16(SessionLayerProtocol.PROTOCAL_IDENTIFIER);
+            bw.writeUInt(buf.length);
+            bw.write(buf);
+    
+            buf = bw.toByteArray();
+            if (logger.getLogPackets())
+                log(Level.Debug, "SEND: " + toHexString(buf, 0, buf.length));
+    
+            synchronized (os)
+            {
+                bw.writeTo(os);
+            }
         }
         finally
         {
-	        try
-	        {
-	        	bw.close();
-	        }
-	        catch (IOException ex)
-	        {
-	        }
+            try
+            {
+                bw.close();
+            }
+            catch (IOException ex)
+            {
+            }
         }
     }
 

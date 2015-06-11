@@ -25,11 +25,11 @@ import com.us.openserver.*;
 
 public abstract class ProtocolBase
 {
-	protected Session session;
-	
+    protected Session session;
+    
     public void initialize(Session session, ProtocolConfiguration pc, Object userData)
     {
-    	this.session = session;
+        this.session = session;
     }
     
     public void close()
@@ -37,7 +37,7 @@ public abstract class ProtocolBase
     }
     
     public void dispose()
-    {    	
+    {        
     }
     
     public void onPacketReceived(BinaryReader br) throws IOException
@@ -46,15 +46,15 @@ public abstract class ProtocolBase
     
     public void onErrorReceived(String message)
     {
-    	synchronized(this)
-    	{
-    		log(Level.Error, message);
-    		notifyAll();
-    	}
+        synchronized(this)
+        {
+            log(Level.Error, message);
+            notifyAll();
+        }
     }
     
     protected void log(Level level, String message)
     {
-    	session.log(level, String.format("[ProtocolBase] %1$s", message));
+        session.log(level, String.format("[ProtocolBase] %1$s", message));
     }
 }

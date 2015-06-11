@@ -26,7 +26,7 @@ import java.util.concurrent.*;
 
 public class KeepAliveProtocol extends ProtocolBase implements Runnable
 {
-	public static final int PROTOCOL_IDENTIFIER = 0x0001;
+    public static final int PROTOCOL_IDENTIFIER = 0x0001;
     public static final int INTERVAL = 10000;
     
     private ScheduledExecutorService timer;
@@ -37,8 +37,8 @@ public class KeepAliveProtocol extends ProtocolBase implements Runnable
 
     public void initialize(Session session, ProtocolConfiguration pc, Object userData)
     {
-    	super.initialize(session, pc, userData);
-    	
+        super.initialize(session, pc, userData);
+        
         synchronized (this)
         {
             this.session = session;
@@ -61,30 +61,30 @@ public class KeepAliveProtocol extends ProtocolBase implements Runnable
             BinaryWriter bw = new BinaryWriter();
             try 
             {
-	            bw.writeUInt16(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
-	            bw.write((byte)KeepAliveProtocolCommands.QUIT);
-	            try { session.send(bw.toByteArray()); } catch (IOException ex) { }
-	            log(Level.Debug, "Quit sent.");
+                bw.writeUInt16(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
+                bw.write((byte)KeepAliveProtocolCommands.QUIT);
+                try { session.send(bw.toByteArray()); } catch (IOException ex) { }
+                log(Level.Debug, "Quit sent.");
             }
             finally 
             {
-            	try { bw.close(); } catch (IOException ex) { }
+                try { bw.close(); } catch (IOException ex) { }
             }
         }
     }
     
     public void dispose()
     {
-    	synchronized (this) 
-    	{
+        synchronized (this) 
+        {
             if (timer != null)
-            	timer.shutdown();
+                timer.shutdown();
         }
     }
 
     public void onPacketReceived(BinaryReader br)
     {
-    	boolean dispose = false;
+        boolean dispose = false;
         synchronized (this) 
         {
             if (session == null)
@@ -97,11 +97,11 @@ public class KeepAliveProtocol extends ProtocolBase implements Runnable
                     log(Level.Debug, "Received.");
                     break;
                 case KeepAliveProtocolCommands.QUIT:
-                	log(Level.Info, "Quit received.");
+                    log(Level.Info, "Quit received.");
                     dispose = true;
                     break;
                 default:
-                	log(Level.Error, String.format("Invalid or unsupported command.  Command: %1$s", command));
+                    log(Level.Error, String.format("Invalid or unsupported command.  Command: %1$s", command));
                     break;
             }
         }
@@ -110,14 +110,14 @@ public class KeepAliveProtocol extends ProtocolBase implements Runnable
             session.dispose();
     }
 
-	protected void log(Level level, String message)
-	{
-	    session.log(level, String.format("[Keep-Alive] %1$s", message));
-	}
+    protected void log(Level level, String message)
+    {
+        session.log(level, String.format("[Keep-Alive] %1$s", message));
+    }
 
     public void run()
     {
-    	Exception connectionLostException = null;
+        Exception connectionLostException = null;
         synchronized (this)
         {
             try
@@ -125,23 +125,23 @@ public class KeepAliveProtocol extends ProtocolBase implements Runnable
                 BinaryWriter bw = new BinaryWriter();
                 try
                 {
-	                bw.writeUInt16(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
-	                bw.write((byte) KeepAliveProtocolCommands.KEEP_ALIVE);
-	                session.send(bw.toByteArray());
-	                log(Level.Debug, "Sent.");
+                    bw.writeUInt16(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
+                    bw.write((byte) KeepAliveProtocolCommands.KEEP_ALIVE);
+                    session.send(bw.toByteArray());
+                    log(Level.Debug, "Sent.");
                 }
                 finally {
-                	try { bw.close(); } catch (IOException ex) { }
+                    try { bw.close(); } catch (IOException ex) { }
                 }                
             }
             catch (Exception ex)
             {
-            	timer.shutdown();
-            	connectionLostException = ex;
+                timer.shutdown();
+                connectionLostException = ex;
                 
             }
         }
         if (connectionLostException != null)
-        	session.connectionLost(connectionLostException);
+            session.connectionLost(connectionLostException);
     }
 }

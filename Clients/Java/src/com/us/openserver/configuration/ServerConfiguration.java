@@ -36,8 +36,8 @@ public class ServerConfiguration
     
     public ServerConfiguration()
     {
-    	host = "localhost";
-    	port = SessionLayerProtocol.PORT;
+        host = "localhost";
+        port = SessionLayerProtocol.PORT;
         idleTimeout = IDLE_TIMEOUT;
         socketTimeout = SOCKET_TIMEOUT;
         tlsConfiguration = new TlsConfiguration();

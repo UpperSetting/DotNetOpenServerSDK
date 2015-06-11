@@ -24,14 +24,14 @@ import com.us.openserver.protocols.ProtocolBase;
 
 public class HelloProtocol extends ProtocolBase
 {
-	public static final int PROTOCOL_IDENTIFIER = 0x000A;	
-	
-	protected HelloProtocol()
+    public static final int PROTOCOL_IDENTIFIER = 0x000A;    
+    
+    protected HelloProtocol()
     {
     }
-	
-	protected void log(Level level, String message)
-	{
-	    session.log(level, String.format("[Hello] %1$s", message));
-	}
+    
+    protected void log(Level level, String message)
+    {
+        session.log(level, String.format("[Hello] %1$s", message));
+    }
 }

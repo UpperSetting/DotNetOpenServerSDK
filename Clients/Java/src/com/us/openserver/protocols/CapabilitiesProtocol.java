@@ -25,8 +25,8 @@ import java.io.IOException;
 public class CapabilitiesProtocol extends ProtocolBase
 {
 
-	public static final int PROTOCOL_IDENTIFIER = 0x0000;
-	public static final int TIMEOUT = 120000;
+    public static final int PROTOCOL_IDENTIFIER = 0x0000;
+    public static final int TIMEOUT = 120000;
 
     private int[] supportedRemoteProtocolIds;
 
@@ -37,16 +37,16 @@ public class CapabilitiesProtocol extends ProtocolBase
 
     public int[] getRemoteSupportedProtocolIds()
     {
-    	synchronized (this)
+        synchronized (this)
         {
-    		BinaryWriter bw = new BinaryWriter();
+            BinaryWriter bw = new BinaryWriter();
             try
             {
-	            bw.writeUInt16(PROTOCOL_IDENTIFIER);
-	            bw.write((byte)CapabilitiesProtocolCommands.GET_PROTOCOL_IDS);
-	            
-	            PacketWriter pw = new PacketWriter(session, bw.toByteArray());
-	            pw.execute();
+                bw.writeUInt16(PROTOCOL_IDENTIFIER);
+                bw.write((byte)CapabilitiesProtocolCommands.GET_PROTOCOL_IDS);
+                
+                PacketWriter pw = new PacketWriter(session, bw.toByteArray());
+                pw.execute();
             }
             finally { try { bw.close(); } catch (IOException ex) { } }
 
@@ -60,19 +60,19 @@ public class CapabilitiesProtocol extends ProtocolBase
 
     public void sendError(int protocolId, String message)
     {
-    	synchronized (this)
+        synchronized (this)
         {
-    		BinaryWriter bw = new BinaryWriter();
+            BinaryWriter bw = new BinaryWriter();
             try
             {
-	            bw.writeUInt16(PROTOCOL_IDENTIFIER);
-	            bw.write((byte)CapabilitiesProtocolCommands.ERROR);
-	            bw.write(protocolId);
-	            bw.writeString(message);
-	            log(Level.Notice, message);
-	            
-	            PacketWriter pw = new PacketWriter(session, bw.toByteArray());
-	            pw.execute();
+                bw.writeUInt16(PROTOCOL_IDENTIFIER);
+                bw.write((byte)CapabilitiesProtocolCommands.ERROR);
+                bw.write(protocolId);
+                bw.writeString(message);
+                log(Level.Notice, message);
+                
+                PacketWriter pw = new PacketWriter(session, bw.toByteArray());
+                pw.execute();
             }
             finally { try { bw.close(); } catch (IOException ex) { } }
         }
@@ -93,19 +93,19 @@ public class CapabilitiesProtocol extends ProtocolBase
                     BinaryWriter bw = new BinaryWriter();
                     try
                     {
-        	            bw.writeUInt16(PROTOCOL_IDENTIFIER);
-        	            bw.write((byte)CapabilitiesProtocolCommands.PROTOCOL_IDS);
-        	            bw.writeUInt16s(protocolIds);
-        	            
-        	            String str = "";
-        	        	for (int p : protocolIds)
-        	        		str += p + ", ";
-        	            log(Level.Debug, String.format("Sent Protocol IDs: %1$s", str));
+                        bw.writeUInt16(PROTOCOL_IDENTIFIER);
+                        bw.write((byte)CapabilitiesProtocolCommands.PROTOCOL_IDS);
+                        bw.writeUInt16s(protocolIds);
+                        
+                        String str = "";
+                        for (int p : protocolIds)
+                            str += p + ", ";
+                        log(Level.Debug, String.format("Sent Protocol IDs: %1$s", str));
 
-        	            try
-                    	{
-        	            	session.send(bw.toByteArray());	
-                    	}
+                        try
+                        {
+                            session.send(bw.toByteArray());    
+                        }
                         catch (IOException ex)
                         {
                         }
@@ -115,25 +115,25 @@ public class CapabilitiesProtocol extends ProtocolBase
                     break;
                 }
             case CapabilitiesProtocolCommands.PROTOCOL_IDS:
-            	synchronized (this)
+                synchronized (this)
                 {
                     supportedRemoteProtocolIds = br.readUInt16s();
                     String str = "";
-    	        	for (int p : supportedRemoteProtocolIds)
-    	        		str += p + ", ";
+                    for (int p : supportedRemoteProtocolIds)
+                        str += p + ", ";
                     log(Level.Debug, String.format("Received Protocol IDs: %1$s", str));
                     notifyAll();
                 }
                 break;
 
             case CapabilitiesProtocolCommands.ERROR:
-            	synchronized (this)
+                synchronized (this)
                 {
                     protocolId = br.readUInt16();
                     try
-                	{
-                    	errorMessage = br.readString();
-                	}
+                    {
+                        errorMessage = br.readString();
+                    }
                     catch (IOException ex)
                     {
                     }

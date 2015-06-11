@@ -35,7 +35,7 @@ public class TlsConfiguration
 
     public void setAllowCertificateChainErrors(boolean value)
     {
-    	allowCertificateChainErrors = value;
+        allowCertificateChainErrors = value;
     }
 
     public boolean getCheckCertificateRevocation()
@@ -45,7 +45,7 @@ public class TlsConfiguration
 
     public void setCheckCertificateRevocation(boolean value)
     {
-    	checkCertificateRevocation = value;
+        checkCertificateRevocation = value;
     }
 
     public boolean getAllowSelfSignedCertificate()
@@ -55,7 +55,7 @@ public class TlsConfiguration
 
     public void setAllowSelfSignedCertificate(boolean value)
     {
-    	allowSelfSignedCertificate = value;
+        allowSelfSignedCertificate = value;
     }
 
     public boolean getRequireRemoteCertificate()
@@ -75,7 +75,7 @@ public class TlsConfiguration
 
     public void setCertificate(String value)
     {
-    	certificate = value;
+        certificate = value;
     }
 
     public boolean isEnabled()
@@ -85,6 +85,6 @@ public class TlsConfiguration
 
     public void setEnabled(boolean value)
     {
-    	enabled = value;
+        enabled = value;
     }
 }

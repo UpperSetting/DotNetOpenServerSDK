@@ -25,53 +25,53 @@ import javax.net.ssl.*;
 
 public class SessionOpener implements Runnable
 {
-	private Client client;	
-	private Session session;	
+    private Client client;    
+    private Session session;    
     private Exception exception;    
     private static int id;
 
     public SessionOpener(Client client)
     {
-    	this.client  = client;
+        this.client  = client;
     }
 
     public Session connectAsync() throws Exception
     {
-    	synchronized (this)
+        synchronized (this)
         {
-	        Thread t = new Thread(this, "SessionOpenThread" + ++id);
-	        t.start();
-	        
-	        wait(client.getServerConfiguration().getSocketTimeoutInTicks());
+            Thread t = new Thread(this, "SessionOpenThread" + ++id);
+            t.start();
+            
+            wait(client.getServerConfiguration().getSocketTimeoutInTicks());
         }
-    	if (exception != null)
-    		throw exception;
-    	
-    	return session;
+        if (exception != null)
+            throw exception;
+        
+        return session;
     }
 
     public void run()
     {
-    	synchronized (this)
+        synchronized (this)
         {
-	        try
-	        {
-	        	connect();        	
-	        }
-	        catch (Exception ex)
-	        {
-	            exception = ex;
-	        }
-	        this.notifyAll();
+            try
+            {
+                connect();            
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+            }
+            this.notifyAll();
         }
     }
     
     public Session connect() throws Exception
     {
-    	client.close();
-    	
-    	Socket socket;
-    	ServerConfiguration cfg = client.getServerConfiguration();
+        client.close();
+        
+        Socket socket;
+        ServerConfiguration cfg = client.getServerConfiguration();
         TlsConfiguration tls = cfg.getTlsConfiguration();
         
         if (!tls.isEnabled())

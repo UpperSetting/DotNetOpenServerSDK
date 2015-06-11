@@ -37,38 +37,38 @@ public class SessionInitializer implements Runnable
 
     public ProtocolBase initializeAsync() throws Exception
     {
-    	synchronized (this)
+        synchronized (this)
         {
-    		Thread t = new Thread(this, "SessionInitializer" + ++id);
-	        t.start();
-	        
-	        wait(client.getServerConfiguration().getSocketTimeoutInTicks());
+            Thread t = new Thread(this, "SessionInitializer" + ++id);
+            t.start();
+            
+            wait(client.getServerConfiguration().getSocketTimeoutInTicks());
         }
-    	if (exception != null)
-    		throw exception;
-    	
-    	return p;    	
+        if (exception != null)
+            throw exception;
+        
+        return p;        
     }
     
     public void run()
     {
-    	synchronized (this)
+        synchronized (this)
         {
-	    	try
-	    	{
-	    		initialize(protocolId);
-	    	}
-	    	catch (Exception ex)
-	    	{
-	    		exception = ex;
-	    	}
-	    	this.notifyAll();
+            try
+            {
+                initialize(protocolId);
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+            }
+            this.notifyAll();
         }
     }
     
     public ProtocolBase initialize(int protocolId) throws Exception
     {
-    	p = client.getSession().initialize(protocolId, client.getUserData());
-    	return p;
+        p = client.getSession().initialize(protocolId, client.getUserData());
+        return p;
     }
 }

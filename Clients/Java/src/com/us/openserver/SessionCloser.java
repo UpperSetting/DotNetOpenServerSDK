@@ -34,37 +34,37 @@ public class SessionCloser implements Runnable
     
     public void close()
     {
-    	close(0);    	
+        close(0);        
     }
     
     public void close(int protocolId)
     {
-    	try 
-    	{ 
-    		if (protocolId > 0)
-    			session.close(protocolId);
-    		else
-    			session.close();
-		} 
-    	catch (Exception ex) 
-    	{
-    	}
+        try 
+        { 
+            if (protocolId > 0)
+                session.close(protocolId);
+            else
+                session.close();
+        } 
+        catch (Exception ex) 
+        {
+        }
     }
     
     public void closeAsync()
     {
-    	closeAsync(0);
+        closeAsync(0);
     }
     
     public void closeAsync(int protocolId)
     {
-    	this.protocolId  = protocolId;
+        this.protocolId  = protocolId;
         Thread t = new Thread(this, "SessionCloser" + ++id);
         t.start();
     }
 
     public void run()
     {
-    	close(protocolId);    	
+        close(protocolId);        
     }
 }

@@ -21,40 +21,40 @@ package com.us.openserver;
 
 public class Logger
 {
-	private ILoggerObserver callback;
-	
-	protected boolean logDebug;
+    private ILoggerObserver callback;
+    
+    protected boolean logDebug;
     public boolean getLogDebug() {
-		return logDebug;
-	}
-	public void setLogDebug(boolean logDebug) {
-		this.logDebug = logDebug;
-	}
-	
-	protected boolean logPackets;
-	public boolean getLogPackets() {
-		return logPackets;
-	}
-	public void setLogPackets(boolean logPackets) {
-		this.logPackets = logPackets;
-	}
-	
-	public Logger()
-	{
-	}
-	
-	public Logger(ILoggerObserver callback)
-	{
-		this.callback = callback;
-	}
-	
-	public void log(Level level, String message)
+        return logDebug;
+    }
+    public void setLogDebug(boolean logDebug) {
+        this.logDebug = logDebug;
+    }
+    
+    protected boolean logPackets;
+    public boolean getLogPackets() {
+        return logPackets;
+    }
+    public void setLogPackets(boolean logPackets) {
+        this.logPackets = logPackets;
+    }
+    
+    public Logger()
+    {
+    }
+    
+    public Logger(ILoggerObserver callback)
+    {
+        this.callback = callback;
+    }
+    
+    public void log(Level level, String message)
     {
         if (level == Level.Debug && !logDebug)
             return;
 
         if (callback != null)
-        	callback.onLogMessage(level, message);
+            callback.onLogMessage(level, message);
     }
    
     public void log(Exception ex)

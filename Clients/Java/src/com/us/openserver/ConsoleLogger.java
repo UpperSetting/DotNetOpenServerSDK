@@ -21,11 +21,11 @@ package com.us.openserver;
 
 public class ConsoleLogger extends Logger 
 {
-	public void log(Level level, String message)
+    public void log(Level level, String message)
     {
-		super.log(level, message);
+        super.log(level, message);
         
-		if (level == Level.Debug && !logDebug)
+        if (level == Level.Debug && !logDebug)
             return;
 
         System.out.println(String.format("%1$s %2$s", level, message));

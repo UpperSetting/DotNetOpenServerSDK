@@ -26,15 +26,15 @@ import java.util.HashMap;
 
 public class Client
 {
-	private IClientObserver clientObserver;
-	
-	private Logger logger;
-	public Logger getLogger() { return logger; }
-	
-	private HashMap<Integer, ProtocolConfiguration> protocolConfigurations;
-	public HashMap<Integer, ProtocolConfiguration> getProtocolConfigurations() { return protocolConfigurations; }
-	
-	private ServerConfiguration serverConfiguration;
+    private IClientObserver clientObserver;
+    
+    private Logger logger;
+    public Logger getLogger() { return logger; }
+    
+    private HashMap<Integer, ProtocolConfiguration> protocolConfigurations;
+    public HashMap<Integer, ProtocolConfiguration> getProtocolConfigurations() { return protocolConfigurations; }
+    
+    private ServerConfiguration serverConfiguration;
     public ServerConfiguration getServerConfiguration() { return serverConfiguration; }
     
     private Object userData;
@@ -44,15 +44,15 @@ public class Client
     public Session getSession() { return session; }
     
     public Client(
-		IClientObserver clientObserver,
+        IClientObserver clientObserver,
         ServerConfiguration serverConfiguration,
         HashMap<Integer, ProtocolConfiguration> protocolConfigurations,
         Logger logger,
         Object userData)
     {
-    	this.clientObserver = clientObserver;
-    	
-    	if (logger == null)
+        this.clientObserver = clientObserver;
+        
+        if (logger == null)
             logger = new Logger();
         this.logger = logger;
 
@@ -67,79 +67,79 @@ public class Client
         this.userData = userData;
     }
 
-	public void connect() throws Exception
-	{
-		SessionOpener sessionOpener = new SessionOpener(this);
-		session = sessionOpener.connect();	
-	}
-	
-	public void connectAsync() throws Exception
-	{
-		SessionOpener sessionOpener = new SessionOpener(this);
-		session = sessionOpener.connectAsync();	
-	}
-	
-	public void close()
-	{
-		if (session != null)
-    	{
-			SessionCloser sessionCloser = new SessionCloser(session);
-			sessionCloser.close();
-			session = null;
-    	}
-	}
-	
-	public void closeAsync()
-	{
-		if (session != null)
-    	{
-			SessionCloser sessionCloser = new SessionCloser(session);
-			sessionCloser.closeAsync();
-			session = null;
-    	}
-	}
-	
-	public void close(int protocolId)
-	{
-		if (session != null)
-    	{
-			SessionCloser sessionCloser = new SessionCloser(session);
-			sessionCloser.close(protocolId);
-			session = null;
-    	}
-	}
-	
-	public void closeAsync(int protocolId)
-	{
-		if (session != null)
-    	{
-			SessionCloser sessionCloser = new SessionCloser(session);
-			sessionCloser.closeAsync(protocolId);
-			session = null;
-    	}
-	}
-	
-	public int[] getServerSupportedProtocolIds()
+    public void connect() throws Exception
+    {
+        SessionOpener sessionOpener = new SessionOpener(this);
+        session = sessionOpener.connect();    
+    }
+    
+    public void connectAsync() throws Exception
+    {
+        SessionOpener sessionOpener = new SessionOpener(this);
+        session = sessionOpener.connectAsync();    
+    }
+    
+    public void close()
+    {
+        if (session != null)
+        {
+            SessionCloser sessionCloser = new SessionCloser(session);
+            sessionCloser.close();
+            session = null;
+        }
+    }
+    
+    public void closeAsync()
+    {
+        if (session != null)
+        {
+            SessionCloser sessionCloser = new SessionCloser(session);
+            sessionCloser.closeAsync();
+            session = null;
+        }
+    }
+    
+    public void close(int protocolId)
+    {
+        if (session != null)
+        {
+            SessionCloser sessionCloser = new SessionCloser(session);
+            sessionCloser.close(protocolId);
+            session = null;
+        }
+    }
+    
+    public void closeAsync(int protocolId)
+    {
+        if (session != null)
+        {
+            SessionCloser sessionCloser = new SessionCloser(session);
+            sessionCloser.closeAsync(protocolId);
+            session = null;
+        }
+    }
+    
+    public int[] getServerSupportedProtocolIds()
     {
         if (session == null)
             return new int[0];
 
         return session.getRemoteSupportedProtocolIds();
     }
-	
-	public ProtocolBase initialize(int protocolId) throws Exception
+    
+    public ProtocolBase initialize(int protocolId) throws Exception
     {
          return session != null ? session.initialize(protocolId, userData) : null;
     }
-	
-	public ProtocolBase initializeAsync(int protocolId) throws Exception
+    
+    public ProtocolBase initializeAsync(int protocolId) throws Exception
     {
          return session != null ? session.initialize(protocolId, userData) : null;
     }
-	
+    
     public void onConnectionLost(Exception ex)
     {
-    	if (clientObserver != null)
-    		clientObserver.onConnectionLost(ex);
+        if (clientObserver != null)
+            clientObserver.onConnectionLost(ex);
     }
 }

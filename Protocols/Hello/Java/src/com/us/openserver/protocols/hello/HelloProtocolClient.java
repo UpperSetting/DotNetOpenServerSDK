@@ -26,74 +26,74 @@ import java.io.IOException;
 
 public class HelloProtocolClient extends HelloProtocol
 {
-	private IHelloProtocolObserver callbackInterface;
-	public void setHelloObserver(IHelloProtocolObserver callbackInterface) 
-	{
-		this.callbackInterface = callbackInterface;
-	}
-	
-	private String serverResponse;
-	
-	public void onPacketReceived(BinaryReader br) throws IOException
+    private IHelloProtocolObserver callbackInterface;
+    public void setHelloObserver(IHelloProtocolObserver callbackInterface) 
     {
-		synchronized (this)
-        {
-	        serverResponse = br.readString();
-			log(Level.Info, String.format("Server responded: %1$s", serverResponse));
-			
-			notifyAll();
-        }
-		
-		if (callbackInterface != null)
-			callbackInterface.onHelloComplete(serverResponse);
+        this.callbackInterface = callbackInterface;
     }
-	
-	public String hello(String message) throws Exception
+    
+    private String serverResponse;
+    
+    public void onPacketReceived(BinaryReader br) throws IOException
     {
-		synchronized (this)
+        synchronized (this)
         {
-			helloAsync(message);	        
-	        wait(10000);            
+            serverResponse = br.readString();
+            log(Level.Info, String.format("Server responded: %1$s", serverResponse));
+            
+            notifyAll();
         }
-		return serverResponse;
+        
+        if (callbackInterface != null)
+            callbackInterface.onHelloComplete(serverResponse);
     }
-	
-	public void helloAsync(String message) throws Exception
+    
+    public String hello(String message) throws Exception
     {
-		BinaryWriter bw = CreateCommandPacket(message);
+        synchronized (this)
+        {
+            helloAsync(message);            
+            wait(10000);            
+        }
+        return serverResponse;
+    }
+    
+    public void helloAsync(String message) throws Exception
+    {
+        BinaryWriter bw = CreateCommandPacket(message);
         try
         {
-	        session.send(bw.toByteArray());
+            session.send(bw.toByteArray());
         }
         finally { try { bw.close(); } catch (IOException ex) { } }
     }
-	
-	public String helloBackgroundThread(String message) throws Exception
+    
+    public String helloBackgroundThread(String message) throws Exception
     {
-		synchronized (this)
+        synchronized (this)
         {
-			helloBackgroundThreadAsync(message);	        
-	        wait(10000);            
+            helloBackgroundThreadAsync(message);            
+            wait(10000);            
         }
-		return serverResponse;
+        return serverResponse;
     }
-	
-	public void helloBackgroundThreadAsync(String message) throws Exception
+    
+    public void helloBackgroundThreadAsync(String message) throws Exception
     {
-		BinaryWriter bw = CreateCommandPacket(message);
+        BinaryWriter bw = CreateCommandPacket(message);
         try
         {
-	        new PacketWriter(session, bw.toByteArray()).execute();
+            new PacketWriter(session, bw.toByteArray()).execute();
         }
         finally { try { bw.close(); } catch (IOException ex) { } }
     }
-	
-	private BinaryWriter CreateCommandPacket(String message) throws IOException
-	{
-		BinaryWriter bw = new BinaryWriter();
+    
+    private BinaryWriter CreateCommandPacket(String message) throws IOException
+    {
+        BinaryWriter bw = new BinaryWriter();
         bw.writeUInt16(PROTOCOL_IDENTIFIER);
-        bw.writeString(message);	        	        
+        bw.writeString(message);                        
         log(Level.Info, String.format("Client says: %1$s", message));
         return bw;
-	}
+    }
 }

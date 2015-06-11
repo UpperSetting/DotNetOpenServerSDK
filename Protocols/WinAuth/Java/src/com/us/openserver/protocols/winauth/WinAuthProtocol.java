@@ -24,13 +24,13 @@ import com.us.openserver.protocols.AuthenticationProtocolBase;
 
 public class WinAuthProtocol extends AuthenticationProtocolBase
 {
-	public static final int PROTOCOL_IDENTIFIER = 0x0002;
-	
-	protected WinAuthProtocol()
+    public static final int PROTOCOL_IDENTIFIER = 0x0002;
+    
+    protected WinAuthProtocol()
     {
     }
-	
-	protected void log(Level level, String message)
+    
+    protected void log(Level level, String message)
     {
         session.log(level, String.format("[WinAuth] %1$s", message));
     }

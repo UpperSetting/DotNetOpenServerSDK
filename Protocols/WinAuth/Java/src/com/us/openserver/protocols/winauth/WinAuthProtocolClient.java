@@ -44,14 +44,14 @@ public class WinAuthProtocolClient extends WinAuthProtocol
             BinaryWriter bw = new BinaryWriter();
             try
             {
-	            bw.writeUInt16(WinAuthProtocolClient.PROTOCOL_IDENTIFIER);
-	            bw.write((byte) WinAuthProtocolCommands.AUTHENTICATE);
-	            bw.writeString(userName);
-	            bw.writeString(password);
-	            bw.writeString(domain);
-	
-	            PacketWriter pw = new PacketWriter(session, bw.toByteArray());
-	            pw.execute();
+                bw.writeUInt16(WinAuthProtocolClient.PROTOCOL_IDENTIFIER);
+                bw.write((byte) WinAuthProtocolCommands.AUTHENTICATE);
+                bw.writeString(userName);
+                bw.writeString(password);
+                bw.writeString(domain);
+    
+                PacketWriter pw = new PacketWriter(session, bw.toByteArray());
+                pw.execute();
             }
             finally { try { bw.close(); } catch (IOException ex) { } }
 
@@ -86,14 +86,14 @@ public class WinAuthProtocolClient extends WinAuthProtocol
 
                 case WinAuthProtocolCommands.ERROR:
                 {
-                	try
-                	{
-	                    String errorMessage = br.readString();
-	                    log(Level.Notice, errorMessage);
-                	}
-                	catch (IOException ex)
-                	{
-                	}
+                    try
+                    {
+                        String errorMessage = br.readString();
+                        log(Level.Notice, errorMessage);
+                    }
+                    catch (IOException ex)
+                    {
+                    }
                     notifyAll();
                     break;
                 }
