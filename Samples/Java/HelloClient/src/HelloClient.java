@@ -28,98 +28,98 @@ import java.util.HashMap;
 
 public class HelloClient implements IClientObserver, IHelloProtocolObserver
 {
-	private Client client;
-	
-	public static void main(String[] args) 
-	{
-		new HelloClient(args);
-	}
-	
-	public HelloClient(String[] args) 
-	{
-		try
-		{
-			ConsoleLogger logger = new ConsoleLogger();
-			logger.setLogDebug(true);
-			//logger.setLogPackets(true);
-			
-			ServerConfiguration cfg = new ServerConfiguration();
-			//cfg.setHost("UpperSetting.com");
-			            
-	        HashMap<Integer, ProtocolConfiguration> protocolConfigurations =
-	            new HashMap<Integer, ProtocolConfiguration>();
-	        
-	        protocolConfigurations.put(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
-	            new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.keepalive.KeepAliveProtocol"));
-	
-	        protocolConfigurations.put(WinAuthProtocol.PROTOCOL_IDENTIFIER,
-	            new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.winauth.WinAuthProtocolClient"));
-	
-	        protocolConfigurations.put(HelloProtocol.PROTOCOL_IDENTIFIER,
-	            new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
-	
-	        client = new Client(this, cfg, protocolConfigurations, logger, null);
-	        client.connect();
-	        
-	        int[] serverSupportedProtocolIds = client.getServerSupportedProtocolIds();
-	        
-	        String str = "";
-        	for (int p : serverSupportedProtocolIds)
-        		str += p + ", ";
+    private Client client;
+    
+    public static void main(String[] args) 
+    {
+        new HelloClient(args);
+    }
+    
+    public HelloClient(String[] args) 
+    {
+        try
+        {
+            ConsoleLogger logger = new ConsoleLogger();
+            logger.setLogDebug(true);
+            //logger.setLogPackets(true);
+            
+            ServerConfiguration cfg = new ServerConfiguration();
+            //cfg.setHost("UpperSetting.com");
+                        
+            HashMap<Integer, ProtocolConfiguration> protocolConfigurations =
+                new HashMap<Integer, ProtocolConfiguration>();
+            
+            protocolConfigurations.put(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
+                new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.keepalive.KeepAliveProtocol"));
+    
+            protocolConfigurations.put(WinAuthProtocol.PROTOCOL_IDENTIFIER,
+                new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.winauth.WinAuthProtocolClient"));
+    
+            protocolConfigurations.put(HelloProtocol.PROTOCOL_IDENTIFIER,
+                new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
+    
+            client = new Client(this, cfg, protocolConfigurations, logger, null);
+            client.connect();
+            
+            int[] serverSupportedProtocolIds = client.getServerSupportedProtocolIds();
+            
+            String str = "";
+            for (int p : serverSupportedProtocolIds)
+                str += p + ", ";
             log(Level.Debug, String.format("serverSupportedProtocolIds %1$s", str));
             
-	        String userName = "TestUser";
+            String userName = "TestUser";
             WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
             if (!wap.authenticate(userName, "T3stus3r", null))
                 throw new Exception("Access denied.");
-            			
-	        client.initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
-	        
-	        HelloProtocolClient hpc = (HelloProtocolClient)client.initialize(HelloProtocol.PROTOCOL_IDENTIFIER);	        
-	        {
-	        	String serverResponse = hpc.hello("Software Engineer");
-	        	System.out.println("Hello(Sync): " + serverResponse);
-	        }
-	        {
-	        	hpc.setHelloObserver(this);
-	        	hpc.helloAsync("Software Engineer");
-	        }
-		}
-		catch (Exception ex)
-		{
-			System.out.println(ex.getMessage());
-		}
-		finally
-		{
-			try 
-			{ 
-				System.in.read(); 
-				if (client != null)
-					client.close();
-			} 
-			catch (IOException ex) 
-			{
-			}
-		}
-	}
+                        
+            client.initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
+            
+            HelloProtocolClient hpc = (HelloProtocolClient)client.initialize(HelloProtocol.PROTOCOL_IDENTIFIER);            
+            {
+                String serverResponse = hpc.hello("Software Engineer");
+                System.out.println("Hello(Sync): " + serverResponse);
+            }
+            {
+                hpc.setHelloObserver(this);
+                hpc.helloAsync("Software Engineer");
+            }
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally
+        {
+            try 
+            { 
+                System.in.read(); 
+                if (client != null)
+                    client.close();
+            } 
+            catch (IOException ex) 
+            {
+            }
+        }
+    }
     
     public void onConnectionLost(Exception ex)
     {
-    	System.out.println("Connection lost: " + ex.getMessage());
+        System.out.println("Connection lost: " + ex.getMessage());
     }
     
     public void onHelloComplete(String serverResponse)
     {
-    	System.out.println("Hello(Async): " + serverResponse);
+        System.out.println("Hello(Async): " + serverResponse);
     }
     
     public void log(Level level, String message)
     {
-    	System.out.println(String.format("%1$s %2$s", level, message));
+        System.out.println(String.format("%1$s %2$s", level, message));
     }
     
     public void log(Exception ex)
     {
-    	System.out.println(String.format("%1$s %2$s", Level.Error, ex.getMessage()));
+        System.out.println(String.format("%1$s %2$s", Level.Error, ex.getMessage()));
     }
 }
