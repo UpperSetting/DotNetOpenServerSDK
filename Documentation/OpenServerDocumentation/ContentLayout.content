@@ -6,9 +6,10 @@
     <Topic id="CreatingServerSideComponents" visible="True" title="Creating Server-Side Components" />
   </Topic>
   <Topic id="ClientSideComponents" visible="True" isExpanded="true">
-    <Topic id="ClientSideComponents.Android" visible="True" />
-    <Topic id="ClientSideComponents.iOS" visible="True" />
     <Topic id="ClientSideComponents.Windows" visible="True" />
+    <Topic id="ClientSideComponents.Java" visible="True" />
+    <Topic id="ClientSideComponents.Android" visible="True" />
+    <Topic id="ClientSideComponents.iOS" visible="True" isSelected="true" />
     <Topic id="ClientSideComponents.WindowsMobile" visible="True" />
   </Topic>
   <Topic id="Configuration.Windows" visible="True" isExpanded="true">
@@ -25,7 +26,7 @@
     <Topic id="CreatingProtocols" visible="True" isExpanded="true" title="Creating Protocols">
       <Topic id="CreatingProtocols.CSharp" visible="True" title="Creating Procotols in C# for Windows and Windows Mobile Applications" />
       <Topic id="CreatingProtocols.Java" visible="True" title="Creating Procotols in Java for Java and Android Applications" />
-      <Topic id="CreatingProtocols.iOS" visible="True" isSelected="true" title="Creating Procotols in C for iOS Applications" />
+      <Topic id="CreatingProtocols.iOS" visible="True" title="Creating Procotols in C for iOS Applications" />
     </Topic>
   </Topic>
   <Topic id="Logging" visible="True" />

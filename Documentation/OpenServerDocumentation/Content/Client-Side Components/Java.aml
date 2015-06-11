@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ClientSideComponents.Java" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This topic shows you how to create a Java application using the
+        Windows Authentication Protocol, Keep-Alive Protocol and the sample Hello
+        Protocol.
+      </para>
+      <autoOutline>0</autoOutline>
+    </introduction>
+
+    <section address="Application">
+      <title>Create a Java Application using Eclipse</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Download
+                  <externalLink>
+                    <linkText>DotNetOpenServerSDK_JavaClient.zip</linkText>
+                    <linkUri>http://github.com/UpperSetting/DotNetOpenServerSDK/releases</linkUri>
+                    <linkTarget>_blank</linkTarget>
+                  </externalLink>
+                  from GitHub then extract the contents.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  If you have not already downloaded Eclipse, click
+                  <externalLink>
+                    <linkText>here</linkText>
+                    <linkUri>http://www.eclipse.org/downloads/</linkUri>
+                    <linkTarget>_blank</linkTarget>
+                  </externalLink>
+                  and you will be re-directed to the Eclipse download page. Once downloaded, launch Eclipse.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Select <legacyBold>File > New > Java Project</legacyBold>
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>New Java Project</legacyBold> dialog set:
+                </para>
+                <list class="bullet">
+                  <listItem>
+                    <para>
+                      the <legacyBold>Project name</legacyBold> to <legacyBold>HelloProtocol</legacyBold>
+                    </para>
+                  </listItem>
+                </list>
+                <para>
+                  Click <legacyBold>Next</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Select the <legacyBold>Libraries</legacyBold> tab then click <legacyBold>Add
+                  External Jars</legacyBold>. Navigate to the directory you previously extracted
+                  the zip file contents then select the following jar files located in the
+                  <legacyBold>bin\Java</legacyBold> sub-directory:
+                </para>
+                <list class="bullet">
+                  <listItem><para>OpenServerClient.jar</para></listItem>
+                  <listItem><para>HelloProtocol.jar</para></listItem>
+                  <listItem><para>KeepAliveProtocol.jar</para></listItem>
+                  <listItem><para>WinAuthProtocol.jar</para></listItem>
+                </list>
+                <para>
+                  Finally, click <legacyBold>Finish</legacyBold>.
+                </para>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+      </section>
+
+      <section address="AddCode">
+        <title>Add the Application Code</title>
+        <content>
+          <procedure>
+            <title></title>
+            <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Package Explorer</legacyBold> view, navigate to the
+                  <legacyBold>src</legacyBold> node, right-click then select <legacyBold>New >
+                  Class</legacyBold>.
+                </para>
+              </content>
+            </step>
+            
+            <step>
+              <content><para>From the <legacyBold>New Java Class</legacyBold> dialog:</para>
+                <list class="bullet">
+                  <listItem><para>Set the <legacyBold>Package</legacyBold> to <legacyBold>com.us.openserver</legacyBold></para></listItem>
+                  <listItem><para>Set the <legacyBold>Name</legacyBold> to <legacyBold>HelloClient</legacyBold></para></listItem>
+                  <listItem><para>Check <legacyBold>public static void main(String[] args)</legacyBold></para></listItem>
+                </list>
+                <para>Click <legacyBold>Finish</legacyBold>.</para>
+              </content>
+            </step>
+
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Package Explorer</legacyBold>, expand your project, right
+                  click <legacyBold>HelloClient.java</legacyBold> then select
+                  <legacyBold>Open</legacyBold>.
+                </para>
+              </content>
+            </step>
+
+            <step>
+              <content>
+                <para>
+                  Add the following package statements:
+                </para>
+                <codeReference>JavaClient#Package</codeReference>
+              </content>
+            </step>
+
+            <step>
+              <content>
+                <para>
+                  Modify the class to implement <legacyBold>com.us.openserver.IClientObserver</legacyBold>,
+                  create the <legacyBold>com.us.openserver.ConsoleLogger</legacyBold>,
+                  create the <legacyBold>com.us.openserver.configuration.ServerConfiguration</legacyBold> then set any properties you want to override,
+                  create the <legacyBold>com.us.openserver.protocols.ProtocolConfiguration</legacyBold> objects then add them to A HashMap keyed with the each unique protocol identifier,
+                  create the <legacyBold>com.us.openserver.Client</legacyBold>,
+                  connect,
+                  authenticate using the <legacyBold>com.us.openserver.protocols.winauth.WinAuthProtocolClient</legacyBold>,
+                  initialize the <legacyBold>com.us.openserver.protocols.keepalive.KeepAliveProtocol</legacyBold>,
+                  initialize the <legacyBold>com.us.openserver.protocols.hello.HelloProtocolClient</legacyBold>,
+                  finally, call <legacyBold>HelloProtocolClient.hello(String userName)</legacyBold>.
+                  For example:
+                </para>
+                <codeReference>JavaClient#Code</codeReference>                
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Compile and run the application.
+                </para>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="ClientSideComponents"/>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<examples>
+  <item id="JavaClient#Package">
+    <sampleCode language="Java">
+      import com.us.openserver.configuration.*;
+      import com.us.openserver.protocols.*;
+      import com.us.openserver.protocols.hello.*;
+      import com.us.openserver.protocols.keepalive.*;
+      import com.us.openserver.protocols.winauth.*;
+      import java.io.IOException;
+      import java.util.HashMap;
+    </sampleCode>    
+  </item>
+
+  <item id="JavaClient#Code">
+    <sampleCode language="CSharp">
+      package com.us.openserver;
+
+      import com.us.openserver.configuration.*;
+      import com.us.openserver.protocols.*;
+      import com.us.openserver.protocols.hello.*;
+      import com.us.openserver.protocols.keepalive.*;
+      import com.us.openserver.protocols.winauth.*;
+      import java.io.IOException;
+      import java.util.HashMap;
+
+      public class HelloClient implements IClientObserver
+      {
+          private Client client;
+    
+          public static void main(String[] args) 
+          {
+              new HelloClient(args);
+          }
+    
+          public HelloClient(String[] args) 
+          {
+              try
+              {
+                  ConsoleLogger logger = new ConsoleLogger();
+                  logger.setLogDebug(true);
+            
+                  ServerConfiguration cfg = new ServerConfiguration();
+                        
+                  HashMap&lt;Integer, ProtocolConfiguration&gt; protocolConfigurations =
+                      new HashMap&lt;Integer, ProtocolConfiguration&gt;();
+            
+                  protocolConfigurations.put(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
+                      new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.keepalive.KeepAliveProtocol"));
+    
+                  protocolConfigurations.put(WinAuthProtocol.PROTOCOL_IDENTIFIER,
+                      new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.winauth.WinAuthProtocolClient"));
+    
+                  protocolConfigurations.put(HelloProtocol.PROTOCOL_IDENTIFIER,
+                      new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
+    
+                  client = new Client(this, cfg, protocolConfigurations, logger, null);
+                  client.connect();
+            
+                  String userName = "TestUser";
+                  WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
+                  if (!wap.authenticate(userName, "T3stus3r", null))
+                      throw new Exception("Access denied.");
+                        
+                  client.initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
+            
+                  HelloProtocolClient hpc = (HelloProtocolClient)client.initialize(HelloProtocol.PROTOCOL_IDENTIFIER);            
+                  String serverResponse = hpc.hello(userName);
+                  System.out.println("Hello(Sync): " + serverResponse);            
+              }
+              catch (Exception ex)
+              {
+                  System.out.println(ex.getMessage());
+              }
+              finally
+              {
+                  try 
+                  { 
+                      System.in.read(); 
+                      if (client != null)
+                          client.close();
+                  } 
+                  catch (IOException ex) 
+                  {
+                  }
+              }
+          }
+    
+          public void onConnectionLost(Exception ex)
+          {
+              System.out.println("Connection lost: " + ex.getMessage());
+          }
+      }
+    </sampleCode>
+  </item>
+</examples>
+

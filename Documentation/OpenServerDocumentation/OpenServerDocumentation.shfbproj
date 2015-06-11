@@ -113,6 +113,7 @@
     <None Include="Content\Client-Side Components\Android.aml" />
     <None Include="Content\Client-Side Components\Client-Side Components.aml" />
     <None Include="Content\Client-Side Components\iOS.aml" />
+    <None Include="Content\Client-Side Components\Java.aml" />
     <None Include="Content\Client-Side Components\Windows Mobile.aml" />
     <None Include="Content\Client-Side Components\Windows.aml" />
     <None Include="Content\Configuration\App.Config\app.config.aml" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <CodeSnippets Include="Content\Client-Side Components\Android.snippets" />
+    <CodeSnippets Include="Content\Client-Side Components\Java.snippets" />
     <CodeSnippets Include="Content\Client-Side Components\Windows Mobile .snippets" />
     <CodeSnippets Include="Content\Client-Side Components\Windows.snippets" />
     <CodeSnippets Include="Content\Configuration\App.Config\app.config.snippets" />

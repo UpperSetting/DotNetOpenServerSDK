@@ -5,14 +5,19 @@
     xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <introduction>
+      <para>
+        This topic shows you how to create a Windows Mobile application using the
+        Windows Authentication Protocol, Keep-Alive Protocol and the sample Hello
+        Protocol.
+      </para>
       <autoOutline>0</autoOutline>
     </introduction>
 
     <section address="Application">
-      <title>Create a .Net Windows Phone Application</title>
+      <title>Create a .Net Windows Phone Application using Visual Studio 2013</title>
       <content>
         <procedure>
-          <title>To create your .Net Phone Application from Visual Studio:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
@@ -24,14 +29,17 @@
             <step>
               <content>
                 <para>
-                  From the <legacyBold>New Project</legacyBold> form, select <legacyBold>Templates > Visual C# > Store Apps > Blank App (Windows Phone)</legacyBold>.
+                  From the <legacyBold>New Project</legacyBold> form, select
+                  <legacyBold>Templates > Visual C# > Store Apps > Blank App (Windows
+                  Phone)</legacyBold>.
                 </para>
               </content>
             </step>
             <step>
               <content>
                 <para>
-                  Specify a <legacyBold>Name</legacyBold> and <legacyBold>Location</legacyBold>, then click <legacyBold>OK</legacyBold>.
+                  Specify a <legacyBold>Name</legacyBold> and <legacyBold>Location</legacyBold>,
+                  then click <legacyBold>OK</legacyBold>.
                 </para>
               </content>
             </step>
@@ -40,70 +48,35 @@
       </content>
     </section>
 
-    <section address="Reference">
-      <title>Reference .Net Assemblies</title>
+    <section address="References">
+      <title>Use NuGet to Reference the DotNetOpenServer Assemblies</title>
       <content>
         <procedure>
-          <title>To reference the DotNetOpenServer SDK .Net assemblies:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
                 <para>
-                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click on <legacyBold>References</legacyBold> then select <legacyBold>Add Reference</legacyBold>.
+                  Select <legacyBold>Tools > NuGet Package Manager > Package Manager Console</legacyBold>.
+                  From the <legacyBold>Package Manager Console</legacyBold>,
+                  set the <legacyBold>Package Source</legacyBold> to <legacyBold>nuget.org</legacyBold>.
                 </para>
               </content>
             </step>
             <step>
               <content>
                 <para>
-                  From the <legacyBold>Reference Manager</legacyBold> form, click the <legacyBold>Browse</legacyBold> button.
+                  From the command-line type:
                 </para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>Select the files to reference</legacyBold> form, navigate
-                  to the DotNetOpenServer SDK's <legacyBold>Protable Binary</legacyBold>
-                  directory. By default this is <codeInline>c:\Program Files\Upper
-                  Setting\DotNetOpenServer SDK\bin\Portable</codeInline>.
-                </para>
-              </content>
-            </step>            
-            <step>
-              <content>
-                <para>
-                  Select the following assemblies:
-                </para>
-                <list class="bullet">
-                  <listItem><para>US.OpenServer.Protocols.Hello.Client.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Protocols.Hello.Shared.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Protocols.KeepAlive.dll</para></listItem>
-                  <listItem><para>OpenServerClient.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Shared.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Protocols.WinAuth.Client.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Protocols.WinAuth.Shared.dll</para></listItem>
-                </list>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>Select the files to reference</legacyBold> form, navigate
-                  to the DotNetOpenServer SDK's <legacyBold>Windows Mobile Binary</legacyBold>
-                  directory. By default this is <codeInline>c:\Program Files\Upper
-                  Setting\DotNetOpenServer SDK\bin\Windows Mobile</codeInline>.
-                </para>
-              </content>
-            </step>            
-            <step>
-              <content>
-                <para>
-                  Select the following assembly:
-                </para>
-                <list class="bullet">
-                  <listItem><para>OpenServerWindowsMobile.dll</para></listItem>
-                </list>
+                <code>
+                  PM> Install-Package UpperSetting.OpenServer.WindowsMobile
+
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client
+
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive
+
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client
+                </code>
               </content>
             </step>
           </steps>
@@ -115,7 +88,7 @@
       <title>Create the User Interface</title>
       <content>
         <procedure>
-          <title>To create the user interface:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
@@ -136,7 +109,7 @@
       <title>Add the User Interface Code</title>
       <content>
         <procedure>
-          <title>To add the user interface code:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
@@ -169,7 +142,7 @@
     </section>
     
     <relatedTopics>
-
+      <link xlink:href="ClientSideComponents"/>
     </relatedTopics>
   </developerConceptualDocument>
 </topic>

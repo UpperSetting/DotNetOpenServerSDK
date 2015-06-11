@@ -14,10 +14,10 @@
     </introduction>
 
     <section address="Application">
-      <title>Create a .Net Console Application</title>
+      <title>Create a .Net Console Application using Visual Studio 2013</title>
       <content>
         <procedure>
-          <title>To create your .Net Console Application from Visual Studio:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
@@ -45,71 +45,36 @@
       </content>
     </section>
 
-    <section address="Reference">
-      <title>Reference .Net Assemblies</title>
+    <section address="References">
+      <title>Use NuGet to Reference the DotNetOpenServer Assemblies</title>
       <content>
         <procedure>
-          <title>To reference the DotNetOpenServer SDK .Net assemblies:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
                 <para>
-                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click on <legacyBold>References</legacyBold> then select <legacyBold>Add Reference</legacyBold>.
+                  Select <legacyBold>Tools > NuGet Package Manager > Package Manager Console</legacyBold>.
+                  From the <legacyBold>Package Manager Console</legacyBold>,
+                  set the <legacyBold>Package Source</legacyBold> to <legacyBold>nuget.org</legacyBold>.
                 </para>
               </content>
             </step>
             <step>
               <content>
                 <para>
-                  From the <legacyBold>Reference Manager</legacyBold> form, click the <legacyBold>Browse</legacyBold> button.
+                  From the command-line type:
                 </para>
+                <code>
+                  PM> Install-Package UpperSetting.OpenServer.Windows.Client
+
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client
+
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive
+
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client
+                </code>
               </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>Select the files to reference</legacyBold> form, navigate
-                  to the DotNetOpenServer SDK's <legacyBold>Protable Binary</legacyBold>
-                  directory. By default this is <codeInline>c:\Program Files\Upper
-                  Setting\DotNetOpenServer SDK\bin\Portable</codeInline>.
-                </para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  Select the following assemblies:
-                </para>
-                <list class="bullet">
-                  <listItem><para>US.OpenServer.Protocols.Hello.Client.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Protocols.Hello.Shared.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Protocols.KeepAlive.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Shared.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Protocols.WinAuth.Client.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Protocols.WinAuth.Shared.dll</para></listItem>
-                </list>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>Select the files to reference</legacyBold> form, navigate
-                  to the DotNetOpenServer SDK's <legacyBold>Windows Binary</legacyBold>
-                  directory. By default this is <codeInline>c:\Program Files\Upper
-                  Setting\DotNetOpenServer SDK\bin\Windows</codeInline>.
-                </para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  Select the following assemblies:
-                </para>
-              </content>
-              <steps class="bullet">
-                <step><content><para>OpenServerWindowsClient.dll</para></content></step>
-                <step><content><para>OpenServerWindowsShared.dll</para></content></step>
-              </steps>
             </step>
           </steps>
         </procedure>
@@ -120,12 +85,14 @@
       <title>Create an Instance of the Client using the app.config</title>
       <content>
         <procedure>
-          <title>To create an instance of the Client:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
                 <para>
-                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click <legacyBold>Program.cs</legacyBold> then select <legacyBold>Open</legacyBold>.
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right
+                  click <legacyBold>Program.cs</legacyBold> then select
+                  <legacyBold>Open</legacyBold>.
                 </para>
               </content>
             </step>
@@ -141,9 +108,10 @@
               <content>
                 <para>
                   Create the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>,
-                  connect, 
-                  authenticate using the <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>,
-                  finally, initialize the <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>.
+                  connect, authenticate using the
+                  <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>,
+                  finally, initialize the
+                  <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>.
                   For example:
                 </para>
                 <codeReference>WindowsClient#AppConfigClient</codeReference>
@@ -152,7 +120,9 @@
             <step>
               <content>
                 <para>
-                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click <legacyBold>app.config</legacyBold> then select <legacyBold>Open</legacyBold>.
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right
+                  click <legacyBold>app.config</legacyBold> then select
+                  <legacyBold>Open</legacyBold>.
                 </para>
               </content>
             </step>
@@ -180,12 +150,14 @@
       <title>Create an Instance of the Client Programatically</title>
       <content>
         <procedure>
-          <title>To create an instance of the Client:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
                 <para>
-                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click <legacyBold>Program.cs</legacyBold> then select <legacyBold>Open</legacyBold>.
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right
+                  click <legacyBold>Program.cs</legacyBold> then select
+                  <legacyBold>Open</legacyBold>.
                 </para>
               </content>
             </step>

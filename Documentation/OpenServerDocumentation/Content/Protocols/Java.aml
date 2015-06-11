@@ -4,14 +4,14 @@
     xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
     xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <summary>
+    <introduction>
       <para>
         In this tutorial we will show you how to implement an application layer
         protocol in Java that can be used by both standard Java applications as well as
         Android applications.
       </para>
-    </summary>
-
+    </introduction>
+    
     <section address="Section1">
       <title>Create the Java Classes using Eclipse</title>
       <content>

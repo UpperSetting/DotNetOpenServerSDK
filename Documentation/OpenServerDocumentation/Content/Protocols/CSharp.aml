@@ -12,12 +12,11 @@
       </para>
     </introduction>
 
-    <section address="Section1">
-      <title>Create the Windows Assemblies in Visual Studio 2013</title>
+    <section address="Solution">
+      <title>Use Visual Studio 2013 to Create the Projects</title>
       <content>
         <procedure>
-          <title>
-          </title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
@@ -90,39 +89,114 @@
                 </alert>
               </content>
             </step>
-
+            
             <step>
               <content>
                 <para>
                   Once you have created the projects, add a reference to the HelloProtocolShared
                   project from both the HelloProtocolServer and HelloProtocolClient projects.
                 </para>
+              
+                <para>
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand the
+                  <legacyBold>HelloProtocolServer</legacyBold> project, right click on
+                  <legacyBold>References</legacyBold> then select <legacyBold>Add
+                  Reference</legacyBold>.
+                </para>
+              
+                <para>
+                  From the <legacyBold>Reference Manager</legacyBold> form, select
+                  <legacyBold>Solution</legacyBold>, check the
+                  <legacyBold>HelloProtocolShared</legacyBold> project then click
+                  <legacyBold>OK</legacyBold>.
+                </para>
+                
+                <para>
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand the
+                  <legacyBold>HelloProtocolClient</legacyBold> project, right click on
+                  <legacyBold>References</legacyBold> then select <legacyBold>Add
+                  Reference</legacyBold>.
+                </para>
+              
+                <para>
+                  From the <legacyBold>Reference Manager</legacyBold> form, select
+                  <legacyBold>Solution</legacyBold>, check the
+                  <legacyBold>HelloProtocolShared</legacyBold> project then click
+                  <legacyBold>OK</legacyBold>.
+                </para>
               </content>
             </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
 
+    <section address="References">
+      <title>Use NuGet to Reference the DotNetOpenServer Assemblies</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
             <step>
               <content>
                 <para>
-                  Use NuGet to add a reference to the US.OpenServer.Shared.dll. To add the
-                  reference select<legacyBold>Tools > NuGet Package Manager > Package Manager
-                  Console</legacyBold>. From the <legacyBold>Package Manager Console</legacyBold>
-                  set the <legacyBold>Package Source</legacyBold> to
-                  <legacyBold>nuget.org</legacyBold>. Set the <legacyBold>Default
-                  project</legacyBold> to <legacyBold>HelloProtocolShared</legacyBold> then from
-                  the command-line type:
-                </para>
-                <code>Install-Package UpperSetting.OpenServer.Shared</code>
-                <para>
-                  Repeat these steps for both the HelloProtocolServer and HelloProtocolClient
-                  projects.
+                  Select <legacyBold>Tools > NuGet Package Manager > Package Manager Console</legacyBold>.
+                  From the <legacyBold>Package Manager Console</legacyBold>,
+                  set the <legacyBold>Package Source</legacyBold> to <legacyBold>nuget.org</legacyBold>.
                 </para>
               </content>
             </step>
-
             <step>
               <content>
                 <para>
-                  From the HelloProtocolShared project rename the Class1.cs file to HelloProtocol.cs then replace the code with the following code:
+                  Set the <legacyBold>Default project</legacyBold> to
+                  <legacyBold>HelloProtocolShared</legacyBold> then from the command-line type:
+                </para>
+                <code>
+                  PM> Install-Package UpperSetting.OpenServer.Shared
+                </code>
+              </content>
+            </step>
+            
+            <step>
+              <content>
+                <para>
+                  Set the <legacyBold> Default project</legacyBold> to
+                  <legacyBold>HelloProtocolServer</legacyBold> then from the command-line type:
+                </para>
+                <code>
+                  PM> Install-Package UpperSetting.OpenServer.Shared
+                </code>
+              </content>
+            </step>
+            
+            <step>
+              <content>
+                <para>
+                  Set the <legacyBold> Default project</legacyBold> to
+                  <legacyBold>HelloProtocolClient</legacyBold> then from the command-line type:
+                </para>
+                <code>
+                  PM> Install-Package UpperSetting.OpenServer.Shared
+                </code>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+                    
+    <section address="Code">
+      <title>Implement the Protocol Classes</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  From the HelloProtocolShared project rename the Class1.cs file to
+                  HelloProtocol.cs then replace the code with the following code:
                 </para>
                 <codeReference>HelloProtocol#Shared</codeReference>
               </content>
@@ -131,8 +205,8 @@
             <step>
               <content>
                 <para>
-                  The next step is to implement the server and client protocol layers. This is
-                  accomplished by creating a class that is derived from
+                  Next implement the server and client protocol layers. This is accomplished by
+                  creating a class that is derived from
                   <codeEntityReference>T:US.OpenServer.Protocols.ProtocolBase</codeEntityReference>.
                 </para>
                 <para>
