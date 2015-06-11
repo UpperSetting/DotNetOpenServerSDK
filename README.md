@@ -1,12 +1,13 @@
 # DotNetOpenServer SDK
 
 ## Overview
-DotNetOpenServer SDK is an open source lightweight fully extendable
-client/server application framework enabling developers to create robust, secure
-and fast cloud based smart mobile device and desktop applications. Why? Unlike
-most application server frameworks, which are implemented over slow inefficient
-stateless protocols such as HTTP, REST, JSON or SOAP, DotNetOpenServer has been
-built from the ground up with highly efficient stateful binary protocols.
+[DotNetOpenServer SDK](http://www.uppersetting.com/DotNetOpenServer) is an open
+source lightweight fully extendable client/server application framework enabling
+developers to create robust, secure and fast cloud based smart mobile device and
+desktop applications. Why? Unlike most application server frameworks, which are
+implemented over slow inefficient stateless protocols such as HTTP, REST, JSON
+or SOAP, DotNetOpenServer has been built from the ground up with highly
+efficient stateful binary protocols.
 
 ## Prerequisites
 * .NET 4.5.1 or later
