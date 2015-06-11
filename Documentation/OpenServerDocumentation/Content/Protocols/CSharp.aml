@@ -268,8 +268,9 @@
       <title>Next Steps</title>
       <content>
         <para>
-          Once you have created your protocol components, the next step is to integrate your protocol into your
-          <link xlink:href="ServerSideComponents" /> and <link xlink:href="ClientSideComponents" />.
+          Once you have created your protocol components, the next step is to integrate
+          your protocol into your <link xlink:href="ServerSideComponents" /> and <link
+          xlink:href="ClientSideComponents" />.
         </para>
       </content>
     </section>

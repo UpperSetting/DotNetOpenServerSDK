@@ -136,14 +136,15 @@
       <title>Next Steps</title>
       <content>
         <para>
-          Integrate your protocol into your client applications.
+          Integrate your protocol into your <link
+          xlink:href="ClientSideComponents.Java">client</link> applications.
         </para>
       </content>
     </section>
 
     <relatedTopics>
       <link xlink:href="CreatingProtocols" />
+      <link xlink:href="ClientSideComponents.Java" />
     </relatedTopics>
-  
 </developerConceptualDocument>
 </topic>

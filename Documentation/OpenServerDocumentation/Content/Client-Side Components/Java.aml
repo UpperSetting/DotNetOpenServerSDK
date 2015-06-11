@@ -93,12 +93,12 @@
       </content>
       </section>
 
-      <section address="AddCode">
-        <title>Add the Application Code</title>
-        <content>
-          <procedure>
-            <title></title>
-            <steps class="ordered">
+    <section address="AddCode">
+      <title>Add the Application Code</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
             <step>
               <content>
                 <para>
