@@ -7,7 +7,7 @@
         <authors>Michael Janulaitis</authors>
         <owners>Upper Setting Corporation</owners>
         <licenseUrl>http://www.UpperSetting.com/Licenses/GNUv3.txt</licenseUrl>
-        <projectUrl>http://github.com/UpperSetting/DotNetOpenServerSDK</projectUrl>
+        <projectUrl>http://www.UpperSetting.com/DotNetOpenServer</projectUrl>
         <iconUrl>http://www.UpperSetting.com/favicon.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>A Windows assembly that contains classes, interfaces, enumerations and extensions used by DotNetOpenServer SDK derived Windows client applications.</description>
