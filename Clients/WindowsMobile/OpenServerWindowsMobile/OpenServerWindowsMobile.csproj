@@ -84,13 +84,12 @@
     <Compile Include="Session.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="US.OpenServer.Shared, Version=1.0.0.14, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UpperSetting.OpenServer.Shared.1.0.0.14\lib\portable-net451+win81+wpa81\US.OpenServer.Shared.dll</HintPath>
-    </Reference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Reference Include="US.OpenServer.Shared">
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
