@@ -145,7 +145,7 @@
                   Modify the class to implement <legacyBold>com.us.openserver.IClientObserver</legacyBold>,
                   create the <legacyBold>com.us.openserver.ConsoleLogger</legacyBold>,
                   create the <legacyBold>com.us.openserver.configuration.ServerConfiguration</legacyBold> then set any properties you want to override,
-                  create the <legacyBold>com.us.openserver.protocols.ProtocolConfiguration</legacyBold> objects then add them to A HashMap keyed with the each unique protocol identifier,
+                  create the <legacyBold>com.us.openserver.protocols.ProtocolConfiguration</legacyBold> objects then add them to a HashMap keyed with the each unique protocol identifier,
                   create the <legacyBold>com.us.openserver.Client</legacyBold>,
                   connect,
                   authenticate using the <legacyBold>com.us.openserver.protocols.winauth.WinAuthProtocolClient</legacyBold>,
