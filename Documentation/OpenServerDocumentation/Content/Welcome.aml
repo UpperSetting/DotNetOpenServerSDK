@@ -7,8 +7,9 @@
     <introduction>
       <para>
         Upper Setting's DotNetOpenServer SDK is an open source lightweight fully
-        extendable client/server application framework enabling developers to create
-        robust, secure and fast cloud based smart mobile device and desktop applications.
+        extendable TCP socket client/server application framework enabling developers to
+        create highly efficient, fast, secure and robust cloud based smart mobile device
+        and desktop applications.
       </para>
     </introduction>
     
@@ -16,11 +17,14 @@
       <title>What is in this Manual?</title>
       <content>
         <para>
-          This manual includes detailed tutorials for creating Windows server
-          applications, client applications including Android, iOS, Windows Phone, Windows
-          and implementing custom application layer protocols. This manual also includes
-          source code reference documentation.
+          This manual includes:
         </para>
+        <list class="bullet">
+          <listItem><para>Tutorials for creating Windows server applications.</para></listItem>
+          <listItem><para>Tutorials for creating client applications for Windows, Java, Android, iOS and Windows Mobile.</para></listItem>
+          <listItem><para>Tutorials for creating your own application layer protocols.</para></listItem>
+          <listItem><para>C# reference documentation.</para></listItem>  
+        </list>
       </content>
     </section>
 
