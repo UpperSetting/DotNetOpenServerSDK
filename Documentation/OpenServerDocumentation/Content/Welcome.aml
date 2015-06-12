@@ -35,7 +35,7 @@
           In 2015, frustrated with application server solutions based on slow stateless
           HTTP based protocols such as REST, JSON and SOAP, we created our own fast
           stateful binary protocol stack from the ground up and warped it up in a
-          powerful, secure, robust and lighting fast application server framework targeted
+          powerful, secure, robust and lightning fast application server framework targeted
           at Android, iOS, Windows Phone, Windows, Mac and Linux. Our protocol stack
           <externalLink>
             <linkText>FASTack</linkText>
@@ -130,7 +130,7 @@
           automatically loaded and started by the DotNetCloudServer. Your applications can
           not only remotely invoke server-side functions but can also receive immediate
           event notification and variable updates as they happen without costly polling
-          mechanisms found in our competitor's products based on REST, JSON or SOAP.
+          mechanisms found in our competitors' products based on REST, JSON or SOAP.
         </para>
         <para>
           Granular role and user authorization (security access permissions) can be
