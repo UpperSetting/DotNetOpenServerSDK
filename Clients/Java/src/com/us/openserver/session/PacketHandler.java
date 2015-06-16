@@ -17,9 +17,9 @@ You should have received a copy of the GNU General Public License along with
 DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.us.openserver.protocols;
+package com.us.openserver.session;
 
-import com.us.openserver.*;
+import com.us.openserver.protocols.BinaryReader;
 
 public class PacketHandler implements Runnable
 {

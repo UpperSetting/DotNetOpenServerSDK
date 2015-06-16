@@ -20,8 +20,9 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 package com.us.openserver;
 
 import com.us.openserver.configuration.*;
-import com.us.openserver.protocols.ProtocolBase;
-import com.us.openserver.protocols.ProtocolConfiguration;
+import com.us.openserver.protocols.*;
+import com.us.openserver.session.*;
+
 import java.util.HashMap;
 
 public class Client

@@ -17,8 +17,9 @@ You should have received a copy of the GNU General Public License along with
 DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.us.openserver;
+package com.us.openserver.session;
 
+import com.us.openserver.Client;
 import com.us.openserver.protocols.ProtocolBase;
 
 public class SessionInitializer implements Runnable

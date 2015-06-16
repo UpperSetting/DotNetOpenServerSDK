@@ -17,9 +17,9 @@ You should have received a copy of the GNU General Public License along with
 DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.us.openserver;
+package com.us.openserver.session;
 
-import com.us.openserver.Session;
+import com.us.openserver.session.Session;
 
 public class SessionCloser implements Runnable
 {

@@ -20,7 +20,9 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 package com.us.openserver.protocols.keepalive;
 
 import com.us.openserver.*;
+import com.us.openserver.session.*;
 import com.us.openserver.protocols.*;
+
 import java.io.IOException;
 import java.util.concurrent.*;
 

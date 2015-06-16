@@ -19,7 +19,7 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver.protocols;
 
-import com.us.openserver.Session;
+import com.us.openserver.session.Session;
 
 public class PacketWriter implements Runnable
 {

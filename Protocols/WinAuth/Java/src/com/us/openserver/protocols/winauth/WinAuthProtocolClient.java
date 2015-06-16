@@ -21,6 +21,7 @@ package com.us.openserver.protocols.winauth;
 
 import com.us.openserver.*;
 import com.us.openserver.protocols.*;
+
 import java.io.IOException;
 
 public class WinAuthProtocolClient extends WinAuthProtocol

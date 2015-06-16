@@ -19,9 +19,10 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 
 package com.us.openserver.protocols;
 
-import java.io.IOException;
-
 import com.us.openserver.*;
+import com.us.openserver.session.Session;
+
+import java.io.IOException;
 
 public abstract class ProtocolBase
 {
