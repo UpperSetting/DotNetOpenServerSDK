@@ -66,13 +66,13 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
             String str = "";
             for (int p : serverSupportedProtocolIds)
                 str += p + ", ";
-            log(Level.Debug, String.format("serverSupportedProtocolIds %1$s", str));
+            System.out.println(String.format("serverSupportedProtocolIds %1$s", str));
             
             String userName = "TestUser";
             WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
             if (!wap.authenticate(userName, "T3stus3r", null))
                 throw new Exception("Access denied.");
-                        
+
             client.initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
             
             HelloProtocolClient hpc = (HelloProtocolClient)client.initialize(HelloProtocol.PROTOCOL_IDENTIFIER);            
@@ -111,15 +111,5 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
     public void onHelloComplete(String serverResponse)
     {
         System.out.println("Hello(Async): " + serverResponse);
-    }
-    
-    public void log(Level level, String message)
-    {
-        System.out.println(String.format("%1$s %2$s", level, message));
-    }
-    
-    public void log(Exception ex)
-    {
-        System.out.println(String.format("%1$s %2$s", Level.Error, ex.getMessage()));
     }
 }
