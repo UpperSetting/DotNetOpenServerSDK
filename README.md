@@ -17,6 +17,7 @@ efficient stateful binary protocols.
 * Eclipse (optional)
 * Android Studio (optional)
 * Xcode (optional)
+* J2ObjC (optional)
 
 ## .Net
 ### NuGet
@@ -73,9 +74,9 @@ The DotNetOpenServer SDK Java Client release contains 4 JAR files:
 * WinAuthProtocol.jar - Contains the client side Windows Authentication protocol implementation.
 * HelloProtocol.jar - Contains the client side Hello protocol implementation.
 
-## iOS and Objective C
-The Objective C source files necessary to create iOS client applications have
-been made available in the [DotNetOpenServer SDK Objectvie C Client
+## iOS and Objective-C
+The Objective-C source files necessary to create iOS client applications have
+been made available in the [DotNetOpenServer SDK Objective-C Client
 Release](http://github.com/UpperSetting/DotNetOpenServerSDK/releases).
 
 ## Documentation
