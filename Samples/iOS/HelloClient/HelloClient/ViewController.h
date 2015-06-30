@@ -3,7 +3,6 @@
 #include "IHelloProtocolObserver.h"
 #include "J2ObjC_header.h"
 
-@class IOSObjectArray;
 @class JavaLangException;
 
 @interface ViewController : UIViewController <ComUsOpenserverIClientObserver>
