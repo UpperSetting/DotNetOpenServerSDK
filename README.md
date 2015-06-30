@@ -16,6 +16,8 @@ efficient stateful binary protocols.
 * Java SE Development Kit 7 Update 75 or later
 * Eclipse (optional)
 * Android Studio (optional)
+* Xcode (optional)
+* J2ObjC (optional)
 
 ## .Net
 ### NuGet
@@ -62,8 +64,8 @@ https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Server/
 `PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client`
 
 ## Android and Java
-The client JAR files necessary to create Android and Java client applications
-have been made available in the [DotNetOpenServer SDK Java Client
+The Java JAR files necessary to create Android and Java client applications have
+been made available in the [DotNetOpenServer SDK Java Client
 Release](http://github.com/UpperSetting/DotNetOpenServerSDK/releases).
 
 The DotNetOpenServer SDK Java Client release contains 4 JAR files:
@@ -71,6 +73,11 @@ The DotNetOpenServer SDK Java Client release contains 4 JAR files:
 * KeepAliveProtocol.jar - Contains the client side Keep-Alive protocol implemetantion.
 * WinAuthProtocol.jar - Contains the client side Windows Authentication protocol implementation.
 * HelloProtocol.jar - Contains the client side Hello protocol implementation.
+
+## iOS and Objective-C
+The Objective-C source files necessary to create iOS client applications have
+been made available in the [DotNetOpenServer SDK Objective-C Client
+Release](http://github.com/UpperSetting/DotNetOpenServerSDK/releases).
 
 ## Documentation
 Detailed documentation and tutorials can be found online at the following location:

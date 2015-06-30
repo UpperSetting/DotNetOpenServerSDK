@@ -1,0 +1,518 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E69BAB6B1B35E1A900662EC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BAB6A1B35E1A900662EC8 /* main.m */; };
+		E69BAB6E1B35E1A900662EC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BAB6D1B35E1A900662EC8 /* AppDelegate.m */; };
+		E69BAB711B35E1A900662EC8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BAB701B35E1A900662EC8 /* ViewController.m */; };
+		E69BAB741B35E1A900662EC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E69BAB721B35E1A900662EC8 /* Main.storyboard */; };
+		E69BAB761B35E1A900662EC8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E69BAB751B35E1A900662EC8 /* Images.xcassets */; };
+		E69BAB791B35E1A900662EC8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E69BAB771B35E1A900662EC8 /* LaunchScreen.xib */; };
+		E69BABF31B36317900662EC8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E69BABF21B36317900662EC8 /* libz.dylib */; };
+		E69BABF51B36318F00662EC8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E69BABF41B36318F00662EC8 /* Security.framework */; };
+		E69BABF71B3631AA00662EC8 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E69BABF61B3631AA00662EC8 /* libicucore.dylib */; };
+		E69BACFE1B38F14E00662EC8 /* AuthenticationProtocolBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACC11B38F14E00662EC8 /* AuthenticationProtocolBase.m */; };
+		E69BACFF1B38F14E00662EC8 /* BinaryReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACC31B38F14E00662EC8 /* BinaryReader.m */; };
+		E69BAD001B38F14E00662EC8 /* BinaryWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACC51B38F14E00662EC8 /* BinaryWriter.m */; };
+		E69BAD011B38F14E00662EC8 /* CapabilitiesProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACC71B38F14E00662EC8 /* CapabilitiesProtocol.m */; };
+		E69BAD021B38F14E00662EC8 /* CapabilitiesProtocolCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACC91B38F14E00662EC8 /* CapabilitiesProtocolCommands.m */; };
+		E69BAD031B38F14E00662EC8 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACCB1B38F14E00662EC8 /* Client.m */; };
+		E69BAD041B38F14E00662EC8 /* ConsoleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACCD1B38F14E00662EC8 /* ConsoleLogger.m */; };
+		E69BAD051B38F14E00662EC8 /* HelloProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACCF1B38F14E00662EC8 /* HelloProtocol.m */; };
+		E69BAD061B38F14E00662EC8 /* HelloProtocolClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACD11B38F14E00662EC8 /* HelloProtocolClient.m */; };
+		E69BAD071B38F14E00662EC8 /* IClientObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACD31B38F14E00662EC8 /* IClientObserver.m */; };
+		E69BAD081B38F14E00662EC8 /* IHelloProtocolObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACD51B38F14E00662EC8 /* IHelloProtocolObserver.m */; };
+		E69BAD091B38F14E00662EC8 /* ILoggerObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACD71B38F14E00662EC8 /* ILoggerObserver.m */; };
+		E69BAD0A1B38F14E00662EC8 /* KeepAliveProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACD91B38F14E00662EC8 /* KeepAliveProtocol.m */; };
+		E69BAD0B1B38F14E00662EC8 /* KeepAliveProtocolCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACDB1B38F14E00662EC8 /* KeepAliveProtocolCommands.m */; };
+		E69BAD0C1B38F14E00662EC8 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACDD1B38F14E00662EC8 /* Level.m */; };
+		E69BAD0D1B38F14E00662EC8 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACDF1B38F14E00662EC8 /* Logger.m */; };
+		E69BAD0E1B38F14E00662EC8 /* PacketHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACE11B38F14E00662EC8 /* PacketHandler.m */; };
+		E69BAD0F1B38F14E00662EC8 /* PacketReadTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACE31B38F14E00662EC8 /* PacketReadTypes.m */; };
+		E69BAD101B38F14E00662EC8 /* PacketWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACE51B38F14E00662EC8 /* PacketWriter.m */; };
+		E69BAD111B38F14E00662EC8 /* ProtocolBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACE71B38F14E00662EC8 /* ProtocolBase.m */; };
+		E69BAD121B38F14E00662EC8 /* ProtocolConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACE91B38F14E00662EC8 /* ProtocolConfiguration.m */; };
+		E69BAD131B38F14E00662EC8 /* ServerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACEB1B38F14E00662EC8 /* ServerConfiguration.m */; };
+		E69BAD141B38F14E00662EC8 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACED1B38F14E00662EC8 /* Session.m */; };
+		E69BAD151B38F14E00662EC8 /* SessionCloser.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACEF1B38F14E00662EC8 /* SessionCloser.m */; };
+		E69BAD161B38F14E00662EC8 /* SessionInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACF11B38F14E00662EC8 /* SessionInitializer.m */; };
+		E69BAD171B38F14E00662EC8 /* SessionLayerProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACF31B38F14E00662EC8 /* SessionLayerProtocol.m */; };
+		E69BAD181B38F14E00662EC8 /* SessionOpener.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACF51B38F14E00662EC8 /* SessionOpener.m */; };
+		E69BAD191B38F14E00662EC8 /* TlsConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACF71B38F14E00662EC8 /* TlsConfiguration.m */; };
+		E69BAD1A1B38F14E00662EC8 /* WinAuthProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACF91B38F14E00662EC8 /* WinAuthProtocol.m */; };
+		E69BAD1B1B38F14E00662EC8 /* WinAuthProtocolClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACFB1B38F14E00662EC8 /* WinAuthProtocolClient.m */; };
+		E69BAD1C1B38F14E00662EC8 /* WinAuthProtocolCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = E69BACFD1B38F14E00662EC8 /* WinAuthProtocolCommands.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E69BAB651B35E1A900662EC8 /* HelloClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E69BAB691B35E1A900662EC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E69BAB6A1B35E1A900662EC8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E69BAB6C1B35E1A900662EC8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E69BAB6D1B35E1A900662EC8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E69BAB6F1B35E1A900662EC8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E69BAB701B35E1A900662EC8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E69BAB731B35E1A900662EC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E69BAB751B35E1A900662EC8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E69BAB781B35E1A900662EC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E69BABF21B36317900662EC8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E69BABF41B36318F00662EC8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E69BABF61B3631AA00662EC8 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		E69BACC01B38F14E00662EC8 /* AuthenticationProtocolBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationProtocolBase.h; sourceTree = "<group>"; };
+		E69BACC11B38F14E00662EC8 /* AuthenticationProtocolBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationProtocolBase.m; sourceTree = "<group>"; };
+		E69BACC21B38F14E00662EC8 /* BinaryReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryReader.h; sourceTree = "<group>"; };
+		E69BACC31B38F14E00662EC8 /* BinaryReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BinaryReader.m; sourceTree = "<group>"; };
+		E69BACC41B38F14E00662EC8 /* BinaryWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryWriter.h; sourceTree = "<group>"; };
+		E69BACC51B38F14E00662EC8 /* BinaryWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BinaryWriter.m; sourceTree = "<group>"; };
+		E69BACC61B38F14E00662EC8 /* CapabilitiesProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapabilitiesProtocol.h; sourceTree = "<group>"; };
+		E69BACC71B38F14E00662EC8 /* CapabilitiesProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapabilitiesProtocol.m; sourceTree = "<group>"; };
+		E69BACC81B38F14E00662EC8 /* CapabilitiesProtocolCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapabilitiesProtocolCommands.h; sourceTree = "<group>"; };
+		E69BACC91B38F14E00662EC8 /* CapabilitiesProtocolCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapabilitiesProtocolCommands.m; sourceTree = "<group>"; };
+		E69BACCA1B38F14E00662EC8 /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
+		E69BACCB1B38F14E00662EC8 /* Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
+		E69BACCC1B38F14E00662EC8 /* ConsoleLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleLogger.h; sourceTree = "<group>"; };
+		E69BACCD1B38F14E00662EC8 /* ConsoleLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleLogger.m; sourceTree = "<group>"; };
+		E69BACCE1B38F14E00662EC8 /* HelloProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloProtocol.h; sourceTree = "<group>"; };
+		E69BACCF1B38F14E00662EC8 /* HelloProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloProtocol.m; sourceTree = "<group>"; };
+		E69BACD01B38F14E00662EC8 /* HelloProtocolClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloProtocolClient.h; sourceTree = "<group>"; };
+		E69BACD11B38F14E00662EC8 /* HelloProtocolClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloProtocolClient.m; sourceTree = "<group>"; };
+		E69BACD21B38F14E00662EC8 /* IClientObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IClientObserver.h; sourceTree = "<group>"; };
+		E69BACD31B38F14E00662EC8 /* IClientObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IClientObserver.m; sourceTree = "<group>"; };
+		E69BACD41B38F14E00662EC8 /* IHelloProtocolObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHelloProtocolObserver.h; sourceTree = "<group>"; };
+		E69BACD51B38F14E00662EC8 /* IHelloProtocolObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHelloProtocolObserver.m; sourceTree = "<group>"; };
+		E69BACD61B38F14E00662EC8 /* ILoggerObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILoggerObserver.h; sourceTree = "<group>"; };
+		E69BACD71B38F14E00662EC8 /* ILoggerObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILoggerObserver.m; sourceTree = "<group>"; };
+		E69BACD81B38F14E00662EC8 /* KeepAliveProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepAliveProtocol.h; sourceTree = "<group>"; };
+		E69BACD91B38F14E00662EC8 /* KeepAliveProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepAliveProtocol.m; sourceTree = "<group>"; };
+		E69BACDA1B38F14E00662EC8 /* KeepAliveProtocolCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepAliveProtocolCommands.h; sourceTree = "<group>"; };
+		E69BACDB1B38F14E00662EC8 /* KeepAliveProtocolCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepAliveProtocolCommands.m; sourceTree = "<group>"; };
+		E69BACDC1B38F14E00662EC8 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		E69BACDD1B38F14E00662EC8 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		E69BACDE1B38F14E00662EC8 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		E69BACDF1B38F14E00662EC8 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		E69BACE01B38F14E00662EC8 /* PacketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketHandler.h; sourceTree = "<group>"; };
+		E69BACE11B38F14E00662EC8 /* PacketHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketHandler.m; sourceTree = "<group>"; };
+		E69BACE21B38F14E00662EC8 /* PacketReadTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketReadTypes.h; sourceTree = "<group>"; };
+		E69BACE31B38F14E00662EC8 /* PacketReadTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketReadTypes.m; sourceTree = "<group>"; };
+		E69BACE41B38F14E00662EC8 /* PacketWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketWriter.h; sourceTree = "<group>"; };
+		E69BACE51B38F14E00662EC8 /* PacketWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketWriter.m; sourceTree = "<group>"; };
+		E69BACE61B38F14E00662EC8 /* ProtocolBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBase.h; sourceTree = "<group>"; };
+		E69BACE71B38F14E00662EC8 /* ProtocolBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolBase.m; sourceTree = "<group>"; };
+		E69BACE81B38F14E00662EC8 /* ProtocolConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolConfiguration.h; sourceTree = "<group>"; };
+		E69BACE91B38F14E00662EC8 /* ProtocolConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolConfiguration.m; sourceTree = "<group>"; };
+		E69BACEA1B38F14E00662EC8 /* ServerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfiguration.h; sourceTree = "<group>"; };
+		E69BACEB1B38F14E00662EC8 /* ServerConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConfiguration.m; sourceTree = "<group>"; };
+		E69BACEC1B38F14E00662EC8 /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
+		E69BACED1B38F14E00662EC8 /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
+		E69BACEE1B38F14E00662EC8 /* SessionCloser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCloser.h; sourceTree = "<group>"; };
+		E69BACEF1B38F14E00662EC8 /* SessionCloser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCloser.m; sourceTree = "<group>"; };
+		E69BACF01B38F14E00662EC8 /* SessionInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionInitializer.h; sourceTree = "<group>"; };
+		E69BACF11B38F14E00662EC8 /* SessionInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionInitializer.m; sourceTree = "<group>"; };
+		E69BACF21B38F14E00662EC8 /* SessionLayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionLayerProtocol.h; sourceTree = "<group>"; };
+		E69BACF31B38F14E00662EC8 /* SessionLayerProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionLayerProtocol.m; sourceTree = "<group>"; };
+		E69BACF41B38F14E00662EC8 /* SessionOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionOpener.h; sourceTree = "<group>"; };
+		E69BACF51B38F14E00662EC8 /* SessionOpener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionOpener.m; sourceTree = "<group>"; };
+		E69BACF61B38F14E00662EC8 /* TlsConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TlsConfiguration.h; sourceTree = "<group>"; };
+		E69BACF71B38F14E00662EC8 /* TlsConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TlsConfiguration.m; sourceTree = "<group>"; };
+		E69BACF81B38F14E00662EC8 /* WinAuthProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinAuthProtocol.h; sourceTree = "<group>"; };
+		E69BACF91B38F14E00662EC8 /* WinAuthProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinAuthProtocol.m; sourceTree = "<group>"; };
+		E69BACFA1B38F14E00662EC8 /* WinAuthProtocolClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinAuthProtocolClient.h; sourceTree = "<group>"; };
+		E69BACFB1B38F14E00662EC8 /* WinAuthProtocolClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinAuthProtocolClient.m; sourceTree = "<group>"; };
+		E69BACFC1B38F14E00662EC8 /* WinAuthProtocolCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinAuthProtocolCommands.h; sourceTree = "<group>"; };
+		E69BACFD1B38F14E00662EC8 /* WinAuthProtocolCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinAuthProtocolCommands.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E69BAB621B35E1A900662EC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E69BABF71B3631AA00662EC8 /* libicucore.dylib in Frameworks */,
+				E69BABF51B36318F00662EC8 /* Security.framework in Frameworks */,
+				E69BABF31B36317900662EC8 /* libz.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E69BAB5C1B35E1A900662EC8 = {
+			isa = PBXGroup;
+			children = (
+				E69BABF61B3631AA00662EC8 /* libicucore.dylib */,
+				E69BABF41B36318F00662EC8 /* Security.framework */,
+				E69BABF21B36317900662EC8 /* libz.dylib */,
+				E69BAB671B35E1A900662EC8 /* HelloClient */,
+				E69BAB661B35E1A900662EC8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E69BAB661B35E1A900662EC8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E69BAB651B35E1A900662EC8 /* HelloClient.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E69BAB671B35E1A900662EC8 /* HelloClient */ = {
+			isa = PBXGroup;
+			children = (
+				E69BACBF1B38F14E00662EC8 /* src */,
+				E69BAB6C1B35E1A900662EC8 /* AppDelegate.h */,
+				E69BAB6D1B35E1A900662EC8 /* AppDelegate.m */,
+				E69BAB6F1B35E1A900662EC8 /* ViewController.h */,
+				E69BAB701B35E1A900662EC8 /* ViewController.m */,
+				E69BAB721B35E1A900662EC8 /* Main.storyboard */,
+				E69BAB751B35E1A900662EC8 /* Images.xcassets */,
+				E69BAB771B35E1A900662EC8 /* LaunchScreen.xib */,
+				E69BAB681B35E1A900662EC8 /* Supporting Files */,
+			);
+			path = HelloClient;
+			sourceTree = "<group>";
+		};
+		E69BAB681B35E1A900662EC8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E69BAB691B35E1A900662EC8 /* Info.plist */,
+				E69BAB6A1B35E1A900662EC8 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E69BACBF1B38F14E00662EC8 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				E69BACC01B38F14E00662EC8 /* AuthenticationProtocolBase.h */,
+				E69BACC11B38F14E00662EC8 /* AuthenticationProtocolBase.m */,
+				E69BACC21B38F14E00662EC8 /* BinaryReader.h */,
+				E69BACC31B38F14E00662EC8 /* BinaryReader.m */,
+				E69BACC41B38F14E00662EC8 /* BinaryWriter.h */,
+				E69BACC51B38F14E00662EC8 /* BinaryWriter.m */,
+				E69BACC61B38F14E00662EC8 /* CapabilitiesProtocol.h */,
+				E69BACC71B38F14E00662EC8 /* CapabilitiesProtocol.m */,
+				E69BACC81B38F14E00662EC8 /* CapabilitiesProtocolCommands.h */,
+				E69BACC91B38F14E00662EC8 /* CapabilitiesProtocolCommands.m */,
+				E69BACCA1B38F14E00662EC8 /* Client.h */,
+				E69BACCB1B38F14E00662EC8 /* Client.m */,
+				E69BACCC1B38F14E00662EC8 /* ConsoleLogger.h */,
+				E69BACCD1B38F14E00662EC8 /* ConsoleLogger.m */,
+				E69BACCE1B38F14E00662EC8 /* HelloProtocol.h */,
+				E69BACCF1B38F14E00662EC8 /* HelloProtocol.m */,
+				E69BACD01B38F14E00662EC8 /* HelloProtocolClient.h */,
+				E69BACD11B38F14E00662EC8 /* HelloProtocolClient.m */,
+				E69BACD21B38F14E00662EC8 /* IClientObserver.h */,
+				E69BACD31B38F14E00662EC8 /* IClientObserver.m */,
+				E69BACD41B38F14E00662EC8 /* IHelloProtocolObserver.h */,
+				E69BACD51B38F14E00662EC8 /* IHelloProtocolObserver.m */,
+				E69BACD61B38F14E00662EC8 /* ILoggerObserver.h */,
+				E69BACD71B38F14E00662EC8 /* ILoggerObserver.m */,
+				E69BACD81B38F14E00662EC8 /* KeepAliveProtocol.h */,
+				E69BACD91B38F14E00662EC8 /* KeepAliveProtocol.m */,
+				E69BACDA1B38F14E00662EC8 /* KeepAliveProtocolCommands.h */,
+				E69BACDB1B38F14E00662EC8 /* KeepAliveProtocolCommands.m */,
+				E69BACDC1B38F14E00662EC8 /* Level.h */,
+				E69BACDD1B38F14E00662EC8 /* Level.m */,
+				E69BACDE1B38F14E00662EC8 /* Logger.h */,
+				E69BACDF1B38F14E00662EC8 /* Logger.m */,
+				E69BACE01B38F14E00662EC8 /* PacketHandler.h */,
+				E69BACE11B38F14E00662EC8 /* PacketHandler.m */,
+				E69BACE21B38F14E00662EC8 /* PacketReadTypes.h */,
+				E69BACE31B38F14E00662EC8 /* PacketReadTypes.m */,
+				E69BACE41B38F14E00662EC8 /* PacketWriter.h */,
+				E69BACE51B38F14E00662EC8 /* PacketWriter.m */,
+				E69BACE61B38F14E00662EC8 /* ProtocolBase.h */,
+				E69BACE71B38F14E00662EC8 /* ProtocolBase.m */,
+				E69BACE81B38F14E00662EC8 /* ProtocolConfiguration.h */,
+				E69BACE91B38F14E00662EC8 /* ProtocolConfiguration.m */,
+				E69BACEA1B38F14E00662EC8 /* ServerConfiguration.h */,
+				E69BACEB1B38F14E00662EC8 /* ServerConfiguration.m */,
+				E69BACEC1B38F14E00662EC8 /* Session.h */,
+				E69BACED1B38F14E00662EC8 /* Session.m */,
+				E69BACEE1B38F14E00662EC8 /* SessionCloser.h */,
+				E69BACEF1B38F14E00662EC8 /* SessionCloser.m */,
+				E69BACF01B38F14E00662EC8 /* SessionInitializer.h */,
+				E69BACF11B38F14E00662EC8 /* SessionInitializer.m */,
+				E69BACF21B38F14E00662EC8 /* SessionLayerProtocol.h */,
+				E69BACF31B38F14E00662EC8 /* SessionLayerProtocol.m */,
+				E69BACF41B38F14E00662EC8 /* SessionOpener.h */,
+				E69BACF51B38F14E00662EC8 /* SessionOpener.m */,
+				E69BACF61B38F14E00662EC8 /* TlsConfiguration.h */,
+				E69BACF71B38F14E00662EC8 /* TlsConfiguration.m */,
+				E69BACF81B38F14E00662EC8 /* WinAuthProtocol.h */,
+				E69BACF91B38F14E00662EC8 /* WinAuthProtocol.m */,
+				E69BACFA1B38F14E00662EC8 /* WinAuthProtocolClient.h */,
+				E69BACFB1B38F14E00662EC8 /* WinAuthProtocolClient.m */,
+				E69BACFC1B38F14E00662EC8 /* WinAuthProtocolCommands.h */,
+				E69BACFD1B38F14E00662EC8 /* WinAuthProtocolCommands.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E69BAB641B35E1A900662EC8 /* HelloClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E69BAB881B35E1A900662EC8 /* Build configuration list for PBXNativeTarget "HelloClient" */;
+			buildPhases = (
+				E69BAB611B35E1A900662EC8 /* Sources */,
+				E69BAB621B35E1A900662EC8 /* Frameworks */,
+				E69BAB631B35E1A900662EC8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloClient;
+			productName = HelloClient;
+			productReference = E69BAB651B35E1A900662EC8 /* HelloClient.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E69BAB5D1B35E1A900662EC8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Upper Setting Corporation";
+				TargetAttributes = {
+					E69BAB641B35E1A900662EC8 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+				};
+			};
+			buildConfigurationList = E69BAB601B35E1A900662EC8 /* Build configuration list for PBXProject "HelloClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E69BAB5C1B35E1A900662EC8;
+			productRefGroup = E69BAB661B35E1A900662EC8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E69BAB641B35E1A900662EC8 /* HelloClient */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E69BAB631B35E1A900662EC8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E69BAB741B35E1A900662EC8 /* Main.storyboard in Resources */,
+				E69BAB791B35E1A900662EC8 /* LaunchScreen.xib in Resources */,
+				E69BAB761B35E1A900662EC8 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E69BAB611B35E1A900662EC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E69BAD101B38F14E00662EC8 /* PacketWriter.m in Sources */,
+				E69BAD181B38F14E00662EC8 /* SessionOpener.m in Sources */,
+				E69BACFE1B38F14E00662EC8 /* AuthenticationProtocolBase.m in Sources */,
+				E69BAD1B1B38F14E00662EC8 /* WinAuthProtocolClient.m in Sources */,
+				E69BAD061B38F14E00662EC8 /* HelloProtocolClient.m in Sources */,
+				E69BAD001B38F14E00662EC8 /* BinaryWriter.m in Sources */,
+				E69BAD121B38F14E00662EC8 /* ProtocolConfiguration.m in Sources */,
+				E69BAD071B38F14E00662EC8 /* IClientObserver.m in Sources */,
+				E69BAD0F1B38F14E00662EC8 /* PacketReadTypes.m in Sources */,
+				E69BAD0E1B38F14E00662EC8 /* PacketHandler.m in Sources */,
+				E69BACFF1B38F14E00662EC8 /* BinaryReader.m in Sources */,
+				E69BAD0B1B38F14E00662EC8 /* KeepAliveProtocolCommands.m in Sources */,
+				E69BAD011B38F14E00662EC8 /* CapabilitiesProtocol.m in Sources */,
+				E69BAD161B38F14E00662EC8 /* SessionInitializer.m in Sources */,
+				E69BAD191B38F14E00662EC8 /* TlsConfiguration.m in Sources */,
+				E69BAD111B38F14E00662EC8 /* ProtocolBase.m in Sources */,
+				E69BAD1C1B38F14E00662EC8 /* WinAuthProtocolCommands.m in Sources */,
+				E69BAD131B38F14E00662EC8 /* ServerConfiguration.m in Sources */,
+				E69BAD0A1B38F14E00662EC8 /* KeepAliveProtocol.m in Sources */,
+				E69BAD081B38F14E00662EC8 /* IHelloProtocolObserver.m in Sources */,
+				E69BAD0D1B38F14E00662EC8 /* Logger.m in Sources */,
+				E69BAD141B38F14E00662EC8 /* Session.m in Sources */,
+				E69BAB711B35E1A900662EC8 /* ViewController.m in Sources */,
+				E69BAD171B38F14E00662EC8 /* SessionLayerProtocol.m in Sources */,
+				E69BAD031B38F14E00662EC8 /* Client.m in Sources */,
+				E69BAB6E1B35E1A900662EC8 /* AppDelegate.m in Sources */,
+				E69BAD0C1B38F14E00662EC8 /* Level.m in Sources */,
+				E69BAB6B1B35E1A900662EC8 /* main.m in Sources */,
+				E69BAD151B38F14E00662EC8 /* SessionCloser.m in Sources */,
+				E69BAD051B38F14E00662EC8 /* HelloProtocol.m in Sources */,
+				E69BAD021B38F14E00662EC8 /* CapabilitiesProtocolCommands.m in Sources */,
+				E69BAD041B38F14E00662EC8 /* ConsoleLogger.m in Sources */,
+				E69BAD1A1B38F14E00662EC8 /* WinAuthProtocol.m in Sources */,
+				E69BAD091B38F14E00662EC8 /* ILoggerObserver.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E69BAB721B35E1A900662EC8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E69BAB731B35E1A900662EC8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E69BAB771B35E1A900662EC8 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E69BAB781B35E1A900662EC8 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E69BAB861B35E1A900662EC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LIBRARY_SEARCH_PATHS = /Users/mjanulaitis/J2objc/lib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ljre_emul";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = /Users/mjanulaitis/J2objc/include;
+			};
+			name = Debug;
+		};
+		E69BAB871B35E1A900662EC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LIBRARY_SEARCH_PATHS = /Users/mjanulaitis/J2objc/lib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ljre_emul";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = /Users/mjanulaitis/J2objc/include;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E69BAB891B35E1A900662EC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HelloClient/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E69BAB8A1B35E1A900662EC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HelloClient/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E69BAB601B35E1A900662EC8 /* Build configuration list for PBXProject "HelloClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E69BAB861B35E1A900662EC8 /* Debug */,
+				E69BAB871B35E1A900662EC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E69BAB881B35E1A900662EC8 /* Build configuration list for PBXNativeTarget "HelloClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E69BAB891B35E1A900662EC8 /* Debug */,
+				E69BAB8A1B35E1A900662EC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E69BAB5D1B35E1A900662EC8 /* Project object */;
+}
