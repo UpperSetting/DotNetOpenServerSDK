@@ -141,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <CodeSnippets Include="Content\Client-Side Components\Android.snippets" />
+    <CodeSnippets Include="Content\Client-Side Components\iOS.snippets" />
     <CodeSnippets Include="Content\Client-Side Components\Java.snippets" />
     <CodeSnippets Include="Content\Client-Side Components\Windows Mobile .snippets" />
     <CodeSnippets Include="Content\Client-Side Components\Windows.snippets" />
@@ -162,6 +163,14 @@
     <Image Include="Content\Client-Side Components\WindowsMobile.png">
       <ImageId>WindowsMobile</ImageId>
       <AlternateText>Windows Mobile</AlternateText>
+    </Image>
+    <Image Include="Content\Client-Side Components\XCodeOptions.png">
+      <ImageId>XCodeOptions</ImageId>
+      <AlternateText>XCode Options</AlternateText>
+    </Image>
+    <Image Include="Content\Client-Side Components\XCodeTemplate.png">
+      <ImageId>XCodeTemplate</ImageId>
+      <AlternateText>XCode Template</AlternateText>
     </Image>
   </ItemGroup>
   <!-- Import the SHFB build targets -->
