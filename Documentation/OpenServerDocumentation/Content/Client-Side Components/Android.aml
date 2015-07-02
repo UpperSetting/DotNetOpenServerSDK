@@ -185,7 +185,7 @@
             <step>
               <content>
                 <para>
-                  create the <legacyBold>com.us.openserver.configuration.ServerConfiguration</legacyBold> then set any properties you want to override,
+                  Create the <legacyBold>com.us.openserver.configuration.ServerConfiguration</legacyBold> then set any properties you want to override,
                   create the <legacyBold>com.us.openserver.protocols.ProtocolConfiguration</legacyBold> objects then add them to A HashMap keyed with the each unique protocol identifier,
                   create the <legacyBold>com.us.openserver.Client</legacyBold>,
                   connect using the <legacyBold>Client.connectAsync</legacyBold> method,
