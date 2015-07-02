@@ -160,6 +160,10 @@
       <ImageId>Android</ImageId>
       <AlternateText>Android</AlternateText>
     </Image>
+    <Image Include="Content\Client-Side Components\iOS.png">
+      <ImageId>iOS</ImageId>
+      <AlternateText>iOS</AlternateText>
+    </Image>
     <Image Include="Content\Client-Side Components\WindowsMobile.png">
       <ImageId>WindowsMobile</ImageId>
       <AlternateText>Windows Mobile</AlternateText>

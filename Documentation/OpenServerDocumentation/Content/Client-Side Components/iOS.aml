@@ -178,9 +178,9 @@
               <content>
                 <para>
                   From the <legacyBold>Project navigator</legacyBold> view, click on the
-                  <legacyBold>HelloClient</legacyBold> node then select the <legacyBold>Build Settings</legacyBold> tab.
-                  Make the
-                  the following changes (substitute the directory you extracted the J2ObjC files too for $distribution-path):
+                  <legacyBold>HelloClient</legacyBold> node then select the <legacyBold>Build
+                  Settings</legacyBold> tab. Make the the following changes (substitute the
+                  directory you extracted the J2ObjC files too for $distribution-path):
                 </para>
                 <list class="ordered">
                   <listItem><para>In User Header Search Paths, add $distribution-path/include</para></listItem>
@@ -245,7 +245,8 @@
                   finally, call <legacyBold>ComUsOpenserverProtocolsHelloHelloProtocolClient.helloWithNSString(String userName)</legacyBold>.
                   For example:
                 </para>
-                <codeReference>iOS#Code</codeReference>
+                <codeReference>iOS#CodeH</codeReference>
+                <codeReference>iOS#CodeM</codeReference>
               </content>
             </step>
             <step>
