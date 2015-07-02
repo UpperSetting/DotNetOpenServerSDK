@@ -1,6 +1,5 @@
 #import <UIKit/UIKit.h>
 #import "IClientObserver.h"
-#include "J2ObjC_header.h"
 
 @class JavaLangException;
 
