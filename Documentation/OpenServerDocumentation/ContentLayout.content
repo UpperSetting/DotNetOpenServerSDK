@@ -7,7 +7,7 @@
   </Topic>
   <Topic id="ClientSideComponents" visible="True" isExpanded="true">
     <Topic id="ClientSideComponents.Windows" visible="True" title="How to Create a Windows Client Application" />
-    <Topic id="ClientSideComponents.Java" visible="True" isSelected="true" title="How to Create a Java Client Application" />
+    <Topic id="ClientSideComponents.Java" visible="True" title="How to Create a Java Client Application" />
     <Topic id="ClientSideComponents.Mac" visible="True" title="How to Create a Mac Application" />
     <Topic id="ClientSideComponents.Android" visible="True" title="How to Create an Android Application" />
     <Topic id="ClientSideComponents.iOS" visible="True" title="How to Create an iOS Application" />
@@ -27,7 +27,7 @@
     <Topic id="CreatingProtocols" visible="True" isExpanded="true" title="Creating Protocols">
       <Topic id="CreatingProtocols.CSharp" visible="True" title="How to Create a Protocol for Windows and Windows Mobile Applications" />
       <Topic id="CreatingProtocols.Java" visible="True" title="How to Create a Protocol for Java and Android Applications" />
-      <Topic id="CreatingProtocols.iOS" visible="True" title="How to Create a Protocol for iOS Applications" />
+      <Topic id="CreatingProtocols.Objective-C" visible="True" isSelected="true" title="How to Create a Protocol for Mac, iPhone and iPad Applications" />
     </Topic>
   </Topic>
   <Topic id="Logging" visible="True" />

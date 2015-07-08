@@ -132,8 +132,8 @@
     <None Include="Content\Logging\Logging.aml" />
     <None Include="Content\Protocols\Creating Protocols.aml" />
     <None Include="Content\Protocols\CSharp.aml" />
-    <None Include="Content\Protocols\iOS.aml" />
     <None Include="Content\Protocols\Java.aml" />
+    <None Include="Content\Protocols\Objective-C.aml" />
     <None Include="Content\Protocols\Protocols.aml" />
     <None Include="Content\Server-Side Components\Creating Server-Side Components.aml" />
     <None Include="Content\Server-Side Components\Server-Side Components.aml" />

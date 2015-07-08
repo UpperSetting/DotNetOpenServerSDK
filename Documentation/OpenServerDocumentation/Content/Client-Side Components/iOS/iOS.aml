@@ -12,7 +12,7 @@
       </para>
       <alert>
         <para>
-          To minimize our code base the DotNetOpenSever SDKs iOS Objective-C API is
+          To minimize our code base the DotNetOpenSever SDK's iOS Objective-C API is
           auto-generated from our Java source code by the
           <externalLink>
             <linkText>J2ObjC</linkText>

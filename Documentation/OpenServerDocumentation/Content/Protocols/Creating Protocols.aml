@@ -6,9 +6,10 @@
 
     <introduction>
       <para>
-        This topic lists 3 tutorials that will show you how to implement your own application layer
-        protocol in C# for Windows and Windows Mobile applications, in Java for standard Java and Android applications,
-        and in C for iOS applications.
+        This topic lists 3 tutorials that will show you how to implement your own
+        application layer protocol in C# for Windows and Windows Mobile applications, in
+        Java for standard Java and Android applications, and in Objective-C for Mac,
+        iPhone and iPad applications.
       </para>      
     </introduction>
 
@@ -24,7 +25,7 @@
               <link xlink:href="CreatingProtocols.Java" />
             </para>
             <para>
-              <link xlink:href="CreatingProtocols.iOS" />
+              <link xlink:href="CreatingProtocols.Objective-C" />
             </para>
           </listItem>
         </list>

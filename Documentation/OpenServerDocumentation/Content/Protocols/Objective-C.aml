@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<topic id="CreatingProtocols.iOS" revisionNumber="1">
+<topic id="CreatingProtocols.Objective-C" revisionNumber="1">
   <developerConceptualDocument
     xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
     xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -7,14 +7,11 @@
     <introduction>
       <para>
         In this tutorial we will show you how to implement an application layer
-        protocol for iOS and xOS that can be used for iPhone, iPad and Mac applications.
-      </para>
-      <para>
-        Although you can create Objective-C code that interfaces with 
+        protocol for OS X and iOS that can be used for Mac, iPhone and iPad applications.
       </para>
       <alert>
         <para>
-          To minimize our code base the DotNetOpenSever SDK's iOS/xOS Objective-C API is
+          To minimize our code base the DotNetOpenSever SDK's OS X/iOS Objective-C API is
           auto-generated from our Java source code by the
           <externalLink>
             <linkText>J2ObjC</linkText>
@@ -26,7 +23,7 @@
       </alert>
     </introduction>
 
-    Complete the 'How to Create a Protocol for Java and Android Applications' tutorial.
+    
 
     Next, complete the 'How to Create an iOS Application' tutorial.
     
@@ -41,6 +38,18 @@
           </title>
           <steps class="ordered">
             <step>
+              <content>
+                <para>Complete the <link xlink:href="CreatingProtocols.Java">How to Create a Protocol for Java and Android Applications</link> tutorial.</para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Complete either the
+                  <link xlink:href="ClientSideComponents.Mac">How to Create a Mac Application</link> tutorial or the
+                  <link xlink:href="ClientSideComponents.iOS">How to Create an iOS Application</link> tutorial.
+                </para>
+              </content>
             </step>
           </steps>
         </procedure>
