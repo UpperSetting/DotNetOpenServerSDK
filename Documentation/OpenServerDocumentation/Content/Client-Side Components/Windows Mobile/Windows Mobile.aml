@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ClientSideComponents.WindowsMobile" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This topic shows you how to create a Windows Mobile application using the
+        Windows Authentication Protocol, Keep-Alive Protocol and the sample Hello
+        Protocol.
+      </para>
+      <autoOutline>0</autoOutline>
+    </introduction>
+
+    <section address="Application">
+      <title>Create a .Net Windows Phone Application using Visual Studio 2013</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Select <legacyBold>File > New > Project</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>New Project</legacyBold> form, select
+                  <legacyBold>Templates > Visual C# > Store Apps > Blank App (Windows
+                  Phone)</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Specify a <legacyBold>Name</legacyBold> and <legacyBold>Location</legacyBold>,
+                  then click <legacyBold>OK</legacyBold>.
+                </para>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="References">
+      <title>Use NuGet to Reference the DotNetOpenServer Assemblies</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Select <legacyBold>Tools > NuGet Package Manager > Package Manager Console</legacyBold>.
+                  From the <legacyBold>Package Manager Console</legacyBold>,
+                  set the <legacyBold>Package Source</legacyBold> to <legacyBold>nuget.org</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the command-line type:
+                </para>
+                <code>
+                  PM> Install-Package UpperSetting.OpenServer.WindowsMobile
+
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client
+
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive
+
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client
+                </code>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="AddXaml">
+      <title>Create the User Interface</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Modify the MainPage.xaml to contain the following controls: host text box,
+                  username text box, password text box and a button. For example:
+                </para>
+                <mediaLink><image xlink:href="WindowsMobile"/></mediaLink>                
+                <codeReference>WindowsMobile#Xaml</codeReference>
+              </content>
+            </step>
+          </steps>
+        </procedure>        
+      </content>
+    </section>
+
+    <section address="AddCode">
+      <title>Add the User Interface Code</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Create the <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>,
+                  create the <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference> then set any properties you want to override,
+                  create the <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects then add them to A Dictionary keyed with the each unique protocol identifier,
+                  create the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>,
+                  connect,
+                  authenticate using the <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>,
+                  initialize the <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>,
+                  initialize the <codeEntityReference>T:US.OpenServer.Protocols.Hello.HelloProtocolClient</codeEntityReference>,
+                  add an event handler for <codeEntityReference>E:US.OpenServer.Protocols.Hello.HelloProtocolClient.OnHelloComplete</codeEntityReference> so the result can be posted to the screen,
+                  finally, call <codeEntityReference>M:US.OpenServer.Protocols.Hello.HelloProtocolClient.HelloAsync(System.String)</codeEntityReference>.
+                  For example:
+                </para>
+                <codeReference>WindowsMobile#Code</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Compile and run the application.
+                </para>
+              </content>
+            </step>            
+          </steps>
+        </procedure>
+      </content>
+    </section>
+    
+    <relatedTopics>
+      <link xlink:href="ClientSideComponents"/>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

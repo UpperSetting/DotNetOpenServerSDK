@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ClientSideComponents.Windows" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This topic shows you how to create a Windows Client application using the
+        Windows Authentication Protocol, Keep-Alive Protocol and the sample Hello
+        Protocol.
+      </para>
+      <autoOutline>0</autoOutline>
+    </introduction>
+
+    <section address="Application">
+      <title>Create a .Net Console Application using Visual Studio 2013</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Select <legacyBold>File > New > Project</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>New Project</legacyBold> form, select <legacyBold>Console Application</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Specify a <legacyBold>Name</legacyBold> and <legacyBold>Location</legacyBold>, then click <legacyBold>OK</legacyBold>.
+                </para>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="References">
+      <title>Use NuGet to Reference the DotNetOpenServer Assemblies</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Select <legacyBold>Tools > NuGet Package Manager > Package Manager Console</legacyBold>.
+                  From the <legacyBold>Package Manager Console</legacyBold>,
+                  set the <legacyBold>Package Source</legacyBold> to <legacyBold>nuget.org</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the command-line type:
+                </para>
+                <code>
+                  PM> Install-Package UpperSetting.OpenServer.Windows.Client
+
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client
+
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive
+
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client
+                </code>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="app.config">
+      <title>Create an Instance of the Client using the app.config</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right
+                  click <legacyBold>Program.cs</legacyBold> then select
+                  <legacyBold>Open</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Add the following using statements:
+                </para>
+                <codeReference>WindowsClient#AppConfigUsing</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Create the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>,
+                  connect, authenticate using the
+                  <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>,
+                  finally, initialize the
+                  <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>.
+                  For example:
+                </para>
+                <codeReference>WindowsClient#AppConfigClient</codeReference>
+              </content>
+            </step>            
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right
+                  click <legacyBold>app.config</legacyBold> then select
+                  <legacyBold>Open</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Add the configuration.
+                  For more information see: <link xlink:href="Configuration.Windows.app.config" />
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Compile and run the application.
+                </para>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="Programatically">
+      <title>Create an Instance of the Client Programatically</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right
+                  click <legacyBold>Program.cs</legacyBold> then select
+                  <legacyBold>Open</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Add the following using statements:
+                </para>
+                <codeReference>WindowsClient#Using</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Create the <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>,
+                  create the <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference> then set any properties you want to override,
+                  create the <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects then add them to A Dictionary keyed with the each unique protocol identifier,
+                  create the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>,
+                  connect, 
+                  authenticate using the <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>,
+                  finally, initialize the <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>.
+                  For example:
+                </para>
+                <codeReference>WindowsClient#Programatically</codeReference>
+                <para>
+                  Please note if you set any of the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference> constructor parameters to null, those parameters are read from the app.config.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Compile and run the application.
+                </para>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+    
+    <relatedTopics>
+      <link xlink:href="Configuration.Windows.app.config">app.config Reference Document</link>
+      <link xlink:href="ClientSideComponents"/>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

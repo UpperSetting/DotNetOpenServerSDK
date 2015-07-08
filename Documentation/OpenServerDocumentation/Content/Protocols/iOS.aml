@@ -5,14 +5,74 @@
     xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <introduction>
-      <para>Under Constructions</para>
+      <para>
+        In this tutorial we will show you how to implement an application layer
+        protocol for iOS and xOS that can be used for iPhone, iPad and Mac applications.
+      </para>
+      <para>
+        Although you can create Objective-C code that interfaces with 
+      </para>
+      <alert>
+        <para>
+          To minimize our code base the DotNetOpenSever SDK's iOS/xOS Objective-C API is
+          auto-generated from our Java source code by the
+          <externalLink>
+            <linkText>J2ObjC</linkText>
+            <linkUri>http://j2objc.org/</linkUri>
+            <linkTarget>_blank</linkTarget>
+          </externalLink>
+          open source project.
+        </para>
+      </alert>
     </introduction>
 
+    Complete the 'How to Create a Protocol for Java and Android Applications' tutorial.
+
+    Next, complete the 'How to Create an iOS Application' tutorial.
+    
+    Once complete you will convert the Java code you created in the first tutorial, you will convert the code to Objective-C, add the code to the application you created in the second tutorial, then finally consume the protocol in your iOS application.
+
+
     <section address="Section1">
-      <title>Under Construction</title>
+      <title>Implement the Application Layer in Java</title>
       <content>
+        <procedure>
+          <title>
+          </title>
+          <steps class="ordered">
+            <step>
+            </step>
+          </steps>
+        </procedure>
       </content>
     </section>
+
+    <section address="Section1">
+      <title>Implement the Application Layer in Java</title>
+      <content>
+        <procedure>
+          <title>
+          </title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Download
+                  <externalLink>
+                    <linkText>DotNetOpenServerSDK_JavaClient.zip</linkText>
+                    <linkUri>http://github.com/UpperSetting/DotNetOpenServerSDK/releases</linkUri>
+                    <linkTarget>_blank</linkTarget>
+                  </externalLink>
+                  from GitHub then extract the contents.
+                </para>
+              </content>
+            </step>
+
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
 
     <section address="NextSteps">
       <title>Next Steps</title>

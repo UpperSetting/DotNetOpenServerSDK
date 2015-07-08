@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ClientSideComponents.Android" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This topic shows you how to create an Android application using the
+        Windows Authentication Protocol, Keep-Alive Protocol and the sample Hello
+        Protocol.
+      </para>
+      <autoOutline>0</autoOutline>
+    </introduction>
+
+    <section address="Application">
+      <title>Create an Android Application using Android Studio</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Download
+                  <externalLink>
+                    <linkText>DotNetOpenServerSDK_JavaClient.zip</linkText>
+                    <linkUri>http://github.com/UpperSetting/DotNetOpenServerSDK/releases</linkUri>
+                    <linkTarget>_blank</linkTarget>
+                  </externalLink>
+                  from GitHub then extract the contents.
+                </para>
+              </content>
+            </step>
+
+            <step>
+              <content>
+                <para>
+                  If you have not already downloaded Android Studio, click
+                  <externalLink>
+                    <linkText>here</linkText>
+                    <linkUri>http://developer.android.com/sdk/index.html</linkUri>
+                    <linkTarget>_blank</linkTarget>
+                  </externalLink>
+                  and you will be re-directed to the Android Studio download page. Once downloaded and installed, launch Android Studio.
+                </para>
+              </content>
+            </step>
+            
+            <step>
+              <content>
+                <para>
+                  Select <legacyBold>File > New Project</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Create New Project</legacyBold> form, specify an
+                  application name, company domain and project location, then click
+                  <legacyBold>Next</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Target Android Devices</legacyBold> page, verify
+                  <legacyBold>Phone and Tablet</legacyBold> is checked, select the target minimum
+                  SDK, then click <legacyBold>Next</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Add an activity to Mobile</legacyBold> page, verify
+                  <legacyBold>Blank Activity</legacyBold> is selected, then click
+                  <legacyBold>Next</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Customize the Activity</legacyBold> page, click
+                  <legacyBold>Finish</legacyBold>.
+                </para>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+    
+    <section address="References">
+      <title>Reference the DotNetOpenServer JAR Files</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Open Windows Explorer and navigate to the directory you previously extracted
+                  the zip file contents then copy the following JAR files located in the
+                  <legacyBold>bin\Java</legacyBold> sub-directory:
+                </para>
+                <list class="bullet">
+                  <listItem><para>OpenServerClient.jar</para></listItem>
+                  <listItem><para>HelloProtocol.jar</para></listItem>
+                  <listItem><para>KeepAliveProtocol.jar</para></listItem>
+                  <listItem><para>WinAuthProtocol.jar</para></listItem>
+                </list>
+                <para>
+                  Paste the copied JAR files to the project's <legacyBold>app\libs</legacyBold>
+                  directory.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Project</legacyBold> view, right click on the
+                  <legacyBold>app</legacyBold> node then select <legacyBold>Open Module
+                  Settings</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Project Structure</legacyBold> form, click the
+                  <legacyBold>Dependencies</legacyBold> tab.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Dependencies</legacyBold> tab, click the plus sign button
+                  then select <legacyBold>File dependency</legacyBold>.
+                  From the <legacyBold>Select Path</legacyBold> form, expand the
+                  <legacyBold>libs</legacyBold> node. Select the first JAR file. Repeat this
+                  procedure for each of the remaining JAR files.
+                </para>
+              </content>
+            </step>            
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="AddXml">
+      <title>Create the User Interface</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Modify the <legacyBold>res\layout\activity_main.xml</legacyBold> to contain the
+                  following controls: host text box, username text box, password text box and a
+                  button. For example:
+                </para>
+                <mediaLink>
+                  <image xlink:href="Android"/>
+                </mediaLink>
+                <codeReference>Android#Xml</codeReference>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="AddCode">
+      <title>Add the User Interface Code</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Create the <legacyBold>com.us.openserver.configuration.ServerConfiguration</legacyBold> then set any properties you want to override,
+                  create the <legacyBold>com.us.openserver.protocols.ProtocolConfiguration</legacyBold> objects then add them to A HashMap keyed with the each unique protocol identifier,
+                  create the <legacyBold>com.us.openserver.Client</legacyBold>,
+                  connect using the <legacyBold>Client.connectAsync</legacyBold> method,
+                  authenticate using the <legacyBold>com.us.openserver.protocols.winauth.WinAuthProtocolClient</legacyBold>,
+                  initialize the <legacyBold>com.us.openserver.protocols.keepalive.KeepAliveProtocol</legacyBold>,
+                  initialize the <legacyBold>com.us.openserver.protocols.hello.HelloProtocolClient</legacyBold>,
+                  finally, call <legacyBold>HelloProtocolClient.hello(String userName)</legacyBold>.
+                  For example:
+                </para>
+                <codeReference>Android#Code</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Compile and run the application.
+                </para>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+    
+    <relatedTopics>
+      <link xlink:href="ClientSideComponents"/>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

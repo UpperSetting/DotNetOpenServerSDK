@@ -101,6 +101,12 @@
   <ItemGroup>
     <Folder Include="Content" />
     <Folder Include="Content\Client-Side Components\" />
+    <Folder Include="Content\Client-Side Components\Android" />
+    <Folder Include="Content\Client-Side Components\iOS" />
+    <Folder Include="Content\Client-Side Components\Mac" />
+    <Folder Include="Content\Client-Side Components\Java" />
+    <Folder Include="Content\Client-Side Components\Windows Mobile" />
+    <Folder Include="Content\Client-Side Components\Windows" />
     <Folder Include="Content\Configuration\" />
     <Folder Include="Content\Configuration\App.Config\" />
     <Folder Include="Content\Logging\" />
@@ -110,12 +116,13 @@
     <Folder Include="Media" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\Client-Side Components\Android.aml" />
+    <None Include="Content\Client-Side Components\Android\Android.aml" />
     <None Include="Content\Client-Side Components\Client-Side Components.aml" />
-    <None Include="Content\Client-Side Components\iOS.aml" />
-    <None Include="Content\Client-Side Components\Java.aml" />
-    <None Include="Content\Client-Side Components\Windows Mobile.aml" />
-    <None Include="Content\Client-Side Components\Windows.aml" />
+    <None Include="Content\Client-Side Components\iOS\iOS.aml" />
+    <None Include="Content\Client-Side Components\Java\Java.aml" />
+    <None Include="Content\Client-Side Components\Mac\Mac.aml" />
+    <None Include="Content\Client-Side Components\Windows Mobile\Windows Mobile.aml" />
+    <None Include="Content\Client-Side Components\Windows\Windows.aml" />
     <None Include="Content\Configuration\App.Config\app.config.aml" />
     <None Include="Content\Configuration\App.Config\item Element.aml" />
     <None Include="Content\Configuration\App.Config\protocols Element.aml" />
@@ -140,11 +147,12 @@
     <Content Include="icons\Help.png" />
   </ItemGroup>
   <ItemGroup>
-    <CodeSnippets Include="Content\Client-Side Components\Android.snippets" />
-    <CodeSnippets Include="Content\Client-Side Components\iOS.snippets" />
-    <CodeSnippets Include="Content\Client-Side Components\Java.snippets" />
-    <CodeSnippets Include="Content\Client-Side Components\Windows Mobile .snippets" />
-    <CodeSnippets Include="Content\Client-Side Components\Windows.snippets" />
+    <CodeSnippets Include="Content\Client-Side Components\Android\Android.snippets" />
+    <CodeSnippets Include="Content\Client-Side Components\iOS\iOS.snippets" />
+    <CodeSnippets Include="Content\Client-Side Components\Java\Java.snippets" />
+    <CodeSnippets Include="Content\Client-Side Components\Mac\Mac.snippets" />
+    <CodeSnippets Include="Content\Client-Side Components\Windows Mobile\Windows Mobile .snippets" />
+    <CodeSnippets Include="Content\Client-Side Components\Windows\Windows.snippets" />
     <CodeSnippets Include="Content\Configuration\App.Config\app.config.snippets" />
     <CodeSnippets Include="Content\Logging\Logging.snippets" />
     <CodeSnippets Include="Content\Protocols\CSharp.snippets" />
@@ -156,25 +164,37 @@
       <ImageId>Architecture</ImageId>
       <AlternateText>Architecture</AlternateText>
     </Image>
-    <Image Include="Content\Client-Side Components\Android.png">
+    <Image Include="Content\Client-Side Components\Android\Android.png">
       <ImageId>Android</ImageId>
       <AlternateText>Android</AlternateText>
     </Image>
-    <Image Include="Content\Client-Side Components\iOS.png">
+    <Image Include="Content\Client-Side Components\iOS\iOS.png">
       <ImageId>iOS</ImageId>
       <AlternateText>iOS</AlternateText>
     </Image>
-    <Image Include="Content\Client-Side Components\WindowsMobile.png">
-      <ImageId>WindowsMobile</ImageId>
-      <AlternateText>Windows Mobile</AlternateText>
-    </Image>
-    <Image Include="Content\Client-Side Components\XCodeOptions.png">
-      <ImageId>XCodeOptions</ImageId>
+    <Image Include="Content\Client-Side Components\iOS\iOSXCodeOptions.png">
+      <ImageId>iOSXCodeOptions</ImageId>
       <AlternateText>XCode Options</AlternateText>
     </Image>
-    <Image Include="Content\Client-Side Components\XCodeTemplate.png">
-      <ImageId>XCodeTemplate</ImageId>
+    <Image Include="Content\Client-Side Components\iOS\iOSXCodeTemplate.png">
+      <ImageId>iOSXCodeTemplate</ImageId>
       <AlternateText>XCode Template</AlternateText>
+    </Image>
+    <Image Include="Content\Client-Side Components\Mac\Mac.png">
+      <ImageId>Mac</ImageId>
+      <AlternateText>Mac</AlternateText>
+    </Image>
+    <Image Include="Content\Client-Side Components\Mac\MacXCodeOptions.png">
+      <ImageId>MacXCodeOptions</ImageId>
+      <AlternateText>XCode Options</AlternateText>
+    </Image>
+    <Image Include="Content\Client-Side Components\Mac\MacXCodeTemplate.png">
+      <ImageId>MacXCodeTemplate</ImageId>
+      <AlternateText>XCode Mac Template</AlternateText>
+    </Image>
+    <Image Include="Content\Client-Side Components\Windows Mobile\WindowsMobile.png">
+      <ImageId>WindowsMobile</ImageId>
+      <AlternateText>Windows Mobile</AlternateText>
     </Image>
   </ItemGroup>
   <!-- Import the SHFB build targets -->

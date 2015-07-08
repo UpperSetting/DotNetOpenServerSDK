@@ -10,6 +10,7 @@
       <list class="bullet">
         <listItem><para><link xlink:href="ClientSideComponents.Windows"/></para></listItem>
         <listItem><para><link xlink:href="ClientSideComponents.Java"/></para></listItem>
+        <listItem><para><link xlink:href="ClientSideComponents.Mac"/></para></listItem>
         <listItem><para><link xlink:href="ClientSideComponents.Android"/></para></listItem>
         <listItem><para><link xlink:href="ClientSideComponents.iOS"/></para></listItem>
         <listItem><para><link xlink:href="ClientSideComponents.WindowsMobile"/></para></listItem>

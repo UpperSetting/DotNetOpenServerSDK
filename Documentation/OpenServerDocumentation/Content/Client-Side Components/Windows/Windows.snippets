@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<examples>
+  <item id="WindowsClient#AppConfigUsing">
+    <sampleCode language="CSharp">
+      using US.OpenServer;
+      using US.OpenServer.Protocols.Hello;
+      using US.OpenServer.Protocols.KeepAlive;
+      using US.OpenServer.Protocols.WinAuth;
+    </sampleCode>
+  </item>
+
+  <item id="WindowsClient#AppConfigClient">
+    <sampleCode language="CSharp">
+      using System;
+      using US.OpenServer;
+      using US.OpenServer.Protocols.Hello;
+      using US.OpenServer.Protocols.KeepAlive;
+      using US.OpenServer.Protocols.WinAuth;
+
+      namespace HelloClient
+      {
+          class Program
+          {
+              static void Main(string[] args)
+              {            
+                  try
+                  {
+                      Client client = new Client();
+                      client.Connect();
+
+                      WinAuthProtocolClient wap = client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER) as WinAuthProtocolClient;
+                      wap.Authenticate(Environment.UserName, "password", null);
+                      if (!wap.IsAuthenticated)
+                          throw new Exception("Access denied.");
+
+                      client.Initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
+
+                      HelloProtocolClient hpc = (HelloProtocolClient)client.Initialize(HelloProtocol.PROTOCOL_IDENTIFIER);
+                      string serverReponse = hpc.Hello(Environment.UserName);
+                      Console.WriteLine(serverReponse);
+
+                      Console.ReadKey();
+                      client.Close();
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine(ex.Message);
+                      Console.ReadKey();
+                  }
+              }
+          }
+      }
+    </sampleCode>
+  </item>
+
+  <item id="WindowsClient#Using">
+    <sampleCode language="CSharp">
+      using US.OpenServer;
+      using US.OpenServer.Configuration;
+      using US.OpenServer.Protocols;
+      using US.OpenServer.Protocols.Hello;
+      using US.OpenServer.Protocols.KeepAlive;
+      using US.OpenServer.Protocols.WinAuth;
+    </sampleCode>
+  </item>
+  
+  <item id="WindowsClient#Programatically">
+    <sampleCode language="CSharp">
+      using System;
+      using System.Collections.Generic;
+      using US.OpenServer;
+      using US.OpenServer.Configuration;
+      using US.OpenServer.Protocols;
+      using US.OpenServer.Protocols.Hello;
+      using US.OpenServer.Protocols.KeepAlive;
+      using US.OpenServer.Protocols.WinAuth;
+
+      namespace HelloClient
+      {
+          class Program
+          {
+              static void Main(string[] args)
+              {
+                  Client client = null;
+                  try
+                  {
+                      ConsoleLogger logger = new ConsoleLogger();
+
+                      ServerConfiguration cfg = new ServerConfiguration();
+
+                      Dictionary&lt;ushort, ProtocolConfiguration&gt; protocolConfigurations =
+                          new Dictionary&lt;ushort, ProtocolConfiguration&gt;();
+
+                      protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
+                          new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
+
+                      protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER,
+                          new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolClient)));
+
+                      protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
+                          new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
+
+                      client = new Client(cfg, protocolConfigurations, logger);
+                      client.Connect();
+
+                      string userName = "TestUser";
+                      WinAuthProtocolClient wap = client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER) as WinAuthProtocolClient;
+                      if (!wap.Authenticate(userName, "T3stus3r", null))
+                          throw new Exception("Access denied.");
+
+                      client.Initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
+
+                      HelloProtocolClient hpc = (HelloProtocolClient)client.Initialize(HelloProtocol.PROTOCOL_IDENTIFIER);
+                      string serverReponse = hpc.Hello(userName);
+                      Console.WriteLine(serverReponse);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine(ex.Message);
+                  }
+                  finally
+                  {
+                      Console.ReadKey();
+                      if (client != null)
+                          client.Close();
+                  }
+              }
+          }
+      }
+    </sampleCode>
+  </item>
+</examples>
+
