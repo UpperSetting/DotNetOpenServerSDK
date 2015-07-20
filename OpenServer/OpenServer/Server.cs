@@ -122,10 +122,14 @@ namespace US.OpenServer
 
             if (serverConfiguration == null)
                 serverConfiguration = (ServerConfiguration)ConfigurationManager.GetSection("server");
+            if (serverConfiguration == null)
+                serverConfiguration = new ServerConfiguration();
             ServerConfiguration = serverConfiguration;
 
             if (protocolConfigurations == null)
                 protocolConfigurations = (Dictionary<ushort, ProtocolConfiguration>)ConfigurationManager.GetSection("protocols");
+            if (protocolConfigurations == null)
+                protocolConfigurations = new Dictionary<ushort, ProtocolConfiguration>();
             ProtocolConfigurations = protocolConfigurations;
 
             UserData = userData;
