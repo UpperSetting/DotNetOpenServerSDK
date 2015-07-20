@@ -7,11 +7,18 @@
     <introduction>
       
       <para>
-        DotNetOpenServer is implemented on Windows using the .Net Framework 4.5.
+        DotNetOpenServer is implemented on Windows using the .Net Framework 4.5.2.
         The server is implemented as an asynchronous TCP socket server.
         .Net components are used to negotiate SSL/TLS 1.2.
-        Protocols are implemented in stand-alone assemblies which are loaded through Reflection when requested by the client.
-        The information required for the server to load the assemblies is contained within the app.config file or can be programatically set.
+        By default, Windows Authentication is used to authenticate client connections,
+        however; any authentication method can be implemented by simply extending the
+        <codeEntityReference>T:US.OpenServer.Protocols.AuthenticationProtocolBase</codeEntityReference>
+        abstract base class.
+        Protocols are implemented in stand-alone assemblies which, when requested by the client, are loaded through Reflection.
+        The information required for the server to load the assemblies is contained within the
+        <link xlink:href="Configuration.Windows">app.config</link>
+        file or can optionally be programatically set.
+        The SDK includes native client APIs for Android, iOS (iPhone and iPad), Windows Mobile, Windows and Mac but also includes a Java API enabling you to target Unix/Linux based systems.        
       </para>
 
       <table>
@@ -68,8 +75,9 @@
       </table>
 
       <para>
-        The server logs informational messages through Log4Net, however; you have the option of implementing your own logging mechanism.
-        For more information, see <link xlink:href="Logging" />.
+        The server logs informational messages through Log4Net, however; you have the
+        option of implementing your own logging mechanism. For more information, see
+        <link xlink:href="Logging" />.
       </para>
       
     </introduction>

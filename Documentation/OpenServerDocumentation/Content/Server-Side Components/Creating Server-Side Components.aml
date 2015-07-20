@@ -30,6 +30,29 @@
                 </para>
               </content>
             </step>
+            <step>
+              <content>
+                <para>
+                  Select <legacyBold>Tools > NuGet Package Manager > Package Manager Console</legacyBold>.
+                  From the <legacyBold>Package Manager Console</legacyBold>,
+                  set the <legacyBold>Package Source</legacyBold> to <legacyBold>nuget.org</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  <para>
+                    From the command-line type:
+                  </para>
+                  <code>
+                    PM> Install-Package UpperSetting.OpenServer
+                    PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive
+                    PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Server
+                  </code>
+                </para>
+              </content>
+            </step>
           </steps>
         </procedure>
       </content>
@@ -41,38 +64,7 @@
         <procedure>
           <title>To create an instance of the Server:</title>
           <steps class="ordered">
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click on <legacyBold>References</legacyBold> then select <legacyBold>Add Reference</legacyBold>.
-                </para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>Reference Manager</legacyBold> form, click the <legacyBold>Browse</legacyBold> button.
-                </para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>Select the files to reference</legacyBold> form, navigate to the DotNetOpenServer SDK's <legacyBold>bin</legacyBold> directory. By default this is <legacyBold>c:\Program Files\Upper Setting\DotNetOpenServer SDK\bin</legacyBold>.
-                </para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  Select the following assemblies:
-                </para>
-                <list class="bullet">
-                  <listItem><para>OpenServer.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Shared.dll</para></listItem>
-                </list>
-              </content>
-            </step>
+                      
             <step>
               <content>
                 <para>
@@ -122,42 +114,6 @@
         <procedure>
           <title>To create an instance of the Server:</title>
           <steps class="ordered">
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click on <legacyBold>References</legacyBold> then select <legacyBold>Add Reference</legacyBold>.
-                </para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>Reference Manager</legacyBold> form, click the <legacyBold>Browse</legacyBold> button.
-                </para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>Select the files to reference</legacyBold> form, navigate to the DotNetOpenServer SDK's <legacyBold>bin</legacyBold> directory. By default this is <legacyBold>c:\Program Files\Upper Setting\DotNetOpenServer SDK\bin</legacyBold>.
-                </para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  Select the following assemblies:
-                </para>
-                <list class="bullet">
-                  <listItem><para>US.OpenServer.Protocols.KeepAlive.dll</para></listItem>
-                  <listItem><para>US.OpenServer.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Shared.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Windows.Shared.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Protocols.WinAuth.Server.dll</para></listItem>
-                  <listItem><para>US.OpenServer.Protocols.WinAuth.Shared.dll</para></listItem>
-                </list>
-              </content>
-            </step>
             <step>
               <content>
                 <para>

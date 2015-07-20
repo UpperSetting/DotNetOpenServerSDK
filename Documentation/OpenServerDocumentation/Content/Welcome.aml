@@ -127,9 +127,10 @@
           component objects, functions, events and variables to your client applications.
           Developers create their own objects in a stand-alone assembly DLL which are then
           automatically loaded and started by the DotNetCloudServer. Your applications can
-          not only remotely invoke server-side functions but can also receive immediate
-          event notification and variable updates as they happen without costly polling
-          mechanisms found in our competitors' products based on REST, JSON or SOAP.
+          not only remotely invoke server-side functions and set variables but can also
+          receive immediate event notification and variable updates as they happen without
+          the costly polling mechanisms found in our competitors' products based on REST,
+          JSON or SOAP.
         </para>
         <para>
           Granular role and user authorization (security access permissions) can be
