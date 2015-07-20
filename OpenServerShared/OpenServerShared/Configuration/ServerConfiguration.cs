@@ -54,6 +54,7 @@ namespace US.OpenServer.Configuration
         /// </summary>
         public ServerConfiguration()
         {
+            Host = DEFAULT_BIND_ADDRESS;
             Port = SessionLayerProtocol.PORT;
             IdleTimeout = IDLE_TIMEOUT;
             ReceiveTimeout = RECEIVE_TIMEOUT;
