@@ -86,20 +86,18 @@ namespace US.OpenServer.WindowsMobile
         #endregion
 
         #region Constructor
-        /// <summary> Creates an instance of Client. </summary>
-        /// <remarks> All parameters are optional. If null is passed, the object's
-        /// configuration is read from the app.config file. </remarks>
+        /// <summary> Creates an instance of Client. </summary>        
+        /// <param name="serverConfiguration">Contains the properties necessary to
+        /// connect to the server.</param>
+        /// <param name="protocolConfigurations">A Dictionary of ProtocolConfiguration
+        /// objects keyed with each protocol's unique identifier.</param>
         /// <param name="logger">An optional Logger to log messages. If null is passed,
-        /// a <see cref="US.OpenServer.Logger"/> object is created.</param>
-        /// <param name="serverConfiguration">An optional ServerConfiguration that contains the
-        /// properties necessary to connect to the server. If null is passed, the
-        /// server host is set to localhost.</param>
-        /// <param name="protocolConfigurations">An optional Dictionary of
-        /// ProtocolConfiguration objects keyed with each protocol's unique identifier.</param>
-        /// <param name="userData">An Object the caller can pass through to each protocol.</param>
+        /// a <see cref="US.OpenServer.Logger"/> object is created.</param>      
+        /// <param name="userData">An optional Object the caller can pass through to
+        /// each protocol.</param>
         public Client(
-            ServerConfiguration serverConfiguration = null,
-            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations = null,
+            ServerConfiguration serverConfiguration,
+            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations,
             Logger logger = null,
             object userData = null)
         {
