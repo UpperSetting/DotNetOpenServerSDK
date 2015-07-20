@@ -109,10 +109,17 @@ namespace US.OpenServer
 
             if (serverConfiguration == null)
                 serverConfiguration = (ServerConfiguration)ConfigurationManager.GetSection("server");
+            if (serverConfiguration == null)
+            {
+                serverConfiguration = new ServerConfiguration();
+                serverConfiguration.Host = ServerConfiguration.DEFAULT_HOST;
+            }
             ServerConfiguration = serverConfiguration;
 
             if (protocolConfigurations == null)
                 protocolConfigurations = (Dictionary<ushort, ProtocolConfiguration>)ConfigurationManager.GetSection("protocols");
+            if (protocolConfigurations == null)
+                protocolConfigurations = new Dictionary<ushort, ProtocolConfiguration>();
             ProtocolConfigurations = protocolConfigurations;
 
             UserData = userData;
