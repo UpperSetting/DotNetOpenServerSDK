@@ -16,6 +16,11 @@
 
     <relatedTopics>
       <link xlink:href="Configuration.Windows.app.config">app.config Reference Document</link>
+
+      <link xlink:href="Configuring_the_Windows_Authentication_Protocol"/>
+
+      <link xlink:href="Logging"/>
+      
       <link xlink:href="ClientSideComponents"/>
       <link xlink:href="ServerSideComponents"/>
     </relatedTopics>

@@ -8,7 +8,7 @@
       <para>
         Upper Setting's DotNetOpenServer SDK is an open source communication library
         that is lightweight and fully extendable enabling developers to create fast,
-        robust, secure, cloud based smart mobile device and desktop applications.
+        robust and secure cloud based smart mobile device and desktop applications.
       </para>
     </introduction>
     
@@ -20,7 +20,7 @@
         </para>
         <list class="bullet">
           <listItem><para>Tutorials for creating Windows server applications.</para></listItem>
-          <listItem><para>Tutorials for creating client applications for Android, iOS, Windows Mobile, Windows, Mac and Java.</para></listItem>
+          <listItem><para>Tutorials for creating client applica7tions for Android, iOS, Windows Mobile, Windows, Mac and Java.</para></listItem>
           <listItem><para>Tutorials for creating your own application layer protocols.</para></listItem>
           <listItem><para>C# reference documentation.</para></listItem>  
         </list>
@@ -33,9 +33,9 @@
         <para>
           In 2015, frustrated with application server solutions based on slow stateless
           HTTP based protocols such as REST, JSON and SOAP, we created our own fast
-          stateful binary protocol stack from the ground up and warped it up in a
+          stateful binary protocol stack from the ground up and wrapped it up in a
           powerful, secure, robust and lightning fast application server framework targeted
-          at Android, iOS, Windows Phone, Windows, Mac and Linux. Our protocol stack
+          at Android, iOS, Windows Phone, Windows, Mac and Unix/Linux. Our protocol stack
           <externalLink>
             <linkText>FASTack</linkText>
             <linkUri>http://UpperSetting.com/Technology</linkUri>
@@ -108,7 +108,7 @@
           heartbeat protocol. Both the client and server send tiny packets back and forth.
           As soon as the heartbeat stops the framework notifies the application the
           network has failed enabling server-side component objects to release associated
-          resources and notifies the end user a network failure has occurred.
+          resources and notify the end user a network failure has occurred.
         </para>
       </content>
     </section>
@@ -124,7 +124,7 @@
             <linkTarget>_blank</linkTarget>
           </externalLink>
           is our Remote Object Access Protocol (ROAP). ROAP exposes your server-side
-          component objects, functions, events and variables to your client applications.
+          component objects, methods, events, and properties to your client applications.
           Developers create their own objects in a stand-alone assembly DLL which are then
           automatically loaded and started by the DotNetCloudServer. Your applications can
           not only remotely invoke server-side functions and set variables but can also
@@ -134,9 +134,9 @@
         </para>
         <para>
           Granular role and user authorization (security access permissions) can be
-          assigned to each function, variable and event enabling systems administrators to
-          regulate who can execute functions, receive event notifications and read as well
-          as write variables. For example, a variable can be configured so users can read
+          assigned to each method, event and property enabling systems administrators to
+          regulate who can execute methods, receive event notifications and read as well
+          as write properties. For example, a property can be configured so users can read
           the value but only administrators can update the value.
         </para>
       </content>

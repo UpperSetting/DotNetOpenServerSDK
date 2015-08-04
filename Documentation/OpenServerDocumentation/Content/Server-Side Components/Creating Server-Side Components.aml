@@ -12,11 +12,16 @@
       <title>Create a .Net Console Application</title>
       <content>
         <procedure>
-          <title>To create your .Net Console Application from Visual Studio:</title>
+          <title>To create your .Net Console Application from Visual Studio 2013:</title>
           <steps class="ordered">
             <step>
               <content>
-                <para>Select <legacyBold>File > Project</legacyBold>.</para>
+                <para>Select <legacyBold>File > New > Project</legacyBold>.</para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>From the .NET Framework drop-down, select <legacyBold>.Net Framework 4.5.2</legacyBold>.</para>
               </content>
             </step>
             <step>
@@ -42,15 +47,14 @@
             <step>
               <content>
                 <para>
-                  <para>
-                    From the command-line type:
-                  </para>
-                  <code>
-                    PM> Install-Package UpperSetting.OpenServer
-                    PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive
-                    PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Server
-                  </code>
+                  From the command-line type:
                 </para>
+                <code>
+                  PM> Install-Package UpperSetting.OpenServer
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Server
+                  PM> Install-Package log4net
+                </code>
               </content>
             </step>
           </steps>
@@ -134,7 +138,7 @@
                 <para>
                   Create the <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>,
                   create the <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference> then set any properties you want to override,
-                  create the <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects then add them to A Dictionary keyed with the each unique protocol identifier,
+                  create the <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects then add them to a Dictionary keyed with the each unique protocol identifier,
                   finally, create the <codeEntityReference>T:US.OpenServer.Server</codeEntityReference>.
                   For example:
                 </para>

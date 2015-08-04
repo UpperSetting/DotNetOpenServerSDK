@@ -6,8 +6,9 @@
 
     <introduction>
       <para>
-        Specifies the protocol, how to load the assembly the implementation resides,
-        how to load custom protocol property assemblies and custom protocol properties.
+ddddddddddddddddddddddddddddddddddd        Specifies the unique protocol identifier, 
+        the assembly and class the implementation resides and 
+        the optional protocol configuration class.
       </para>
     </introduction>
 
@@ -60,20 +61,12 @@
           </row>
           <row>
             <entry>
-              <para>configSectionAssembly</para>
+              <para>configClassPath</para>
             </entry>
             <entry>
-              <para>When including custom protocol properties within the app.config file, specifies the assembly that contains the protocol configuration reader class.</para>
+              <para>Specifies the class path of the class the protocol configuration reader is implemented.</para>
             </entry>
-          </row>
-          <row>
-            <entry>
-              <para>configSectionClassPath</para>
-            </entry>
-            <entry>
-              <para>When including custom protocol properties within the app.config file, specifies the class path of the class the protocol configuration reader is implemented.</para>
-            </entry>
-          </row>         
+          </row>          
         </table>
         <codeReference>WindowsServer#AppConfigProtocolsSample</codeReference>
       </content>

@@ -7,18 +7,20 @@
     <introduction>
       
       <para>
-        DotNetOpenServer is implemented on Windows using the .Net Framework 4.5.2.
-        The server is implemented as an asynchronous TCP socket server.
-        .Net components are used to negotiate SSL/TLS 1.2.
-        By default, Windows Authentication is used to authenticate client connections,
-        however; any authentication method can be implemented by simply extending the
+        DotNetOpenServer is implemented on Windows using the .Net Framework 4.5.2. The
+        server is implemented as an asynchronous TCP socket server. .Net components are
+        used to negotiate SSL/TLS 1.2. By default, Windows Authentication is used to
+        authenticate client connections, however; any authentication method can be
+        implemented by simply extending the
         <codeEntityReference>T:US.OpenServer.Protocols.AuthenticationProtocolBase</codeEntityReference>
-        abstract base class.
-        Protocols are implemented in stand-alone assemblies which, when requested by the client, are loaded through Reflection.
-        The information required for the server to load the assemblies is contained within the
-        <link xlink:href="Configuration.Windows">app.config</link>
-        file or can optionally be programatically set.
-        The SDK includes native client APIs for Android, iOS (iPhone and iPad), Windows Mobile, Windows and Mac but also includes a Java API enabling you to target Unix/Linux based systems.        
+        abstract base class. Protocols are implemented in stand-alone assemblies which,
+        when requested by the client, are loaded through Reflection. The information
+        required for the server to load the assemblies is contained within the <link
+        xlink:href="Configuration.Windows">app.config</link> file or can optionally be
+        programatically set. The SDK includes native client APIs for Android, iOS
+        (iPhone and iPad), Windows Mobile, Windows and Mac but also includes a Java API
+        enabling you to target Unix/Linux based systems.
+
       </para>
 
       <table>
