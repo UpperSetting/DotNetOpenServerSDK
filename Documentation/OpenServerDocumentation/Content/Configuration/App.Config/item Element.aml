@@ -6,7 +6,7 @@
 
     <introduction>
       <para>
-ddddddddddddddddddddddddddddddddddd        Specifies the unique protocol identifier, 
+        Specifies the unique protocol identifier, 
         the assembly and class the implementation resides and 
         the optional protocol configuration class.
       </para>
