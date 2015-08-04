@@ -86,7 +86,10 @@ namespace US.OpenServer
         /// <remarks> All parameters are optional. If null is passed, the object's
         /// configuration is read from the app.config file. </remarks>
         /// <param name="logger">An optional Logger to log messages. If null is passed,
-        /// a <see cref="US.OpenServer.Logger"/> object is created.</param>
+        /// an attempt is made to read the log4net configuration from the app.config
+        /// file. If the configuration is not present a <see cref="US.OpenServer.Log4NetLogger"/>
+        /// is created otherwise a <see cref="US.OpenServer.ConsoleLogger"/> is
+        /// created.</param>
         /// <param name="serverConfiguration">An optional ServerConfiguration that contains the
         /// properties necessary to connect to the server. If null is passed, the
         /// configuration is read from the app.config's 'server' XML section
@@ -103,7 +106,14 @@ namespace US.OpenServer
             object userData = null)
         {
             if (logger == null)
-                logger = new ConsoleLogger();
+            {
+                object log4NetConfiguration = ConfigurationManager.GetSection("log4net");
+                if (log4NetConfiguration != null)
+                    logger = new Log4NetLogger("DotNetOpenServerClient");
+                else
+                    logger = new ConsoleLogger();
+            }
+            
             Logger = logger;
             Logger.Log(Level.Info, string.Format("Execution Mode: {0}", Debugger.IsAttached ? "Debug" : "Release"));
 
