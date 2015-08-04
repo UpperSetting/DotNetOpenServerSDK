@@ -82,7 +82,7 @@ namespace US.OpenServer
         /// Log's a message.
         /// </summary>
         /// <param name="level">A Level that specifies the priority of the message.</param>
-        /// <param name="message">A string that contains the message.</param>
+        /// <param name="message">A String that contains the message.</param>
         public virtual void Log(Level level, string message)
         {
             if (level == Level.Debug && !LogDebug)

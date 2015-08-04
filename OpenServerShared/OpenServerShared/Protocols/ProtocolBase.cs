@@ -24,7 +24,7 @@ using System.Threading;
 namespace US.OpenServer.Protocols
 {
     /// <summary>
-    /// Interface for protocol implementations.
+    /// Abstract base class that is the basis of all protocol layer implementations.
     /// </summary>
     public abstract class ProtocolBase : IDisposable
     {
@@ -55,7 +55,7 @@ namespace US.OpenServer.Protocols
         }
 
         /// <summary>
-        /// Closes the protocol layers allowing for command packet transmission (e.g. a
+        /// Closes the protocol layer allowing for command packet transmission (e.g. a
         /// Keep-Alive.QUIT command packet) then releases associated resources.
         /// </summary>
         public virtual void Close()
@@ -63,7 +63,7 @@ namespace US.OpenServer.Protocols
         }
 
         /// <summary>
-        /// Immediately closes the protocol layers then releases associated resources.
+        /// Immediately closes the protocol layer then releases associated resources.
         /// </summary>
         public virtual void Dispose()
         {
