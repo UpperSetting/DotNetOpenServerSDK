@@ -97,7 +97,7 @@ namespace US.OpenServer
         #region Constructor
         /// <summary> Creates an instance of Server. </summary>
         /// <remarks> All parameters are optional. If null is passed, the object's
-        /// configuration is read from the app.config file. </remarks>
+        /// configuration is read from the app.config file.</remarks>
         /// <param name="logger">An optional Logger to log messages. If null is passed,
         /// an attempt is made to read the log4net configuration from the app.config
         /// file. If the configuration is not present a <see cref="US.OpenServer.Log4NetLogger"/>

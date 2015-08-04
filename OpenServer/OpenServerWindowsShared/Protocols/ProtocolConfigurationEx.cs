@@ -51,10 +51,10 @@ namespace US.OpenServer.Protocols
         /// Creates an instance of ProtocolConfigurationEx when this class is extended.
         /// </summary>
         /// <remarks>
-        /// This constructor is called by <see cref="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler"/>
+        /// This constructor is called by US.OpenServer.Protocols.ProtocolConfigurationSectionHandler
         /// when loading protocol configurations from the app.config file and the
-        /// app.config file includes a configSectionAssemply and configSectionClassPath
-        /// within the protocols/item section.
+        /// app.config file includes a configClassPath within the protocols/item
+        /// section.
         /// </remarks>
         protected ProtocolConfigurationEx()
             : base ()
@@ -103,8 +103,8 @@ namespace US.OpenServer.Protocols
         /// <remarks>
         /// This function is called by <see cref="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler"/>
         /// when loading protocol configurations from the app.config file and the
-        /// app.config file includes a configSectionAssemply and configSectionClassPath
-        /// within the protocols/item section.
+        /// app.config file includes a configClassPath within the protocols/item
+        /// section.
         /// </remarks>
         /// <param name="id">A UInt16 that specifies the protocol identifier.</param>
         /// <param name="assembly">A string that specifies the assembly the class is
