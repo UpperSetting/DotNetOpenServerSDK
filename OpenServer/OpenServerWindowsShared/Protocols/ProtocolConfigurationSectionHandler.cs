@@ -17,6 +17,7 @@ You should have received a copy of the GNU General Public License along with
 DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
@@ -62,6 +63,13 @@ namespace US.OpenServer.Protocols
                     string fullName = string.Format(@"{0}\{1}", fi.Directory.FullName, assembly);
                     Assembly a = Assembly.LoadFrom(fullName);
                     plc = (ProtocolConfigurationEx)a.CreateInstance(cfgClassPathNode.Value);
+                    if (plc == null)
+                    {
+                        throw new Exception(string.Format(
+                            "Unable to create instance.  Assembly: {0}  Type Name: {1}",
+                            fullName, cfgClassPathNode.Value));
+                    }
+
                     plc.Initialize(id, assembly, classPath, node);
                 }
                 else
