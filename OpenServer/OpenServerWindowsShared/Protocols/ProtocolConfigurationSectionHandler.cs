@@ -69,7 +69,6 @@ namespace US.OpenServer.Protocols
                             "Unable to create instance.  Assembly: {0}  Type Name: {1}",
                             fullName, cfgClassPathNode.Value));
                     }
-
                     plc.Initialize(id, assembly, classPath, node);
                 }
                 else
