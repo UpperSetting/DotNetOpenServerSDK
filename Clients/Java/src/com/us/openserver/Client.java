@@ -54,7 +54,7 @@ public class Client
         this.clientObserver = clientObserver;
         
         if (logger == null)
-            logger = new Logger();
+            logger = new ConsoleLogger();
         this.logger = logger;
 
         if (serverConfiguration == null)
