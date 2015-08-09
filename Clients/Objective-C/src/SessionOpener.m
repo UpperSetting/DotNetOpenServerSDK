@@ -80,7 +80,7 @@ __attribute__((unused)) static void ComUsOpenserverSessionSessionOpener_setSocke
     ComUsOpenserverSessionSessionOpener_setSocketOptionsWithJavaNetSocket_(self, socket);
   }
   else {
-    @throw new_JavaLangException_initWithNSString_(@"Not implemented yet.");
+    @throw new_JavaLangException_initWithNSString_(@"SSL/TLS 1.2 Not Implemented yet.");
   }
   session_ = new_ComUsOpenserverSessionSession_initWithComUsOpenserverClient_withJavaNetSocket_withNSString_(client_, socket, [((JavaNetInetAddress *) nil_chk([((JavaNetSocket *) nil_chk(socket)) getInetAddress])) getHostAddress]);
   [session_ logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Info() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Connected to %1$s:%2$s...", [IOSObjectArray newArrayWithObjects:(id[]){ [cfg getHost], JavaLangInteger_valueOfWithInt_([cfg getPort]) } count:2 type:NSObject_class_()])];

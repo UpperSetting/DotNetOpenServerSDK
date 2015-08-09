@@ -5,6 +5,7 @@
 
 
 #include "Client.h"
+#include "ConsoleLogger.h"
 #include "IClientObserver.h"
 #include "IOSClass.h"
 #include "IOSPrimitiveArray.h"
@@ -57,6 +58,21 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverClient, session_, ComUsOpenserverSessionSessi
 
 - (ComUsOpenserverSessionSession *)getSession {
   return session_;
+}
+
+- (instancetype)initWithComUsOpenserverIClientObserver:(id<ComUsOpenserverIClientObserver>)clientObserver
+   withComUsOpenserverConfigurationServerConfiguration:(ComUsOpenserverConfigurationServerConfiguration *)serverConfiguration
+                                   withJavaUtilHashMap:(JavaUtilHashMap *)protocolConfigurations {
+  ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(self, clientObserver, serverConfiguration, protocolConfigurations);
+  return self;
+}
+
+- (instancetype)initWithComUsOpenserverIClientObserver:(id<ComUsOpenserverIClientObserver>)clientObserver
+   withComUsOpenserverConfigurationServerConfiguration:(ComUsOpenserverConfigurationServerConfiguration *)serverConfiguration
+                                   withJavaUtilHashMap:(JavaUtilHashMap *)protocolConfigurations
+                             withComUsOpenserverLogger:(ComUsOpenserverLogger *)logger {
+  ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_(self, clientObserver, serverConfiguration, protocolConfigurations, logger);
+  return self;
 }
 
 - (instancetype)initWithComUsOpenserverIClientObserver:(id<ComUsOpenserverIClientObserver>)clientObserver
@@ -134,6 +150,8 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverClient, session_, ComUsOpenserverSessionSessi
     { "getServerConfiguration", NULL, "Lcom.us.openserver.configuration.ServerConfiguration;", 0x1, NULL, NULL },
     { "getUserData", NULL, "Ljava.lang.Object;", 0x1, NULL, NULL },
     { "getSession", NULL, "Lcom.us.openserver.session.Session;", 0x1, NULL, NULL },
+    { "initWithComUsOpenserverIClientObserver:withComUsOpenserverConfigurationServerConfiguration:withJavaUtilHashMap:", "Client", NULL, 0x1, NULL, NULL },
+    { "initWithComUsOpenserverIClientObserver:withComUsOpenserverConfigurationServerConfiguration:withJavaUtilHashMap:withComUsOpenserverLogger:", "Client", NULL, 0x1, NULL, NULL },
     { "initWithComUsOpenserverIClientObserver:withComUsOpenserverConfigurationServerConfiguration:withJavaUtilHashMap:withComUsOpenserverLogger:withId:", "Client", NULL, 0x1, NULL, NULL },
     { "connect", NULL, "V", 0x1, "Ljava.lang.Exception;", NULL },
     { "connectAsync", NULL, "V", 0x1, "Ljava.lang.Exception;", NULL },
@@ -154,16 +172,36 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverClient, session_, ComUsOpenserverSessionSessi
     { "userData_", NULL, 0x2, "Ljava.lang.Object;", NULL, NULL,  },
     { "session_", NULL, 0x2, "Lcom.us.openserver.session.Session;", NULL, NULL,  },
   };
-  static const J2ObjcClassInfo _ComUsOpenserverClient = { 2, "Client", "com.us.openserver", NULL, 0x1, 16, methods, 6, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _ComUsOpenserverClient = { 2, "Client", "com.us.openserver", NULL, 0x1, 18, methods, 6, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverClient;
 }
 
 @end
 
+void ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(ComUsOpenserverClient *self, id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations) {
+  (void) ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(self, clientObserver, serverConfiguration, protocolConfigurations, nil, nil);
+}
+
+ComUsOpenserverClient *new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations) {
+  ComUsOpenserverClient *self = [ComUsOpenserverClient alloc];
+  ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(self, clientObserver, serverConfiguration, protocolConfigurations);
+  return self;
+}
+
+void ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_(ComUsOpenserverClient *self, id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations, ComUsOpenserverLogger *logger) {
+  (void) ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(self, clientObserver, serverConfiguration, protocolConfigurations, logger, nil);
+}
+
+ComUsOpenserverClient *new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_(id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations, ComUsOpenserverLogger *logger) {
+  ComUsOpenserverClient *self = [ComUsOpenserverClient alloc];
+  ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_(self, clientObserver, serverConfiguration, protocolConfigurations, logger);
+  return self;
+}
+
 void ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(ComUsOpenserverClient *self, id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations, ComUsOpenserverLogger *logger, id userData) {
   (void) NSObject_init(self);
   self->clientObserver_ = clientObserver;
-  if (logger == nil) logger = new_ComUsOpenserverLogger_init();
+  if (logger == nil) logger = new_ComUsOpenserverConsoleLogger_init();
   self->logger_ = logger;
   if (serverConfiguration == nil) serverConfiguration = new_ComUsOpenserverConfigurationServerConfiguration_init();
   self->serverConfiguration_ = serverConfiguration;

@@ -23,6 +23,15 @@
 
 - (instancetype)initWithComUsOpenserverIClientObserver:(id<ComUsOpenserverIClientObserver>)clientObserver
    withComUsOpenserverConfigurationServerConfiguration:(ComUsOpenserverConfigurationServerConfiguration *)serverConfiguration
+                                   withJavaUtilHashMap:(JavaUtilHashMap *)protocolConfigurations;
+
+- (instancetype)initWithComUsOpenserverIClientObserver:(id<ComUsOpenserverIClientObserver>)clientObserver
+   withComUsOpenserverConfigurationServerConfiguration:(ComUsOpenserverConfigurationServerConfiguration *)serverConfiguration
+                                   withJavaUtilHashMap:(JavaUtilHashMap *)protocolConfigurations
+                             withComUsOpenserverLogger:(ComUsOpenserverLogger *)logger;
+
+- (instancetype)initWithComUsOpenserverIClientObserver:(id<ComUsOpenserverIClientObserver>)clientObserver
+   withComUsOpenserverConfigurationServerConfiguration:(ComUsOpenserverConfigurationServerConfiguration *)serverConfiguration
                                    withJavaUtilHashMap:(JavaUtilHashMap *)protocolConfigurations
                              withComUsOpenserverLogger:(ComUsOpenserverLogger *)logger
                                                 withId:(id)userData;
@@ -60,6 +69,14 @@
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComUsOpenserverClient)
+
+FOUNDATION_EXPORT void ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(ComUsOpenserverClient *self, id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations);
+
+FOUNDATION_EXPORT ComUsOpenserverClient *new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations) NS_RETURNS_RETAINED;
+
+FOUNDATION_EXPORT void ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_(ComUsOpenserverClient *self, id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations, ComUsOpenserverLogger *logger);
+
+FOUNDATION_EXPORT ComUsOpenserverClient *new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_(id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations, ComUsOpenserverLogger *logger) NS_RETURNS_RETAINED;
 
 FOUNDATION_EXPORT void ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(ComUsOpenserverClient *self, id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations, ComUsOpenserverLogger *logger, id userData);
 
