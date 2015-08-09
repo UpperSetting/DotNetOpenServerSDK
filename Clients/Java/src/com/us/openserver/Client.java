@@ -45,6 +45,23 @@ public class Client
     public Session getSession() { return session; }
     
     public Client(
+            IClientObserver clientObserver,
+            ServerConfiguration serverConfiguration,
+            HashMap<Integer, ProtocolConfiguration> protocolConfigurations)
+	{
+		this(clientObserver, serverConfiguration, protocolConfigurations, null, null);
+	}
+    
+    public Client(
+            IClientObserver clientObserver,
+            ServerConfiguration serverConfiguration,
+            HashMap<Integer, ProtocolConfiguration> protocolConfigurations,
+            Logger logger)
+    {
+		this(clientObserver, serverConfiguration, protocolConfigurations, logger, null);
+    }
+    
+    public Client(
         IClientObserver clientObserver,
         ServerConfiguration serverConfiguration,
         HashMap<Integer, ProtocolConfiguration> protocolConfigurations,
