@@ -22,6 +22,9 @@ package com.us.openserver;
 public class Logger
 {
     private ILoggerObserver callback;
+    public void setILoggerObserver(ILoggerObserver callback) {
+        this.callback = callback;
+    }
     
     protected boolean logDebug;
     public boolean getLogDebug() {
