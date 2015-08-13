@@ -18,10 +18,6 @@ NSString *const DISCONNECT = @"Disconnect";
 NSString *const CONNECT = @"Connect";
 ComUsOpenserverClient *client;
 
-@synthesize txtHost;
-@synthesize txtUserName;
-@synthesize txtPassword;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
