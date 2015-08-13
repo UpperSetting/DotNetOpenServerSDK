@@ -34,7 +34,10 @@ ComUsOpenserverClient *client;
             [self.btnConnect setTitle:CONNECT forState:UIControlStateNormal];
         }
         else
+        {
             [self connect];
+            [self.btnConnect setTitle:DISCONNECT forState:UIControlStateNormal];
+        }
     }
     @catch (JavaLangException *ex) {
         [self messageBox:[((JavaLangException *) nil_chk(ex)) getMessage]];
@@ -54,18 +57,16 @@ ComUsOpenserverClient *client;
 }
 
 - (void)onConnectionLostWithJavaLangException:(JavaLangException *)ex {
-    [self messageBox:[@"Connection lost: " stringByAppendingFormat:@"%@", [((JavaLangException *) nil_chk(ex)) getMessage]]];
-    [client close];
-    [self.btnConnect setTitle:CONNECT forState:UIControlStateNormal];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self messageBox:[@"Connection lost: " stringByAppendingFormat:@"%@", [ex getMessage]]];
+        [client close];
+        [self.btnConnect setTitle:CONNECT forState:UIControlStateNormal];
+    });
 }
 
 - (void)connect {
     
-    ComUsOpenserverConsoleLogger *logger = new_ComUsOpenserverConsoleLogger_init();
-    [logger setLogDebugWithBoolean:YES];
-    
     ComUsOpenserverConfigurationServerConfiguration *cfg = new_ComUsOpenserverConfigurationServerConfiguration_init();
-    [self.btnConnect setTitle:CONNECT forState:UIControlStateNormal];
     [cfg setHostWithNSString: self.txtHost.text];
     
     JavaUtilHashMap *protocolConfigurations = new_JavaUtilHashMap_init();
@@ -76,7 +77,7 @@ ComUsOpenserverClient *client;
     
     (void) [protocolConfigurations putWithId:JavaLangInteger_valueOfWithInt_(ComUsOpenserverProtocolsHelloHelloProtocol_PROTOCOL_IDENTIFIER) withId:new_ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(ComUsOpenserverProtocolsHelloHelloProtocol_PROTOCOL_IDENTIFIER, @"com.us.openserver.protocols.hello.HelloProtocolClient")];
     
-    client = new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(self, cfg, protocolConfigurations, logger, nil);
+    client = new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(self, cfg, protocolConfigurations);
         
     @try {
         [client connect];
@@ -90,8 +91,6 @@ ComUsOpenserverClient *client;
         
         NSString *serverResponse = [((ComUsOpenserverProtocolsHelloHelloProtocolClient *) nil_chk(hpc)) helloWithNSString:self.txtUserName.text];
         [self messageBox:serverResponse];
-        
-        [self.btnConnect setTitle:DISCONNECT forState:UIControlStateNormal];
     }
     @catch (JavaLangException *ex) {
         [client close];

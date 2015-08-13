@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
             endingLineNumber = "51"
-            landmarkName = "-btnConnect_Tapped:"
+            landmarkName = "-messageBox:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
             endingLineNumber = "60"
-            landmarkName = "-messageBox:"
+            landmarkName = "-onConnectionLostWithJavaLangException:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

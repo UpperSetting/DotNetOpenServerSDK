@@ -22,6 +22,10 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverLogger, callback_, id<ComUsOpenserverILoggerO
 
 @implementation ComUsOpenserverLogger
 
+- (void)setILoggerObserverWithComUsOpenserverILoggerObserver:(id<ComUsOpenserverILoggerObserver>)callback {
+  self->callback_ = callback;
+}
+
 - (jboolean)getLogDebug {
   return logDebug_;
 }
@@ -60,6 +64,7 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverLogger, callback_, id<ComUsOpenserverILoggerO
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
+    { "setILoggerObserverWithComUsOpenserverILoggerObserver:", "setILoggerObserver", "V", 0x1, NULL, NULL },
     { "getLogDebug", NULL, "Z", 0x1, NULL, NULL },
     { "setLogDebugWithBoolean:", "setLogDebug", "V", 0x1, NULL, NULL },
     { "getLogPackets", NULL, "Z", 0x1, NULL, NULL },
@@ -74,7 +79,7 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverLogger, callback_, id<ComUsOpenserverILoggerO
     { "logDebug_", NULL, 0x4, "Z", NULL, NULL,  },
     { "logPackets_", NULL, 0x4, "Z", NULL, NULL,  },
   };
-  static const J2ObjcClassInfo _ComUsOpenserverLogger = { 2, "Logger", "com.us.openserver", NULL, 0x1, 8, methods, 3, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _ComUsOpenserverLogger = { 2, "Logger", "com.us.openserver", NULL, 0x1, 9, methods, 3, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverLogger;
 }
 

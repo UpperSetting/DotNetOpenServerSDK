@@ -33,6 +33,8 @@
 - (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
                            withNSString:(NSString *)message;
 
+- (void)setILoggerObserverWithComUsOpenserverILoggerObserver:(id<ComUsOpenserverILoggerObserver>)callback;
+
 - (void)setLogDebugWithBoolean:(jboolean)logDebug;
 
 - (void)setLogPacketsWithBoolean:(jboolean)logPackets;
