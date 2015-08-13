@@ -4,7 +4,7 @@
         <id>UpperSetting.OpenServer.Protocols.Hello.Server</id>
         <version>1.0.0.0</version>
         <title>DotNetOpenServer SDK Hello Protocol Server DLL</title>
-        <authors>Michael Janulaitis</authors>
+        <authors>Upper Setting Corporation</authors>
         <owners>Upper Setting Corporation</owners>
         <licenseUrl>http://www.UpperSetting.com/Licenses/GNUv3.txt</licenseUrl>
         <projectUrl>http://www.UpperSetting.com/DotNetOpenServer</projectUrl>
