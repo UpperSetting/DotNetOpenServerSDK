@@ -40,29 +40,17 @@ ComUsOpenserverClient *client;
             [self.btnConnect setTitle:CONNECT];
         }
         else
+        {
             [self connect];
+            [self.btnConnect setTitle:DISCONNECT];
+        }
     }
     @catch (JavaLangException *ex) {
         [self messageBox:[((JavaLangException *) nil_chk(ex)) getMessage]];
     }
 }
 
--(void)messageBox:(NSString *)message {
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:message];
-    [alert runModal];
-}
-
-- (void)onConnectionLostWithJavaLangException:(JavaLangException *)ex {
-    [self messageBox:[@"Connection lost: " stringByAppendingFormat:@"%@", [((JavaLangException *) nil_chk(ex)) getMessage]]];
-    [client close];
-    [self.btnConnect setTitle:CONNECT];
-}
-
 - (void)connect {
-    
-    ComUsOpenserverConsoleLogger *logger = new_ComUsOpenserverConsoleLogger_init();
-    [logger setLogDebugWithBoolean:YES];
     
     ComUsOpenserverConfigurationServerConfiguration *cfg = new_ComUsOpenserverConfigurationServerConfiguration_init();
     [self.btnConnect setTitle:CONNECT];
@@ -76,7 +64,7 @@ ComUsOpenserverClient *client;
     
     (void) [protocolConfigurations putWithId:JavaLangInteger_valueOfWithInt_(ComUsOpenserverProtocolsHelloHelloProtocol_PROTOCOL_IDENTIFIER) withId:new_ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(ComUsOpenserverProtocolsHelloHelloProtocol_PROTOCOL_IDENTIFIER, @"com.us.openserver.protocols.hello.HelloProtocolClient")];
     
-    client = new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(self, cfg, protocolConfigurations, logger, nil);
+    client = new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(self, cfg, protocolConfigurations);
     
     @try {
         [client connect];
@@ -98,5 +86,18 @@ ComUsOpenserverClient *client;
         @throw ex;
     }
 }
+
+-(void)messageBox:(NSString *)message {
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:message];
+    [alert runModal];
+}
+
+- (void)onConnectionLostWithJavaLangException:(JavaLangException *)ex {
+    [self messageBox:[@"Connection lost: " stringByAppendingFormat:@"%@", [((JavaLangException *) nil_chk(ex)) getMessage]]];
+    [client close];
+    [self.btnConnect setTitle:CONNECT];
+}
+
 
 @end
