@@ -1,0 +1,504 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E6DE46631B4D87D600835F2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46621B4D87D600835F2B /* AppDelegate.m */; };
+		E6DE46651B4D87D600835F2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46641B4D87D600835F2B /* main.m */; };
+		E6DE46681B4D87D600835F2B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46671B4D87D600835F2B /* ViewController.m */; };
+		E6DE466A1B4D87D600835F2B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6DE46691B4D87D600835F2B /* Images.xcassets */; };
+		E6DE466D1B4D87D700835F2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6DE466B1B4D87D700835F2B /* Main.storyboard */; };
+		E6DE46831B4D882500835F2B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E6DE46821B4D882500835F2B /* libz.dylib */; };
+		E6DE46851B4D883000835F2B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6DE46841B4D883000835F2B /* Security.framework */; };
+		E6DE46871B4D883B00835F2B /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E6DE46861B4D883B00835F2B /* libicucore.dylib */; };
+		E6DE470D1B4D890200835F2B /* AuthenticationProtocolBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46D01B4D890200835F2B /* AuthenticationProtocolBase.m */; };
+		E6DE470E1B4D890200835F2B /* BinaryReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46D21B4D890200835F2B /* BinaryReader.m */; };
+		E6DE470F1B4D890200835F2B /* BinaryWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46D41B4D890200835F2B /* BinaryWriter.m */; };
+		E6DE47101B4D890200835F2B /* CapabilitiesProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46D61B4D890200835F2B /* CapabilitiesProtocol.m */; };
+		E6DE47111B4D890200835F2B /* CapabilitiesProtocolCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46D81B4D890200835F2B /* CapabilitiesProtocolCommands.m */; };
+		E6DE47121B4D890200835F2B /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46DA1B4D890200835F2B /* Client.m */; };
+		E6DE47131B4D890200835F2B /* ConsoleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46DC1B4D890200835F2B /* ConsoleLogger.m */; };
+		E6DE47141B4D890200835F2B /* HelloProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46DE1B4D890200835F2B /* HelloProtocol.m */; };
+		E6DE47151B4D890200835F2B /* HelloProtocolClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46E01B4D890200835F2B /* HelloProtocolClient.m */; };
+		E6DE47161B4D890200835F2B /* IClientObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46E21B4D890200835F2B /* IClientObserver.m */; };
+		E6DE47171B4D890200835F2B /* IHelloProtocolObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46E41B4D890200835F2B /* IHelloProtocolObserver.m */; };
+		E6DE47181B4D890200835F2B /* ILoggerObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46E61B4D890200835F2B /* ILoggerObserver.m */; };
+		E6DE47191B4D890200835F2B /* KeepAliveProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46E81B4D890200835F2B /* KeepAliveProtocol.m */; };
+		E6DE471A1B4D890200835F2B /* KeepAliveProtocolCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46EA1B4D890200835F2B /* KeepAliveProtocolCommands.m */; };
+		E6DE471B1B4D890200835F2B /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46EC1B4D890200835F2B /* Level.m */; };
+		E6DE471C1B4D890200835F2B /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46EE1B4D890200835F2B /* Logger.m */; };
+		E6DE471D1B4D890200835F2B /* PacketHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46F01B4D890200835F2B /* PacketHandler.m */; };
+		E6DE471E1B4D890200835F2B /* PacketReadTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46F21B4D890200835F2B /* PacketReadTypes.m */; };
+		E6DE471F1B4D890200835F2B /* PacketWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46F41B4D890200835F2B /* PacketWriter.m */; };
+		E6DE47201B4D890200835F2B /* ProtocolBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46F61B4D890200835F2B /* ProtocolBase.m */; };
+		E6DE47211B4D890200835F2B /* ProtocolConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46F81B4D890200835F2B /* ProtocolConfiguration.m */; };
+		E6DE47221B4D890200835F2B /* ServerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46FA1B4D890200835F2B /* ServerConfiguration.m */; };
+		E6DE47231B4D890200835F2B /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46FC1B4D890200835F2B /* Session.m */; };
+		E6DE47241B4D890200835F2B /* SessionCloser.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE46FE1B4D890200835F2B /* SessionCloser.m */; };
+		E6DE47251B4D890200835F2B /* SessionInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE47001B4D890200835F2B /* SessionInitializer.m */; };
+		E6DE47261B4D890200835F2B /* SessionLayerProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE47021B4D890200835F2B /* SessionLayerProtocol.m */; };
+		E6DE47271B4D890200835F2B /* SessionOpener.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE47041B4D890200835F2B /* SessionOpener.m */; };
+		E6DE47281B4D890200835F2B /* TlsConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE47061B4D890200835F2B /* TlsConfiguration.m */; };
+		E6DE47291B4D890200835F2B /* WinAuthProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE47081B4D890200835F2B /* WinAuthProtocol.m */; };
+		E6DE472A1B4D890200835F2B /* WinAuthProtocolClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE470A1B4D890200835F2B /* WinAuthProtocolClient.m */; };
+		E6DE472B1B4D890200835F2B /* WinAuthProtocolCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = E6DE470C1B4D890200835F2B /* WinAuthProtocolCommands.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E6DE465C1B4D87D600835F2B /* HelloMacClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMacClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6DE46601B4D87D600835F2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6DE46611B4D87D600835F2B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E6DE46621B4D87D600835F2B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E6DE46641B4D87D600835F2B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E6DE46661B4D87D600835F2B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E6DE46671B4D87D600835F2B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E6DE46691B4D87D600835F2B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E6DE466C1B4D87D700835F2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E6DE46821B4D882500835F2B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E6DE46841B4D883000835F2B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E6DE46861B4D883B00835F2B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		E6DE46CF1B4D890200835F2B /* AuthenticationProtocolBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationProtocolBase.h; sourceTree = "<group>"; };
+		E6DE46D01B4D890200835F2B /* AuthenticationProtocolBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationProtocolBase.m; sourceTree = "<group>"; };
+		E6DE46D11B4D890200835F2B /* BinaryReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryReader.h; sourceTree = "<group>"; };
+		E6DE46D21B4D890200835F2B /* BinaryReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BinaryReader.m; sourceTree = "<group>"; };
+		E6DE46D31B4D890200835F2B /* BinaryWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryWriter.h; sourceTree = "<group>"; };
+		E6DE46D41B4D890200835F2B /* BinaryWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BinaryWriter.m; sourceTree = "<group>"; };
+		E6DE46D51B4D890200835F2B /* CapabilitiesProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapabilitiesProtocol.h; sourceTree = "<group>"; };
+		E6DE46D61B4D890200835F2B /* CapabilitiesProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapabilitiesProtocol.m; sourceTree = "<group>"; };
+		E6DE46D71B4D890200835F2B /* CapabilitiesProtocolCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapabilitiesProtocolCommands.h; sourceTree = "<group>"; };
+		E6DE46D81B4D890200835F2B /* CapabilitiesProtocolCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapabilitiesProtocolCommands.m; sourceTree = "<group>"; };
+		E6DE46D91B4D890200835F2B /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
+		E6DE46DA1B4D890200835F2B /* Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
+		E6DE46DB1B4D890200835F2B /* ConsoleLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleLogger.h; sourceTree = "<group>"; };
+		E6DE46DC1B4D890200835F2B /* ConsoleLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleLogger.m; sourceTree = "<group>"; };
+		E6DE46DD1B4D890200835F2B /* HelloProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloProtocol.h; sourceTree = "<group>"; };
+		E6DE46DE1B4D890200835F2B /* HelloProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloProtocol.m; sourceTree = "<group>"; };
+		E6DE46DF1B4D890200835F2B /* HelloProtocolClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloProtocolClient.h; sourceTree = "<group>"; };
+		E6DE46E01B4D890200835F2B /* HelloProtocolClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloProtocolClient.m; sourceTree = "<group>"; };
+		E6DE46E11B4D890200835F2B /* IClientObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IClientObserver.h; sourceTree = "<group>"; };
+		E6DE46E21B4D890200835F2B /* IClientObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IClientObserver.m; sourceTree = "<group>"; };
+		E6DE46E31B4D890200835F2B /* IHelloProtocolObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHelloProtocolObserver.h; sourceTree = "<group>"; };
+		E6DE46E41B4D890200835F2B /* IHelloProtocolObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHelloProtocolObserver.m; sourceTree = "<group>"; };
+		E6DE46E51B4D890200835F2B /* ILoggerObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILoggerObserver.h; sourceTree = "<group>"; };
+		E6DE46E61B4D890200835F2B /* ILoggerObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILoggerObserver.m; sourceTree = "<group>"; };
+		E6DE46E71B4D890200835F2B /* KeepAliveProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepAliveProtocol.h; sourceTree = "<group>"; };
+		E6DE46E81B4D890200835F2B /* KeepAliveProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepAliveProtocol.m; sourceTree = "<group>"; };
+		E6DE46E91B4D890200835F2B /* KeepAliveProtocolCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepAliveProtocolCommands.h; sourceTree = "<group>"; };
+		E6DE46EA1B4D890200835F2B /* KeepAliveProtocolCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepAliveProtocolCommands.m; sourceTree = "<group>"; };
+		E6DE46EB1B4D890200835F2B /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		E6DE46EC1B4D890200835F2B /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		E6DE46ED1B4D890200835F2B /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		E6DE46EE1B4D890200835F2B /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		E6DE46EF1B4D890200835F2B /* PacketHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketHandler.h; sourceTree = "<group>"; };
+		E6DE46F01B4D890200835F2B /* PacketHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketHandler.m; sourceTree = "<group>"; };
+		E6DE46F11B4D890200835F2B /* PacketReadTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketReadTypes.h; sourceTree = "<group>"; };
+		E6DE46F21B4D890200835F2B /* PacketReadTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketReadTypes.m; sourceTree = "<group>"; };
+		E6DE46F31B4D890200835F2B /* PacketWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketWriter.h; sourceTree = "<group>"; };
+		E6DE46F41B4D890200835F2B /* PacketWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketWriter.m; sourceTree = "<group>"; };
+		E6DE46F51B4D890200835F2B /* ProtocolBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBase.h; sourceTree = "<group>"; };
+		E6DE46F61B4D890200835F2B /* ProtocolBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolBase.m; sourceTree = "<group>"; };
+		E6DE46F71B4D890200835F2B /* ProtocolConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolConfiguration.h; sourceTree = "<group>"; };
+		E6DE46F81B4D890200835F2B /* ProtocolConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolConfiguration.m; sourceTree = "<group>"; };
+		E6DE46F91B4D890200835F2B /* ServerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfiguration.h; sourceTree = "<group>"; };
+		E6DE46FA1B4D890200835F2B /* ServerConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConfiguration.m; sourceTree = "<group>"; };
+		E6DE46FB1B4D890200835F2B /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
+		E6DE46FC1B4D890200835F2B /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
+		E6DE46FD1B4D890200835F2B /* SessionCloser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCloser.h; sourceTree = "<group>"; };
+		E6DE46FE1B4D890200835F2B /* SessionCloser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCloser.m; sourceTree = "<group>"; };
+		E6DE46FF1B4D890200835F2B /* SessionInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionInitializer.h; sourceTree = "<group>"; };
+		E6DE47001B4D890200835F2B /* SessionInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionInitializer.m; sourceTree = "<group>"; };
+		E6DE47011B4D890200835F2B /* SessionLayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionLayerProtocol.h; sourceTree = "<group>"; };
+		E6DE47021B4D890200835F2B /* SessionLayerProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionLayerProtocol.m; sourceTree = "<group>"; };
+		E6DE47031B4D890200835F2B /* SessionOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionOpener.h; sourceTree = "<group>"; };
+		E6DE47041B4D890200835F2B /* SessionOpener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionOpener.m; sourceTree = "<group>"; };
+		E6DE47051B4D890200835F2B /* TlsConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TlsConfiguration.h; sourceTree = "<group>"; };
+		E6DE47061B4D890200835F2B /* TlsConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TlsConfiguration.m; sourceTree = "<group>"; };
+		E6DE47071B4D890200835F2B /* WinAuthProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinAuthProtocol.h; sourceTree = "<group>"; };
+		E6DE47081B4D890200835F2B /* WinAuthProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinAuthProtocol.m; sourceTree = "<group>"; };
+		E6DE47091B4D890200835F2B /* WinAuthProtocolClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinAuthProtocolClient.h; sourceTree = "<group>"; };
+		E6DE470A1B4D890200835F2B /* WinAuthProtocolClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinAuthProtocolClient.m; sourceTree = "<group>"; };
+		E6DE470B1B4D890200835F2B /* WinAuthProtocolCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinAuthProtocolCommands.h; sourceTree = "<group>"; };
+		E6DE470C1B4D890200835F2B /* WinAuthProtocolCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinAuthProtocolCommands.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E6DE46591B4D87D600835F2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6DE46871B4D883B00835F2B /* libicucore.dylib in Frameworks */,
+				E6DE46851B4D883000835F2B /* Security.framework in Frameworks */,
+				E6DE46831B4D882500835F2B /* libz.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E6DE46531B4D87D600835F2B = {
+			isa = PBXGroup;
+			children = (
+				E6DE46861B4D883B00835F2B /* libicucore.dylib */,
+				E6DE46841B4D883000835F2B /* Security.framework */,
+				E6DE46821B4D882500835F2B /* libz.dylib */,
+				E6DE465E1B4D87D600835F2B /* HelloMacClient */,
+				E6DE465D1B4D87D600835F2B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E6DE465D1B4D87D600835F2B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E6DE465C1B4D87D600835F2B /* HelloMacClient.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E6DE465E1B4D87D600835F2B /* HelloMacClient */ = {
+			isa = PBXGroup;
+			children = (
+				E6DE46CE1B4D890200835F2B /* src */,
+				E6DE46611B4D87D600835F2B /* AppDelegate.h */,
+				E6DE46621B4D87D600835F2B /* AppDelegate.m */,
+				E6DE46661B4D87D600835F2B /* ViewController.h */,
+				E6DE46671B4D87D600835F2B /* ViewController.m */,
+				E6DE46691B4D87D600835F2B /* Images.xcassets */,
+				E6DE466B1B4D87D700835F2B /* Main.storyboard */,
+				E6DE465F1B4D87D600835F2B /* Supporting Files */,
+			);
+			path = HelloMacClient;
+			sourceTree = "<group>";
+		};
+		E6DE465F1B4D87D600835F2B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E6DE46601B4D87D600835F2B /* Info.plist */,
+				E6DE46641B4D87D600835F2B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E6DE46CE1B4D890200835F2B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				E6DE46CF1B4D890200835F2B /* AuthenticationProtocolBase.h */,
+				E6DE46D01B4D890200835F2B /* AuthenticationProtocolBase.m */,
+				E6DE46D11B4D890200835F2B /* BinaryReader.h */,
+				E6DE46D21B4D890200835F2B /* BinaryReader.m */,
+				E6DE46D31B4D890200835F2B /* BinaryWriter.h */,
+				E6DE46D41B4D890200835F2B /* BinaryWriter.m */,
+				E6DE46D51B4D890200835F2B /* CapabilitiesProtocol.h */,
+				E6DE46D61B4D890200835F2B /* CapabilitiesProtocol.m */,
+				E6DE46D71B4D890200835F2B /* CapabilitiesProtocolCommands.h */,
+				E6DE46D81B4D890200835F2B /* CapabilitiesProtocolCommands.m */,
+				E6DE46D91B4D890200835F2B /* Client.h */,
+				E6DE46DA1B4D890200835F2B /* Client.m */,
+				E6DE46DB1B4D890200835F2B /* ConsoleLogger.h */,
+				E6DE46DC1B4D890200835F2B /* ConsoleLogger.m */,
+				E6DE46DD1B4D890200835F2B /* HelloProtocol.h */,
+				E6DE46DE1B4D890200835F2B /* HelloProtocol.m */,
+				E6DE46DF1B4D890200835F2B /* HelloProtocolClient.h */,
+				E6DE46E01B4D890200835F2B /* HelloProtocolClient.m */,
+				E6DE46E11B4D890200835F2B /* IClientObserver.h */,
+				E6DE46E21B4D890200835F2B /* IClientObserver.m */,
+				E6DE46E31B4D890200835F2B /* IHelloProtocolObserver.h */,
+				E6DE46E41B4D890200835F2B /* IHelloProtocolObserver.m */,
+				E6DE46E51B4D890200835F2B /* ILoggerObserver.h */,
+				E6DE46E61B4D890200835F2B /* ILoggerObserver.m */,
+				E6DE46E71B4D890200835F2B /* KeepAliveProtocol.h */,
+				E6DE46E81B4D890200835F2B /* KeepAliveProtocol.m */,
+				E6DE46E91B4D890200835F2B /* KeepAliveProtocolCommands.h */,
+				E6DE46EA1B4D890200835F2B /* KeepAliveProtocolCommands.m */,
+				E6DE46EB1B4D890200835F2B /* Level.h */,
+				E6DE46EC1B4D890200835F2B /* Level.m */,
+				E6DE46ED1B4D890200835F2B /* Logger.h */,
+				E6DE46EE1B4D890200835F2B /* Logger.m */,
+				E6DE46EF1B4D890200835F2B /* PacketHandler.h */,
+				E6DE46F01B4D890200835F2B /* PacketHandler.m */,
+				E6DE46F11B4D890200835F2B /* PacketReadTypes.h */,
+				E6DE46F21B4D890200835F2B /* PacketReadTypes.m */,
+				E6DE46F31B4D890200835F2B /* PacketWriter.h */,
+				E6DE46F41B4D890200835F2B /* PacketWriter.m */,
+				E6DE46F51B4D890200835F2B /* ProtocolBase.h */,
+				E6DE46F61B4D890200835F2B /* ProtocolBase.m */,
+				E6DE46F71B4D890200835F2B /* ProtocolConfiguration.h */,
+				E6DE46F81B4D890200835F2B /* ProtocolConfiguration.m */,
+				E6DE46F91B4D890200835F2B /* ServerConfiguration.h */,
+				E6DE46FA1B4D890200835F2B /* ServerConfiguration.m */,
+				E6DE46FB1B4D890200835F2B /* Session.h */,
+				E6DE46FC1B4D890200835F2B /* Session.m */,
+				E6DE46FD1B4D890200835F2B /* SessionCloser.h */,
+				E6DE46FE1B4D890200835F2B /* SessionCloser.m */,
+				E6DE46FF1B4D890200835F2B /* SessionInitializer.h */,
+				E6DE47001B4D890200835F2B /* SessionInitializer.m */,
+				E6DE47011B4D890200835F2B /* SessionLayerProtocol.h */,
+				E6DE47021B4D890200835F2B /* SessionLayerProtocol.m */,
+				E6DE47031B4D890200835F2B /* SessionOpener.h */,
+				E6DE47041B4D890200835F2B /* SessionOpener.m */,
+				E6DE47051B4D890200835F2B /* TlsConfiguration.h */,
+				E6DE47061B4D890200835F2B /* TlsConfiguration.m */,
+				E6DE47071B4D890200835F2B /* WinAuthProtocol.h */,
+				E6DE47081B4D890200835F2B /* WinAuthProtocol.m */,
+				E6DE47091B4D890200835F2B /* WinAuthProtocolClient.h */,
+				E6DE470A1B4D890200835F2B /* WinAuthProtocolClient.m */,
+				E6DE470B1B4D890200835F2B /* WinAuthProtocolCommands.h */,
+				E6DE470C1B4D890200835F2B /* WinAuthProtocolCommands.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E6DE465B1B4D87D600835F2B /* HelloMacClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6DE467C1B4D87D700835F2B /* Build configuration list for PBXNativeTarget "HelloMacClient" */;
+			buildPhases = (
+				E6DE46581B4D87D600835F2B /* Sources */,
+				E6DE46591B4D87D600835F2B /* Frameworks */,
+				E6DE465A1B4D87D600835F2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloMacClient;
+			productName = HelloMacClient;
+			productReference = E6DE465C1B4D87D600835F2B /* HelloMacClient.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E6DE46541B4D87D600835F2B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Upper Setting Corporation";
+				TargetAttributes = {
+					E6DE465B1B4D87D600835F2B = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+				};
+			};
+			buildConfigurationList = E6DE46571B4D87D600835F2B /* Build configuration list for PBXProject "HelloMacClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E6DE46531B4D87D600835F2B;
+			productRefGroup = E6DE465D1B4D87D600835F2B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E6DE465B1B4D87D600835F2B /* HelloMacClient */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E6DE465A1B4D87D600835F2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6DE466A1B4D87D600835F2B /* Images.xcassets in Resources */,
+				E6DE466D1B4D87D700835F2B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E6DE46581B4D87D600835F2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6DE471F1B4D890200835F2B /* PacketWriter.m in Sources */,
+				E6DE47271B4D890200835F2B /* SessionOpener.m in Sources */,
+				E6DE470D1B4D890200835F2B /* AuthenticationProtocolBase.m in Sources */,
+				E6DE472A1B4D890200835F2B /* WinAuthProtocolClient.m in Sources */,
+				E6DE47151B4D890200835F2B /* HelloProtocolClient.m in Sources */,
+				E6DE470F1B4D890200835F2B /* BinaryWriter.m in Sources */,
+				E6DE47211B4D890200835F2B /* ProtocolConfiguration.m in Sources */,
+				E6DE47161B4D890200835F2B /* IClientObserver.m in Sources */,
+				E6DE471E1B4D890200835F2B /* PacketReadTypes.m in Sources */,
+				E6DE471D1B4D890200835F2B /* PacketHandler.m in Sources */,
+				E6DE470E1B4D890200835F2B /* BinaryReader.m in Sources */,
+				E6DE471A1B4D890200835F2B /* KeepAliveProtocolCommands.m in Sources */,
+				E6DE47101B4D890200835F2B /* CapabilitiesProtocol.m in Sources */,
+				E6DE47251B4D890200835F2B /* SessionInitializer.m in Sources */,
+				E6DE47281B4D890200835F2B /* TlsConfiguration.m in Sources */,
+				E6DE47201B4D890200835F2B /* ProtocolBase.m in Sources */,
+				E6DE472B1B4D890200835F2B /* WinAuthProtocolCommands.m in Sources */,
+				E6DE47221B4D890200835F2B /* ServerConfiguration.m in Sources */,
+				E6DE47191B4D890200835F2B /* KeepAliveProtocol.m in Sources */,
+				E6DE47171B4D890200835F2B /* IHelloProtocolObserver.m in Sources */,
+				E6DE471C1B4D890200835F2B /* Logger.m in Sources */,
+				E6DE47231B4D890200835F2B /* Session.m in Sources */,
+				E6DE46681B4D87D600835F2B /* ViewController.m in Sources */,
+				E6DE47261B4D890200835F2B /* SessionLayerProtocol.m in Sources */,
+				E6DE47121B4D890200835F2B /* Client.m in Sources */,
+				E6DE46651B4D87D600835F2B /* main.m in Sources */,
+				E6DE471B1B4D890200835F2B /* Level.m in Sources */,
+				E6DE46631B4D87D600835F2B /* AppDelegate.m in Sources */,
+				E6DE47241B4D890200835F2B /* SessionCloser.m in Sources */,
+				E6DE47141B4D890200835F2B /* HelloProtocol.m in Sources */,
+				E6DE47111B4D890200835F2B /* CapabilitiesProtocolCommands.m in Sources */,
+				E6DE47131B4D890200835F2B /* ConsoleLogger.m in Sources */,
+				E6DE47291B4D890200835F2B /* WinAuthProtocol.m in Sources */,
+				E6DE47181B4D890200835F2B /* ILoggerObserver.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E6DE466B1B4D87D700835F2B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E6DE466C1B4D87D700835F2B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E6DE467A1B4D87D700835F2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = /Users/mjanulaitis/J2objc/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ljre_emul";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = /Users/mjanulaitis/J2objc/include;
+			};
+			name = Debug;
+		};
+		E6DE467B1B4D87D700835F2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = /Users/mjanulaitis/J2objc/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ljre_emul";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = /Users/mjanulaitis/J2objc/include;
+			};
+			name = Release;
+		};
+		E6DE467D1B4D87D700835F2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = HelloMacClient/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E6DE467E1B4D87D700835F2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = HelloMacClient/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E6DE46571B4D87D600835F2B /* Build configuration list for PBXProject "HelloMacClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6DE467A1B4D87D700835F2B /* Debug */,
+				E6DE467B1B4D87D700835F2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6DE467C1B4D87D700835F2B /* Build configuration list for PBXNativeTarget "HelloMacClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6DE467D1B4D87D700835F2B /* Debug */,
+				E6DE467E1B4D87D700835F2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E6DE46541B4D87D600835F2B /* Project object */;
+}
