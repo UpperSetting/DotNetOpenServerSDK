@@ -28,6 +28,7 @@ using US.OpenServer.Protocols.WinAuth;
 using US.OpenServer.WindowsMobile;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -37,9 +38,13 @@ namespace TestClient
 {
     public sealed partial class MainPage : Page
     {
+        #region Constants
+        private const string CONNECT = "Connect";
+        private const string DISCONNECT = "Disconnect";
+        #endregion
+
         #region Variables
         private Client client;
-        private Logger logger;
         private bool grayback;
         #endregion
 
@@ -49,11 +54,6 @@ namespace TestClient
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
-            
-            logger = new Logger();
-            logger.LogDebug = true;
-            logger.LogPackets = true;
-            logger.OnLogMessage += logger_OnLogMessage;
         }
         #endregion
 
@@ -62,19 +62,27 @@ namespace TestClient
         {
             try
             {
-                if ((string)btnConnect.Content == "Disconnect")
+                if ((string)btnConnect.Content == DISCONNECT)
                 {
                     if (client != null)
                         client.Close();
 
-                    btnConnect.Content = "Connect";
+                    btnConnect.Content = CONNECT;
                 }
                 else
+                {
                     Connect();
+                    btnConnect.Content = DISCONNECT;
+                }
             }
             catch (Exception ex)
             {
-                logger.Log(ex);
+                if (client != null)
+                    client.Close();
+
+                btnConnect.Content = CONNECT;
+
+                MessageBoxShow(ex.Message);
             }
         }
 
@@ -89,24 +97,24 @@ namespace TestClient
             cfg.TlsConfiguration.RequireRemoteCertificate = true;
 
             Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
-                    new Dictionary<ushort, ProtocolConfiguration>();
+                new Dictionary<ushort, ProtocolConfiguration>();
 
             protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
-                    new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
+                new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
 
             protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER,
                 new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolClient)));
 
             protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
                 new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
-            
-            client = new Client(cfg, protocolConfigurations, logger);
+
+            client = new Client(cfg, protocolConfigurations);
+            client.Logger.OnLogMessage += logger_OnLogMessage;
+            client.OnConnectionLost += client_OnConnectionLost;
+            client.Connect();
 
             try
             {
-                client.OnConnectionLost += client_OnConnectionLost;
-                client.Connect();
-
                 WinAuthProtocolClient wap = (WinAuthProtocolClient)client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
                 if (!wap.Authenticate(txtUserName.Text, txtPassword.Password, null))
                     throw new Exception("Access denied.");
@@ -116,8 +124,6 @@ namespace TestClient
                 HelloProtocolClient hpc = (HelloProtocolClient)client.Initialize(HelloProtocol.PROTOCOL_IDENTIFIER);
                 hpc.OnHelloComplete += hpc_OnHelloComplete;
                 hpc.Hello(txtUserName.Text);
-
-                btnConnect.Content = "Disconnect";
             }
             catch (Exception)
             {
@@ -130,36 +136,54 @@ namespace TestClient
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                btnConnect.Content = "Connect";
+                btnConnect.Content = CONNECT;
+                MessageBoxShow(string.Format("Connection lost. {0}", ex.Message));
             });
         }
 
-        private void hpc_OnHelloComplete(string serverResponse)
+        private async void hpc_OnHelloComplete(string serverResponse)
         {
-            logger_OnLogMessage(Level.Info, serverResponse);            
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                MessageBoxShow(serverResponse);
+            });
         }
         #endregion
 
         #region Logger
+        private void Log(string message)
+        {
+            ListViewItem itm = new ListViewItem();
+            itm.Content = message;
+            itm.Height = 20;
+            if (grayback)
+                itm.Background = new SolidColorBrush(Colors.Gray);
+            else
+                itm.Background = new SolidColorBrush(Colors.DarkGray);
+            grayback = !grayback;
+
+            if (lvwMessages.Items.Count == 16)
+                lvwMessages.Items.RemoveAt(0);
+
+            lvwMessages.Items.Add(itm);
+        }
+
         private async void logger_OnLogMessage(Level level, string message)
         {
+            System.Diagnostics.Debug.WriteLine(message);
+
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                ListViewItem itm = new ListViewItem();
-                itm.Content = message;
-                itm.Height = 20;
-                if (grayback)
-                    itm.Background = new SolidColorBrush(Colors.Gray);
-                else
-                    itm.Background = new SolidColorBrush(Colors.DarkGray);
-
-                grayback = !grayback;
-
-                if (lvwMessages.Items.Count == 16)
-                    lvwMessages.Items.RemoveAt(0);
-
-                lvwMessages.Items.Add(itm);
+                Log(message);
             });
+        }
+        #endregion
+
+        #region Message Box
+        private async void MessageBoxShow(string message)
+        {
+            MessageDialog msgbox = new MessageDialog(message);
+            await msgbox.ShowAsync();
         }
         #endregion
     }

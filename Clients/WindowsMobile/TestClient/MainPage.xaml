@@ -38,7 +38,7 @@
                FontSize="{StaticResource TextStyleMediumFontSize}" Margin="0,0,8,0" />
             <TextBox x:Name="txtRemoteHost" Grid.Row="0" Grid.Column="1"  Height="{StaticResource TextControlThemeMinHeight}" 
                  VerticalAlignment="Center" HorizontalAlignment="Center" 
-                 FontSize="{StaticResource TextStyleMediumFontSize}" Text="192.168.0.1" Margin="12.667,12,9.667,11.5" Padding="0,0,8,0" Width="111"  />
+                 FontSize="{StaticResource TextStyleMediumFontSize}" Text="" Margin="12.667,12,9.667,11.5" Padding="0,0,8,0" Width="111"  />
 
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Username:" 
                VerticalAlignment="Center" HorizontalAlignment="Right" 
