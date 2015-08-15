@@ -39,12 +39,7 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
     {
         try
         {
-            ConsoleLogger logger = new ConsoleLogger();
-            logger.setLogDebug(true);
-            //logger.setLogPackets(true);
-            
             ServerConfiguration cfg = new ServerConfiguration();
-            //cfg.setHost("UpperSetting.com");
                         
             HashMap<Integer, ProtocolConfiguration> protocolConfigurations =
                 new HashMap<Integer, ProtocolConfiguration>();
@@ -58,11 +53,10 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
             protocolConfigurations.put(HelloProtocol.PROTOCOL_IDENTIFIER,
                 new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
     
-            client = new Client(this, cfg, protocolConfigurations, logger, null);
+            client = new Client(this, cfg, protocolConfigurations);
             client.connect();
             
             int[] serverSupportedProtocolIds = client.getServerSupportedProtocolIds();
-            
             String str = "";
             for (int p : serverSupportedProtocolIds)
                 str += p + ", ";
