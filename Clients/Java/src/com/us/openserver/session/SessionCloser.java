@@ -51,12 +51,12 @@ public class SessionCloser implements Runnable
         }
     }
     
-    public void closeAsync()
+    public void closeBackgroundThread()
     {
-        closeAsync(0);
+        closeBackgroundThread(0);
     }
     
-    public void closeAsync(int protocolId)
+    public void closeBackgroundThread(int protocolId)
     {
         this.protocolId  = protocolId;
         Thread t = new Thread(this, "SessionCloser" + ++id);

@@ -91,10 +91,10 @@ public class Client
         session = sessionOpener.connect();    
     }
     
-    public void connectAsync() throws Exception
+    public void connectBackgroundThread() throws Exception
     {
         SessionOpener sessionOpener = new SessionOpener(this);
-        session = sessionOpener.connectAsync();    
+        session = sessionOpener.connectBackgroundThread();
     }
     
     public void close()
@@ -107,12 +107,12 @@ public class Client
         }
     }
     
-    public void closeAsync()
+    public void closeBackgroundThread()
     {
         if (session != null)
         {
             SessionCloser sessionCloser = new SessionCloser(session);
-            sessionCloser.closeAsync();
+            sessionCloser.closeBackgroundThread();
             session = null;
         }
     }
@@ -127,12 +127,12 @@ public class Client
         }
     }
     
-    public void closeAsync(int protocolId)
+    public void closeBackgroundThread(int protocolId)
     {
         if (session != null)
         {
             SessionCloser sessionCloser = new SessionCloser(session);
-            sessionCloser.closeAsync(protocolId);
+            sessionCloser.closeBackgroundThread(protocolId);
             session = null;
         }
     }
@@ -148,12 +148,7 @@ public class Client
     public ProtocolBase initialize(int protocolId) throws Exception
     {
          return session != null ? session.initialize(protocolId, userData) : null;
-    }
-    
-    public ProtocolBase initializeAsync(int protocolId) throws Exception
-    {
-         return session != null ? session.initialize(protocolId, userData) : null;
-    }
+    }    
     
     public void onConnectionLost(Exception ex)
     {

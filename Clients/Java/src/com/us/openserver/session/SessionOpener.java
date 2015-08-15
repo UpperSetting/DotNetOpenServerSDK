@@ -37,7 +37,7 @@ public class SessionOpener implements Runnable
         this.client  = client;
     }
 
-    public Session connectAsync() throws Exception
+    public Session connectBackgroundThread() throws Exception
     {
         synchronized (this)
         {
