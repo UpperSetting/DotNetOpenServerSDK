@@ -36,6 +36,9 @@ import java.util.HashMap;
 
 public class MainActivity extends ActionBarActivity implements IClientObserver
 {
+    private static final String CONNECT = "Connect";
+    private static final String DISCONNECT = "Disconnect";
+
     private EditText txtHost;
     private EditText txtUserName;
     private EditText txtPassword;
@@ -64,7 +67,6 @@ public class MainActivity extends ActionBarActivity implements IClientObserver
                     case 0://connection lost
                         onConnectionLostEx((Exception)inputMessage.obj);
                         break;
-
                 }
             }
         };
@@ -99,15 +101,18 @@ public class MainActivity extends ActionBarActivity implements IClientObserver
     {
         try
         {
-            if (btnConnect.getText() == "Disconnect")
+            if (btnConnect.getText() == DISCONNECT)
             {
                 if (client != null)
-                    client.closeAsync();
+                    client.closeBackgroundThread();
 
-                btnConnect.setText("Connect");
+                btnConnect.setText(CONNECT);
             }
             else
+            {
                 connect();
+                btnConnect.setText(DISCONNECT);
+            }
         }
         catch (Exception ex)
         {
@@ -119,14 +124,12 @@ public class MainActivity extends ActionBarActivity implements IClientObserver
     {
         ServerConfiguration cfg = new ServerConfiguration();
         cfg.setHost(txtHost.getText().toString());
-        /*
         TlsConfiguration tls = cfg.getTlsConfiguration();
         tls.setEnabled(false);
         tls.setAllowCertificateChainErrors(true);
         tls.setAllowSelfSignedCertificate(true);
         tls.setCheckCertificateRevocation(false);
         tls.setRequireRemoteCertificate(true);
-        */
 
         HashMap<Integer, ProtocolConfiguration> protocolConfigurations = new HashMap<>();
 
@@ -139,27 +142,24 @@ public class MainActivity extends ActionBarActivity implements IClientObserver
         protocolConfigurations.put(HelloProtocol.PROTOCOL_IDENTIFIER,
             new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
 
-        client = new Client(this, cfg, protocolConfigurations, null, null);
+        client = new Client(this, cfg, protocolConfigurations);
+        client.connectBackgroundThread();
 
         try
         {
-            client.connectAsync();
-
-            WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initializeAsync(WinAuthProtocol.PROTOCOL_IDENTIFIER);
+            WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
             if (!wap.authenticate(txtUserName.getText().toString(), txtPassword.getText().toString(), null))
                 throw new Exception("Access denied.");
 
-            client.initializeAsync(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
+            client.initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
 
-            HelloProtocolClient hpc = (HelloProtocolClient)client.initializeAsync(HelloProtocol.PROTOCOL_IDENTIFIER);
+            HelloProtocolClient hpc = (HelloProtocolClient)client.initialize(HelloProtocol.PROTOCOL_IDENTIFIER);
             String serverResponse = hpc.hello(txtUserName.getText().toString());
             showMessageBox(serverResponse);
-
-            btnConnect.setText("Disconnect");
         }
         catch (Exception ex)
         {
-            client.closeAsync();
+            client.closeBackgroundThread();
             throw ex;
         }
     }
@@ -171,8 +171,8 @@ public class MainActivity extends ActionBarActivity implements IClientObserver
 
     private void onConnectionLostEx(Exception ex)
     {
-        showMessageBox("Connection Lost\r\n\r\n" + ex.getMessage());
-        btnConnect.setText("Connect");
+        showMessageBox("Connection Lost. " + ex.getMessage());
+        btnConnect.setText(CONNECT);
     }
 
     private void showMessageBox(String message)
