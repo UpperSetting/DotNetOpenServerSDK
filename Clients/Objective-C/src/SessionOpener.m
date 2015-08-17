@@ -48,7 +48,7 @@ __attribute__((unused)) static void ComUsOpenserverSessionSessionOpener_setSocke
   return self;
 }
 
-- (ComUsOpenserverSessionSession *)connectAsync {
+- (ComUsOpenserverSessionSession *)connectBackgroundThread {
   @synchronized(self) {
     JavaLangThread *t = new_JavaLangThread_initWithJavaLangRunnable_withNSString_(self, JreStrcat("$I", @"SessionOpenThread", ++ComUsOpenserverSessionSessionOpener_id__));
     [t start];
@@ -80,7 +80,7 @@ __attribute__((unused)) static void ComUsOpenserverSessionSessionOpener_setSocke
     ComUsOpenserverSessionSessionOpener_setSocketOptionsWithJavaNetSocket_(self, socket);
   }
   else {
-    @throw new_JavaLangException_initWithNSString_(@"SSL/TLS 1.2 Not Implemented Yet.");
+    @throw new_JavaLangException_initWithNSString_(@"SSL/TLS 1.2 not implemented yet.");
   }
   session_ = new_ComUsOpenserverSessionSession_initWithComUsOpenserverClient_withJavaNetSocket_withNSString_(client_, socket, [((JavaNetInetAddress *) nil_chk([((JavaNetSocket *) nil_chk(socket)) getInetAddress])) getHostAddress]);
   [session_ logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Info() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Connected to %1$s:%2$s...", [IOSObjectArray newArrayWithObjects:(id[]){ [cfg getHost], JavaLangInteger_valueOfWithInt_([cfg getPort]) } count:2 type:NSObject_class_()])];
@@ -95,7 +95,7 @@ __attribute__((unused)) static void ComUsOpenserverSessionSessionOpener_setSocke
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithComUsOpenserverClient:", "SessionOpener", NULL, 0x1, NULL, NULL },
-    { "connectAsync", NULL, "Lcom.us.openserver.session.Session;", 0x1, "Ljava.lang.Exception;", NULL },
+    { "connectBackgroundThread", NULL, "Lcom.us.openserver.session.Session;", 0x1, "Ljava.lang.Exception;", NULL },
     { "run", NULL, "V", 0x1, NULL, NULL },
     { "connect", NULL, "Lcom.us.openserver.session.Session;", 0x1, "Ljava.lang.Exception;", NULL },
     { "setSocketOptionsWithJavaNetSocket:", "setSocketOptions", "V", 0x2, "Ljava.net.SocketException;", NULL },

@@ -40,13 +40,13 @@
 
 - (void)closeWithInt:(jint)protocolId;
 
-- (void)closeAsync;
+- (void)closeBackgroundThread;
 
-- (void)closeAsyncWithInt:(jint)protocolId;
+- (void)closeBackgroundThreadWithInt:(jint)protocolId;
 
 - (void)connect;
 
-- (void)connectAsync;
+- (void)connectBackgroundThread;
 
 - (ComUsOpenserverLogger *)getLogger;
 
@@ -61,8 +61,6 @@
 - (id)getUserData;
 
 - (ComUsOpenserverProtocolsProtocolBase *)initialize__WithInt:(jint)protocolId OBJC_METHOD_FAMILY_NONE;
-
-- (ComUsOpenserverProtocolsProtocolBase *)initializeAsyncWithInt:(jint)protocolId OBJC_METHOD_FAMILY_NONE;
 
 - (void)onConnectionLostWithJavaLangException:(JavaLangException *)ex;
 

@@ -21,9 +21,9 @@
 
 - (void)closeWithInt:(jint)protocolId;
 
-- (void)closeAsync;
+- (void)closeBackgroundThread;
 
-- (void)closeAsyncWithInt:(jint)protocolId;
+- (void)closeBackgroundThreadWithInt:(jint)protocolId;
 
 - (void)run;
 
