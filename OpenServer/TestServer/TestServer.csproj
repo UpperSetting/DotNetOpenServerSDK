@@ -46,6 +46,21 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="US.OpenServer.Protocols.Hello.Server">
+      <HintPath>..\..\bin\Windows\US.OpenServer.Protocols.Hello.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Protocols.Hello.Shared">
+      <HintPath>..\..\bin\Portable\US.OpenServer.Protocols.Hello.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Protocols.KeepAlive">
+      <HintPath>..\..\bin\Portable\US.OpenServer.Protocols.KeepAlive.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Protocols.WinAuth.Server">
+      <HintPath>..\..\bin\Windows\US.OpenServer.Protocols.WinAuth.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="US.OpenServer.Protocols.WinAuth.Shared">
+      <HintPath>..\..\bin\Portable\US.OpenServer.Protocols.WinAuth.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="US.OpenServer.Shared">
       <HintPath>..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
     </Reference>
