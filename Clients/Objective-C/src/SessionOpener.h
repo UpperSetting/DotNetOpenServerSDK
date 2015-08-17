@@ -20,7 +20,7 @@
 
 - (ComUsOpenserverSessionSession *)connect;
 
-- (ComUsOpenserverSessionSession *)connectAsync;
+- (ComUsOpenserverSessionSession *)connectBackgroundThread;
 
 - (void)run;
 

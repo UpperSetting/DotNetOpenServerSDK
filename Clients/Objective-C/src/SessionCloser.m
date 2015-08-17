@@ -44,11 +44,11 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionSessionCloser, id__, jint)
   }
 }
 
-- (void)closeAsync {
-  [self closeAsyncWithInt:0];
+- (void)closeBackgroundThread {
+  [self closeBackgroundThreadWithInt:0];
 }
 
-- (void)closeAsyncWithInt:(jint)protocolId {
+- (void)closeBackgroundThreadWithInt:(jint)protocolId {
   self->protocolId_ = protocolId;
   JavaLangThread *t = new_JavaLangThread_initWithJavaLangRunnable_withNSString_(self, JreStrcat("$I", @"SessionCloser", ++ComUsOpenserverSessionSessionCloser_id__));
   [t start];
@@ -63,8 +63,8 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionSessionCloser, id__, jint)
     { "initWithComUsOpenserverSessionSession:", "SessionCloser", NULL, 0x1, NULL, NULL },
     { "close", NULL, "V", 0x1, NULL, NULL },
     { "closeWithInt:", "close", "V", 0x1, NULL, NULL },
-    { "closeAsync", NULL, "V", 0x1, NULL, NULL },
-    { "closeAsyncWithInt:", "closeAsync", "V", 0x1, NULL, NULL },
+    { "closeBackgroundThread", NULL, "V", 0x1, NULL, NULL },
+    { "closeBackgroundThreadWithInt:", "closeBackgroundThread", "V", 0x1, NULL, NULL },
     { "run", NULL, "V", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {

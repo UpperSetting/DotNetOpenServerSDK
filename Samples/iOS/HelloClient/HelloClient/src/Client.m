@@ -89,9 +89,9 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverClient, session_, ComUsOpenserverSessionSessi
   session_ = [sessionOpener connect];
 }
 
-- (void)connectAsync {
+- (void)connectBackgroundThread {
   ComUsOpenserverSessionSessionOpener *sessionOpener = new_ComUsOpenserverSessionSessionOpener_initWithComUsOpenserverClient_(self);
-  session_ = [sessionOpener connectAsync];
+  session_ = [sessionOpener connectBackgroundThread];
 }
 
 - (void)close {
@@ -102,10 +102,10 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverClient, session_, ComUsOpenserverSessionSessi
   }
 }
 
-- (void)closeAsync {
+- (void)closeBackgroundThread {
   if (session_ != nil) {
     ComUsOpenserverSessionSessionCloser *sessionCloser = new_ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(session_);
-    [sessionCloser closeAsync];
+    [sessionCloser closeBackgroundThread];
     session_ = nil;
   }
 }
@@ -118,10 +118,10 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverClient, session_, ComUsOpenserverSessionSessi
   }
 }
 
-- (void)closeAsyncWithInt:(jint)protocolId {
+- (void)closeBackgroundThreadWithInt:(jint)protocolId {
   if (session_ != nil) {
     ComUsOpenserverSessionSessionCloser *sessionCloser = new_ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(session_);
-    [sessionCloser closeAsyncWithInt:protocolId];
+    [sessionCloser closeBackgroundThreadWithInt:protocolId];
     session_ = nil;
   }
 }
@@ -132,10 +132,6 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverClient, session_, ComUsOpenserverSessionSessi
 }
 
 - (ComUsOpenserverProtocolsProtocolBase *)initialize__WithInt:(jint)protocolId {
-  return session_ != nil ? [session_ initialize__WithInt:protocolId withId:userData_] : nil;
-}
-
-- (ComUsOpenserverProtocolsProtocolBase *)initializeAsyncWithInt:(jint)protocolId {
   return session_ != nil ? [session_ initialize__WithInt:protocolId withId:userData_] : nil;
 }
 
@@ -154,14 +150,13 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverClient, session_, ComUsOpenserverSessionSessi
     { "initWithComUsOpenserverIClientObserver:withComUsOpenserverConfigurationServerConfiguration:withJavaUtilHashMap:withComUsOpenserverLogger:", "Client", NULL, 0x1, NULL, NULL },
     { "initWithComUsOpenserverIClientObserver:withComUsOpenserverConfigurationServerConfiguration:withJavaUtilHashMap:withComUsOpenserverLogger:withId:", "Client", NULL, 0x1, NULL, NULL },
     { "connect", NULL, "V", 0x1, "Ljava.lang.Exception;", NULL },
-    { "connectAsync", NULL, "V", 0x1, "Ljava.lang.Exception;", NULL },
+    { "connectBackgroundThread", NULL, "V", 0x1, "Ljava.lang.Exception;", NULL },
     { "close", NULL, "V", 0x1, NULL, NULL },
-    { "closeAsync", NULL, "V", 0x1, NULL, NULL },
+    { "closeBackgroundThread", NULL, "V", 0x1, NULL, NULL },
     { "closeWithInt:", "close", "V", 0x1, NULL, NULL },
-    { "closeAsyncWithInt:", "closeAsync", "V", 0x1, NULL, NULL },
+    { "closeBackgroundThreadWithInt:", "closeBackgroundThread", "V", 0x1, NULL, NULL },
     { "getServerSupportedProtocolIds", NULL, "[I", 0x1, NULL, NULL },
     { "initialize__WithInt:", "initialize", "Lcom.us.openserver.protocols.ProtocolBase;", 0x1, "Ljava.lang.Exception;", NULL },
-    { "initializeAsyncWithInt:", "initializeAsync", "Lcom.us.openserver.protocols.ProtocolBase;", 0x1, "Ljava.lang.Exception;", NULL },
     { "onConnectionLostWithJavaLangException:", "onConnectionLost", "V", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
@@ -172,7 +167,7 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverClient, session_, ComUsOpenserverSessionSessi
     { "userData_", NULL, 0x2, "Ljava.lang.Object;", NULL, NULL,  },
     { "session_", NULL, 0x2, "Lcom.us.openserver.session.Session;", NULL, NULL,  },
   };
-  static const J2ObjcClassInfo _ComUsOpenserverClient = { 2, "Client", "com.us.openserver", NULL, 0x1, 18, methods, 6, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _ComUsOpenserverClient = { 2, "Client", "com.us.openserver", NULL, 0x1, 17, methods, 6, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverClient;
 }
 
