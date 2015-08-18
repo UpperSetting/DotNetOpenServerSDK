@@ -38,7 +38,8 @@ namespace HelloClient
                 ConsoleLogger logger = new ConsoleLogger();
 
                 ServerConfiguration cfg = new ServerConfiguration();
-                //cfg.Host = "UpperSetting.com";
+                cfg.Host = "localhost";
+                cfg.TlsConfiguration.Enabled = false;
 
                 Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
                     new Dictionary<ushort, ProtocolConfiguration>();
@@ -54,6 +55,10 @@ namespace HelloClient
 
                 client = new Client(cfg, protocolConfigurations, logger);
                 client.Connect();
+
+                ushort[] protocolIds = client.GetServerSupportedProtocolIds();
+                foreach (int protocolId in protocolIds)
+                    Console.WriteLine("Server Supports Protocol ID: " + protocolId);
 
                 string userName = "TestUser";
                 WinAuthProtocolClient wap = client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER) as WinAuthProtocolClient;
