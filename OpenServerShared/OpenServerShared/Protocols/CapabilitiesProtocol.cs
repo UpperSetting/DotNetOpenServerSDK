@@ -53,7 +53,7 @@ namespace US.OpenServer.Protocols
         /// <param name="session">A SessionBase that implements the connection session.</param>
         public CapabilitiesProtocol(SessionBase session)
         {
-            this.session = session;
+            Initialize(session);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace US.OpenServer.Protocols
             {
                 MemoryStream ms = new MemoryStream();
                 BinaryWriter bw = GetBinaryWriter(ms, CapabilitiesProtocolCommands.GET_PROTOCOL_IDS);
-                session.Send(ms);
+                Session.Send(ms);
 
                 if (!Monitor.Wait(this, TIMEOUT))
                     throw new TimeoutException();
@@ -89,7 +89,7 @@ namespace US.OpenServer.Protocols
                 bw.Write(protocolId);
                 bw.WriteString(message);
                 Log(Level.Notice, message);
-                session.Send(ms);
+                Session.Send(ms);
             }
         }
 
@@ -109,12 +109,12 @@ namespace US.OpenServer.Protocols
             {
                 case CapabilitiesProtocolCommands.GET_PROTOCOL_IDS:
                     {
-                        ushort[] protocolIds = session.GetLocalSupportedProtocolIds();
+                        ushort[] protocolIds = Session.GetLocalSupportedProtocolIds();
                         MemoryStream ms = new MemoryStream();
                         BinaryWriter bw = GetBinaryWriter(ms, CapabilitiesProtocolCommands.PROTOCOL_IDS);
                         bw.WriteUInt16s(protocolIds);
                         Log(Level.Debug, string.Format("Sent Protocol IDs: {0}", string.Join(", ", protocolIds.ToArray())));
-                        session.Send(ms);
+                        Session.Send(ms);
                         break;
                     }
                 case CapabilitiesProtocolCommands.PROTOCOL_IDS:
@@ -142,7 +142,7 @@ namespace US.OpenServer.Protocols
             }
 
             if (!string.IsNullOrEmpty(errorMessage))
-                session.OnCapabilitiesError(protocolId, errorMessage);
+                Session.OnCapabilitiesError(protocolId, errorMessage);
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace US.OpenServer.Protocols
         /// <param name="message">A string that contains the message.</param>
         protected override void Log(Level level, string message)
         {
-            session.Log(level, string.Format("[Capabilities] {0}", message));
+            Session.Log(level, string.Format("[Capabilities] {0}", message));
         }
     }
 }

@@ -53,7 +53,7 @@ namespace US.OpenServer.Protocols.Hello
             BinaryWriter bw = new BinaryWriter(ms, Encoding.UTF8);
             bw.Write(HelloProtocol.PROTOCOL_IDENTIFIER);
             bw.Write(serverResponse);
-            session.Send(ms);
+            Session.Send(ms);
             Log(Level.Info, string.Format("Server responded: {0}", serverResponse));
         }
     }

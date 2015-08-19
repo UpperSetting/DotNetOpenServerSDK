@@ -35,9 +35,7 @@ namespace HelloClient
             Client client = null;
             try
             {
-                ConsoleLogger logger = new ConsoleLogger();
-
-                ServerConfiguration cfg = new ServerConfiguration();
+               ServerConfiguration cfg = new ServerConfiguration();
                 cfg.Host = "localhost";
                 cfg.TlsConfiguration.Enabled = false;
 
@@ -53,7 +51,7 @@ namespace HelloClient
                 protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
                     new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
 
-                client = new Client(cfg, protocolConfigurations, logger);
+                client = new Client(cfg, protocolConfigurations);
                 client.Connect();
 
                 ushort[] protocolIds = client.GetServerSupportedProtocolIds();

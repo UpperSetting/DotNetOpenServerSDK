@@ -61,7 +61,7 @@ namespace US.OpenServer.Protocols.WinAuth
         /// <param name="message">A string that contains the message.</param>
         protected override void Log(Level level, string message)
         {
-            session.Log(level, string.Format("[WinAuth] {0}", message));
+            Session.Log(level, string.Format("[WinAuth] {0}", message));
         }
     }
 }

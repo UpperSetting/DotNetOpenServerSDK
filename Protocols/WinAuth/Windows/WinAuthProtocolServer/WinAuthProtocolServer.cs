@@ -119,7 +119,7 @@ namespace US.OpenServer.Protocols.WinAuth
         {
             lock (this)
             {
-                if (session == null)
+                if (Session == null)
                     return;
 
                 WinAuthProtocolCommands command = (WinAuthProtocolCommands)br.ReadByte();
@@ -143,15 +143,15 @@ namespace US.OpenServer.Protocols.WinAuth
                                 UserName = userName;
                                 IsAuthenticated = true;
 
-                                session.UserName = userName;
-                                session.IsAuthenticated = true;
-                                session.AuthenticationProtocol = this;
+                                Session.UserName = userName;
+                                Session.IsAuthenticated = true;
+                                Session.AuthenticationProtocol = this;
                                 
                                 Log(Level.Info, string.Format(@"Authenticated {0}\{1}.", domain, userName));
 
                                 MemoryStream ms = new MemoryStream();
                                 GetBinaryWriter(ms, WinAuthProtocolCommands.AUTHENTICATED);
-                                session.Send(ms);
+                                Session.Send(ms);
                             }
                             catch (Exception ex)
                             {
@@ -159,7 +159,7 @@ namespace US.OpenServer.Protocols.WinAuth
 
                                 MemoryStream ms = new MemoryStream();
                                 GetBinaryWriter(ms, WinAuthProtocolCommands.ACCESS_DENIED);
-                                session.Send(ms);
+                                Session.Send(ms);
                             }
                             break;
                         default:
@@ -173,7 +173,7 @@ namespace US.OpenServer.Protocols.WinAuth
                     MemoryStream ms = new MemoryStream();
                     BinaryWriter bw = GetBinaryWriter(ms, WinAuthProtocolCommands.ERROR);
                     bw.Write(ex.Message);
-                    session.Send(ms);
+                    Session.Send(ms);
                 }
             }
         }

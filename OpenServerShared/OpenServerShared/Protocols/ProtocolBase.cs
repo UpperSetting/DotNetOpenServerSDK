@@ -29,9 +29,9 @@ namespace US.OpenServer.Protocols
     public abstract class ProtocolBase : IDisposable
     {
         /// <summary>
-        /// The connection session.
+        /// Gets the connection session.
         /// </summary>
-        protected SessionBase session;
+        protected SessionBase Session { get; private set; }
 
         /// <summary>
         /// Creates a ProtocolBase object.
@@ -49,9 +49,9 @@ namespace US.OpenServer.Protocols
         ///properties.</param>
         /// <param name="userData">An object that may be used client applications to pass
         /// objects or data to client side protocol implementations.</param>
-        public virtual void Initialize(SessionBase session, ProtocolConfiguration pc, object userData = null)
+        public virtual void Initialize(SessionBase session, ProtocolConfiguration pc = null, object userData = null)
         {
-            this.session = session;
+            this.Session = session;
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace US.OpenServer.Protocols
         /// <param name="message">A string that contains the message.</param>
         protected virtual void Log(Level level, string message)
         {
-            session.Log(level, string.Format("[ProtocolBase] {0}", message));
+            Session.Log(level, string.Format("[ProtocolBase] {0}", message));
         }
     }
 }

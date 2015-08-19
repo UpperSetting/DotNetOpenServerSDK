@@ -119,7 +119,7 @@ namespace US.OpenServer.Protocols.KeepAlive
 
                 try
                 {
-                    session.Send(ms);
+                    Session.Send(ms);
                 }
                 catch (Exception)
                 {
@@ -152,7 +152,7 @@ namespace US.OpenServer.Protocols.KeepAlive
             bool dispose = false;
             lock (this)
             {
-                if (session == null)
+                if (Session == null)
                     return;
 
                 KeepAliveProtocolCommands command = (KeepAliveProtocolCommands)br.ReadByte();
@@ -172,7 +172,7 @@ namespace US.OpenServer.Protocols.KeepAlive
             }
 
             if (dispose)
-                session.Dispose();
+                Session.Dispose();
         }
         #endregion
 
@@ -184,7 +184,7 @@ namespace US.OpenServer.Protocols.KeepAlive
         /// <param name="message">A string that contains the message.</param>
         protected override void Log(Level level, string message)
         {
-            session.Log(level, string.Format("[Keep-Alive] {0}", message));
+            Session.Log(level, string.Format("[Keep-Alive] {0}", message));
         }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace US.OpenServer.Protocols.KeepAlive
                     BinaryWriter bw = new BinaryWriter(ms, Encoding.UTF8);
                     bw.Write(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
                     bw.Write((byte)KeepAliveProtocolCommands.KEEP_ALIVE);
-                    session.Send(ms);
+                    Session.Send(ms);
                     Log(Level.Debug, "Sent.");
                 }
                 catch (ObjectDisposedException)
@@ -220,7 +220,7 @@ namespace US.OpenServer.Protocols.KeepAlive
             }
 
             if (connectionLostException != null)
-                session.ConnectionLost(connectionLostException);
+                Session.ConnectionLost(connectionLostException);
         }
         #endregion
     }

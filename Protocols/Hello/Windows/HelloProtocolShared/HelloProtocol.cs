@@ -44,7 +44,7 @@ namespace US.OpenServer.Protocols.Hello
         /// <param name="message">A string that contains the message.</param>
         protected override void Log(Level level, string message)
         {
-            session.Log(level, string.Format("[Hello] {0}", message));
+            Session.Log(level, string.Format("[Hello] {0}", message));
         }
     }
 }

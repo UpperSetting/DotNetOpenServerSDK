@@ -54,18 +54,18 @@ namespace US.OpenServer.Protocols.WinAuth
         {
             lock (this)
             {
-                if (session == null)
+                if (Session == null)
                     return false;
 
                 UserName = userName;
-                session.UserName = userName;
+                Session.UserName = userName;
 
                 MemoryStream ms = new MemoryStream();
                 BinaryWriter bw = GetBinaryWriter(ms, WinAuthProtocolCommands.AUTHENTICATE);
                 bw.WriteString(userName);
                 bw.WriteString(password);
                 bw.WriteString(domain);
-                session.Send(ms);
+                Session.Send(ms);
 
                 if (!Monitor.Wait(this, TIMEOUT))
                     throw new TimeoutException();
@@ -82,7 +82,7 @@ namespace US.OpenServer.Protocols.WinAuth
         /// <para>
         /// When an <see cref="US.OpenServer.Protocols.WinAuth.WinAuthProtocolCommands.AUTHENTICATED"/>
         /// response is received, notifies the <see cref="US.OpenServer.SessionBase"/> the
-        /// session is authenticated enabling the session to allow execution of higher
+        /// client is authenticated enabling the session to allow execution of higher
         /// protocol layers. Finally, signals the <see cref="Authenticate(String, String, String)" />
         /// function to unblock the calling thread. 
         /// </para>
@@ -105,7 +105,7 @@ namespace US.OpenServer.Protocols.WinAuth
         {
             lock (this)
             {
-                if (session == null)
+                if (Session == null)
                     return;
 
                 WinAuthProtocolCommands command = (WinAuthProtocolCommands)br.ReadByte();
@@ -113,7 +113,7 @@ namespace US.OpenServer.Protocols.WinAuth
                 {
                     case WinAuthProtocolCommands.AUTHENTICATED:
                         IsAuthenticated = true;
-                        session.IsAuthenticated = true;
+                        Session.IsAuthenticated = true;
                         Log(Level.Info, "Authenticated.");
                         Monitor.PulseAll(this);
                         break;
