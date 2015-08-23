@@ -66,8 +66,7 @@ namespace US.OpenServer.Protocols
         /// and class Type.
         /// </summary>
         /// <remarks>
-        /// This constructor is called by <see cref="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler"/>
-        /// when programatically loading.
+        /// This constructor is called when programatically configuring the server or client.
         /// </remarks>
         /// <param name="id">A UInt16 that specifies the protocol identifier.</param>
         /// <param name="protocolType">A Type that specifies the protocol class. The class

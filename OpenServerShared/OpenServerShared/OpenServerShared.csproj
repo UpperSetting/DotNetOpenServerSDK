@@ -35,10 +35,6 @@
     <DocumentationFile>..\bin\US.OpenServer.Shared.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <None Include="ClassDiagram.cd" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Protocols\CapabilitiesProtocol.cs" />
     <Compile Include="Protocols\ProtocolConfiguration.cs" />
     <Compile Include="Configuration\ServerConfiguration.cs" />

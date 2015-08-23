@@ -63,10 +63,10 @@ namespace US.OpenServer.Configuration
         }
 
         /// <summary>
-        /// <para> When used from a Windows server, gets and sets the IP address to
-        /// bind the TCP socket server. Defaults to 0.0.0.0 (all IP addresses). </para>
-        /// <para>When used from a Windows client or Windows Mobile client, gets and
-        /// sets the Host the server is running. Defaults to localhost.</para>
+        /// <para> When used from a Windows server, gets and sets the IP address to bind
+        /// the TCP socket server. Defaults to 0.0.0.0 (all IP addresses). </para>
+        /// <para>When used from a Windows client, gets and sets the Host the server is
+        /// running. Defaults to localhost.</para>
         /// </summary>
         /// <value>Depending if used from the server or client, a string that specifies
         /// the IP address to bind to or the name of the host the server is
@@ -74,8 +74,8 @@ namespace US.OpenServer.Configuration
         public string Host { get; set; }
 
         /// <summary>
-        /// Gets or sets the TCP port the server is either to run, when referenced from the
-        /// server, or is running, when referenced from the client.
+        /// Gets or sets the TCP port the server is to run, when called from the server,
+        /// or is running, when called from the client.
         /// </summary>
         /// <value>A UInt16 that specifies the server's TCP port. The default value is
         /// 21843.</value>

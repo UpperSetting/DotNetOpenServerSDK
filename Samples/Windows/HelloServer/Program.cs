@@ -32,8 +32,6 @@ namespace HelloServer
     {
         static void Main(string[] args)
         {
-            ConsoleLogger logger = new ConsoleLogger();
-
             ServerConfiguration cfg = new ServerConfiguration();
 
             Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
@@ -42,8 +40,7 @@ namespace HelloServer
             protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
                 new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
 
-            WinAuthProtocolConfigurationServer winAuthCfg =
-                new WinAuthProtocolConfigurationServer(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolServer));
+            WinAuthProtocolConfigurationServer winAuthCfg = new WinAuthProtocolConfigurationServer();
             winAuthCfg.AddRole("Administrators");
             winAuthCfg.AddUser("TestUser");
             protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER, winAuthCfg);
@@ -51,10 +48,11 @@ namespace HelloServer
             protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
                 new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolServer)));
 
-            Server server = new Server(cfg, protocolConfigurations, logger);
+            Server server = new Server(cfg, protocolConfigurations);
 
             server.Logger.Log(Level.Info, "Press any key to quit.");
             Console.ReadKey();
+
             server.Close();
         }
     }

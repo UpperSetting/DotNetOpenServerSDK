@@ -66,30 +66,9 @@ namespace US.OpenServer.Protocols.WinAuth
         #region Constructor
         /// <summary>
         /// Creates a WinAuthProtocolConfigurationServer object.
-        /// </summary>
-        /// <remarks>
-        /// This constructor is called by <see cref="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler"/>
-        /// when loading protocol configurations from the app.config file and the
-        /// app.config file includes a configClassPath within the protocols/item
-        /// section.
-        /// </remarks>
+        /// </summary>        
         public WinAuthProtocolConfigurationServer()
-        {
-            Roles = new HashSet<string>();
-            Users = new HashSet<string>();
-        }
-
-        /// <summary>
-        /// Creates a WinAuthProtocolConfigurationServer object.
-        /// </summary>
-        /// <remarks>
-        /// This constructor is called by <see cref="US.OpenServer.Protocols.ProtocolConfigurationSectionHandler"/>
-        /// when programatically loading.
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="protocolType"></param>
-        public WinAuthProtocolConfigurationServer(ushort id, Type protocolType)
-            : base (id, protocolType)
+            : base(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolServer))
         {
             Roles = new HashSet<string>();
             Users = new HashSet<string>();

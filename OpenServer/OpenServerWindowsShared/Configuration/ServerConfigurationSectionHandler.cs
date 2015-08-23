@@ -51,11 +51,11 @@ namespace US.OpenServer.Configuration
         
         /// <summary> The name of the section that contains the socket read
         /// timeout.</summary>
-        private const string READTIMEOUT = "readTimeout";
+        private const string RECEIVETIMEOUT = "receiveTimeout";
 
         /// <summary> The name of the section that contains the socket write
         /// timeout.</summary>
-        private const string WRITETIMEOUT = "writeTimeout";
+        private const string SENDTIMEOUT = "sendTimeout";
 
         #region TLS
         /// <summary>The name of the attribute that specifies whether the end point must
@@ -105,11 +105,11 @@ namespace US.OpenServer.Configuration
             if (node != null)
                 cfg.IdleTimeout = int.Parse(node.Attributes[VALUE].Value);
 
-            node = section.SelectSingleNode(READTIMEOUT);
+            node = section.SelectSingleNode(RECEIVETIMEOUT);
             if (node != null)
                 cfg.ReceiveTimeout = int.Parse(node.Attributes[VALUE].Value);
 
-            node = section.SelectSingleNode(WRITETIMEOUT);
+            node = section.SelectSingleNode(SENDTIMEOUT);
             if (node != null)
                 cfg.SendTimeout = int.Parse(node.Attributes[VALUE].Value);
 

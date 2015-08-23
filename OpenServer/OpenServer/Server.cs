@@ -99,8 +99,8 @@ namespace US.OpenServer
         /// <remarks> All parameters are optional. If null is passed, the object's
         /// configuration is read from the app.config file.</remarks>
         /// <param name="logger">An optional Logger to log messages. If null is passed,
-        /// an attempt is made to read the log4net configuration from the app.config
-        /// file. If the configuration is not present a <see cref="US.OpenServer.Log4NetLogger"/>
+        /// an attempt is made to read the log4net configuration from the app.config's 
+        /// file. If the configuration is present, a <see cref="US.OpenServer.Log4NetLogger"/>
         /// is created otherwise a <see cref="US.OpenServer.ConsoleLogger"/> is
         /// created.</param>
         /// <param name="serverConfiguration">An optional ServerConfiguration that contains the
