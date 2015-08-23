@@ -128,7 +128,6 @@
     <None Include="Content\Configuration\App.Config\protocols Element.aml" />
     <None Include="Content\Configuration\App.Config\server Element.aml" />
     <None Include="Content\Configuration\App.Config\tls Element.aml" />
-    <None Include="Content\Configuration\Configuring the Windows Authentication Protocol.aml" />
     <None Include="Content\Configuration\Configuring Windows Components.aml" />
     <None Include="Content\Logging\Logging.aml" />
     <None Include="Content\Protocols\Creating Protocols.aml" />

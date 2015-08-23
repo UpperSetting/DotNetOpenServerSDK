@@ -84,9 +84,9 @@
                   Client client = null;
                   try
                   {
-                      ConsoleLogger logger = new ConsoleLogger();
-
                       ServerConfiguration cfg = new ServerConfiguration();
+                      cfg.Host = "localhost";
+                      cfg.TlsConfiguration.Enabled = false;
 
                       Dictionary&lt;ushort, ProtocolConfiguration&gt; protocolConfigurations =
                           new Dictionary&lt;ushort, ProtocolConfiguration&gt;();

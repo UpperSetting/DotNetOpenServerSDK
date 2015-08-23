@@ -5,7 +5,22 @@
     xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <introduction>
+      <para>
+        This topic walks you through the process of referencing the DotNetOpenServer API libraries,
+        integrating the DotNetOpenServer (the server) in your application and lastly,
+        configuring the server.
+      </para>
+      <para>
+        The complete sample referenced in this topic can be found in the DotNetCloudServer SDK's <legacyBold>Samples\Server</legacyBold> directory.
+        By default this is <legacyBold>C:\Upper Setting\DotNetCloudServer SDK\Samples\Server</legacyBold>.
+      </para>
+      <para>
+        For more information on using the DotNetCloudServer Windows Service see <link
+        xlink:href="UsingTheWindowsService" />.
+      </para>
+
       <autoOutline>0</autoOutline>
+
     </introduction>
     
     <section address="Application">
@@ -53,6 +68,7 @@
                   PM> Install-Package UpperSetting.OpenServer
                   PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive
                   PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Server
+                  PM> Install-Package UpperSetting.OpenServer.Protocols.HelloServer
                   PM> Install-Package log4net
                 </code>
               </content>
@@ -72,38 +88,36 @@
             <step>
               <content>
                 <para>
-                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click <legacyBold>Program.cs</legacyBold> then select <legacyBold>Open</legacyBold>.
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right
+                  click on <legacyBold>Program.cs</legacyBold> then select
+                  <legacyBold>Open</legacyBold>.
                 </para>
               </content>
             </step>
             <step>
               <content>
                 <para>
-                  Add the following using statement:
+                  Create the <codeEntityReference>T:US.OpenServer.Server</codeEntityReference>.
+                  For example:
                 </para>
-                <codeReference>Server#AppConfigUsing</codeReference>
+                <codeReference>Server#AppConfig</codeReference>
               </content>
             </step>
             <step>
               <content>
                 <para>
-                  Create the <codeEntityReference>T:US.OpenServer.Server</codeEntityReference>.  For example:
-                </para>
-                <codeReference>Server#AppConfigServer</codeReference>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click <legacyBold>app.config</legacyBold> then select <legacyBold>Open</legacyBold>.
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right
+                  click on <legacyBold>app.config</legacyBold> then select
+                  <legacyBold>Open</legacyBold>.
                 </para>
               </content>
             </step>
             <step>
               <content>
                 <para>
-                  Add the configuration.
-                  For more information see: <link xlink:href="Configuration.Windows.app.config" />
+                  Add the required configuration sections. For more information and a detailed
+                  example which you can copy see: <link
+                  xlink:href="Configuration.Windows.app.config" />
                 </para>                
               </content>
             </step>
@@ -121,31 +135,64 @@
             <step>
               <content>
                 <para>
-                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click <legacyBold>Program.cs</legacyBold> then select <legacyBold>Open</legacyBold>.
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right click on <legacyBold>Program.cs</legacyBold> then select <legacyBold>Open</legacyBold>.
                 </para>
               </content>
             </step>
             <step>
               <content>
                 <para>
-                  Add the following using statements:
+                  From the Main function, create a
+                  <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference>
+                  object then set any properties you want to override including SSL/TLS
+                  properties.
                 </para>
-                <codeReference>Server#Using</codeReference>
-              </content>
-            </step>
-            <step>
-              <content>
                 <para>
-                  Create the <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>,
-                  create the <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference> then set any properties you want to override,
-                  create the <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects then add them to a Dictionary keyed with the each unique protocol identifier,
-                  finally, create the <codeEntityReference>T:US.OpenServer.Server</codeEntityReference>.
+                  If you want to secure your application, create a
+                  <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolConfigurationServer</codeEntityReference>
+                  object then add the groups and users you want to authorize access.
+                </para>
+                <para>
+                  Create a Dictionary of
+                  <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference>
+                  objects keyed by the unique protocol identifier that contains the following
+                  three protocols:
+                </para>
+                <list class="bullet">
+                  <listItem>
+                    <para>
+                      <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolServer</codeEntityReference>
+                    </para>
+                  </listItem>
+                  <listItem>
+                    <para>
+                      <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>
+                    </para>
+                  </listItem>
+                  <listItem>
+                    <para>
+                      <codeEntityReference>T:US.OpenServer.Protocols.Hello.HelloProtocolServer</codeEntityReference>
+                    </para>
+                  </listItem>
+                </list>
+                <para>
+                  Finally, create the
+                  <codeEntityReference>T:US.OpenServer.Server</codeEntityReference> passing in the
+                  <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference>
+                  and the the Dictionary of
+                  <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects.
                   For example:
                 </para>
                 <codeReference>Server#Programatically</codeReference>
-                <para>
-                  Please note if you set any of the <codeEntityReference>T:US.OpenServer.Server</codeEntityReference> constructor parameters to null, those parameters are configured using values found in the app.config file.
-                </para>
+                <alert>
+                  <para>
+                    Each of the
+                    <codeEntityReference>M:US.OpenServer.Server.ctor</codeEntityReference>
+                    parameters can be set to null. If a parameter is set to null, the constructor
+                    will create an instance of the configuration object using the default property values
+                    then attempt to load the properties from the app.config file.
+                  </para>
+                </alert>
               </content>
             </step>
           </steps>

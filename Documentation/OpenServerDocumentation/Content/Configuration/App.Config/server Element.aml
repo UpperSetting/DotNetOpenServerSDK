@@ -32,23 +32,17 @@
             </row>
 
           </tableHeader>
-
-          <row>
-            <entry>
-              <para>bindAddress</para>
-            </entry>
-            <entry>
-              <para>The IP address to bind the TCP socket server. Defaults to 0.0.0.0 (all IP addresses).</para>
-              <alert><para>Server-side only.</para></alert>
-            </entry>
-          </row>
+         
           <row>
             <entry>
               <para>host</para>
             </entry>
             <entry>
-              <para>The IP address or host the TCP socket server is running. Defaults to localhost.</para>
-              <alert><para>Client-side only.</para></alert>
+              <para>
+                When used from a Windows server, the IP address to bind the TCP socket server.
+                Defaults to 0.0.0.0 (all IP addresses). When used from a Windows client, gets
+                and sets the Host the server is running. Defaults to localhost.
+              </para>
             </entry>
           </row>
           <row>
@@ -82,7 +76,7 @@
               <para>receiveTimeout</para>
             </entry>
             <entry>
-              <para>The number of seconds a read operation blocks waiting for data.</para>
+              <para>The number of seconds a receive operation blocks waiting for data.</para>
             </entry>
           </row>
           <row>
@@ -90,7 +84,7 @@
               <para>sendTimeout</para>
             </entry>
             <entry>
-              <para>The number of seconds a write operation blocks waiting for data.</para>
+              <para>The number of seconds a send operation blocks waiting for data.</para>
             </entry>
           </row>
         </table>        

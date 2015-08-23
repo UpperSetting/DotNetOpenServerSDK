@@ -6,9 +6,10 @@
 
     <introduction>
       <para>
-        The app.config file can optionally contain all the Server and Client
-        configuration properties. For more information on each of the app.config
-        elements, follow the links below.
+        The app.config file can optionally contain all the Server and Windows Client
+        configuration properties. Below you will find a sample server and a sample
+        client example. For more information on each of the app.config elements, follow
+        the links below the sample files.
       </para>
     </introduction>
 

@@ -6,7 +6,7 @@
 
     <introduction>
       <para>
-        DotNetOpenServer is implemented on Windows using the .Net Framework 4.5.
+        DotNetOpenServer is implemented on Windows using the .Net Framework 4.5.2.
         The server is implemented as an asynchronous TCP socket server.
         .Net components are used to negotiate SSL/TLS 1.2.
         Protocols are implemented in stand-alone assemblies which are loaded through Reflection when requested by the client.
@@ -14,10 +14,37 @@
       </para>
 
       <table>
-        <title>This SDK includes 3 protocol implementations:</title>
+        <title>This SDK includes two internal protocols and three dynamically loaded protocols:</title>
         <row>
           <entry>
-            <para>Windows Authentication Protocol (WinAuthP)</para>
+            <para>
+              <codeEntityReference>T:US.OpenServer.Protocols.SessionLayerProtocol</codeEntityReference> (SLP)</para>
+          </entry>
+          <entry>
+            <para>
+              The lowest internal protocol responsible for transmitting and receiving higher
+              level protocols.
+            </para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <codeEntityReference>T:US.OpenServer.Protocols.CapabilitiesProtocol</codeEntityReference> (CAP)</para>
+          </entry>
+          <entry>
+            <para>
+              An internal protocol responsible to providing a list of supported protocols to
+              requesting clients and returning an error when a client attempts to use a
+              protocol that is not supported.
+            </para>
+          </entry>
+        </row>
+        <row>
+          <entry>
+            <para>
+              <codeEntityReference>N:US.OpenServer.Protocols.WinAuth</codeEntityReference> (WinAuthP)
+            </para>
           </entry>
           <entry>
             <para>Authenticates user supplied credentials against either local or domain accounts.</para>
@@ -25,20 +52,25 @@
         </row>
         <row>
           <entry>
-            <para>Keep-Alive Protocol (KAP)</para>
+            <para>
+              <codeEntityReference>N:US.OpenServer.Protocols.KeepAlive</codeEntityReference> (KAP)
+            </para>
           </entry>
           <entry>
             <para>
-              Both the client and server send tiny packets back
-              and forth. As soon as the heartbeat stops the framework notifies the application
-              the network has failed enabling server-side component objects to release
-              associated resources and notifies the end user a network failure has occurred.
+              An application layer protocol that sends tiny packets back and forth between
+              the clients and server. As soon as the heartbeat stops the framework notifies
+              the application the network has failed enabling server-side components to
+              release associated resources and notify end users a network failure has
+              occurred.
             </para>
           </entry>
         </row>
         <row>
           <entry>
-            <para>Hello Protocol</para>
+            <para>
+              <codeEntityReference>N:US.OpenServer.Protocols.Hello</codeEntityReference>
+            </para>
           </entry>
           <entry>
             <para>

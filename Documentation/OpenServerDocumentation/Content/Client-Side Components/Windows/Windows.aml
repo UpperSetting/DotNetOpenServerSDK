@@ -67,11 +67,8 @@
                 </para>
                 <code>
                   PM> Install-Package UpperSetting.OpenServer.Windows.Client
-
                   PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client
-
                   PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive
-
                   PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client
                 </code>
               </content>
@@ -172,19 +169,73 @@
             <step>
               <content>
                 <para>
-                  Create the <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>,
-                  create the <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference> then set any properties you want to override,
-                  create the <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects then add them to A Dictionary keyed with the each unique protocol identifier,
-                  create the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>,
-                  connect, 
-                  authenticate using the <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>,
-                  finally, initialize the <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>.
+                  From the Main function, create a
+                  <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference>
+                  object then set any properties you want to override including SSL/TLS
+                  properties.
+                </para>                
+                <para>
+                  Create a Dictionary of
+                  <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference>
+                  objects keyed by the unique protocol identifier that contains the following
+                  three protocols:
+                </para>
+                <list class="bullet">
+                  <listItem>
+                    <para>
+                      <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>
+                    </para>
+                  </listItem>
+                  <listItem>
+                    <para>
+                      <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>
+                    </para>
+                  </listItem>
+                  <listItem>
+                    <para>
+                      <codeEntityReference>T:US.OpenServer.Protocols.Hello.HelloProtocolClient</codeEntityReference>
+                    </para>
+                  </listItem>
+                </list>
+                <para>
+                  Create the
+                  <codeEntityReference>T:US.OpenServer.Client</codeEntityReference> passing in the
+                  <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference>
+                  and the the Dictionary of
+                  <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects.
+                </para>
+                <para>
+                  Call <codeEntityReference>M:US.OpenServer.Client.Connect</codeEntityReference> to connect to server.
+                </para>
+                <para>
+                  Initialize the
+                  <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>
+                  protocol then call
+                  <codeEntityReference>M:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient.Authenticate(System.String,System.String,System.String)</codeEntityReference>
+                  to authenticate the connection.
+                </para>
+                <para>
+                  Initialize the
+                  <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>
+                  to enable the client/server Keep-Alive (aka Heartbeat) protocol.
+                </para>
+                <para>
+                  Initialize the
+                  <codeEntityReference>T:US.OpenServer.Protocols.Hello.HelloProtocolClient</codeEntityReference>
+                  then call 
+                  <codeEntityReference>M:US.OpenServer.Protocols.Hello.HelloProtocolClient.Hello(System.String)</codeEntityReference>.
                   For example:
                 </para>
                 <codeReference>WindowsClient#Programatically</codeReference>
-                <para>
-                  Please note if you set any of the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference> constructor parameters to null, those parameters are read from the app.config.
-                </para>
+                <alert>
+                  <para>
+                    Each of the
+                    <codeEntityReference>M:US.OpenServer.Client.ctor</codeEntityReference>
+                    parameters can be set to null. If a parameter is set to null, the constructor
+                    will create an instance of the configuration object using the default property values
+                    then attempt to load the properties from the app.config file.
+                  </para>
+                </alert>
               </content>
             </step>
             <step>

@@ -1,92 +1,83 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <topic id="ServerSideComponents" revisionNumber="1">
-  <developerConceptualDocument
+  <developerWalkthroughDocument
     xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
     xmlns:xlink="http://www.w3.org/1999/xlink">
 
     <introduction>
-      
       <para>
         DotNetOpenServer is implemented on Windows using the .Net Framework 4.5.2. The
-        server is implemented as an asynchronous TCP socket server. .Net components are
-        used to negotiate SSL/TLS 1.2. By default, Windows Authentication is used to
-        authenticate client connections, however; any authentication method can be
-        implemented by simply extending the
-        <codeEntityReference>T:US.OpenServer.Protocols.AuthenticationProtocolBase</codeEntityReference>
-        abstract base class. Protocols are implemented in stand-alone assemblies which,
-        when requested by the client, are loaded through Reflection. The information
-        required for the server to load the assemblies is contained within the <link
-        xlink:href="Configuration.Windows">app.config</link> file or can optionally be
-        programatically set. The SDK includes native client APIs for Android, iOS
-        (iPhone and iPad), Windows Mobile, Windows and Mac but also includes a Java API
-        enabling you to target Unix/Linux based systems.
-
-      </para>
-
-      <table>
-        <title>This SDK includes 4 protocols:</title>
-        <row>
-          <entry>
-            <para>Session Layer Protocol (SLP)</para>
-          </entry>
-          <entry>
-            <para>
-              The session layer protocol that establishes SSL/TLS if configured, reads and
-              writes command packets, creates application layer protocols and closes idle
-              connections. Note this protocol is not dynamically loaded.
-            </para>
-          </entry>
-        </row>
-        <row>
-          <entry>
-            <para>Windows Authentication Protocol (WinAuthP)</para>
-          </entry>
-          <entry>
-            <para>
-              An application layer protocol that authenticates user supplied credentials
-              against either local or domain accounts.
-            </para>
-          </entry>
-        </row>
-        <row>
-          <entry>
-            <para>Keep-Alive Protocol (KAP)</para>
-          </entry>
-          <entry>
-            <para>
-              An application layer protocol that sends tiny packets back and forth between
-              the clients and server. As soon as the heartbeat stops the framework notifies
-              the application the network has failed enabling server-side component objects to
-              release associated resources and notifies the end user a network failure has
-              occurred.
-            </para>
-          </entry>
-        </row>
-        <row>
-          <entry>
-            <para>Hello-World Protocol</para>
-          </entry>
-          <entry>
-            <para>
-              An application layer protocol that shows how to create a simple application
-              layer protocol. The client sends a text hello message to the server. The server
-              responds by sending back a text greeting message.
-            </para>
-          </entry>
-        </row>
-      </table>
-
-      <para>
-        The server logs informational messages through Log4Net, however; you have the
-        option of implementing your own logging mechanism. For more information, see
-        <link xlink:href="Logging" />.
-      </para>
-      
+        server is implemented as an asynchronous TCP socket server.
+      </para>      
     </introduction>
 
-    <relatedTopics>
-      <link xlink:href="CreatingServerSideComponents" />
-      <link xlink:href="Logging" />
+    <section address="SSL">
+      <title>SSL/TLS 1.2</title>
+      <content>
+        <para>
+          .Net components are used to negotiate SSL/TLS 1.2.
+        </para>
+      </content>
+    </section>
+
+    <section address="Protocols">
+      <title>Protocols</title>
+      <content>
+        <para>
+          Protocols are implemented in stand-alone assemblies which,
+          when requested by the client, are loaded using Reflection.
+        </para>
+      </content>
+    </section>
+
+    <section address="Security">
+      <title>Security</title>
+      <content>
+        <para>
+          By default, Windows Authentication is used to authenticate client connections,
+          however; any authentication method can be implemented by simply extending the
+          <codeEntityReference>T:US.OpenServer.Protocols.AuthenticationProtocolBase</codeEntityReference>
+          abstract base class.
+        </para>
+      </content>
+    </section>
+
+    <section address="Logging">
+      <title>Logging</title>
+      <content>
+        <para>
+          By default, the server logs information and error messages through the
+          <externalLink>
+            <linkText>Apache log4net</linkText>
+            <linkUri>http://logging.apache.org/log4net/</linkUri>
+            <linkTarget>_blank</linkTarget>
+          </externalLink> assemblies.
+        </para>
+      </content>
+    </section>
+    
+    <section address="Configuration">
+      <title>Configuration</title>
+      <content>
+        <para>
+          All TCP socket server properties, information required for Reflection to load
+          protocol implementations and log4net properties can be set within the <link
+          xlink:href="Configuration.Windows.app.config">app.config</link> file or
+          programatically within your application.
+        </para>
+      </content>
+    </section>
+
+    <nextSteps>
+      <content>
+        <para>
+          To create a Windows server application see the <link xlink:href="CreatingServerSideComponents" /> topic.
+        </para>
+      </content>
+    </nextSteps>    
+    
+    <relatedTopics>      
     </relatedTopics>
-  </developerConceptualDocument>
+  </developerWalkthroughDocument>
+
 </topic>
