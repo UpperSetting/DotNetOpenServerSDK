@@ -35,7 +35,7 @@ namespace HelloClient
             Client client = null;
             try
             {
-               ServerConfiguration cfg = new ServerConfiguration();
+                ServerConfiguration cfg = new ServerConfiguration();
                 cfg.Host = "localhost";
                 cfg.TlsConfiguration.Enabled = false;
 
