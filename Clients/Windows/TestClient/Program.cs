@@ -43,7 +43,8 @@ namespace TestClient
                 //Logger logger = new Log4NetLogger();
 
                 //ServerConfiguration cfg = new ServerConfiguration();
-                ////cfg.Host = "UpperSetting.com";
+                //cfg.Host = "localhost";
+                //cfg.TlsConfiguration.Enabled = false;
 
                 //Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
                 //    new Dictionary<ushort, ProtocolConfiguration>();
