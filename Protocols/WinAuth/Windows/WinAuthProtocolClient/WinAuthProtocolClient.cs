@@ -50,7 +50,7 @@ namespace US.OpenServer.Protocols.WinAuth
         /// <param name="domain">A String that contains the domain or local server name the
         /// user's account resides.</param>
         /// <returns>True if authenticated, otherwise False.</returns>
-        public bool Authenticate(string userName, string password, string domain)
+        public bool Authenticate(string userName, string password, string domain = null)
         {
             lock (this)
             {
