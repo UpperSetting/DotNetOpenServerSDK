@@ -26,11 +26,12 @@ namespace US.OpenServer.Protocols.KeepAlive
     public enum KeepAliveProtocolCommands : byte
     {
         /// <summary>
-        /// Keeps an idle session open and verifies connectivity.
+        /// Sent by both the client and server to keep an idle session open.
         /// </summary>
         KEEP_ALIVE = 0x01,
         /// <summary>
-        /// Provides notification the end point is closing the session.
+        /// Sent by both the client and server to provide notification to the end point
+        /// the session is closing.
         /// </summary>
         QUIT = 0xFF,
     }
