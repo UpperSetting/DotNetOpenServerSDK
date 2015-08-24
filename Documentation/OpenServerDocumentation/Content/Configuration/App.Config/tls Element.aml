@@ -76,7 +76,7 @@
               <para>allowCertificateChainErrors</para>
             </entry>
             <entry>
-              <para>True to check the certificate chain during authentication.</para>
+              <para>True to check the certificate chain during authentication, otherwise False.</para>
             </entry>
           </row>
         </table>

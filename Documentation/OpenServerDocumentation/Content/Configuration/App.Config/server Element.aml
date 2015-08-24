@@ -50,7 +50,7 @@
               <para>port</para>
             </entry>
             <entry>
-              <para>When read server-side, the TCP port to run the server. When read client-side, the TCP port the server is running.</para>
+              <para>When read server-side, the TCP port to run the server. When read client-side, the TCP port the server is running. Defaults to 21843.</para>
             </entry>
           </row>
           <row>
@@ -68,7 +68,7 @@
               <para>idleTimeout</para>
             </entry>
             <entry>
-              <para>The number of seconds a connection can remain idle before the connection is automatically closed.</para>
+              <para>The number of seconds a connection can remain idle before the connection is automatically closed.  Defaults to 300 seconds.</para>
             </entry>
           </row>
           <row>
@@ -76,7 +76,7 @@
               <para>receiveTimeout</para>
             </entry>
             <entry>
-              <para>The number of seconds a receive operation blocks waiting for data.</para>
+              <para>The number of seconds a receive operation blocks waiting for data.  Defaults to 120 seconds.</para>
             </entry>
           </row>
           <row>
@@ -84,7 +84,7 @@
               <para>sendTimeout</para>
             </entry>
             <entry>
-              <para>The number of seconds a send operation blocks waiting for data.</para>
+              <para>The number of seconds a send operation blocks waiting for data.  Defaults to 120 seconds.</para>
             </entry>
           </row>
         </table>        
