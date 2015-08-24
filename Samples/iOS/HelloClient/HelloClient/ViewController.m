@@ -8,8 +8,7 @@
 #include "WinAuthProtocolClient.h"
 #include "java/lang/Exception.h"
 #include "java/lang/Integer.h"
-#include "java/util/HashMap.h"s
-
+#include "java/util/HashMap.h"
 
 @interface ViewController ()
 

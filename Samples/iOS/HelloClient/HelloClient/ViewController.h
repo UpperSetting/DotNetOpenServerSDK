@@ -1,8 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "IClientObserver.h"
 
-@class JavaLangException;
-
 @interface ViewController : UIViewController <ComUsOpenserverIClientObserver>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtHost;
