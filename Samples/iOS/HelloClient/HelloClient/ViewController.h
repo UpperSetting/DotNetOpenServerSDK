@@ -10,10 +10,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btnConnect;
 
-#pragma mark Public
-
-- (void)onConnectionLostWithJavaLangException:(JavaLangException *)ex;
-
 @end
 
 
