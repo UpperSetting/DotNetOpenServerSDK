@@ -197,6 +197,12 @@ namespace US.OpenServer
 
             X509Certificate2 certificate = session.GetCertificateFromStore(
                 string.Format("CN={0}", ServerConfiguration.TlsConfiguration.Certificate));
+            if (certificate == null)
+            {
+                throw new Exception(string.Format(
+                    "SSL Certificate '{0}' not found.",
+                    ServerConfiguration.TlsConfiguration.Certificate));
+            }
 
             ((SslStream)session.Stream).AuthenticateAsServer(
                 certificate, 

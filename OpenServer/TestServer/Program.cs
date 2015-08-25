@@ -48,10 +48,7 @@ namespace TestServer
                 protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
                     new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
 
-                WinAuthProtocolConfigurationServer winAuthCfg =
-                    new WinAuthProtocolConfigurationServer(
-                        WinAuthProtocol.PROTOCOL_IDENTIFIER,
-                        typeof(WinAuthProtocolServer));
+                WinAuthProtocolConfigurationServer winAuthCfg = new WinAuthProtocolConfigurationServer();
                 winAuthCfg.AddRole("Administrators");
                 winAuthCfg.AddUser("TestUser");
                 protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER, winAuthCfg);
