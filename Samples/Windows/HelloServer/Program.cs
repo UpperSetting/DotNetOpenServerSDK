@@ -32,28 +32,43 @@ namespace HelloServer
     {
         static void Main(string[] args)
         {
-            ServerConfiguration cfg = new ServerConfiguration();
+            Server server = null;
+            try
+            {
+                ServerConfiguration cfg = new ServerConfiguration();
+                //cfg.TlsConfiguration.Enabled = true;
+                //cfg.TlsConfiguration.Certificate = "yourserver.com";
+            
+                Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
+                    new Dictionary<ushort, ProtocolConfiguration>();
 
-            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
-                new Dictionary<ushort, ProtocolConfiguration>();
+                protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
+                    new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
 
-            protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
-                new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
+                WinAuthProtocolConfigurationServer winAuthCfg = new WinAuthProtocolConfigurationServer();
+                winAuthCfg.AddRole("Administrators");
+                winAuthCfg.AddUser("TestUser");
+                protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER, winAuthCfg);
 
-            WinAuthProtocolConfigurationServer winAuthCfg = new WinAuthProtocolConfigurationServer();
-            winAuthCfg.AddRole("Administrators");
-            winAuthCfg.AddUser("TestUser");
-            protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER, winAuthCfg);
+                protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
+                    new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolServer)));
 
-            protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
-                new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolServer)));
+                server = new Server(cfg, protocolConfigurations);            
+                server.Logger.Log(Level.Info, "Press any key to quit.");
+                Console.ReadKey();
 
-            Server server = new Server(cfg, protocolConfigurations);
-
-            server.Logger.Log(Level.Info, "Press any key to quit.");
-            Console.ReadKey();
-
-            server.Close();
+                server.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.ReadKey();
+                if (server != null)
+                    server.Close();
+            }
         }
     }
 }
