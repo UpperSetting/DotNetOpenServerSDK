@@ -41,9 +41,9 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
         try
         {
             ServerConfiguration cfg = new ServerConfiguration();
-            cfg.setHost("localhost");
-            TlsConfiguration tls = cfg.getTlsConfiguration();
-            tls.setEnabled(false);
+            //cfg.setHost("yourserver.com");
+            //TlsConfiguration tls = cfg.getTlsConfiguration();
+            //tls.setEnabled(true);
                         
             HashMap<Integer, ProtocolConfiguration> protocolConfigurations =
                 new HashMap<Integer, ProtocolConfiguration>();
@@ -102,7 +102,7 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
     @Override
     public void onConnectionLost(Exception ex)
     {
-        System.out.println("Connection lost: " + ex.getMessage());
+        System.out.println("Connection lost. " + ex.getMessage());
     }
     
     @Override
