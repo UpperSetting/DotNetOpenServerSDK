@@ -36,8 +36,8 @@ namespace HelloClient
             try
             {
                 ServerConfiguration cfg = new ServerConfiguration();
-                cfg.Host = "localhost";
-                cfg.TlsConfiguration.Enabled = false;
+                //cfg.Host = "yourserver.com";
+                //cfg.TlsConfiguration.Enabled = true;
 
                 Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
                     new Dictionary<ushort, ProtocolConfiguration>();
