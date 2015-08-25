@@ -11,7 +11,7 @@
       </para>
       <alert>
         <para>
-          To minimize our code base the DotNetOpenSever SDK's OS X/iOS Objective-C API is
+          To minimize our code base the DotNetOpenSever SDK's OSx/iOS Objective-C API is
           auto-generated from our Java source code by the
           <externalLink>
             <linkText>J2ObjC</linkText>
@@ -81,6 +81,8 @@
         </procedure>
       </content>
     </section>
+    
+    
 
 
     <section address="NextSteps">

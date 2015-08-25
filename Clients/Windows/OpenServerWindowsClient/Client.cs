@@ -260,7 +260,7 @@ namespace US.OpenServer
                 session.Stream, true, validationCallback, selectionCallback, EncryptionPolicy.RequireEncryption);
             session.Stream = sslStream;
 
-            X509Certificate2 certificate = session.GetCertificateFromStore(
+            X509Certificate2 certificate = Session.GetCertificateFromStore(
                 string.Format("CN={0}", ServerConfiguration.TlsConfiguration.Certificate));
 
             X509CertificateCollection certificates = new X509CertificateCollection();

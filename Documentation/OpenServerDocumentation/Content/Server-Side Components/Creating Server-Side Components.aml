@@ -11,12 +11,12 @@
         configuring the server.
       </para>
       <para>
-        The complete sample referenced in this topic can be found in the DotNetCloudServer SDK's <legacyBold>Samples\Server</legacyBold> directory.
-        By default this is <legacyBold>C:\Upper Setting\DotNetCloudServer SDK\Samples\Server</legacyBold>.
-      </para>
-      <para>
-        For more information on using the DotNetCloudServer Windows Service see <link
-        xlink:href="UsingTheWindowsService" />.
+        The complete source code for this sample application can be found at:
+        <externalLink>
+          <linkText></linkText>
+          <linkUri>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/Windows/HelloServer</linkUri>
+          <linkTarget>_blank</linkTarget>
+        </externalLink>
       </para>
 
       <autoOutline>0</autoOutline>
@@ -147,11 +147,13 @@
                   object then set any properties you want to override including SSL/TLS
                   properties.
                 </para>
+                <codeReference>Server#ServerConfiguration</codeReference>
                 <para>
-                  If you want to secure your application, create a
+                  Create a
                   <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolConfigurationServer</codeEntityReference>
                   object then add the groups and users you want to authorize access.
                 </para>
+                <codeReference>Server#WinAuthProtocolConfigurationServer</codeReference>
                 <para>
                   Create a Dictionary of
                   <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference>
@@ -175,26 +177,31 @@
                     </para>
                   </listItem>
                 </list>
+                <codeReference>Server#Dictionary</codeReference>
                 <para>
-                  Finally, create the
+                  Create the
                   <codeEntityReference>T:US.OpenServer.Server</codeEntityReference> passing in the
                   <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference>
                   and the the Dictionary of
                   <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects.
-                  For example:
                 </para>
-                <codeReference>Server#Programatically</codeReference>
                 <alert>
                   <para>
-                    Each of the
-                    <codeEntityReference>M:US.OpenServer.Server.ctor</codeEntityReference>
-                    parameters can be set to null. If a parameter is set to null, the constructor
-                    will create an instance of the configuration object using the default property values
-                    then attempt to load the properties from the app.config file.
+                    Each of the <codeEntityReference>T:US.OpenServer.Server</codeEntityReference>
+                    constructor parameters can be set to null. If a parameter is set to null, the
+                    constructor will create an instance of the configuration object using the
+                    default property values then attempt to load the properties from the app.config
+                    file.
                   </para>
                 </alert>
+                <codeReference>Server#Connect</codeReference>
+                <para>
+                  Finally, when your application is ready to shutdown, call
+                  <codeEntityReference>M:US.OpenServer.Server.Close</codeEntityReference>.
+                </para>
+                <codeReference>Server#Close</codeReference>
               </content>
-            </step>
+            </step>            
           </steps>
         </procedure>
       </content>

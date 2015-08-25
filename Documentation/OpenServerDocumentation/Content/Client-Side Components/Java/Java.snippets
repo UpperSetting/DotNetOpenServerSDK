@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <examples>
-  <item id="JavaClient#Package">
+  <item id="Java#Import">
     <sampleCode language="Java">
       import com.us.openserver.configuration.*;
       import com.us.openserver.protocols.*;
@@ -12,85 +12,113 @@
     </sampleCode>    
   </item>
 
-  <item id="JavaClient#Code">
+  <item id="Java#ServerConfiguration">
     <sampleCode language="Java">
-      package com.us.openserver;
+      ServerConfiguration cfg = new ServerConfiguration();
+      cfg.setHost("yourserver.com");
+      TlsConfiguration tls = cfg.getTlsConfiguration();
+      tls.setEnabled(true);
+    </sampleCode>
+  </item>
 
-      import com.us.openserver.configuration.*;
-      import com.us.openserver.protocols.*;
-      import com.us.openserver.protocols.hello.*;
-      import com.us.openserver.protocols.keepalive.*;
-      import com.us.openserver.protocols.winauth.*;
-      import java.io.IOException;
-      import java.util.HashMap;
+  <item id="Java#HashMap">
+    <sampleCode language="Java">
+      HashMap&lt;Integer, ProtocolConfiguration&gt; protocolConfigurations =
+      new HashMap&lt;Integer, ProtocolConfiguration&gt;();
 
-      public class HelloClient implements IClientObserver
+      protocolConfigurations.put(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
+      new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.keepalive.KeepAliveProtocol"));
+
+      protocolConfigurations.put(WinAuthProtocol.PROTOCOL_IDENTIFIER,
+      new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.winauth.WinAuthProtocolClient"));
+
+      protocolConfigurations.put(HelloProtocol.PROTOCOL_IDENTIFIER,
+      new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
+    </sampleCode>
+  </item>
+  
+  <item id="Java#ClientCreate">
+    <sampleCode language="Java">
+      client = new Client(this, cfg, protocolConfigurations);
+    </sampleCode>
+  </item>
+  
+  <item id="Java#Logger">
+    <sampleCode language="Java">
+      ...
+      import com.us.openserver.*;
+      ...
+      public class HelloClient implements ILoggerObserver
       {
-          private Client client;
-    
-          public static void main(String[] args) 
-          {
-              new HelloClient(args);
-          }
-    
+          private Client client;          
+          ...          
           public HelloClient(String[] args) 
           {
-              try
-              {
-                  ConsoleLogger logger = new ConsoleLogger();
-                  logger.setLogDebug(true);
-            
-                  ServerConfiguration cfg = new ServerConfiguration();
-                        
-                  HashMap&lt;Integer, ProtocolConfiguration&gt; protocolConfigurations =
-                      new HashMap&lt;Integer, ProtocolConfiguration&gt;();
-            
-                  protocolConfigurations.put(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
-                      new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.keepalive.KeepAliveProtocol"));
-    
-                  protocolConfigurations.put(WinAuthProtocol.PROTOCOL_IDENTIFIER,
-                      new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.winauth.WinAuthProtocolClient"));
-    
-                  protocolConfigurations.put(HelloProtocol.PROTOCOL_IDENTIFIER,
-                      new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
-    
-                  client = new Client(this, cfg, protocolConfigurations, logger, null);
-                  client.connect();
-            
-                  String userName = "TestUser";
-                  WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
-                  if (!wap.authenticate(userName, "T3stus3r", null))
-                      throw new Exception("Access denied.");
-                        
-                  client.initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
-            
-                  HelloProtocolClient hpc = (HelloProtocolClient)client.initialize(HelloProtocol.PROTOCOL_IDENTIFIER);            
-                  String serverResponse = hpc.hello(userName);
-                  System.out.println("Hello(Sync): " + serverResponse);            
-              }
-              catch (Exception ex)
-              {
-                  System.out.println(ex.getMessage());
-              }
-              finally
-              {
-                  try 
-                  { 
-                      System.in.read(); 
-                      if (client != null)
-                          client.close();
-                  } 
-                  catch (IOException ex) 
-                  {
-                  }
-              }
+              ...
+              client.getLogger().setILoggerObserver(this);
+              ...              
           }
-    
-          public void onConnectionLost(Exception ex)
-          {
-              System.out.println("Connection lost: " + ex.getMessage());
-          }
+          ...
+          @Override
+	        public void onLogMessage(Level level, String message) {
+		          ...
+	        }
+          ...
       }
+    </sampleCode>
+  </item>
+
+  <item id="Java#ClientObserver">
+    <sampleCode language="Java">
+      ...
+      import com.us.openserver.*;
+      ...
+      public class HelloClient implements IClientObserver
+      {
+          ...
+          @Override
+          public void onConnectionLost(Exception arg0) {
+              ...
+          }
+          ...
+      }
+    </sampleCode>
+  </item>
+
+  <item id="Java#Connect">
+    <sampleCode language="Java">
+      client.connect();
+    </sampleCode>
+  </item>
+  
+  <item id="Java#GetProtocolIDs">
+    <sampleCode language="Java">
+      int[] protocolIds = client.getServerSupportedProtocolIds();
+      for (int protocolId : protocolIds)
+          System.out.println(String.format("Server Supports Protocol ID: %1$s", protocolId));
+    </sampleCode>
+  </item>
+  
+  <item id="Java#Authenticate">
+    <sampleCode language="Java">      
+      String userName = "TestUser";
+      WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
+      if (!wap.authenticate(userName, "T3stus3r", null))
+          throw new Exception("Access denied.");
+    </sampleCode>
+  </item>
+
+  <item id="Java#KeepAlive">
+    <sampleCode language="Java">
+      client.initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
+    </sampleCode>
+  </item>
+
+  <item id="Java#Hello">
+    <sampleCode language="Java">
+      HelloProtocolClient hpc = (HelloProtocolClient)client.initialize(HelloProtocol.PROTOCOL_IDENTIFIER);
+      String serverResponse = hpc.hello(userName);
+      System.out.println("Hello: " + serverResponse);
     </sampleCode>
   </item>
 </examples>

@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!-- This is an example code snippets file -->
 <examples>
-
   
   <item id="Server#AppConfig">
     <sampleCode language="CSharp">
@@ -23,49 +21,47 @@
       }
     </sampleCode>
   </item>
-  
-  <item id="Server#Programatically">
+
+  <item id="Server#ServerConfiguration">
     <sampleCode language="CSharp">
-      using System;
-      using System.Collections.Generic;
-      using US.OpenServer;
-      using US.OpenServer.Configuration;
-      using US.OpenServer.Protocols;
-      using US.OpenServer.Protocols.Hello;
-      using US.OpenServer.Protocols.KeepAlive;
-      using US.OpenServer.Protocols.WinAuth;
+      ServerConfiguration cfg = new ServerConfiguration();
+      cfg.TlsConfiguration.Enabled = true;
+      cfg.TlsConfiguration.Certificate = "UpperSetting.com";
+    </sampleCode>
+  </item>
 
-      namespace HelloServer
-      {
-          class Program
-          {
-              static void Main(string[] args)
-              {
-                  ServerConfiguration cfg = new ServerConfiguration();
+  <item id="Server#WinAuthProtocolConfigurationServer">
+    <sampleCode language="CSharp">
+      WinAuthProtocolConfigurationServer winAuthCfg = new WinAuthProtocolConfigurationServer();
+      winAuthCfg.AddRole("Administrators");
+      winAuthCfg.AddUser("TestUser");
+    </sampleCode>
+  </item>
 
-                  Dictionary&lt;ushort, ProtocolConfiguration&gt; protocolConfigurations =
-                      new Dictionary&lt;ushort, ProtocolConfiguration&gt;();
+  <item id="Server#Dictionary">
+    <sampleCode language="CSharp">
+      Dictionary&lt;ushort, ProtocolConfiguration&gt; protocolConfigurations =
+          new Dictionary&lt;ushort, ProtocolConfiguration&gt;();
 
-                  protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
-                      new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
+      protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER, winAuthCfg);
+      
+      protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
+          new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
 
-                  WinAuthProtocolConfigurationServer winAuthCfg = new WinAuthProtocolConfigurationServer();
-                  winAuthCfg.AddRole("Administrators");
-                  winAuthCfg.AddUser("TestUser");
-                  protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER, winAuthCfg);
+      protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
+          new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolServer)));
+    </sampleCode>
+  </item>
 
-                  protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
-                      new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolServer)));
+  <item id="Server#Connect">
+    <sampleCode language="CSharp">
+      Server server = new Server(cfg, protocolConfigurations);
+    </sampleCode>
+  </item>
 
-                  Server server = new Server(cfg, protocolConfigurations);
-
-                  server.Logger.Log(Level.Info, "Press any key to quit.");
-                  Console.ReadKey();
-
-                  server.Close();
-              }
-          }
-      }
+  <item id="Server#Close">
+    <sampleCode language="CSharp">
+      server.Close();
     </sampleCode>
   </item>
 </examples>

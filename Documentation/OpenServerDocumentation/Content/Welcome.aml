@@ -142,6 +142,45 @@
       </content>
     </section>
 
+    <section address="Projects">
+      <title>Projects</title>
+      <content>
+        <para>
+          When we built this API our goal was to minimize duplicate code as much as
+          possible. What we ended up with was several solutions and even more projects. At
+          the lowest level is a Portable project called OpenServerShared that is shared by
+          the server, Windows client and Windows Mobile client. Next, lies a Windows
+          project called OpenServerWindowsShared that is shared between the server and
+          Windows client. Finally, there is a project for the server, Windows client and
+          Windows Mobile client.
+        </para>
+        <mediaLink>
+          <image xlink:href="ProjectHierarchy"/>
+        </mediaLink>
+        <para>
+          Since Android applications are written in Java and we wanted to support Unix and
+          Linux flavors we were able to further minimize code duplication. Using Eclipse, we
+          were able to create a single Java project responsible for generating JAR files
+          that can be used by both Android and Unix/Linux applications.
+        </para>
+        <para>
+          For those of you that are unfamiliar with the Apple operating systems, iOS
+          (iPhone and iPad) and OSx (Mac) applications are written in Objective-C or
+          Swift. We use the open source project
+          <externalLink>
+            <linkText>J2ObjC</linkText>
+            <linkUri>http://j2objc.org/</linkUri>
+            <linkTarget>_blank</linkTarget>
+          </externalLink>
+          to auto-generate our Objective-C
+          code from our Java source.
+        </para>
+        <mediaLink>
+          <image xlink:href="J2ObjC"/>
+        </mediaLink>
+      </content>
+    </section>
+
     <relatedTopics>
       <link xlink:href="AboutUS"/>
       <link xlink:href="ServerSideComponents"/>

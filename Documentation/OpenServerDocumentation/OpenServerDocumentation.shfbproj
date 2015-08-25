@@ -105,6 +105,8 @@
     <Folder Include="Content\Client-Side Components\iOS" />
     <Folder Include="Content\Client-Side Components\Mac" />
     <Folder Include="Content\Client-Side Components\Java" />
+    <Folder Include="Content\Client-Side Components\Portable" />
+    <Folder Include="Content\Client-Side Components\Objective-C" />
     <Folder Include="Content\Client-Side Components\Windows Mobile" />
     <Folder Include="Content\Client-Side Components\Windows" />
     <Folder Include="Content\Configuration\" />
@@ -151,6 +153,8 @@
     <CodeSnippets Include="Content\Client-Side Components\iOS\iOS.snippets" />
     <CodeSnippets Include="Content\Client-Side Components\Java\Java.snippets" />
     <CodeSnippets Include="Content\Client-Side Components\Mac\Mac.snippets" />
+    <CodeSnippets Include="Content\Client-Side Components\Objective-C\Objective-C.snippets" />
+    <CodeSnippets Include="Content\Client-Side Components\Portable\Portable.snippets" />
     <CodeSnippets Include="Content\Client-Side Components\Windows Mobile\Windows Mobile .snippets" />
     <CodeSnippets Include="Content\Client-Side Components\Windows\Windows.snippets" />
     <CodeSnippets Include="Content\Configuration\App.Config\app.config.snippets" />
@@ -195,6 +199,14 @@
     <Image Include="Content\Client-Side Components\Windows Mobile\WindowsMobile.png">
       <ImageId>WindowsMobile</ImageId>
       <AlternateText>Windows Mobile</AlternateText>
+    </Image>
+    <Image Include="Content\J2ObjC.png">
+      <ImageId>J2ObjC</ImageId>
+      <AlternateText>J2ObjC</AlternateText>
+    </Image>
+    <Image Include="Content\ProjectHierarchy.png">
+      <ImageId>ProjectHierarchy</ImageId>
+      <AlternateText>Project Hierarchy</AlternateText>
     </Image>
   </ItemGroup>
   <!-- Import the SHFB build targets -->

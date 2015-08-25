@@ -23,6 +23,7 @@ import com.us.openserver.protocols.*;
 import com.us.openserver.protocols.hello.*;
 import com.us.openserver.protocols.keepalive.*;
 import com.us.openserver.protocols.winauth.*;
+
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -40,6 +41,9 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
         try
         {
             ServerConfiguration cfg = new ServerConfiguration();
+            cfg.setHost("localhost");
+            TlsConfiguration tls = cfg.getTlsConfiguration();
+            tls.setEnabled(false);
                         
             HashMap<Integer, ProtocolConfiguration> protocolConfigurations =
                 new HashMap<Integer, ProtocolConfiguration>();
@@ -56,12 +60,10 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
             client = new Client(this, cfg, protocolConfigurations);
             client.connect();
             
-            int[] serverSupportedProtocolIds = client.getServerSupportedProtocolIds();
-            String str = "";
-            for (int p : serverSupportedProtocolIds)
-                str += p + ", ";
-            System.out.println(String.format("serverSupportedProtocolIds %1$s", str));
-            
+            int[] protocolIds = client.getServerSupportedProtocolIds();
+            for (int protocolId : protocolIds)
+            	System.out.println(String.format("Server Supports Protocol ID: %1$s", protocolId));
+
             String userName = "TestUser";
             WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
             if (!wap.authenticate(userName, "T3stus3r", null))
@@ -71,12 +73,12 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
             
             HelloProtocolClient hpc = (HelloProtocolClient)client.initialize(HelloProtocol.PROTOCOL_IDENTIFIER);            
             {
-                String serverResponse = hpc.hello("Software Engineer");
+                String serverResponse = hpc.hello(userName);
                 System.out.println("Hello(Sync): " + serverResponse);
             }
             {
                 hpc.setHelloObserver(this);
-                hpc.helloAsync("Software Engineer");
+                hpc.helloAsync(userName);
             }
         }
         catch (Exception ex)
@@ -97,11 +99,13 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
         }
     }
     
+    @Override
     public void onConnectionLost(Exception ex)
     {
         System.out.println("Connection lost: " + ex.getMessage());
     }
     
+    @Override
     public void onHelloComplete(String serverResponse)
     {
         System.out.println("Hello(Async): " + serverResponse);

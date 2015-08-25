@@ -81,20 +81,15 @@ namespace TestClient
                     client.Close();
 
                 btnConnect.Content = CONNECT;
-
-                MessageBoxShow(ex.Message);
+                ShowMessageBox(ex.Message);
             }
         }
 
         private void Connect()
         {
             ServerConfiguration cfg = new ServerConfiguration();
-            cfg.Host = txtRemoteHost.Text;
-            cfg.TlsConfiguration.Enabled = false;
-            cfg.TlsConfiguration.AllowCertificateChainErrors = true;
-            cfg.TlsConfiguration.AllowSelfSignedCertificate = true;
-            cfg.TlsConfiguration.CheckCertificateRevocation = false;
-            cfg.TlsConfiguration.RequireRemoteCertificate = true;
+            cfg.Host = txtHost.Text;
+            //cfg.TlsConfiguration.Enabled = true;            
 
             Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
                 new Dictionary<ushort, ProtocolConfiguration>();
@@ -137,7 +132,7 @@ namespace TestClient
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 btnConnect.Content = CONNECT;
-                MessageBoxShow(string.Format("Connection lost. {0}", ex.Message));
+                ShowMessageBox(string.Format("Connection lost. {0}", ex.Message));
             });
         }
 
@@ -145,7 +140,7 @@ namespace TestClient
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                MessageBoxShow(serverResponse);
+                ShowMessageBox(serverResponse);
             });
         }
         #endregion
@@ -180,10 +175,11 @@ namespace TestClient
         #endregion
 
         #region Message Box
-        private async void MessageBoxShow(string message)
+        private async void ShowMessageBox(string message)
         {
-            MessageDialog msgbox = new MessageDialog(message);
-            await msgbox.ShowAsync();
+            MessageDialog dlg = new MessageDialog(message);
+            dlg.DefaultCommandIndex = 1;
+            await dlg.ShowAsync();
         }
         #endregion
     }

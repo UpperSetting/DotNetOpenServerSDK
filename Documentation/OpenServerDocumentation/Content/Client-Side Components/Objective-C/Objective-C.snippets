@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- This is an example code snippets file -->
+<examples>
+
+  <item id="ObjC#Include">
+    <sampleCode language="Objective-C">
+      #include "Client.h"
+      #include "HelloProtocol.h"
+      #include "HelloProtocolClient.h"
+      #include "KeepAliveProtocol.h"
+      #include "ProtocolConfiguration.h"
+      #include "ServerConfiguration.h"
+      #include "ViewController.h"
+      #include "WinAuthProtocolClient.h"
+      #include "java/lang/Exception.h"
+      #include "java/lang/Integer.h"
+      #include "java/util/HashMap.h"
+    </sampleCode>
+  </item>
+
+  <item id="ObjC#LoggerObserverM">
+    <sampleCode language="Objective-C">
+      ComUsOpenserverClient *client;
+
+      - (void)connect {
+          ...
+          ComUsOpenserverLogger* logger = [client getLogger];
+          [logger setILoggerObserverWithComUsOpenserverILoggerObserver:self];
+          ...
+      }
+
+      - (void)onLogMessageWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
+          withNSString:(NSString *)message {
+          ...
+      }
+    </sampleCode>
+  </item>
+
+  <item id="ObjC#ClientObserverM">
+    <sampleCode language="Objective-C">
+      - (void)onConnectionLostWithJavaLangException:(JavaLangException *)ex {
+          ...
+      }
+    </sampleCode>
+  </item>
+
+</examples>
+

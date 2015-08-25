@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- This is an example code snippets file -->
+<examples>
+  <item id="Portable#Dictionary">
+    <sampleCode language="CSharp">
+      Dictionary&lt;ushort, ProtocolConfiguration&gt; protocolConfigurations =
+      new Dictionary&lt;ushort, ProtocolConfiguration&gt;();
+
+      protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
+      new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
+
+      protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER,
+      new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolClient)));
+
+      protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
+      new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
+    </sampleCode>
+  </item>
+
+  <item id="Portable#Create">
+    <sampleCode language="CSharp">
+      client = new Client(cfg, protocolConfigurations);
+    </sampleCode>
+  </item>
+
+  <item id="Portable#Connect">
+    <sampleCode language="CSharp">
+      client.Connect();
+    </sampleCode>
+  </item>
+
+  <item id="Portable#KeepAlive">
+    <sampleCode language="CSharp">
+      client.Initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
+    </sampleCode>
+  </item>
+</examples>
+

@@ -66,8 +66,8 @@ namespace HelloClient
                 client.Initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
 
                 HelloProtocolClient hpc = (HelloProtocolClient)client.Initialize(HelloProtocol.PROTOCOL_IDENTIFIER);
-                string serverReponse = hpc.Hello(userName);
-                Console.WriteLine(serverReponse);
+                string serverResponse = hpc.Hello(userName);
+                Console.WriteLine(serverResponse);
             }
             catch (Exception ex)
             {

@@ -22,6 +22,15 @@
           open source project.
         </para>
       </alert>
+      <para>
+        The complete source code for this sample application can be found at:
+        <externalLink>
+          <linkText></linkText>
+          <linkUri>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/Mac/HelloMacClient</linkUri>
+          <linkTarget>_blank</linkTarget>
+        </externalLink>
+      </para>
+      <autoOutline>0</autoOutline>
     </introduction>
 
     <section address="Application">
@@ -219,8 +228,8 @@
       </content>
     </section>
 
-    <section address="UI">
-      <title>Create the User Interface</title>
+    <section address="AddConnectControls">
+      <title>Add Controls to Connect to the Server</title>
       <content>
         <procedure>
           <title></title>
@@ -228,13 +237,23 @@
             <step>
               <content>
                 <para>
-                  Modify the <legacyBold>Main.storyboard</legacyBold> to contain the
-                  following controls: host text box, username text box, password text box and a
-                  button. For example:
+                  Modify the <legacyBold>Main.storyboard</legacyBold> to contain controls
+                  to enter the server hostname and client username and password.
+                </para>                
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Add a <legacyBold>Connect</legacyBold> button and then assign a <legacyBold>Click</legacyBold> event handler.
                 </para>
                 <mediaLink>
                   <image xlink:href="Mac"/>
                 </mediaLink>
+                <para>ViewController.h</para>
+                <codeReference>iOS#ConnectViewControllerH</codeReference>
+                <para>ViewController.m</para>
+                <codeReference>iOS#ConnectViewControllerM</codeReference>
               </content>
             </step>
           </steps>
@@ -242,8 +261,8 @@
       </content>
     </section>
 
-    <section address="AddCode">
-      <title>Add the User Interface Code</title>
+    <section address="CreateClient">
+      <title>Create an Instance of the Client</title>
       <content>
         <procedure>
           <title></title>
@@ -251,28 +270,132 @@
             <step>
               <content>
                 <para>
-                  Create the <legacyBold>ComUsOpenserverConsoleLogger</legacyBold>,
-                  create the <legacyBold>ComUsOpenserverConfigurationServerConfiguration</legacyBold> then set any properties you want to override,
-                  create the <legacyBold>ComUsOpenserverProtocolsProtocolConfiguration</legacyBold> objects then add them to A HashMap keyed with the each unique protocol identifier,
-                  create the <legacyBold>ComUsOpenserverClient</legacyBold>,
-                  connect using the <legacyBold>ComUsOpenserverClient.connect</legacyBold> method,
-                  authenticate using the <legacyBold>ComUsOpenserverProtocolsWinauthWinAuthProtocolClient</legacyBold>,
-                  initialize the <legacyBold>ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol</legacyBold>,
-                  initialize the <legacyBold>ComUsOpenserverProtocolsHelloHelloProtocolClient</legacyBold>,
-                  finally, call <legacyBold>ComUsOpenserverProtocolsHelloHelloProtocolClient.helloWithNSString(String userName)</legacyBold>.
-                  For example:
+                  From the <legacyBold>Package Explorer</legacyBold>, expand your project,
+                  click <legacyBold>ViewController.m</legacyBold>.
                 </para>
-                <para>ViewController.h</para>
-                <codeReference>Mac#CodeH</codeReference>
-                <para>ViewController.m</para>
-                <codeReference>Mac#CodeM</codeReference>
               </content>
             </step>
             <step>
               <content>
                 <para>
-                  Compile and run the application.
+                  Add the following include statements:
                 </para>
+                <codeReference>ObjC#Include</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Connect</legacyBold> button's
+                  <legacyBold>Click</legacyBold> event handler, create a
+                  <legacyBold>ComUsOpenserverConfigurationServerConfiguration</legacyBold>
+                  then set the <legacyBold>ComUsOpenserverConfigurationServerConfiguration.Host</legacyBold> property.
+                </para>
+                <para>
+                  Create a HashMap of <legacyBold>ComUsOpenserverProtocolsProtocolConfiguration</legacyBold>
+                  keyed by the unique protocol identifier that contains the following three protocols:
+                </para>
+                <list class="bullet">
+                  <listItem>
+                    <para>
+                      <legacyBold>com.us.openserver.protocols.winauth.WinAuthProtocolClient</legacyBold>
+                    </para>
+                  </listItem>
+                  <listItem>
+                    <para>
+                      <legacyBold>com.us.openserver.protocols.keepalive.KeepAliveProtocol</legacyBold>
+                    </para>
+                  </listItem>
+                  <listItem>
+                    <para>
+                      <legacyBold>com.us.cloudserver.protocols.hello.HelloProtocolClient</legacyBold>
+                    </para>
+                  </listItem>
+                </list>
+                <para>
+                  Optionally, create a
+                  <legacyBold>ComUsOpenserverLogger</legacyBold>. If one is not
+                  created a
+                  <legacyBold>ComUsOpenserverConsoleLogger</legacyBold> will be
+                  automatically created for you.
+                </para>
+                <para>
+                  Finally, create the <legacyBold>ComUsOpenserverClient</legacyBold> passing in
+                  the <legacyBold>self</legacyBold> as the
+                  <legacyBold>IClientObserver</legacyBold> parameter, the
+                  <legacyBold>ComUsOpenserverConfigurationServerConfiguration</legacyBold>, the
+                  HashMap of
+                  <legacyBold>ComUsOpenserverProtocolsProtocolConfiguration</legacyBold>s and, if
+                  created, the <legacyBold>ComUsOpenserverLogger</legacyBold>.
+                </para>
+                <codeReference>iOS#PreConnect</codeReference>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="Connect">
+      <title>Connect to the Server</title>
+      <content>
+        <para>
+          In the previous steps, we showed you how to create the
+          <legacyBold>ComUsOpenserverClient</legacyBold> object. Next,
+          we will walk you through the process of connecting to the server.
+        </para>
+        <procedure>
+          <title>To connect to the server:</title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Optionally, implement the <legacyBold>ComUsOpenserverILoggerObserver</legacyBold>
+                  interface enabling the user interface to display internal log messages.
+                </para>
+                <para>ViewController.h</para>
+                <codeReference>Mac#LoggerObserverH</codeReference>
+                <para>ViewController.m</para>
+                <codeReference>ObjC#LoggerObserverM</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Implement the <legacyBold>ComUsOpenserverIClientObserver</legacyBold> interface
+                  enabling the user interface to notify the user as well as update user interface
+                  controls when the connection is lost.
+                </para>
+                <para>ViewController.h</para>
+                <codeReference>iOS#ClientObserverH</codeReference>
+                <para>ViewController.m</para>
+                <codeReference>ObjC#ClientObserverM</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Call <legacyBold>ComUsOpenserverClient.Connect</legacyBold> to connect to the server.
+                </para>
+                <para>
+                  Initialize the
+                  <legacyBold>ComUsOpenserverProtocolsWinauthWinAuthProtocolClient</legacyBold>
+                  protocol then call
+                  <legacyBold>ComUsOpenserverProtocolsWinauthWinAuthProtocolClient.authenticate</legacyBold>
+                  to authenticate the connection.
+                </para>
+                <para>
+                  Initialize the
+                  <legacyBold>ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol</legacyBold>
+                  to enable the client/server Keep-Alive (aka Heartbeat) protocol.
+                </para>
+                <para>
+                  Initialize the
+                  <legacyBold>ComUsOpenserverProtocolsHelloHelloProtocolClient</legacyBold>
+                  then call
+                  <legacyBold>ComUsOpenserverProtocolsHelloHelloProtocolClient.helloWithNSString</legacyBold>.
+                </para>
+                <codeReference>iOS#Connect</codeReference>
               </content>
             </step>
           </steps>

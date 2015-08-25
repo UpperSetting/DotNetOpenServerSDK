@@ -111,9 +111,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="US.OpenServer.Protocols.Hello.Client">
       <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.Hello.Client.dll</HintPath>
     </Reference>

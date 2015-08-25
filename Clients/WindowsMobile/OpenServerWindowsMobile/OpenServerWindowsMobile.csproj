@@ -84,10 +84,8 @@
     <Compile Include="Session.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="US.OpenServer.Shared">
+    <Reference Include="US.OpenServer.Shared, Version=1.0.0.18, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
     </Reference>
   </ItemGroup>

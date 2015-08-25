@@ -10,6 +10,14 @@
         Windows Authentication Protocol, Keep-Alive Protocol and the sample Hello
         Protocol.
       </para>
+      <para>
+        The complete source code for this sample application can be found at:
+        <externalLink>
+          <linkText></linkText>
+          <linkUri>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/WindowsMobile/HelloMobileClient</linkUri>
+          <linkTarget>_blank</linkTarget>
+        </externalLink>
+      </para>
       <autoOutline>0</autoOutline>
     </introduction>
 
@@ -70,11 +78,8 @@
                 </para>
                 <code>
                   PM> Install-Package UpperSetting.OpenServer.WindowsMobile
-
                   PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client
-
                   PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive
-
                   PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client
                 </code>
               </content>
@@ -93,11 +98,12 @@
             <step>
               <content>
                 <para>
-                  Modify the MainPage.xaml to contain the following controls: host text box,
-                  username text box, password text box and a button. For example:
+                  Modify the <legacyBold>MainPage.xaml</legacyBold> to contain controls to enter
+                  the server hostname and client username and password. For example:
                 </para>
-                <mediaLink><image xlink:href="WindowsMobile"/></mediaLink>                
-                <codeReference>WindowsMobile#Xaml</codeReference>
+                <mediaLink>
+                  <image xlink:href="WindowsMobile"/>
+                </mediaLink>                
               </content>
             </step>
           </steps>
@@ -105,8 +111,8 @@
       </content>
     </section>
 
-    <section address="AddCode">
-      <title>Add the User Interface Code</title>
+    <section address="Programatically">
+      <title>Create an Instance of the Client</title>
       <content>
         <procedure>
           <title></title>
@@ -114,28 +120,97 @@
             <step>
               <content>
                 <para>
-                  Create the <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>,
-                  create the <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference> then set any properties you want to override,
-                  create the <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects then add them to A Dictionary keyed with the each unique protocol identifier,
-                  create the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>,
-                  connect,
-                  authenticate using the <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>,
-                  initialize the <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>,
-                  initialize the <codeEntityReference>T:US.OpenServer.Protocols.Hello.HelloProtocolClient</codeEntityReference>,
-                  add an event handler for <codeEntityReference>E:US.OpenServer.Protocols.Hello.HelloProtocolClient.OnHelloComplete</codeEntityReference> so the result can be posted to the screen,
-                  finally, call <codeEntityReference>M:US.OpenServer.Protocols.Hello.HelloProtocolClient.HelloAsync(System.String)</codeEntityReference>.
-                  For example:
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right
+                  click <legacyBold>MainPage.xaml.cs</legacyBold> then select
+                  <legacyBold>Open</legacyBold>.
                 </para>
-                <codeReference>WindowsMobile#Code</codeReference>
               </content>
             </step>
             <step>
               <content>
                 <para>
-                  Compile and run the application.
+                  Add the following using statements:
                 </para>
+                <codeReference>WindowsMobile#Using</codeReference>
               </content>
-            </step>            
+            </step>
+            <step>
+              <content>
+                <para>
+                  From the Main function, create a
+                  <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference>
+                  object then set any properties you want to override including SSL/TLS
+                  properties.
+                </para>
+                <codeReference>WindowsMobile#ServerConfiguration</codeReference>
+                <para>
+                  Create a Dictionary of
+                  <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference>
+                  objects keyed by the unique protocol identifier that contains the following
+                  three protocols:
+                </para>
+                <list class="bullet">
+                  <listItem>
+                    <para>
+                      <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>
+                    </para>
+                  </listItem>
+                  <listItem>
+                    <para>
+                      <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>
+                    </para>
+                  </listItem>
+                  <listItem>
+                    <para>
+                      <codeEntityReference>T:US.OpenServer.Protocols.Hello.HelloProtocolClient</codeEntityReference>
+                    </para>
+                  </listItem>
+                </list>
+                <codeReference>Portable#Dictionary</codeReference>
+                <para>
+                  Create the
+                  <codeEntityReference>T:US.OpenServer.Client</codeEntityReference> passing in the
+                  <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference>
+                  and the the Dictionary of
+                  <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects.
+                </para>
+                <alert>
+                  <para>
+                    Each of the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>
+                    constructor parameters can be set to null. If a parameter is set to null, the
+                    constructor will create an instance of the configuration object using the
+                    default property values then attempt to load the properties from the app.config
+                    file.
+                  </para>
+                </alert>
+                <codeReference>Portable#Create</codeReference>
+                <para>
+                  Call <codeEntityReference>M:US.OpenServer.Client.Connect</codeEntityReference> to connect to server.
+                </para>
+                <codeReference>Portable#Connect</codeReference>
+                <para>
+                  Initialize the
+                  <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>
+                  protocol then call
+                  <codeEntityReference>M:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient.Authenticate(System.String,System.String,System.String)</codeEntityReference>
+                  to authenticate the connection.
+                </para>
+                <codeReference>WindowsMobile#Authenticate</codeReference>
+                <para>
+                  Initialize the
+                  <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>
+                  to enable the client/server Keep-Alive (aka Heartbeat) protocol.
+                </para>
+                <codeReference>Portable#KeepAlive</codeReference>
+                <para>
+                  Initialize the
+                  <codeEntityReference>T:US.OpenServer.Protocols.Hello.HelloProtocolClient</codeEntityReference>
+                  then call
+                  <codeEntityReference>M:US.OpenServer.Protocols.Hello.HelloProtocolClient.Hello(System.String)</codeEntityReference>.
+                </para>
+                <codeReference>WindowsMobile#Hello</codeReference>
+              </content>
+            </step>
           </steps>
         </procedure>
       </content>

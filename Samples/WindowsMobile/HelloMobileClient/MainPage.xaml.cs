@@ -35,6 +35,9 @@ namespace HelloMobileClient
 {
     public sealed partial class MainPage : Page
     {
+        private const string CONNECT = "Connect";
+        private const string DISCONNECT = "Disconnect";
+
         private Client client;
 
         public MainPage()
@@ -48,78 +51,76 @@ namespace HelloMobileClient
         {
             try
             {
-                if ((string)btnConnect.Content == "Disconnect")
+                if ((string)btnConnect.Content == DISCONNECT)
                 {
                     if (client != null)
                         client.Close();
 
-                    btnConnect.Content = "Connect";
+                    btnConnect.Content = CONNECT;
                 }
                 else
+                {
                     Connect();
+                    btnConnect.Content = DISCONNECT;
+                }
             }
             catch (Exception ex)
             {
+                if (client != null)
+                    client.Close();
+
+                btnConnect.Content = CONNECT;
+
                 ShowMessageBox(ex.Message);
             }
         }
 
         private void Connect()
         {
+            ServerConfiguration cfg = new ServerConfiguration();
+            cfg.Host = txtHost.Text;
+            //cfg.TlsConfiguration.Enabled = true;
+
+            Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
+                new Dictionary<ushort, ProtocolConfiguration>();
+
+            protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
+                new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
+
+            protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER,
+                new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolClient)));
+
+            protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
+                new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
+
+            client = new Client(cfg, protocolConfigurations);
+            client.OnConnectionLost += client_OnConnectionLost;
+            client.Connect();
+
             try
             {
-                ServerConfiguration cfg = new ServerConfiguration();
-                cfg.Host = txtHost.Text;
+                WinAuthProtocolClient wap = (WinAuthProtocolClient)client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
+                if (!wap.Authenticate(txtUserName.Text, txtPassword.Password, null))
+                    throw new Exception("Access denied.");
 
-                Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
-                    new Dictionary<ushort, ProtocolConfiguration>();
+                client.Initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
 
-                protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
-                    new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
-
-                protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER,
-                    new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolClient)));
-
-                protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
-                    new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
-
-                client = new Client(cfg, protocolConfigurations);
-
-                try
-                {
-                    client.OnConnectionLost += client_OnConnectionLost;
-                    client.Connect();
-
-                    WinAuthProtocolClient wap = (WinAuthProtocolClient)client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
-                    if (!wap.Authenticate(txtUserName.Text, txtPassword.Password, null))
-                        throw new Exception("Access denied.");
-
-                    client.Initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
-
-                    HelloProtocolClient hpc = (HelloProtocolClient)client.Initialize(HelloProtocol.PROTOCOL_IDENTIFIER);
-                    hpc.OnHelloComplete += hpc_OnHelloComplete;
-                    hpc.HelloAsync(txtUserName.Text);
-
-                    btnConnect.Content = "Disconnect";
-                }
-                catch (Exception)
-                {
-                    client.Close();
-                    throw;
-                }
+                HelloProtocolClient hpc = (HelloProtocolClient)client.Initialize(HelloProtocol.PROTOCOL_IDENTIFIER);
+                ShowMessageBox(hpc.Hello(txtUserName.Text));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ShowMessageBox(ex.Message);
-            }
+                client.Close();
+                throw;
+            }            
         }
 
         private async void client_OnConnectionLost(object sender, Exception ex)
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                ShowMessageBox(ex.Message);
-                btnConnect.Content = "Connect";
+                btnConnect.Content = CONNECT;
+                ShowMessageBox(string.Format("Connection lost. {0}", ex.Message));
             });
         }
 

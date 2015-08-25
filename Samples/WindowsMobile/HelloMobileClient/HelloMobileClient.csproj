@@ -112,29 +112,26 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="US.OpenServer.Protocols.Hello.Client">
-      <HintPath>packages\UpperSetting.OpenServer.Protocols.Hello.Client.1.0.0.14\lib\portable-net451+win81+wpa81\US.OpenServer.Protocols.Hello.Client.dll</HintPath>
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.Hello.Client.dll</HintPath>
     </Reference>
     <Reference Include="US.OpenServer.Protocols.Hello.Shared">
-      <HintPath>packages\UpperSetting.OpenServer.Protocols.Hello.Shared.1.0.0.14\lib\portable-net451+win81+wpa81\US.OpenServer.Protocols.Hello.Shared.dll</HintPath>
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.Hello.Shared.dll</HintPath>
     </Reference>
     <Reference Include="US.OpenServer.Protocols.KeepAlive">
-      <HintPath>packages\UpperSetting.OpenServer.Protocols.KeepAlive.1.0.0.14\lib\portable-net451+win81+wpa81\US.OpenServer.Protocols.KeepAlive.dll</HintPath>
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.KeepAlive.dll</HintPath>
     </Reference>
     <Reference Include="US.OpenServer.Protocols.WinAuth.Client">
-      <HintPath>packages\UpperSetting.OpenServer.Protocols.WinAuth.Client.1.0.0.14\lib\portable-net451+win81+wpa81\US.OpenServer.Protocols.WinAuth.Client.dll</HintPath>
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.WinAuth.Client.dll</HintPath>
     </Reference>
     <Reference Include="US.OpenServer.Protocols.WinAuth.Shared">
-      <HintPath>packages\UpperSetting.OpenServer.Protocols.WinAuth.Shared.1.0.0.14\lib\portable-net451+win81+wpa81\US.OpenServer.Protocols.WinAuth.Shared.dll</HintPath>
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Protocols.WinAuth.Shared.dll</HintPath>
     </Reference>
     <Reference Include="US.OpenServer.Shared">
-      <HintPath>packages\UpperSetting.OpenServer.Shared.1.0.0.14\lib\portable-net451+win81+wpa81\US.OpenServer.Shared.dll</HintPath>
+      <HintPath>..\..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
     </Reference>
     <Reference Include="US.OpenServer.WindowsMobile">
-      <HintPath>packages\UpperSetting.OpenServer.WindowsMobile.1.0.0.14\lib\wpa81\US.OpenServer.WindowsMobile.dll</HintPath>
+      <HintPath>..\..\..\bin\WindowsMobile\US.OpenServer.WindowsMobile.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
