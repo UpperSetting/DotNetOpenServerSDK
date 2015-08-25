@@ -10,7 +10,6 @@
 #include "java/lang/Integer.h"
 #include "java/util/HashMap.h"
 
-
 @interface ViewController ()
 
 @end
