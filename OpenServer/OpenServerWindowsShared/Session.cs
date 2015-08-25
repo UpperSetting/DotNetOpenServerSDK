@@ -346,7 +346,7 @@ namespace US.OpenServer
         /// <param name="name">The name of the certificate.  For example, UpperSetting.com</param>
         /// <returns>A <see cref="System.Security.Cryptography.X509Certificates.X509Certificate2"/>
         /// certificate. If the certificate is not found, null.</returns>
-        public X509Certificate2 GetCertificateFromStore(string name)
+        public static X509Certificate2 GetCertificateFromStore(string name)
         {
             X509Store store = new X509Store(StoreLocation.CurrentUser);
             try

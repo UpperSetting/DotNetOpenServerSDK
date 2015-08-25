@@ -86,7 +86,12 @@ namespace US.OpenServer
         /// <summary>
         /// The socket listener thread.
         /// </summary>
-        private Thread t;        
+        private Thread t;
+
+        /// <summary>
+        /// The X509Certificate used to authenticate when SSL/TLS 1.2 is enabled.
+        /// </summary>
+        private X509Certificate2 certificate;
 
         /// <summary>
         /// The interval which the idle time-out Timer runs.
@@ -97,7 +102,8 @@ namespace US.OpenServer
         #region Constructor
         /// <summary> Creates an instance of Server. </summary>
         /// <remarks> All parameters are optional. If null is passed, the object's
-        /// configuration is read from the app.config file.</remarks>
+        /// configuration is read from the app.config file. If SSL/TLS is enabled, gets
+        /// the server-side certificate from the local certificate store.</remarks>
         /// <param name="logger">An optional Logger to log messages. If null is passed,
         /// an attempt is made to read the log4net configuration from the app.config's 
         /// file. If the configuration is present, a <see cref="US.OpenServer.Log4NetLogger"/>
@@ -135,6 +141,18 @@ namespace US.OpenServer
             if (serverConfiguration == null)
                 serverConfiguration = new ServerConfiguration();
             ServerConfiguration = serverConfiguration;
+
+            if (serverConfiguration.TlsConfiguration.Enabled)
+            {
+                certificate = Session.GetCertificateFromStore(
+                string.Format("CN={0}", ServerConfiguration.TlsConfiguration.Certificate));
+                if (certificate == null)
+                {
+                    throw new Exception(string.Format(
+                        "SSL Certificate '{0}' not found.",
+                        ServerConfiguration.TlsConfiguration.Certificate));
+                }
+            }
 
             if (protocolConfigurations == null)
                 protocolConfigurations = (Dictionary<ushort, ProtocolConfiguration>)ConfigurationManager.GetSection("protocols");
@@ -176,8 +194,7 @@ namespace US.OpenServer
         /// </summary>
         /// <remarks> Registers the <see cref="Session.TlsCertificateValidationCallback"/>
         /// and <see cref="Session.TlsCertificateSelectionCallback"/> with the
-        /// SslStream, gets the server side SSL certificate from the local
-        /// certificate store, then authenticates the connection. </remarks>
+        /// SslStream then authenticates the connection. </remarks>
         /// <param name="session">The Session object to enable TLS.</param>
         private void EnableTls(Session session)
         {
@@ -194,15 +211,6 @@ namespace US.OpenServer
                 selectionCallback, 
                 EncryptionPolicy.AllowNoEncryption);
             session.Stream = sslStream;
-
-            X509Certificate2 certificate = session.GetCertificateFromStore(
-                string.Format("CN={0}", ServerConfiguration.TlsConfiguration.Certificate));
-            if (certificate == null)
-            {
-                throw new Exception(string.Format(
-                    "SSL Certificate '{0}' not found.",
-                    ServerConfiguration.TlsConfiguration.Certificate));
-            }
 
             ((SslStream)session.Stream).AuthenticateAsServer(
                 certificate, 
