@@ -25,7 +25,7 @@
       <para>
         The complete source code for this sample application can be found at:
         <externalLink>
-          <linkText></linkText>
+          <linkText>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/iOS/HelloClient</linkText>
           <linkUri>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/iOS/HelloClient</linkUri>
           <linkTarget>_blank</linkTarget>
         </externalLink>
@@ -34,7 +34,7 @@
     </introduction>
 
     <section address="Application">
-      <title>Create an iOS Application using XCode</title>
+      <title>Create an iOS Application using Xcode</title>
       <content>
         <procedure>
           <title></title>
@@ -81,22 +81,34 @@
                 </para>
                 <list class="bullet">
                   <listItem>
-                    <para>Set the <legacyBold>Product Name</legacyBold> to <legacyBold>HelloClient</legacyBold>.</para>
+                    <para>
+                      Set the <legacyBold>Product Name</legacyBold> to <legacyBold>HelloClient</legacyBold>.
+                    </para>
                   </listItem>
                   <listItem>
-                    <para>Set the <legacyBold>Organization Name</legacyBold> to your company's name.</para>
+                    <para>
+                      Set the <legacyBold>Organization Name</legacyBold> to your company's name.
+                    </para>
                   </listItem>
                   <listItem>
-                    <para>Set the <legacyBold>Organization Identifier</legacyBold> to <legacyBold>com.example</legacyBold>.</para>
+                    <para>
+                      Set the <legacyBold>Organization Identifier</legacyBold> to <legacyBold>com.example</legacyBold>.
+                    </para>
                   </listItem>
                   <listItem>
-                    <para>Set the <legacyBold>Language</legacyBold> to <legacyBold>Objective-C</legacyBold>.</para>
+                    <para>
+                      Set the <legacyBold>Language</legacyBold> to <legacyBold>Objective-C</legacyBold>.
+                    </para>
                   </listItem>
                   <listItem>
-                    <para>Set the <legacyBold>Devices</legacyBold> to <legacyBold>Universal</legacyBold>.</para>
+                    <para>
+                      Set the <legacyBold>Devices</legacyBold> to <legacyBold>Universal</legacyBold>.
+                    </para>
                   </listItem>
                   <listItem>
-                    <para>Verify <legacyBold>Use Core Data</legacyBold> is unselected.</para>
+                    <para>
+                      Verify <legacyBold>Use Core Data</legacyBold> is unselected.
+                    </para>
                   </listItem>
                 </list>
                 <mediaLink>
@@ -143,8 +155,10 @@
               <content>
                 <para>
                   From the <legacyBold>Project navigator</legacyBold> view, right click on the
-                  <legacyBold>HelloClient</legacyBold> node then select <legacyBold> Add Files to
-                  "HelloClient"...</legacyBold>.
+                  <legacyBold>HelloClient</legacyBold> node then select <legacyBold>
+                    Add Files
+                    to "HelloClient"...
+                  </legacyBold>.
                 </para>
               </content>
             </step>
@@ -153,8 +167,9 @@
                 <para>
                   From the next dialog that appears, choose the location you previously extracted
                   the > DotNetOpenServer_Objective-C_Client.zip too then select the sub-directory
-                  <legacyBold>src</legacyBold>. Check <legacyBold>Copy items if
-                  needed</legacyBold>, select <legacyBold>Create groups</legacyBold>, check
+                  <legacyBold>src</legacyBold>. Check <legacyBold>
+                    Copy items if needed
+                  </legacyBold>, select <legacyBold>Create groups</legacyBold>, check
                   <legacyBold>HelloClient</legacyBold>, then click <legacyBold>Add</legacyBold>.
                 </para>
               </content>
@@ -187,8 +202,8 @@
               <content>
                 <para>
                   From the <legacyBold>Project navigator</legacyBold> view, click on the
-                  <legacyBold>HelloClient</legacyBold> node then select the <legacyBold>Build
-                  Settings</legacyBold> tab. Make the the following changes (substitute the
+                  <legacyBold>HelloClient</legacyBold> node then select the <legacyBold> Build
+                  Settings </legacyBold> tab. Make the the following changes (substitute the
                   directory you extracted the J2ObjC files too for $distribution-path):
                 </para>
                 <list class="ordered">
@@ -228,15 +243,12 @@
             <step>
               <content>
                 <para>
-                  Add a <legacyBold>Connect</legacyBold> button and then assign a <legacyBold>Click</legacyBold> event handler.
+                  Add a <legacyBold>Connect</legacyBold> button and then assign a <legacyBold>Touch Up Inside</legacyBold> event handler.
                 </para>
                 <mediaLink>
                   <image xlink:href="iOS"/>
                 </mediaLink>
-                <para>ViewController.h</para>
-                <codeReference>iOS#ConnectViewControllerH</codeReference>
-                <para>ViewController.m</para>
-                <codeReference>iOS#ConnectViewControllerM</codeReference>
+                <codeReference>iOS#ConnectHandler</codeReference>                
               </content>
             </step>
           </steps>
@@ -261,7 +273,8 @@
             <step>
               <content>
                 <para>
-                  Add the following include statements:
+                  Add the following include statements to the
+                  <legacyBold>ViewController.m</legacyBold>:
                 </para>
                 <codeReference>ObjC#Include</codeReference>
               </content>
@@ -270,13 +283,19 @@
               <content>
                 <para>
                   From the <legacyBold>Connect</legacyBold> button's
-                  <legacyBold>Click</legacyBold> event handler, create a
+                  <legacyBold>Touch Up Inside</legacyBold> event handler, create a
                   <legacyBold>ComUsOpenserverConfigurationServerConfiguration</legacyBold>
                   then set the <legacyBold>ComUsOpenserverConfigurationServerConfiguration.Host</legacyBold> property.
                 </para>
+                <codeReference>iOS#ServerConfiguration</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
-                  Create a HashMap of <legacyBold>ComUsOpenserverProtocolsProtocolConfiguration</legacyBold>
-                  keyed by the unique protocol identifier that contains the following three protocols:
+                  Create a <legacyBold>JavaUtilHashMap</legacyBold> of
+                  <legacyBold>ComUsOpenserverProtocolsProtocolConfiguration</legacyBold> keyed by
+                  the unique protocol identifier that contains the following three protocols:
                 </para>
                 <list class="bullet">
                   <listItem>
@@ -295,6 +314,11 @@
                     </para>
                   </listItem>
                 </list>
+                <codeReference>ObjC#JavaUtilHashMap</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Optionally, create a
                   <legacyBold>ComUsOpenserverLogger</legacyBold>. If one is not
@@ -302,16 +326,20 @@
                   <legacyBold>ComUsOpenserverConsoleLogger</legacyBold> will be
                   automatically created for you.
                 </para>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Finally, create the <legacyBold>ComUsOpenserverClient</legacyBold> passing in
                   the <legacyBold>self</legacyBold> as the
                   <legacyBold>IClientObserver</legacyBold> parameter, the
                   <legacyBold>ComUsOpenserverConfigurationServerConfiguration</legacyBold>, the
-                  HashMap of
+                  <legacyBold>JavaUtilHashMap</legacyBold> of
                   <legacyBold>ComUsOpenserverProtocolsProtocolConfiguration</legacyBold>s and, if
                   created, the <legacyBold>ComUsOpenserverLogger</legacyBold>.
                 </para>
-                <codeReference>iOS#PreConnect</codeReference>
+                <codeReference>ObjC#CreateClient</codeReference>
               </content>
             </step>
           </steps>
@@ -322,13 +350,8 @@
     <section address="Connect">
       <title>Connect to the Server</title>
       <content>
-        <para>
-          In the previous steps, we showed you how to create the
-          <legacyBold>ComUsOpenserverClient</legacyBold> object. Next,
-          we will walk you through the process of connecting to the server.
-        </para>
         <procedure>
-          <title>To connect to the server:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
@@ -360,6 +383,11 @@
                 <para>
                   Call <legacyBold>ComUsOpenserverClient.Connect</legacyBold> to connect to the server.
                 </para>
+                <codeReference>Objc#Connect</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <legacyBold>ComUsOpenserverProtocolsWinauthWinAuthProtocolClient</legacyBold>
@@ -367,25 +395,35 @@
                   <legacyBold>ComUsOpenserverProtocolsWinauthWinAuthProtocolClient.authenticate</legacyBold>
                   to authenticate the connection.
                 </para>
+                <codeReference>iOS#Authenticate</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <legacyBold>ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol</legacyBold>
                   to enable the client/server Keep-Alive (aka Heartbeat) protocol.
                 </para>
+                <codeReference>ObjC#KeepAlive</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <legacyBold>ComUsOpenserverProtocolsHelloHelloProtocolClient</legacyBold>
                   then call
                   <legacyBold>ComUsOpenserverProtocolsHelloHelloProtocolClient.helloWithNSString</legacyBold>.
                 </para>
-                <codeReference>iOS#Connect</codeReference>
+                <codeReference>iOS#Hello</codeReference>
               </content>
             </step>
           </steps>
         </procedure>
       </content>
     </section>
-
+    
     <relatedTopics>
       <link xlink:href="ClientSideComponents"/>
     </relatedTopics>

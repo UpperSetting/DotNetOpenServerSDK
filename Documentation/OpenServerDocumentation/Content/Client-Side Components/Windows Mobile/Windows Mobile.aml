@@ -13,7 +13,7 @@
       <para>
         The complete source code for this sample application can be found at:
         <externalLink>
-          <linkText></linkText>
+          <linkText>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/WindowsMobile/HelloMobileClient</linkText>
           <linkUri>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/WindowsMobile/HelloMobileClient</linkUri>
           <linkTarget>_blank</linkTarget>
         </externalLink>
@@ -183,7 +183,7 @@
                     file.
                   </para>
                 </alert>
-                <codeReference>Portable#Create</codeReference>
+                <codeReference>Portable#CreateClient</codeReference>
                 <para>
                   Call <codeEntityReference>M:US.OpenServer.Client.Connect</codeEntityReference> to connect to server.
                 </para>

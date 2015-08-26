@@ -2,11 +2,13 @@
 <examples>
   <item id="Java#Import">
     <sampleCode language="Java">
+      import com.us.openserver.*;
       import com.us.openserver.configuration.*;
       import com.us.openserver.protocols.*;
       import com.us.openserver.protocols.hello.*;
       import com.us.openserver.protocols.keepalive.*;
       import com.us.openserver.protocols.winauth.*;
+
       import java.io.IOException;
       import java.util.HashMap;
     </sampleCode>    
@@ -24,16 +26,16 @@
   <item id="Java#HashMap">
     <sampleCode language="Java">
       HashMap&lt;Integer, ProtocolConfiguration&gt; protocolConfigurations =
-      new HashMap&lt;Integer, ProtocolConfiguration&gt;();
+          new HashMap&lt;Integer, ProtocolConfiguration&gt;();
 
       protocolConfigurations.put(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
-      new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.keepalive.KeepAliveProtocol"));
+          new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.keepalive.KeepAliveProtocol"));
 
       protocolConfigurations.put(WinAuthProtocol.PROTOCOL_IDENTIFIER,
-      new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.winauth.WinAuthProtocolClient"));
+          new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.winauth.WinAuthProtocolClient"));
 
       protocolConfigurations.put(HelloProtocol.PROTOCOL_IDENTIFIER,
-      new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
+          new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, "com.us.openserver.protocols.hello.HelloProtocolClient"));
     </sampleCode>
   </item>
   
@@ -43,7 +45,7 @@
     </sampleCode>
   </item>
   
-  <item id="Java#Logger">
+  <item id="Java#LoggerObserver">
     <sampleCode language="Java">
       ...
       import com.us.openserver.*;
@@ -60,9 +62,9 @@
           }
           ...
           @Override
-	        public void onLogMessage(Level level, String message) {
+          public void onLogMessage(Level level, String message) {
 		          ...
-	        }
+          }
           ...
       }
     </sampleCode>

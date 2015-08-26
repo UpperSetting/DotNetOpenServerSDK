@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!-- This is an example code snippets file -->
 <examples>
 
   <item id="ObjC#Include">
@@ -43,6 +42,38 @@
       }
     </sampleCode>
   </item>
+  
+  <item id="ObjC#JavaUtilHashMap">
+    <sampleCode language="Objective-C">
+      JavaUtilHashMap *protocolConfigurations = new_JavaUtilHashMap_init();
+
+      (void) [protocolConfigurations putWithId:JavaLangInteger_valueOfWithInt_(ComUsOpenserverProtocolsWinauthWinAuthProtocol_PROTOCOL_IDENTIFIER) withId:new_ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(ComUsOpenserverProtocolsWinauthWinAuthProtocol_PROTOCOL_IDENTIFIER, @"com.us.openserver.protocols.winauth.WinAuthProtocolClient")];
+
+      (void) [protocolConfigurations putWithId:JavaLangInteger_valueOfWithInt_(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_PROTOCOL_IDENTIFIER) withId:new_ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_PROTOCOL_IDENTIFIER, @"com.us.openserver.protocols.keepalive.KeepAliveProtocol")];
+
+      (void) [protocolConfigurations putWithId:JavaLangInteger_valueOfWithInt_(ComUsOpenserverProtocolsHelloHelloProtocol_PROTOCOL_IDENTIFIER) withId:new_ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(ComUsOpenserverProtocolsHelloHelloProtocol_PROTOCOL_IDENTIFIER, @"com.us.openserver.protocols.hello.HelloProtocolClient")];
+    </sampleCode>
+  </item>
+
+  <item id="ObjC#CreateClient">
+    <sampleCode language="Objective-C">
+      client = new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(self, cfg, protocolConfigurations);
+    </sampleCode>
+  </item>
+  
+  <item id="ObjC#Connect">
+    <sampleCode language="Objective-C">
+      [client connect];
+    </sampleCode>
+  </item>
+
+  <item id="ObjC#KeepAlive">
+    <sampleCode language="Objective-C">
+      (void) [client initialize__WithInt:ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_PROTOCOL_IDENTIFIER];      
+    </sampleCode>
+  </item>
+
+
 
 </examples>
 

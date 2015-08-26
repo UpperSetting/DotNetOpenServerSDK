@@ -11,8 +11,8 @@
       </para>
       <alert>
         <para>
-          To minimize our code base the DotNetOpenSever SDK's OSx/iOS Objective-C API is
-          auto-generated from our Java source code by the
+          To minimize our code base the DotNetOpenSever SDK's OS X and iOS Objective-C
+          API is auto-generated from our Java source code by the
           <externalLink>
             <linkText>J2ObjC</linkText>
             <linkUri>http://j2objc.org/</linkUri>
@@ -22,14 +22,7 @@
         </para>
       </alert>
     </introduction>
-
     
-
-    Next, complete the 'How to Create an iOS Application' tutorial.
-    
-    Once complete you will convert the Java code you created in the first tutorial, you will convert the code to Objective-C, add the code to the application you created in the second tutorial, then finally consume the protocol in your iOS application.
-
-
     <section address="Section1">
       <title>Implement the Application Layer in Java</title>
       <content>
@@ -39,7 +32,10 @@
           <steps class="ordered">
             <step>
               <content>
-                <para>Complete the <link xlink:href="CreatingProtocols.Java">How to Create a Protocol for Java and Android Applications</link> tutorial.</para>
+                <para>
+                  Complete the <link xlink:href="CreatingProtocols.Java">How to Create a Protocol
+                  for Java and Android Applications</link> tutorial.
+                </para>
               </content>
             </step>
             <step>
@@ -56,8 +52,8 @@
       </content>
     </section>
 
-    <section address="Section1">
-      <title>Implement the Application Layer in Java</title>
+    <section address="JObjC">
+      <title>Use the J2ObjC Open Source Project to Auto-Generate the Objective-C API</title>
       <content>
         <procedure>
           <title>
@@ -66,37 +62,34 @@
             <step>
               <content>
                 <para>
-                  Download
+                  Please see the 
                   <externalLink>
-                    <linkText>DotNetOpenServerSDK_JavaClient.zip</linkText>
-                    <linkUri>http://github.com/UpperSetting/DotNetOpenServerSDK/releases</linkUri>
+                    <linkText>J2ObjC</linkText>
+                    <linkUri>http://j2objc.org/</linkUri>
                     <linkTarget>_blank</linkTarget>
-                  </externalLink>
-                  from GitHub then extract the contents.
+                  </externalLink> open source project for detailed instructions.
                 </para>
               </content>
-            </step>
-
+            </step>            
           </steps>
         </procedure>
       </content>
     </section>
-    
-    
-
 
     <section address="NextSteps">
       <title>Next Steps</title>
       <content>
-        <para>
-          Integrate your protocol into your <link
-          xlink:href="ClientSideComponents.iOS">client</link> applications.
+        <para> 
+          Copy the auto-generated source files to your <link
+          xlink:href="ClientSideComponents.Mac">Mac</link> and <link
+          xlink:href="ClientSideComponents.iOS">iOS</link> Xcode application projects.
         </para>
       </content>
     </section>
 
     <relatedTopics>
       <link xlink:href="CreatingProtocols" />
+      <link xlink:href="ClientSideComponents.Mac" />
       <link xlink:href="ClientSideComponents.iOS" />
     </relatedTopics>
   </developerConceptualDocument>

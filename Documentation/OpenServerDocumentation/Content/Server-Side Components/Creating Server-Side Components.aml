@@ -13,7 +13,7 @@
       <para>
         The complete source code for this sample application can be found at:
         <externalLink>
-          <linkText></linkText>
+          <linkText>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/Windows/HelloServer</linkText>
           <linkUri>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/Windows/HelloServer</linkUri>
           <linkTarget>_blank</linkTarget>
         </externalLink>
@@ -24,10 +24,10 @@
     </introduction>
     
     <section address="Application">
-      <title>Create a .Net Console Application</title>
+      <title>Create a .Net Console Application using Visual Studio 2013</title>
       <content>
         <procedure>
-          <title>To create your .Net Console Application from Visual Studio 2013:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
@@ -82,9 +82,8 @@
       <title>Create an Instance of the Server using the app.config</title>
       <content>
         <procedure>
-          <title>To create an instance of the Server:</title>
+          <title></title>
           <steps class="ordered">
-                      
             <step>
               <content>
                 <para>
@@ -117,7 +116,7 @@
                 <para>
                   Add the required configuration sections. For more information and a detailed
                   example which you can copy see: <link
-                  xlink:href="Configuration.Windows.app.config" />
+                  xlink:href="Configuration.Windows.app.config" />.
                 </para>                
               </content>
             </step>
@@ -130,7 +129,7 @@
       <title>Create an Instance of the Server Programatically</title>
       <content>
         <procedure>
-          <title>To create an instance of the Server:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
@@ -148,12 +147,20 @@
                   properties.
                 </para>
                 <codeReference>Server#ServerConfiguration</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Create a
                   <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolConfigurationServer</codeEntityReference>
                   object then add the groups and users you want to authorize access.
                 </para>
                 <codeReference>Server#WinAuthProtocolConfigurationServer</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Create a Dictionary of
                   <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference>
@@ -178,6 +185,10 @@
                   </listItem>
                 </list>
                 <codeReference>Server#Dictionary</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Create the
                   <codeEntityReference>T:US.OpenServer.Server</codeEntityReference> passing in the
@@ -197,7 +208,7 @@
                 <codeReference>Server#Connect</codeReference>
                 <para>
                   Finally, when your application is ready to shutdown, call
-                  <codeEntityReference>M:US.OpenServer.Server.Close</codeEntityReference>.
+                  <codeEntityReference>T:US.OpenServer.Server</codeEntityReference>.<codeEntityReference>M:US.OpenServer.Server.Close</codeEntityReference>.
                 </para>
                 <codeReference>Server#Close</codeReference>
               </content>

@@ -165,7 +165,7 @@
         </para>
         <para>
           For those of you that are unfamiliar with the Apple operating systems, iOS
-          (iPhone and iPad) and OSx (Mac) applications are written in Objective-C or
+          (iPhone and iPad) and OS X (Mac) applications are written in Objective-C or
           Swift. We use the open source project
           <externalLink>
             <linkText>J2ObjC</linkText>

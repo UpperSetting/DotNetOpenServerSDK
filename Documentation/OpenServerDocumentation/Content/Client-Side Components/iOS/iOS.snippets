@@ -16,19 +16,12 @@
 
   </item>
   
-  <item id="iOS#ConnectViewControllerM">
+  <item id="iOS#ConnectHandler">
     <sampleCode language="Objective-C">
-      #include "ViewController.h"
-      ...
-      @implementation ViewController
-      ...
       - (IBAction)btnConnect_Tapped:(id)sender {
           ...
       }
-      ...
-      @end
     </sampleCode>
-
   </item>
 
   <item id="iOS#LoggerObserverH">
@@ -53,37 +46,26 @@
     </sampleCode>
   </item>
 
-  <item id="iOS#PreConnect">
+  <item id="iOS#ServerConfiguration">
     <sampleCode language="Objective-C">
       ComUsOpenserverConfigurationServerConfiguration *cfg = new_ComUsOpenserverConfigurationServerConfiguration_init();
       [cfg setHostWithNSString: self.txtHost.text];
-
-      JavaUtilHashMap *protocolConfigurations = new_JavaUtilHashMap_init();
-
-      (void) [protocolConfigurations putWithId:JavaLangInteger_valueOfWithInt_(ComUsOpenserverProtocolsWinauthWinAuthProtocol_PROTOCOL_IDENTIFIER) withId:new_ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(ComUsOpenserverProtocolsWinauthWinAuthProtocol_PROTOCOL_IDENTIFIER, @"com.us.openserver.protocols.winauth.WinAuthProtocolClient")];
-
-      (void) [protocolConfigurations putWithId:JavaLangInteger_valueOfWithInt_(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_PROTOCOL_IDENTIFIER) withId:new_ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_PROTOCOL_IDENTIFIER, @"com.us.openserver.protocols.keepalive.KeepAliveProtocol")];
-
-      (void) [protocolConfigurations putWithId:JavaLangInteger_valueOfWithInt_(ComUsOpenserverProtocolsHelloHelloProtocol_PROTOCOL_IDENTIFIER) withId:new_ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(ComUsOpenserverProtocolsHelloHelloProtocol_PROTOCOL_IDENTIFIER, @"com.us.openserver.protocols.hello.HelloProtocolClient")];
-
-      client = new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(self, cfg, protocolConfigurations);
     </sampleCode>
   </item>
 
-  <item id="iOS#Connect">
+  <item id="iOS#Authenticate">
     <sampleCode language="Objective-C">
-      [client connect];
-
       ComUsOpenserverProtocolsWinauthWinAuthProtocolClient *wap = (ComUsOpenserverProtocolsWinauthWinAuthProtocolClient *) check_class_cast([client initialize__WithInt:ComUsOpenserverProtocolsWinauthWinAuthProtocol_PROTOCOL_IDENTIFIER], [ComUsOpenserverProtocolsWinauthWinAuthProtocolClient class]);
-
       if (![((ComUsOpenserverProtocolsWinauthWinAuthProtocolClient *) nil_chk(wap)) authenticateWithNSString:[self.txtUserName stringValue] withNSString:[self.txtPassword stringValue] withNSString:nil]) @throw new_JavaLangException_initWithNSString_(@"Access denied.");
+    </sampleCode>
+  </item>
 
-      (void) [client initialize__WithInt:ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_PROTOCOL_IDENTIFIER];
-
+  <item id="iOS#Hello">
+    <sampleCode language="Objective-C">
       ComUsOpenserverProtocolsHelloHelloProtocolClient *hpc = (ComUsOpenserverProtocolsHelloHelloProtocolClient *) check_class_cast([client initialize__WithInt:ComUsOpenserverProtocolsHelloHelloProtocol_PROTOCOL_IDENTIFIER], [ComUsOpenserverProtocolsHelloHelloProtocolClient class]);
-
       NSString *serverResponse = [((ComUsOpenserverProtocolsHelloHelloProtocolClient *) nil_chk(hpc)) helloWithNSString:self.txtUserName.text];
       [self messageBox:serverResponse];
     </sampleCode>
   </item>
+  
 </examples>

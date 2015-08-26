@@ -13,7 +13,7 @@
       <para>
         The complete source code for this sample application can be found at:
         <externalLink>
-          <linkText></linkText>
+          <linkText>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/Windows/HelloClient</linkText>
           <linkUri>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/Windows/HelloClient</linkUri>
           <linkTarget>_blank</linkTarget>
         </externalLink>
@@ -134,8 +134,9 @@
             <step>
               <content>
                 <para>
-                  Add the configuration.
-                  For more information see: <link xlink:href="Configuration.Windows.app.config" />
+                  Add the required configuration sections. For more information and a detailed
+                  example which you can copy see: <link
+                  xlink:href="Configuration.Windows.app.config" />.
                 </para>
               </content>
             </step>            
@@ -176,6 +177,10 @@
                   properties.
                 </para>
                 <codeReference>WindowsClient#ServerConfiguration</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Create a Dictionary of
                   <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference>
@@ -200,6 +205,10 @@
                   </listItem>
                 </list>
                 <codeReference>Portable#Dictionary</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Create the
                   <codeEntityReference>T:US.OpenServer.Client</codeEntityReference> passing in the
@@ -216,9 +225,15 @@
                     file.
                   </para>
                 </alert>
-                <codeReference>Portable#Create</codeReference>
+                <codeReference>Portable#CreateClient</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
-                  Call <codeEntityReference>M:US.OpenServer.Client.Connect</codeEntityReference> to connect to server.
+                  Call
+                  <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>.<codeEntityReference>M:US.OpenServer.Client.Connect</codeEntityReference>
+                  to connect to server.
                 </para>
                 <codeReference>Portable#Connect</codeReference>
                 <para>
@@ -229,12 +244,20 @@
                   to authenticate the connection.
                 </para>
                 <codeReference>WindowsClient#Authenticate</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>
                   to enable the client/server Keep-Alive (aka Heartbeat) protocol.
                 </para>
                 <codeReference>Portable#KeepAlive</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <codeEntityReference>T:US.OpenServer.Protocols.Hello.HelloProtocolClient</codeEntityReference>

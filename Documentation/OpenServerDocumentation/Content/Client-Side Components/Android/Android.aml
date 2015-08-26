@@ -13,7 +13,7 @@
       <para>
         The complete source code for this sample application can be found at:
         <externalLink>
-          <linkText></linkText>
+          <linkText>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/Android/HelloClient</linkText>
           <linkUri>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/Android/HelloClient</linkUri>
           <linkTarget>_blank</linkTarget>
         </externalLink>
@@ -40,7 +40,6 @@
                 </para>
               </content>
             </step>
-
             <step>
               <content>
                 <para>
@@ -54,7 +53,6 @@
                 </para>
               </content>
             </step>
-            
             <step>
               <content>
                 <para>
@@ -160,8 +158,8 @@
       </content>
     </section>
 
-    <section address="AddXml">
-      <title>Create the User Interface</title>
+    <section address="AddConnectControls">
+      <title>Add Controls to Connect to the Server</title>
       <content>
         <procedure>
           <title></title>
@@ -170,12 +168,19 @@
               <content>
                 <para>
                   Modify the <legacyBold>res\layout\activity_main.xml</legacyBold> to contain
-                  controls to enter the server hostname and client username and password. For
-                  example:
+                  controls to enter the server hostname and client username and password.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Add a <legacyBold>Connect</legacyBold> button and then assign an <legacyBold>onClick</legacyBold> event handler.
                 </para>
                 <mediaLink>
                   <image xlink:href="Android"/>
-                </mediaLink>                
+                </mediaLink>
+                <codeReference>Android#ConnectHandler</codeReference>
               </content>
             </step>
           </steps>
@@ -192,69 +197,68 @@
             <step>
               <content>
                 <para>
-                  From the <legacyBold>Package Explorer</legacyBold>, expand your project, right
-                  click <legacyBold>HelloClient.java</legacyBold> then select
-                  <legacyBold>Open</legacyBold>.
+                  Add the following import statements to the
+                  <legacyBold>MainActivity.java</legacyBold>:
                 </para>
+                <codeReference>Android#Import</codeReference>
               </content>
             </step>
             <step>
               <content>
                 <para>
-                  Add the following package statements:
-                </para>
-                <codeReference>Java#Import</codeReference>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>main</legacyBold> function, create a new instance of the
-                  HelloClient.
-                </para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  From within the constructor, create a
-                  <legacyBold>com.us.openserver.configuration.ServerConfiguration</legacyBold>
+                  From the <legacyBold>Connect</legacyBold> button's
+                  <legacyBold>onClick</legacyBold> event handler, create a
+                  <legacyBold>>com.us.openserver.configuration.ServerConfiguration</legacyBold>
                   then set the <legacyBold>ServerConfiguration.Host</legacyBold> property along
                   with any required SSL/TLS properties.
                 </para>
-                <codeReference>Java#ServerConfiguration</codeReference>
+                <codeReference>Android#ServerConfiguration</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
-                  Create a HashMap of <legacyBold>com.us.openserver.protocols.ProtocolConfiguration</legacyBold>
-                  keyed by the unique protocol identifier that contains the following three protocols:
+                  Create a <legacyBold>HashMap</legacyBold> of
+                  <legacyBold>com.us.openserver.protocols.ProtocolConfiguration</legacyBold> keyed
+                  by the unique protocol identifier that contains the following three protocols:
                 </para>
                 <list class="bullet">
                   <listItem>
                     <para>
-                      com.us.openserver.protocols.winauth.WinAuthProtocolClient
+                      <legacyBold>com.us.openserver.protocols.winauth.WinAuthProtocolClient</legacyBold>
                     </para>
                   </listItem>
                   <listItem>
                     <para>
-                      com.us.openserver.protocols.keepalive.KeepAliveProtocol
+                      <legacyBold>com.us.openserver.protocols.keepalive.KeepAliveProtocol</legacyBold>
                     </para>
                   </listItem>
                   <listItem>
                     <para>
-                      com.us.cloudserver.protocols.hello.HelloProtocolClient
+                      <legacyBold>com.us.cloudserver.protocols.RemoteObjectAccessProtocolClient</legacyBold>
                     </para>
                   </listItem>
                 </list>
                 <codeReference>Java#HashMap</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Optionally, create a <legacyBold>com.us.openserver.Logger</legacyBold>. If one
                   is not created a <legacyBold>com.us.openserver.ConsoleLogger</legacyBold> will
                   be automatically created for you.
                 </para>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Finally, create the <legacyBold>com.us.cloudserver.Client</legacyBold> passing
                   in the <legacyBold>this</legacyBold> as the
                   <legacyBold>IClientObserver</legacyBold> parameter, the
-                  <legacyBold>ServerConfiguration</legacyBold>, the HashMap of
+                  <legacyBold>ServerConfiguration</legacyBold>, the
+                  <legacyBold>HashMap</legacyBold> of
                   <legacyBold>ProtocolConfiguration</legacyBold>s and, if created, the
                   <legacyBold>Logger</legacyBold>.
                 </para>
@@ -269,13 +273,8 @@
     <section address="Connect">
       <title>Connect to the Server</title>
       <content>
-        <para>
-          In the previous steps, we showed you how to create the
-          <legacyBold>com.us.cloudserver.Client</legacyBold> object. Next,
-          we will walk you through the process of connecting to the server.
-        </para>
         <procedure>
-          <title>To connect to the server:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
@@ -283,7 +282,7 @@
                   Optionally, implement the <legacyBold>com.us.openserver.ILoggerObserver</legacyBold>
                   interface enabling the application to receive internal log messages.
                 </para>
-                <codeReference>Java#Logger</codeReference>
+                <codeReference>Android#LoggerObserver</codeReference>
               </content>
             </step>
             <step>
@@ -293,19 +292,39 @@
                   implement <legacyBold>com.us.openserver.IClientObserver</legacyBold> then
                   implement the interface by adding the following method:
                 </para>
-                <codeReference>Java#ClientObserver</codeReference>
+                <codeReference>Android#ClientObserver</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
+                <alert>
+                  <para>
+                    Android does not allow network packets to be sent from the user interface
+                    thread. To support Android, the <legacyBold>Client</legacyBold> object includes
+                    <legacyBold>connect</legacyBold> and <legacyBold>close</legacyBold> methods that
+                    use background threads. These methods are respectively called
+                    <legacyBold>connectBackgroundThread</legacyBold> and
+                    <legacyBold>closeBackgroundThread</legacyBold>.
+                  </para>
+                </alert>
+                <para>
+                  Call <legacyBold>Client.connectBackgroundThread</legacyBold> to connect to
+                  server.
+                </para>
+                <codeReference>Android#Connect</codeReference>
               </content>
             </step>
             <step>
               <content>
                 <para>
-                  Call <legacyBold>Client.connect</legacyBold> to connect to server.
-                </para>
-                <codeReference>Java#Connect</codeReference>
-                <para>
-                  To get a list of protocols running on the server call Client.getServerSupportedProtocolIds.
+                  To get a list of protocols running on the server call
+                  <legacyBold>Client.getServerSupportedProtocolIds</legacyBold>.
                 </para>
                 <codeReference>Java#GetProtocolIDs</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <legacyBold>com.us.openserver.protocols.winauth.WinAuthProtocolClient</legacyBold>
@@ -313,20 +332,28 @@
                   <legacyBold>WinAuthProtocolClient.authenticate</legacyBold>
                   to authenticate the connection.
                 </para>
-                <codeReference>Java#Authenticate</codeReference>
+                <codeReference>Android#Authenticate</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <legacyBold>com.us.openserver.protocols.keepalive.KeepAliveProtocol</legacyBold>
                   to enable the client/server Keep-Alive (aka Heartbeat) protocol.
                 </para>
                 <codeReference>Java#KeepAlive</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <legacyBold>com.us.cloudserver.protocols.hello.HelloProtocolClient</legacyBold>
                   then call
                   <legacyBold>HelloProtocolClient.hello</legacyBold>.
                 </para>
-                <codeReference>Java#Hello</codeReference>
+                <codeReference>Android#Hello</codeReference>
               </content>
             </step>
           </steps>

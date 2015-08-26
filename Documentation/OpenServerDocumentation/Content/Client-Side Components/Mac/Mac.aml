@@ -25,7 +25,7 @@
       <para>
         The complete source code for this sample application can be found at:
         <externalLink>
-          <linkText></linkText>
+          <linkText>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/Mac/HelloMacClient</linkText>
           <linkUri>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/Mac/HelloMacClient</linkUri>
           <linkTarget>_blank</linkTarget>
         </externalLink>
@@ -34,7 +34,7 @@
     </introduction>
 
     <section address="Application">
-      <title>Create a Mac Application using XCode</title>
+      <title>Create a Mac Application using Xcode</title>
       <content>
         <procedure>
           <title></title>
@@ -250,10 +250,7 @@
                 <mediaLink>
                   <image xlink:href="Mac"/>
                 </mediaLink>
-                <para>ViewController.h</para>
-                <codeReference>iOS#ConnectViewControllerH</codeReference>
-                <para>ViewController.m</para>
-                <codeReference>iOS#ConnectViewControllerM</codeReference>
+                <codeReference>Mac#ConnectHandler</codeReference>                
               </content>
             </step>
           </steps>
@@ -278,7 +275,8 @@
             <step>
               <content>
                 <para>
-                  Add the following include statements:
+                  Add the following include statements to the
+                  <legacyBold>ViewController.m</legacyBold>:
                 </para>
                 <codeReference>ObjC#Include</codeReference>
               </content>
@@ -291,9 +289,15 @@
                   <legacyBold>ComUsOpenserverConfigurationServerConfiguration</legacyBold>
                   then set the <legacyBold>ComUsOpenserverConfigurationServerConfiguration.Host</legacyBold> property.
                 </para>
+                <codeReference>Mac#ServerConfiguration</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
-                  Create a HashMap of <legacyBold>ComUsOpenserverProtocolsProtocolConfiguration</legacyBold>
-                  keyed by the unique protocol identifier that contains the following three protocols:
+                  Create a <legacyBold>JavaUtilHashMap</legacyBold> of
+                  <legacyBold>ComUsOpenserverProtocolsProtocolConfiguration</legacyBold> keyed by
+                  the unique protocol identifier that contains the following three protocols:
                 </para>
                 <list class="bullet">
                   <listItem>
@@ -312,6 +316,11 @@
                     </para>
                   </listItem>
                 </list>
+                <codeReference>ObjC#JavaUtilHashMap</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Optionally, create a
                   <legacyBold>ComUsOpenserverLogger</legacyBold>. If one is not
@@ -319,16 +328,20 @@
                   <legacyBold>ComUsOpenserverConsoleLogger</legacyBold> will be
                   automatically created for you.
                 </para>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Finally, create the <legacyBold>ComUsOpenserverClient</legacyBold> passing in
                   the <legacyBold>self</legacyBold> as the
                   <legacyBold>IClientObserver</legacyBold> parameter, the
                   <legacyBold>ComUsOpenserverConfigurationServerConfiguration</legacyBold>, the
-                  HashMap of
+                  <legacyBold>JavaUtilHashMap</legacyBold> of
                   <legacyBold>ComUsOpenserverProtocolsProtocolConfiguration</legacyBold>s and, if
                   created, the <legacyBold>ComUsOpenserverLogger</legacyBold>.
                 </para>
-                <codeReference>iOS#PreConnect</codeReference>
+                <codeReference>ObjC#CreateClient</codeReference>
               </content>
             </step>
           </steps>
@@ -339,13 +352,8 @@
     <section address="Connect">
       <title>Connect to the Server</title>
       <content>
-        <para>
-          In the previous steps, we showed you how to create the
-          <legacyBold>ComUsOpenserverClient</legacyBold> object. Next,
-          we will walk you through the process of connecting to the server.
-        </para>
         <procedure>
-          <title>To connect to the server:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
@@ -367,7 +375,7 @@
                   controls when the connection is lost.
                 </para>
                 <para>ViewController.h</para>
-                <codeReference>iOS#ClientObserverH</codeReference>
+                <codeReference>Mac#ClientObserverH</codeReference>
                 <para>ViewController.m</para>
                 <codeReference>ObjC#ClientObserverM</codeReference>
               </content>
@@ -377,6 +385,11 @@
                 <para>
                   Call <legacyBold>ComUsOpenserverClient.Connect</legacyBold> to connect to the server.
                 </para>
+                <codeReference>Objc#Connect</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <legacyBold>ComUsOpenserverProtocolsWinauthWinAuthProtocolClient</legacyBold>
@@ -384,18 +397,28 @@
                   <legacyBold>ComUsOpenserverProtocolsWinauthWinAuthProtocolClient.authenticate</legacyBold>
                   to authenticate the connection.
                 </para>
+                <codeReference>Mac#Authenticate</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <legacyBold>ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol</legacyBold>
                   to enable the client/server Keep-Alive (aka Heartbeat) protocol.
                 </para>
+                <codeReference>ObjC#KeepAlive</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <legacyBold>ComUsOpenserverProtocolsHelloHelloProtocolClient</legacyBold>
                   then call
                   <legacyBold>ComUsOpenserverProtocolsHelloHelloProtocolClient.helloWithNSString</legacyBold>.
                 </para>
-                <codeReference>iOS#Connect</codeReference>
+                <codeReference>Mac#Hello</codeReference>
               </content>
             </step>
           </steps>

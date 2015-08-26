@@ -13,7 +13,7 @@
       <para>
         The complete source code for this sample application can be found at:
         <externalLink>
-          <linkText></linkText>
+          <linkText>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/Java/HelloClient</linkText>
           <linkUri>https://github.com/UpperSetting/DotNetOpenServerSDK/tree/master/Samples/Java/HelloClient</linkUri>
           <linkTarget>_blank</linkTarget>
         </externalLink>
@@ -92,7 +92,7 @@
                   <listItem><para>WinAuthProtocol.jar</para></listItem>
                 </list>
                 <para>
-                  Finally, click <legacyBold>Finish</legacyBold>.
+                  Click <legacyBold>Finish</legacyBold>.
                 </para>
               </content>
             </step>
@@ -119,7 +119,7 @@
             <step>
               <content>
                 <para>
-                  Add the following package statements:
+                  Add the following import statements:
                 </para>
                 <codeReference>Java#Import</codeReference>
               </content>
@@ -128,7 +128,7 @@
               <content>
                 <para>
                   From the <legacyBold>main</legacyBold> function, create a new instance of the
-                  HelloClient.
+                  <legacyBold>HelloClient</legacyBold>.
                 </para>
               </content>
             </step>
@@ -141,9 +141,14 @@
                   with any required SSL/TLS properties.
                 </para>
                 <codeReference>Java#ServerConfiguration</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
-                  Create a HashMap of <legacyBold>com.us.openserver.protocols.ProtocolConfiguration</legacyBold>
-                  keyed by the unique protocol identifier that contains the following three protocols:
+                  Create a <legacyBold>HashMap</legacyBold> of
+                  <legacyBold>com.us.openserver.protocols.ProtocolConfiguration</legacyBold> keyed
+                  by the unique protocol identifier that contains the following three protocols:
                 </para>
                 <list class="bullet">
                   <listItem>
@@ -163,16 +168,25 @@
                   </listItem>
                 </list>
                 <codeReference>Java#HashMap</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Optionally, create a <legacyBold>com.us.openserver.Logger</legacyBold>. If one
                   is not created a <legacyBold>com.us.openserver.ConsoleLogger</legacyBold> will
                   be automatically created for you.
                 </para>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Finally, create the <legacyBold>com.us.cloudserver.Client</legacyBold> passing
                   in the <legacyBold>this</legacyBold> as the
                   <legacyBold>IClientObserver</legacyBold> parameter, the
-                  <legacyBold>ServerConfiguration</legacyBold>, the HashMap of
+                  <legacyBold>ServerConfiguration</legacyBold>, the
+                  <legacyBold>HashMap</legacyBold> of
                   <legacyBold>ProtocolConfiguration</legacyBold>s and, if created, the
                   <legacyBold>Logger</legacyBold>.
                 </para>
@@ -187,13 +201,8 @@
     <section address="Connect">
       <title>Connect to the Server</title>
       <content>
-        <para>
-          In the previous steps, we showed you how to create the
-          <legacyBold>com.us.cloudserver.Client</legacyBold> object. Next,
-          we will walk you through the process of connecting to the server.
-        </para>
         <procedure>
-          <title>To connect to the server:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
@@ -201,7 +210,7 @@
                   Optionally, implement the <legacyBold>com.us.openserver.ILoggerObserver</legacyBold>
                   interface enabling the application to receive internal log messages.
                 </para>
-                <codeReference>Java#Logger</codeReference>
+                <codeReference>Java#LoggerObserver</codeReference>
               </content>
             </step>
             <step>
@@ -220,10 +229,19 @@
                   Call <legacyBold>Client.connect</legacyBold> to connect to server.
                 </para>
                 <codeReference>Java#Connect</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
-                  To get a list of protocols running on the server call Client.getServerSupportedProtocolIds.
+                  To get a list of protocols running on the server call
+                  <legacyBold>Client.getServerSupportedProtocolIds</legacyBold>.
                 </para>
                 <codeReference>Java#GetProtocolIDs</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <legacyBold>com.us.openserver.protocols.winauth.WinAuthProtocolClient</legacyBold>
@@ -232,12 +250,20 @@
                   to authenticate the connection.
                 </para>
                 <codeReference>Java#Authenticate</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <legacyBold>com.us.openserver.protocols.keepalive.KeepAliveProtocol</legacyBold>
                   to enable the client/server Keep-Alive (aka Heartbeat) protocol.
                 </para>
                 <codeReference>Java#KeepAlive</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <legacyBold>com.us.cloudserver.protocols.hello.HelloProtocolClient</legacyBold>
