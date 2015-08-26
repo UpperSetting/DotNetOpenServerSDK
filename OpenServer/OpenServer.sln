@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenServerWindowsShared", "OpenServerWindowsShared\OpenServerWindowsShared.csproj", "{FD59CEA4-C9EE-470C-9C49-934785967EE5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenServer", "OpenServer\OpenServer.csproj", "{BD8CE1FD-0702-4CED-9592-5B81D55E13A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestServer", "TestServer\TestServer.csproj", "{2EB46093-522E-49F5-A730-C91BC9905AC8}"
@@ -21,16 +19,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FD59CEA4-C9EE-470C-9C49-934785967EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD59CEA4-C9EE-470C-9C49-934785967EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD59CEA4-C9EE-470C-9C49-934785967EE5}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{FD59CEA4-C9EE-470C-9C49-934785967EE5}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{FD59CEA4-C9EE-470C-9C49-934785967EE5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FD59CEA4-C9EE-470C-9C49-934785967EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD59CEA4-C9EE-470C-9C49-934785967EE5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD59CEA4-C9EE-470C-9C49-934785967EE5}.Release|ARM.ActiveCfg = Release|Any CPU
-		{FD59CEA4-C9EE-470C-9C49-934785967EE5}.Release|x64.ActiveCfg = Release|Any CPU
-		{FD59CEA4-C9EE-470C-9C49-934785967EE5}.Release|x86.ActiveCfg = Release|Any CPU
 		{BD8CE1FD-0702-4CED-9592-5B81D55E13A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BD8CE1FD-0702-4CED-9592-5B81D55E13A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD8CE1FD-0702-4CED-9592-5B81D55E13A9}.Debug|ARM.ActiveCfg = Debug|Any CPU

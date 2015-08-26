@@ -64,6 +64,10 @@
     <Reference Include="US.OpenServer.Shared">
       <HintPath>..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
     </Reference>
+    <Reference Include="US.OpenServer.Windows.Shared, Version=1.0.0.19, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Windows\US.OpenServer.Windows.Shared.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -76,10 +80,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenServerWindowsShared\OpenServerWindowsShared.csproj">
-      <Project>{fd59cea4-c9ee-470c-9c49-934785967ee5}</Project>
-      <Name>OpenServerWindowsShared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OpenServer\OpenServer.csproj">
       <Project>{bd8ce1fd-0702-4ced-9592-5b81d55e13a9}</Project>
       <Name>OpenServer</Name>

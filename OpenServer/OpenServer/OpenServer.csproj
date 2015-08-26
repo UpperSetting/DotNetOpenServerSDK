@@ -44,16 +44,13 @@
     <Reference Include="US.OpenServer.Shared">
       <HintPath>..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
     </Reference>
+    <Reference Include="US.OpenServer.Windows.Shared">
+      <HintPath>..\..\bin\Windows\US.OpenServer.Windows.Shared.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Server.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OpenServerWindowsShared\OpenServerWindowsShared.csproj">
-      <Project>{fd59cea4-c9ee-470c-9c49-934785967ee5}</Project>
-      <Name>OpenServerWindowsShared</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
