@@ -66,11 +66,6 @@ namespace HelloMobileClient
             }
             catch (Exception ex)
             {
-                if (client != null)
-                    client.Close();
-
-                btnConnect.Content = CONNECT;
-
                 ShowMessageBox(ex.Message);
             }
         }
@@ -100,7 +95,7 @@ namespace HelloMobileClient
             try
             {
                 WinAuthProtocolClient wap = (WinAuthProtocolClient)client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
-                if (!wap.Authenticate(txtUserName.Text, txtPassword.Password, null))
+                if (!wap.Authenticate(txtUserName.Text, txtPassword.Password))
                     throw new Exception("Access denied.");
 
                 client.Initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
