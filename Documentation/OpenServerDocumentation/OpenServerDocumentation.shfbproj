@@ -49,8 +49,6 @@
       <DocumentationSource sourceFile="..\..\OpenServerShared\bin\US.OpenServer.Shared.xml" />
       <DocumentationSource sourceFile="..\..\OpenServer\bin\US.OpenServer.dll" />
       <DocumentationSource sourceFile="..\..\OpenServer\bin\US.OpenServer.xml" />
-      <DocumentationSource sourceFile="..\..\OpenServer\bin\US.OpenServer.Windows.Shared.dll" />
-      <DocumentationSource sourceFile="..\..\OpenServer\bin\US.OpenServer.Windows.Shared.xml" />
       <DocumentationSource sourceFile="..\..\Clients\Windows\bin\US.OpenServer.Windows.Client.dll" />
       <DocumentationSource sourceFile="..\..\Clients\Windows\bin\US.OpenServer.Windows.Client.xml" />
       <DocumentationSource sourceFile="..\..\Protocols\Hello\Windows\bin\US.OpenServer.Protocols.Hello.Client.dll" />
@@ -67,6 +65,8 @@
       <DocumentationSource sourceFile="..\..\Protocols\WinAuth\Windows\bin\US.OpenServer.Protocols.WinAuth.Server.xml" />
       <DocumentationSource sourceFile="..\..\Protocols\WinAuth\Windows\bin\US.OpenServer.Protocols.WinAuth.Shared.dll" />
       <DocumentationSource sourceFile="..\..\Protocols\WinAuth\Windows\bin\US.OpenServer.Protocols.WinAuth.Shared.xml" />
+      <DocumentationSource sourceFile="..\..\OpenServerWindowsShared\bin\US.OpenServer.Windows.Shared.dll" />
+      <DocumentationSource sourceFile="..\..\OpenServerWindowsShared\bin\US.OpenServer.Windows.Shared.xml" />
     </DocumentationSources>
     <FooterText>&amp;lt%3bp&amp;gt%3b&amp;lt%3ba href=&amp;quot%3bhttp://UpperSetting.com/&amp;quot%3b target=&amp;quot%3b_blank&amp;quot%3b&amp;gt%3bCopyright %28c%29 2015 Upper Setting Corporation&amp;lt%3b/a&amp;gt%3b&amp;lt%3bbr /&amp;gt%3b&amp;lt%3ba href=&amp;quot%3bhttp://UpperSetting.com/Support&amp;quot%3b target=&amp;quot%3b_blank&amp;quot%3b&amp;gt%3bSupport&amp;lt%3b/a&amp;gt%3b    |    &amp;lt%3ba href=&amp;quot%3bhttp://UpperSetting.com/Purchase&amp;quot%3b target=&amp;quot%3b_blank&amp;quot%3b&amp;gt%3bPurchase&amp;lt%3b/a&amp;gt%3b    |    &amp;lt%3ba href=&amp;quot%3bhttp://UpperSetting.com/phpbb3/&amp;quot%3b target=&amp;quot%3b_blank&amp;quot%3b&amp;gt%3bForum&amp;lt%3b/a&amp;gt%3b&amp;lt%3b/p&amp;gt%3b</FooterText>
     <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter, AutoDocumentDispose</MissingTags>
