@@ -143,6 +143,10 @@
                   properties.
                 </para>
                 <codeReference>WindowsMobile#ServerConfiguration</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Create a Dictionary of
                   <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference>
@@ -167,11 +171,15 @@
                   </listItem>
                 </list>
                 <codeReference>Portable#Dictionary</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Create the
                   <codeEntityReference>T:US.OpenServer.Client</codeEntityReference> passing in the
                   <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference>
-                  and the the Dictionary of
+                  and the <legacyBold>Dictionary</legacyBold> of
                   <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects.
                 </para>
                 <alert>
@@ -184,10 +192,29 @@
                   </para>
                 </alert>
                 <codeReference>Portable#CreateClient</codeReference>
+              </content>
+            </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="CreateClient">
+      <title>Create an Instance of the Client</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
                 <para>
                   Call <codeEntityReference>M:US.OpenServer.Client.Connect</codeEntityReference> to connect to server.
                 </para>
                 <codeReference>Portable#Connect</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>
@@ -196,12 +223,20 @@
                   to authenticate the connection.
                 </para>
                 <codeReference>WindowsMobile#Authenticate</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>
                   to enable the client/server Keep-Alive (aka Heartbeat) protocol.
                 </para>
                 <codeReference>Portable#KeepAlive</codeReference>
+              </content>
+            </step>
+            <step>
+              <content>
                 <para>
                   Initialize the
                   <codeEntityReference>T:US.OpenServer.Protocols.Hello.HelloProtocolClient</codeEntityReference>

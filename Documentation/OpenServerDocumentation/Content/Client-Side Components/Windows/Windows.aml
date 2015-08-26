@@ -96,6 +96,24 @@
               <content>
                 <para>
                   From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right
+                  click <legacyBold>app.config</legacyBold> then select
+                  <legacyBold>Open</legacyBold>.
+                </para>
+              </content>
+            </step>
+            <step>
+              <content>
+                <para>
+                  Add the required configuration sections. For more information and a detailed
+                  example which you can copy see: <link
+                  xlink:href="Configuration.Windows.app.config" />.
+                </para>
+              </content>
+            </step>            
+            <step>
+              <content>
+                <para>
+                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right
                   click <legacyBold>Program.cs</legacyBold> then select
                   <legacyBold>Open</legacyBold>.
                 </para>
@@ -112,32 +130,12 @@
             <step>
               <content>
                 <para>
-                  Create the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>,
-                  connect, authenticate using the
-                  <codeEntityReference>T:US.OpenServer.Protocols.WinAuth.WinAuthProtocolClient</codeEntityReference>,
-                  finally, initialize the
-                  <codeEntityReference>T:US.OpenServer.Protocols.KeepAlive.KeepAliveProtocol</codeEntityReference>.
-                  For example:
+                  Create an instance of
+                  <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>. The
+                  parameterless constructor reads the app.config file and applies the
+                  configuration properties.
                 </para>
-                <codeReference>WindowsClient#AppConfigClient</codeReference>
-              </content>
-            </step>            
-            <step>
-              <content>
-                <para>
-                  From the <legacyBold>Solution Explorer</legacyBold>, expand your project, right
-                  click <legacyBold>app.config</legacyBold> then select
-                  <legacyBold>Open</legacyBold>.
-                </para>
-              </content>
-            </step>
-            <step>
-              <content>
-                <para>
-                  Add the required configuration sections. For more information and a detailed
-                  example which you can copy see: <link
-                  xlink:href="Configuration.Windows.app.config" />.
-                </para>
+                <codeReference>WindowsClient#AppConfigCreateClient</codeReference>
               </content>
             </step>            
           </steps>
@@ -228,6 +226,17 @@
                 <codeReference>Portable#CreateClient</codeReference>
               </content>
             </step>
+          </steps>
+        </procedure>
+      </content>
+    </section>
+
+    <section address="Connect">
+      <title>Connect to the Server</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
             <step>
               <content>
                 <para>

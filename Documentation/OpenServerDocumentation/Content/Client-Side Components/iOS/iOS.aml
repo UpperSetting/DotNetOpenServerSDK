@@ -245,10 +245,10 @@
                 <para>
                   Add a <legacyBold>Connect</legacyBold> button and then assign a <legacyBold>Touch Up Inside</legacyBold> event handler.
                 </para>
+                <codeReference>iOS#ConnectHandler</codeReference>
                 <mediaLink>
                   <image xlink:href="iOS"/>
                 </mediaLink>
-                <codeReference>iOS#ConnectHandler</codeReference>                
               </content>
             </step>
           </steps>

@@ -247,10 +247,10 @@
                 <para>
                   Add a <legacyBold>Connect</legacyBold> button and then assign a <legacyBold>Click</legacyBold> event handler.
                 </para>
+                <codeReference>Mac#ConnectHandler</codeReference>
                 <mediaLink>
                   <image xlink:href="Mac"/>
                 </mediaLink>
-                <codeReference>Mac#ConnectHandler</codeReference>                
               </content>
             </step>
           </steps>

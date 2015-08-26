@@ -9,47 +9,9 @@
     </sampleCode>
   </item>
 
-  <item id="WindowsClient#AppConfigClient">
+  <item id="WindowsClient#AppConfigCreateClient">
     <sampleCode language="CSharp">
-      using System;
-      using US.OpenServer;
-      using US.OpenServer.Protocols.Hello;
-      using US.OpenServer.Protocols.KeepAlive;
-      using US.OpenServer.Protocols.WinAuth;
-
-      namespace HelloClient
-      {
-          class Program
-          {
-              static void Main(string[] args)
-              {            
-                  try
-                  {
-                      Client client = new Client();
-                      client.Connect();
-
-                      string userName = "TestUser";
-                      WinAuthProtocolClient wap = client.Initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER) as WinAuthProtocolClient;
-                      if (!wap.Authenticate(userName, "T3stus3r", null))
-                          throw new Exception("Access denied.");
-
-                      client.Initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
-
-                      HelloProtocolClient hpc = (HelloProtocolClient)client.Initialize(HelloProtocol.PROTOCOL_IDENTIFIER);
-                      string serverReponse = hpc.Hello(userName);
-                      Console.WriteLine(serverReponse);
-
-                      Console.ReadKey();
-                      client.Close();
-                  }
-                  catch (Exception ex)
-                  {
-                      Console.WriteLine(ex.Message);
-                      Console.ReadKey();
-                  }
-              }
-          }
-      }
+      Client client = new Client();
     </sampleCode>
   </item>
 

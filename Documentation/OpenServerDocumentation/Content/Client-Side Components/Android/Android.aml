@@ -175,12 +175,13 @@
             <step>
               <content>
                 <para>
-                  Add a <legacyBold>Connect</legacyBold> button and then assign an <legacyBold>onClick</legacyBold> event handler.
+                  Add a <legacyBold>Connect</legacyBold> button and then assign an
+                  <legacyBold>onClick</legacyBold> event handler.
                 </para>
+                <codeReference>Android#ConnectHandler</codeReference>
                 <mediaLink>
                   <image xlink:href="Android"/>
                 </mediaLink>
-                <codeReference>Android#ConnectHandler</codeReference>
               </content>
             </step>
           </steps>
@@ -297,6 +298,11 @@
             </step>
             <step>
               <content>
+                <para>
+                  Call <legacyBold>Client.connectBackgroundThread</legacyBold> to connect to
+                  server.
+                </para>
+                <codeReference>Android#Connect</codeReference>
                 <alert>
                   <para>
                     Android does not allow network packets to be sent from the user interface
@@ -307,11 +313,6 @@
                     <legacyBold>closeBackgroundThread</legacyBold>.
                   </para>
                 </alert>
-                <para>
-                  Call <legacyBold>Client.connectBackgroundThread</legacyBold> to connect to
-                  server.
-                </para>
-                <codeReference>Android#Connect</codeReference>
               </content>
             </step>
             <step>
