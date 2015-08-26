@@ -62,7 +62,7 @@
         <para>
           All TCP socket server properties, information required for Reflection to load
           protocol implementations and log4net properties can be set within the <link
-          xlink:href="Configuration.Windows.app.config">app.config</link> file or
+          xlink:href="ConfiguringWindowsComponents.app.config">app.config</link> file or
           programatically within your application.
         </para>
       </content>

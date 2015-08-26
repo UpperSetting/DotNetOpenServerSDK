@@ -106,7 +106,7 @@
                 <para>
                   Add the required configuration sections. For more information and a detailed
                   example which you can copy see: <link
-                  xlink:href="Configuration.Windows.app.config" />.
+                  xlink:href="ConfiguringWindowsComponents.app.config" />.
                 </para>
               </content>
             </step>            
@@ -214,6 +214,7 @@
                   and the the Dictionary of
                   <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects.
                 </para>
+                <codeReference>Portable#CreateClient</codeReference>
                 <alert>
                   <para>
                     Each of the <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>
@@ -223,7 +224,6 @@
                     file.
                   </para>
                 </alert>
-                <codeReference>Portable#CreateClient</codeReference>
               </content>
             </step>
           </steps>
@@ -282,7 +282,7 @@
     </section>
     
     <relatedTopics>
-      <link xlink:href="Configuration.Windows.app.config">app.config Reference Document</link>
+      <link xlink:href="ConfiguringWindowsComponents.app.config">app.config Reference Document</link>
       <link xlink:href="ClientSideComponents"/>
     </relatedTopics>
   </developerConceptualDocument>

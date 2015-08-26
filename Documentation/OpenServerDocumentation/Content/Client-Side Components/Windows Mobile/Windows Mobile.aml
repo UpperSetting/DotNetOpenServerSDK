@@ -199,8 +199,8 @@
       </content>
     </section>
 
-    <section address="CreateClient">
-      <title>Create an Instance of the Client</title>
+    <section address="Connect">
+      <title>Connect to the Server</title>
       <content>
         <procedure>
           <title></title>
@@ -208,7 +208,9 @@
             <step>
               <content>
                 <para>
-                  Call <codeEntityReference>M:US.OpenServer.Client.Connect</codeEntityReference> to connect to server.
+                  Call
+                  <codeEntityReference>T:US.OpenServer.Client</codeEntityReference>.<codeEntityReference>M:US.OpenServer.Client.Connect</codeEntityReference>
+                  to connect to server.
                 </para>
                 <codeReference>Portable#Connect</codeReference>
               </content>

@@ -13,13 +13,13 @@
     <Topic id="ClientSideComponents.iOS" visible="True" title="How to Create an iOS Application" />
     <Topic id="ClientSideComponents.WindowsMobile" visible="True" title="How to Create a Windows Mobile Application" />
   </Topic>
-  <Topic id="Configuration.Windows" visible="True" isExpanded="true">
-    <Topic id="Configuration.Windows.app.config" visible="True" isExpanded="true">
-      <Topic id="Configuration.Windows.app.config.Protocols" visible="True" isExpanded="true">
-        <Topic id="Configuration.Windows.app.config.Protocols.Item" visible="True" />
+  <Topic id="ConfiguringWindowsComponents" visible="True" isExpanded="true">
+    <Topic id="ConfiguringWindowsComponents.app.config" visible="True" isExpanded="true">
+      <Topic id="ConfiguringWindowsComponents.app.config.Protocols" visible="True" isExpanded="true">
+        <Topic id="ConfiguringWindowsComponents.app.config.Protocols.Item" visible="True" />
       </Topic>
-      <Topic id="Configuration.Windows.app.config.Server" visible="True" isExpanded="true">
-        <Topic id="Configuration.Windows.app.config.Server.TLS" visible="True" />
+      <Topic id="ConfiguringWindowsComponents.app.config.Server" visible="True" isExpanded="true">
+        <Topic id="ConfiguringWindowsComponents.app.config.Server.TLS" visible="True" />
       </Topic>
     </Topic>
   </Topic>

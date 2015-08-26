@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<topic id="Configuration.Windows" revisionNumber="1">
+<topic id="ConfiguringWindowsComponents" revisionNumber="1">
+  ConfiguringWindowsComponents
   <developerConceptualDocument
     xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
     xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -15,7 +16,7 @@
     </introduction>
 
     <relatedTopics>
-      <link xlink:href="Configuration.Windows.app.config">app.config Reference Document</link>
+      <link xlink:href="ConfiguringWindowsComponents.app.config">app.config Reference Document</link>
 
       <codeEntityReference>M:US.OpenServer.Protocols.WinAuth.WinAuthProtocolConfigurationServer.Initialize(System.UInt16,System.String,System.String,System.Xml.XmlNode)</codeEntityReference>
 

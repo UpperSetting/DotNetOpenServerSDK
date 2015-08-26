@@ -25,15 +25,16 @@
     </introduction>
 
     <section address="Section1">
-      <title>Configuring the Default Logger using the app.config</title>
+      <title>Configure the Default Logger using the app.config</title>
       <content>
         <procedure>
-          <title>To configure the default Logger using the App.config file:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
                 <para>
-                  Open your application's App.config file. and add the following <legacyBold>configSections</legacyBold> item:
+                  Open your application's app.config file and add the following
+                  <legacyBold>configSections</legacyBold> item:
                 </para>
                 <codeReference>WindowsServer#AppConfigLog4NetConfigSection</codeReference>
               </content>
@@ -43,7 +44,7 @@
                 <para>
                   Next add the <legacyBold>log4Net</legacyBold> section. For detailed information on
                   the log4Net configuration options, see the
-                  <externalLink><linkText>log4Net</linkText><linkUri>http://logging.apache.org/log4net/</linkUri></externalLink>
+                  <externalLink><linkText>Apache log4Net</linkText><linkUri>http://logging.apache.org/log4net/</linkUri></externalLink>
                   documentation.
                 </para>
                 <codeReference>WindowsServer#AppConfigLog4Net</codeReference>
@@ -73,10 +74,10 @@
     </section>
 
     <section address="Section2">
-      <title>Configuring A Custom Logger</title>
+      <title>Configure A Custom Logger</title>
       <content>
         <procedure>
-          <title>To configure a custom logger:</title>
+          <title></title>
           <steps class="ordered">
             <step>
               <content>
@@ -109,7 +110,9 @@
     </section>
 
     <relatedTopics>
+      <link xlink:href="ConfiguringWindowsComponents"/>
       <codeEntityReference>T:US.OpenServer.Logger</codeEntityReference>
+
       <externalLink>
         <linkText>log4Net</linkText>
         <linkUri>http://logging.apache.org/log4net/</linkUri>
