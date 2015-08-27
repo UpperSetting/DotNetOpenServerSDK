@@ -6,9 +6,10 @@
 
     <introduction>
       <para>
-        This topic shows you how to create an iOS application using the
-        Windows Authentication Protocol, Keep-Alive Protocol and the sample Hello
-        Protocol.
+        This topic shows you how to create an iOS (iPhone/iPad) application that uses the Windows
+        Authentication Protocol to authenticate, uses the Keep-Alive Protocol to keep
+        the connection alive and uses the sample Hello Protocol to send and receive a
+        message.
       </para>
       <alert>
         <para>
@@ -20,6 +21,17 @@
             <linkTarget>_blank</linkTarget>
           </externalLink>
           open source project.
+        </para>
+      </alert>
+      <alert>
+        <para>
+          This topic assumes you have a working knowledge of Objective-C and Xcode.
+          If you do not, detailed tutorials can be found on the
+          <externalLink>
+            <linkText>Apple Developer website</linkText>
+            <linkUri>https://developer.apple.com/library/ios/referencelibrary/GettingStarted/RoadMapiOS/FirstTutorial.html</linkUri>
+            <linkTarget>_blank</linkTarget>
+          </externalLink>.
         </para>
       </alert>
       <para>

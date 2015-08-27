@@ -6,9 +6,10 @@
 
     <introduction>
       <para>
-        This topic shows you how to create a Windows Client application using the
-        Windows Authentication Protocol, Keep-Alive Protocol and the sample Hello
-        Protocol.
+        This topic shows you how to create a Windows console application that uses the Windows
+        Authentication Protocol to authenticate, uses the Keep-Alive Protocol to keep
+        the connection alive and uses the sample Hello Protocol to send and receive a
+        message.
       </para>
       <para>
         The complete source code for this sample application can be found at:
