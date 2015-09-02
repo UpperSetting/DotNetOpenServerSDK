@@ -39,20 +39,29 @@ https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Server/
 ### Installation
 #### To create a Windows Server application, run the following commands in the Package Manager Console:
 `PM> Install-Package UpperSetting.OpenServer`
+
 `PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Server`
+
 `PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive`
+
 `PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Server`
 
 #### To create a Windows Client application, run the following commands in the Package Manager Console:
 `PM> Install-Package UpperSetting.OpenServer.Windows.Client`
+
 `PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client`
+
 `PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive`
+
 `PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client`
 
 #### To create a Windows Mobile application, run the following commands in the Package Manager Console:
 `PM> Install-Package UpperSetting.OpenServer.WindowsMobile`
+
 `PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client`
+
 `PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive`
+
 `PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client`
 
 ## Android and Java
