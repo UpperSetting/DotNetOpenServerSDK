@@ -124,6 +124,9 @@ namespace US.OpenServer
                 serverConfiguration = new ServerConfiguration();
                 serverConfiguration.Host = ServerConfiguration.DEFAULT_HOST;
             }
+            if (serverConfiguration.Host == ServerConfiguration.DEFAULT_BIND_ADDRESS)
+                serverConfiguration.Host = ServerConfiguration.DEFAULT_HOST;
+
             ServerConfiguration = serverConfiguration;
 
             if (protocolConfigurations == null)
