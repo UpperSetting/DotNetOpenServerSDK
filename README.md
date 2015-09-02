@@ -85,7 +85,7 @@ http://www.UpperSetting.com/docs/DotNetOpenServerSDK/
 
 ## Extensions
 [DotNetCloudServer SDK](http://www.UpperSetting.com/DotNetCloudServer)
-** Securly exposes server-side C# objects, methods, variables and events.
-** Remotely invoke methods (RMI), subscribe to variables and receive events.
-** Granular read/write/execute authorization for methods, variables and events.
-** Includes a Windows Service to host your objects.
+* Securly exposes server-side C# objects, methods, variables and events.
+* Remotely invoke methods (RMI), subscribe to variables and receive events.
+* Granular read/write/execute authorization for methods, variables and events.
+* Includes a Windows Service to host your objects.
