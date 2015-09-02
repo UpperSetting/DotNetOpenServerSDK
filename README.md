@@ -6,11 +6,12 @@ source lightweight fully extendable TCP socket client/server application
 framework enabling developers to create highly efficient, fast, secure and
 robust cloud based smart mobile device and desktop applications. Why? Unlike
 most application server frameworks, which are implemented over slow inefficient
-stateless protocols such as HTTP, REST, JSON or SOAP, DotNetOpenServer has been
-built from the ground up with highly efficient stateful binary protocols.
+stateless protocols such as HTTP, REST and SOAP that use ASCII data formats such
+as JSON and XML, DotNetOpenServer has been built from the ground up with highly
+efficient stateful binary protocols.
 
 ## Prerequisites
-* .NET 4.5.1 or later
+* .NET 4.5.2 or later
 * Microsoft&reg; Visual Studio 2013 or later
 * log4Net (optional)
 * Java SE Development Kit 7 Update 75 or later
@@ -38,29 +39,20 @@ https://www.nuget.org/packages/UpperSetting.OpenServer.Protocols.WinAuth.Server/
 ### Installation
 #### To create a Windows Server application, run the following commands in the Package Manager Console:
 `PM> Install-Package UpperSetting.OpenServer`
-
 `PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Server`
-
 `PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive`
-
 `PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Server`
 
 #### To create a Windows Client application, run the following commands in the Package Manager Console:
 `PM> Install-Package UpperSetting.OpenServer.Windows.Client`
-
 `PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client`
-
 `PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive`
-
 `PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client`
 
 #### To create a Windows Mobile application, run the following commands in the Package Manager Console:
 `PM> Install-Package UpperSetting.OpenServer.WindowsMobile`
-
 `PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client`
-
 `PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive`
-
 `PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client`
 
 ## Android and Java
@@ -90,3 +82,10 @@ http://www.UpperSetting.com/docs/DotNetOpenServerSDK/
 * OpenServerShared - Contains portable Windows and Windows Mobile source code
 * Protocols - Contains client and server application layer protocol implementation source code
 * Samples - Contains sample client and server application source code
+
+## Extensions
+[DotNetCloudServer SDK](http://www.UpperSetting.com/DotNetCloudServer)
+** Securly exposes server-side C# objects, methods, variables and events.
+** Remotely invoke methods (RMI), subscribe to variables and receive events.
+** Granular read/write/execute authorization for methods, variables and events.
+** Includes a Windows Service to host your objects.
