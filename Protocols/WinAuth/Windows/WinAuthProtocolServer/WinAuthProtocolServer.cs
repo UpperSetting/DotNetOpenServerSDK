@@ -18,6 +18,7 @@ DotNetOpenServer SDK. If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -80,6 +81,16 @@ namespace US.OpenServer.Protocols.WinAuth
         /// The user's WindowsPrincipal.
         /// </summary>
         private WindowsPrincipal wp;
+
+        /// <summary>
+        /// Contains a cached list of assigned roles
+        /// </summary>
+        private List<string> cachedAssignedRoles = new List<string>();
+
+        /// <summary>
+        /// Contains a cached list of unassigned roles.
+        /// </summary>
+        private List<string> cachedUnAssignedRoles = new List<string>();
         #endregion
 
         #region Constructor
@@ -189,7 +200,22 @@ namespace US.OpenServer.Protocols.WinAuth
         /// <returns>True if user is a member of the role, otherwise False.</returns>
         public override bool IsInRole(string role)
         {
-            return wp.IsInRole(role);
+            if (cachedAssignedRoles.Contains(role))
+                return true;
+
+            if (cachedUnAssignedRoles.Contains(role))
+                return false;
+
+            if (wp.IsInRole(role))
+            {
+                cachedAssignedRoles.Add(role);
+                return true;
+            }
+            else
+            {
+                cachedUnAssignedRoles.Add(role);
+                return false;
+            }
         }
         #endregion
 
