@@ -27,7 +27,7 @@ http://www.UpperSetting.com
         <releaseNotes />
         <copyright>Copyright 2015 Upper Setting Corporation</copyright>
         <language>en-US</language>
-        <tags>TCP Socket Server</tags>
+        <tags>TCP/IP Client/Server Communications Library</tags>
     </metadata>
     <files>
         <file src="bin\US.OpenServer.Shared.dll" target="lib\portable-net451+win81+wpa81\US.OpenServer.Shared.dll" />
