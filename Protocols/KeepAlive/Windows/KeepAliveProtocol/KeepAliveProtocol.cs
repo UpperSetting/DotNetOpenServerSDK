@@ -53,6 +53,26 @@ namespace US.OpenServer.Protocols.KeepAlive
         /// command packets.
         /// </summary>
         private const int INTERVAL = 10000;
+
+        /// <summary>
+        /// Debug message that is logged when a <see cref="KeepAliveProtocolCommands.KEEP_ALIVE"/> is received.
+        /// </summary>
+        private const string KEEPALIVE_RECEIVED = "Keep-Alive received.";
+
+        /// <summary>
+        /// Debug message that is logged when a <see cref="KeepAliveProtocolCommands.KEEP_ALIVE"/> is sent.
+        /// </summary>
+        private const string KEEPALIVE_SENT = "Keep-Alive sent.";
+
+        /// <summary>
+        /// Debug message that is logged when a <see cref="KeepAliveProtocolCommands.QUIT"/> is received.
+        /// </summary>
+        private const string QUIT_RECEIVED = "Quit received.";
+
+        /// <summary>
+        /// Debug message that is logged when a <see cref="KeepAliveProtocolCommands.QUIT"/> is sent.
+        /// </summary>
+        private const string QUIT_SENT = "Quit sent.";
         #endregion
 
         #region Private Variables
@@ -115,7 +135,8 @@ namespace US.OpenServer.Protocols.KeepAlive
                 BinaryWriter bw = new BinaryWriter(ms, Encoding.UTF8);
                 bw.Write(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
                 bw.Write((byte)KeepAliveProtocolCommands.QUIT);
-                Log(Level.Debug, "Quit sent.");
+                if (Session.Logger.LogDebug)
+                    Log(Level.Debug, QUIT_SENT);
 
                 try
                 {
@@ -159,10 +180,11 @@ namespace US.OpenServer.Protocols.KeepAlive
                 switch (command)
                 {
                     case KeepAliveProtocolCommands.KEEP_ALIVE:
-                        Log(Level.Debug, "Received.");
+                        if (Session.Logger.LogDebug)
+                            Log(Level.Debug, KEEPALIVE_RECEIVED);
                         break;
                     case KeepAliveProtocolCommands.QUIT:
-                        Log(Level.Info, "Quit received.");
+                        Log(Level.Info, QUIT_RECEIVED);
                         dispose = true;
                         break;
                     default:
