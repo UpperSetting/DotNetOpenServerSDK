@@ -10,7 +10,20 @@
         <projectUrl>http://www.UpperSetting.com/DotNetOpenServer</projectUrl>
         <iconUrl>http://www.UpperSetting.com/favicon.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>A portable assembly that contains shared classes, interfaces, enumerations and extensions used by DotNetOpenServer SDK derived Windows server, client and mobile applications.</description>
+        <summary>A TCP client/server communications library that contains shared components used by DotNetOpenServer SDK derived Windows server, client and mobile applications.</summary>
+<description>Upper Setting's DotNetOpenServer SDK an our open source communication library that is not only lightweight, lightning fast and secure but also fully extendable enabling developers to quickly create native applications for any smart mobile device or desktop computer.  
+
+Why?
+Unlike most application server frameworks, which are implemented over slow stateless protocols such as HTTP, REST and SOAP that use bulky ASCII data formats such as JSON and XML, DotNetOpenServer has been built from the ground up for speed and efficiency. 
+
+How does it work?
+DotNetOpenServer implements a fast stateful binary protocol stack that supports SSL/TLS 1.2, includes a Windows Authentication Protocol, enables developers to extend the framework with any authentication method and provides a robust connection through a Keep-Alive Protocol (AKA Heartbeat Protocol).
+
+For more information and Android/Java and iPhone/iPad/iOS and Mac/OSX Objective-C APIs goto:
+
+http://www.UpperSetting.com
+
+</description>
         <releaseNotes />
         <copyright>Copyright 2015 Upper Setting Corporation</copyright>
         <language>en-US</language>
