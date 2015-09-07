@@ -86,16 +86,16 @@ http://www.UpperSetting.com/docs/DotNetOpenServerSDK/
 
 ## Source Code Structure
 * Clients - Contains C#, Java and Objective-C source code for Android, iOS, Windows Phone/Mobile, Windows, Mac and Java client applications.
-* Documentation - Contains source files to generate Sandcastle based help
-* OpenServer - Contains the Windows server source code
-* OpenServerShared - Contains portable Windows and Windows Phone/Mobile source code
-* OpenServerWindowsShared - Contains shared Windows client/server source code
-* Protocols - Contains client/server application layer protocol implementation source code
-* Samples - Contains sample client/server application source code
+* Documentation - Contains source files to generate Sandcastle based help.
+* OpenServer - Contains the Windows server source code.
+* OpenServerShared - Contains portable Windows and Windows Phone/Mobile source code.
+* OpenServerWindowsShared - Contains shared Windows client/server source code.
+* Protocols - Contains client/server application layer protocol implementation source code.
+* Samples - Contains sample client/server application source code.
 
 ## Extensions
 [DotNetCloudServer SDK](http://www.UpperSetting.com/DotNetCloudServer)
 * Securly exposes server-side C# objects, methods, variables and events.
-* Remotely invoke methods (RMI), subscribe to variables and receive events.
+* Remotely invoke methods (RMI), subscribe to variables and receive event notifications.
 * Granular read/write/execute authorization for methods, variables and events.
 * Includes a Windows Service to host your objects.
