@@ -85,12 +85,13 @@ Detailed documentation and tutorials can be found online at the following locati
 http://www.UpperSetting.com/docs/DotNetOpenServerSDK/
 
 ## Source Code Structure
-* Clients - Contains, Android, iOS, Windows Mobile, Windows and Java client source code
+* Clients - Contains C#, Java and Objective-C source code for Android, iOS, Windows Phone/Mobile, Windows, Mac and Java client applications.
 * Documentation - Contains source files to generate Sandcastle based help
 * OpenServer - Contains the Windows server source code
-* OpenServerShared - Contains portable Windows and Windows Mobile source code
-* Protocols - Contains client and server application layer protocol implementation source code
-* Samples - Contains sample client and server application source code
+* OpenServerShared - Contains portable Windows and Windows Phone/Mobile source code
+* OpenServerWindowsShared - Contains shared Windows client/server source code
+* Protocols - Contains client/server application layer protocol implementation source code
+* Samples - Contains sample client/server application source code
 
 ## Extensions
 [DotNetCloudServer SDK](http://www.UpperSetting.com/DotNetCloudServer)
