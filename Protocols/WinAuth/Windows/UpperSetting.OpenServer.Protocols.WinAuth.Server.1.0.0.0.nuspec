@@ -10,11 +10,18 @@
         <projectUrl>http://www.UpperSetting.com/DotNetOpenServer</projectUrl>
         <iconUrl>http://www.UpperSetting.com/favicon.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>A Windows assembly that contains server classes, interfaces, enumerations and extensions used by DotNetOpenServer SDK derived server applications.</description>
+        <summary>Contains the DotNetOpenServer Windows Authentication Protocol Server implementation for Windows Server applications.</summary>
+<description>The Windows Authentication Protocol is included in the DotNetOpenServer SDK to provide server-side access control using Windows user accounts and groups. The Shared assembly contains an abstract base class, WinAuthProtocol, that contains the unique protocol identifier and common functions. The Shared assembly also includes an enumeration, WinAuthProtocolCommands, that contains the available protocol commands. The Server assembly contains a class, WinAuthProtocolServer, that extends the WinAuthProtocol base class. This class implements the server-side functions. The Server assembly also includes a class, WinAuthProtocolConfigurationServer, that contains the list of users and groups that are allowed to access the server. The Client assembly contains a single class, WinAuthProtocolClient, that extends the WinAuthProtocol base class.  This class implements the client-side functions.
+
+For more information goto:
+
+http://www.UpperSetting.com
+
+</description>
         <releaseNotes />
         <copyright>Copyright 2015 Upper Setting Corporation</copyright>
         <language>en-US</language>
-        <tags>TCP Socket Server</tags>
+        <tags>TCP/IP Client/Server Communications Library, Windows Authentication</tags>
         <dependencies>
             <dependency id="UpperSetting.OpenServer.Protocols.WinAuth.Shared" version="[1.0.0.0]" />
             <dependency id="UpperSetting.OpenServer.Windows.Shared" version="[1.0.0.0]" />

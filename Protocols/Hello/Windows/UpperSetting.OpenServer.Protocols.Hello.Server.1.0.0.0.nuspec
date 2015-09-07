@@ -10,11 +10,18 @@
         <projectUrl>http://www.UpperSetting.com/DotNetOpenServer</projectUrl>
         <iconUrl>http://www.UpperSetting.com/favicon.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>A Windows assembly that contains server classes, interfaces, enumerations and extensions used by DotNetOpenServer SDK derived server applications.</description>
+        <summary>Contains the DotNetOpenServer Hello Protocol Server implementation for Windows Server applications.</summary>
+<description>The Hello Protocol is included in the DotNetOpenServer SDK to show you how to create a simple application layer protocol. The Shared assembly contains a single abstract base class, HelloProtocol, that contains the unique protocol identifier and a log message function. The Server assembly contains a single class, HelloProtocolServer, that extends the base class. The class contains a single function to return a message back to the caller. The Client assembly contains a single class, HelloProtocolClient, that contains functions to synchrounsly and asyncronously send Hello command packets to the server.
+
+For more information goto:
+
+http://www.UpperSetting.com
+
+</description>
         <releaseNotes />
         <copyright>Copyright 2015 Upper Setting Corporation</copyright>
         <language>en-US</language>
-        <tags>TCP Socket Server</tags>
+        <tags>TCP/IP Client/Server Communications Library</tags>
         <dependencies>
             <dependency id="UpperSetting.OpenServer.Protocols.Hello.Shared" version="[1.0.0.0]" />
         </dependencies>

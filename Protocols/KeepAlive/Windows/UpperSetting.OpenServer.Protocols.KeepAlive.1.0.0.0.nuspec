@@ -10,11 +10,18 @@
         <projectUrl>http://www.UpperSetting.com/DotNetOpenServer</projectUrl>
         <iconUrl>http://www.UpperSetting.com/favicon.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>A portable assembly that contains shared classes, interfaces, enumerations and extensions used by DotNetOpenServer SDK derived server, client and mobile applications.</description>
+        <summary>Contains the DotNetOpenServer Keep-Alive Protocol implementation for Windows Server, Client and Phone/Mobile applications.</summary>
+<description>The Keep-Alive Protocol is included in the DotNetOpenServer SDK to maintain and test connectivity between the server and client applications. The assembly contains a single class, KeepAliveProtocol, that implements the protocol within Windows Server, Windows Client and Windows Mobile applications. The assembly also includes an enumeration, KeepAliveProtocolCommands, that contains the available protocol commands. To use this protocol, simply call Initialize. Once initialized the protocol will automatically send Keep-Alive command packets to the remote end point.
+
+For more information and Android/Java and iPhone/iPad/iOS and Mac/OSX Objective-C APIs goto:
+
+http://www.UpperSetting.com
+
+</description>
         <releaseNotes />
         <copyright>Copyright 2015 Upper Setting Corporation</copyright>
         <language>en-US</language>
-        <tags>TCP Socket Server</tags>
+        <tags>TCP/IP Client/Server Communications Library</tags>
         <dependencies>
             <dependency id="UpperSetting.OpenServer.Shared" version="[1.0.0.0]" />
         </dependencies>
