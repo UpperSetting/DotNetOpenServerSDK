@@ -75,8 +75,8 @@ The DotNetOpenServer SDK Java Client release contains 4 JAR files:
 * WinAuthProtocol.jar - Contains the client side Windows Authentication protocol implementation.
 * HelloProtocol.jar - Contains the client side Hello protocol implementation.
 
-## iOS and Objective-C
-The Objective-C source files necessary to create iOS client applications have
+## iOS/OSX and Objective-C
+The Objective-C source files necessary to create iOS/OSX client applications have
 been made available in the [DotNetOpenServer SDK Objective-C Client
 Release](http://github.com/UpperSetting/DotNetOpenServerSDK/releases).
 
