@@ -10,6 +10,10 @@ stateless protocols such as HTTP, REST and SOAP that use ASCII data formats such
 as JSON and XML, DotNetOpenServer has been built from the ground up with highly
 efficient stateful binary protocols.
 
+## How to Article
+I have written an article that details how to use this SDK.  The article can be found at:
+http://www.UpperSetting.com/DotNetOpenServerArticle
+
 ## Prerequisites
 * .NET 4.5.2 or later
 * Microsoft&reg; Visual Studio 2013 or later
