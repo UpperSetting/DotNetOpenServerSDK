@@ -11,7 +11,7 @@ as JSON and XML, DotNetOpenServer has been built from the ground up with highly
 efficient stateful binary protocols.
 
 ## How to Article
-I have written an article that details how to use this SDK.  The article can be found at:
+For an easy tutorial on how to use this SDK goto:
 http://www.UpperSetting.com/DotNetOpenServerArticle
 
 ## Prerequisites
