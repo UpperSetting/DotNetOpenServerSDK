@@ -10,6 +10,10 @@ stateless protocols such as HTTP, REST and SOAP that use ASCII data formats such
 as JSON and XML, DotNetOpenServer has been built from the ground up with highly
 efficient stateful binary protocols.
 
+## How to Article
+For an easy tutorial on how to use this SDK goto:
+http://www.UpperSetting.com/DotNetOpenServerArticle
+
 ## Prerequisites
 * .NET 4.5.2 or later
 * Microsoft&reg; Visual Studio 2013 or later
@@ -75,8 +79,8 @@ The DotNetOpenServer SDK Java Client release contains 4 JAR files:
 * WinAuthProtocol.jar - Contains the client side Windows Authentication protocol implementation.
 * HelloProtocol.jar - Contains the client side Hello protocol implementation.
 
-## iOS and Objective-C
-The Objective-C source files necessary to create iOS client applications have
+## iOS/OSX and Objective-C
+The Objective-C source files necessary to create iOS/OSX client applications have
 been made available in the [DotNetOpenServer SDK Objective-C Client
 Release](http://github.com/UpperSetting/DotNetOpenServerSDK/releases).
 
@@ -85,16 +89,17 @@ Detailed documentation and tutorials can be found online at the following locati
 http://www.UpperSetting.com/docs/DotNetOpenServerSDK/
 
 ## Source Code Structure
-* Clients - Contains, Android, iOS, Windows Mobile, Windows and Java client source code
-* Documentation - Contains source files to generate Sandcastle based help
-* OpenServer - Contains the Windows server source code
-* OpenServerShared - Contains portable Windows and Windows Mobile source code
-* Protocols - Contains client and server application layer protocol implementation source code
-* Samples - Contains sample client and server application source code
+* Clients - Contains C#, Java and Objective-C source code for Android, iOS, Windows Phone/Mobile, Windows, Mac and Java client applications.
+* Documentation - Contains source files to generate Sandcastle based help.
+* OpenServer - Contains the Windows server source code.
+* OpenServerShared - Contains portable Windows and Windows Phone/Mobile source code.
+* OpenServerWindowsShared - Contains shared Windows client/server source code.
+* Protocols - Contains client/server application layer protocol implementation source code.
+* Samples - Contains sample client/server application source code.
 
 ## Extensions
 [DotNetCloudServer SDK](http://www.UpperSetting.com/DotNetCloudServer)
 * Securly exposes server-side C# objects, methods, variables and events.
-* Remotely invoke methods (RMI), subscribe to variables and receive events.
+* Remotely invoke methods (RMI), subscribe to variables and receive event notifications.
 * Granular read/write/execute authorization for methods, variables and events.
 * Includes a Windows Service to host your objects.
