@@ -79,6 +79,7 @@
                   PM> Install-Package UpperSetting.OpenServer.Protocols.Hello.Client
                   PM> Install-Package UpperSetting.OpenServer.Protocols.KeepAlive
                   PM> Install-Package UpperSetting.OpenServer.Protocols.WinAuth.Client
+                  PM> Install-Package log4net
                 </code>
               </content>
             </step>

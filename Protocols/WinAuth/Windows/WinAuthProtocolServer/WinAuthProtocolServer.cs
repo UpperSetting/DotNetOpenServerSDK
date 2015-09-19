@@ -150,8 +150,9 @@ namespace US.OpenServer.Protocols.WinAuth
 
                                 if (!Authenticate(userName))
                                     throw new Exception("Insufficient privileges.");
-                                
-                                UserName = userName;
+
+                                UserId = userName;
+                                UserName = userName;                                
                                 IsAuthenticated = true;
 
                                 Session.UserName = userName;

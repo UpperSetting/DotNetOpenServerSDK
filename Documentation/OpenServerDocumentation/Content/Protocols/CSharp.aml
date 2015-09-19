@@ -166,6 +166,7 @@
                 </para>
                 <code>
                   PM> Install-Package UpperSetting.OpenServer.Shared
+                  PM> Install-Package UpperSetting.OpenServer.Windows.Shared
                 </code>
               </content>
             </step>

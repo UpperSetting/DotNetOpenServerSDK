@@ -40,6 +40,12 @@ namespace US.OpenServer.Protocols
         public string UserName { get; protected set; }
 
         /// <summary>
+        /// Gets or sets the user's unique identifier.
+        /// </summary>
+        /// <value>A object that defines the user's unique identifier.</value>
+        public object UserId { get; protected set; }
+
+        /// <summary>
         /// Checks if the authenticated user is a member of the passed role.
         /// </summary>
         /// <remarks>
