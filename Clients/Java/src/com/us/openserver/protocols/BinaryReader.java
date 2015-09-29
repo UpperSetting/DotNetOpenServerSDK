@@ -30,12 +30,16 @@ public class BinaryReader extends ByteArrayInputStream
     {
         super(buf);
     }
+    
+    public boolean readBoolean()
+    {
+    	return 0 == (byte)read() ? false : true; 
+    }
 
     public byte readByte()
     {
         return (byte)read();
     }
-
     
     public Date readDateTime()
     {

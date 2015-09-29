@@ -29,6 +29,11 @@ public class BinaryWriter extends ByteArrayOutputStream
     {
         super();
     }
+    
+    public void writeBoolean(boolean value)
+    {
+        write((byte)(value ? 0x01 : 0x00));        
+    }
 
     public void writeString(String value)
     {
