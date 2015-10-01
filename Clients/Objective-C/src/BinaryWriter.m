@@ -18,6 +18,10 @@
   return self;
 }
 
+- (void)writeBooleanWithBoolean:(jboolean)value {
+  [self writeWithInt:(jbyte) (value ? (jint) 0x01 : (jint) 0x00)];
+}
+
 - (void)writeStringWithNSString:(NSString *)value {
   if (value == nil) value = @"";
   IOSCharArray *chars = [((NSString *) nil_chk(value)) toCharArray];
@@ -90,6 +94,7 @@
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "init", "BinaryWriter", NULL, 0x1, NULL, NULL },
+    { "writeBooleanWithBoolean:", "writeBoolean", "V", 0x1, NULL, NULL },
     { "writeStringWithNSString:", "writeString", "V", 0x1, NULL, NULL },
     { "writeIntWithInt:", "writeInt", "V", 0x1, NULL, NULL },
     { "writeUIntWithInt:", "writeUInt", "V", 0x1, NULL, NULL },
@@ -99,7 +104,7 @@
     { "writeWithJavaMathBigDecimal:", "write", "V", 0x1, NULL, NULL },
     { "writeUInt16sWithIntArray:", "writeUInt16s", "V", 0x1, NULL, NULL },
   };
-  static const J2ObjcClassInfo _ComUsOpenserverProtocolsBinaryWriter = { 2, "BinaryWriter", "com.us.openserver.protocols", NULL, 0x1, 9, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _ComUsOpenserverProtocolsBinaryWriter = { 2, "BinaryWriter", "com.us.openserver.protocols", NULL, 0x1, 10, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverProtocolsBinaryWriter;
 }
 

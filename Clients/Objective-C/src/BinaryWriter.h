@@ -25,6 +25,8 @@
 
 - (void)writeWithLong:(jlong)value;
 
+- (void)writeBooleanWithBoolean:(jboolean)value;
+
 - (void)writeIntWithInt:(jint)value;
 
 - (void)writeStringWithNSString:(NSString *)value;

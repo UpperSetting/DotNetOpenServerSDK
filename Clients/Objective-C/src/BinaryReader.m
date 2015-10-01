@@ -23,6 +23,10 @@
   return self;
 }
 
+- (jboolean)readBoolean {
+  return 0 == (jbyte) [self read] ? NO : YES;
+}
+
 - (jbyte)readByte {
   return (jbyte) [self read];
 }
@@ -91,6 +95,7 @@
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "initWithByteArray:", "BinaryReader", NULL, 0x1, NULL, NULL },
+    { "readBoolean", NULL, "Z", 0x1, NULL, NULL },
     { "readByte", NULL, "B", 0x1, NULL, NULL },
     { "readDateTime", NULL, "Ljava.util.Date;", 0x1, NULL, NULL },
     { "readDecimal", NULL, "Ljava.math.BigDecimal;", 0x1, NULL, NULL },
@@ -100,7 +105,7 @@
     { "readUInt16", NULL, "I", 0x1, NULL, NULL },
     { "readUInt16s", NULL, "[I", 0x1, NULL, NULL },
   };
-  static const J2ObjcClassInfo _ComUsOpenserverProtocolsBinaryReader = { 2, "BinaryReader", "com.us.openserver.protocols", NULL, 0x1, 9, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _ComUsOpenserverProtocolsBinaryReader = { 2, "BinaryReader", "com.us.openserver.protocols", NULL, 0x1, 10, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverProtocolsBinaryReader;
 }
 

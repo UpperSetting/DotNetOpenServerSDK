@@ -20,6 +20,8 @@
 
 - (instancetype)initWithByteArray:(IOSByteArray *)buf;
 
+- (jboolean)readBoolean;
+
 - (jbyte)readByte;
 
 - (JavaUtilDate *)readDateTime;
