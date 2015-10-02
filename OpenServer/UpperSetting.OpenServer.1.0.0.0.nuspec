@@ -10,7 +10,7 @@
         <projectUrl>http://www.UpperSetting.com/DotNetOpenServer</projectUrl>
         <iconUrl>http://www.UpperSetting.com/favicon.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <summary>A TCP client/server communications library that contains components used by DotNetOpenServer SDK derived Windows server applications.</summary>
+        <summary>A TCP client/server communication library that contains components used by DotNetOpenServer SDK derived Windows server applications.</summary>
 <description>Upper Setting's DotNetOpenServer SDK is our open source TCP client/server communication library that is lightweight, fast, secure and fully extendable enabling developers to quickly create native applications for any smart mobile device or desktop computer.  
 
 Why?
