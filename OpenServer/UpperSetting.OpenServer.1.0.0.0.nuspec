@@ -3,7 +3,7 @@
     <metadata>
         <id>UpperSetting.OpenServer</id>
         <version>1.0.0.0</version>
-        <title>DotNetOpenServer TCP Client/Server Communications Library (Server DLL)</title>
+        <title>DotNetOpenServer TCP Client/Server Communication Library (Server DLL)</title>
         <authors>Upper Setting Corporation</authors>
         <owners>Upper Setting Corporation</owners>
         <licenseUrl>http://www.UpperSetting.com/Licenses/GNUv3.txt</licenseUrl>
