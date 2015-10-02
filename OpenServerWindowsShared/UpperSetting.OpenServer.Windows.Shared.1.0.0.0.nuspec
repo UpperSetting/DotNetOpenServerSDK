@@ -3,15 +3,15 @@
     <metadata>
         <id>UpperSetting.OpenServer.Windows.Shared</id>
         <version>1.0.0.0</version>
-        <title>DotNetOpenServer SDK Windows Shared DLL</title>
+        <title>DotNetOpenServer TCP Client/Server Communication Library (Windows Shared DLL)</title>
         <authors>Upper Setting Corporation</authors>
         <owners>Upper Setting Corporation</owners>
         <licenseUrl>http://www.UpperSetting.com/Licenses/GNUv3.txt</licenseUrl>
         <projectUrl>http://www.UpperSetting.com/DotNetOpenServer</projectUrl>
         <iconUrl>http://www.UpperSetting.com/favicon.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <summary>A TCP client/server communications library that contains shared components used by DotNetOpenServer SDK derived Windows server and client applications.</summary>
-<description>Upper Setting's DotNetOpenServer SDK an our open source communication library that is not only lightweight, lightning fast and secure but also fully extendable enabling developers to quickly create native applications for any smart mobile device or desktop computer.  
+        <summary>A TCP client/server communication library that contains components used by DotNetOpenServer SDK derived Windows server applications.</summary>
+<description>Upper Setting's DotNetOpenServer SDK is our open source TCP client/server communication library that is lightweight, fast, secure and fully extendable enabling developers to quickly create native applications for any smart mobile device or desktop computer.  
 
 Why?
 Unlike most application server frameworks, which are implemented over slow stateless protocols such as HTTP, REST and SOAP that use bulky ASCII data formats such as JSON and XML, DotNetOpenServer has been built from the ground up for speed and efficiency. 
