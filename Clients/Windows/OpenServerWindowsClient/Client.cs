@@ -72,6 +72,11 @@ namespace US.OpenServer
         /// object.
         /// </summary>
         public object UserData { get; private set; }
+
+        /// <summary>
+        /// Gets a flag that states if the connection is valid.
+        /// </summary>
+        public bool IsConnected { get; private set; }
         #endregion
 
         #region Variables
@@ -173,6 +178,7 @@ namespace US.OpenServer
             if (ServerConfiguration.TlsConfiguration != null && ServerConfiguration.TlsConfiguration.Enabled)
                 EnableTls();
 
+            IsConnected = true;
             Logger.Log(Level.Info, string.Format("Connected to {0}:{1}.", ServerConfiguration.Host, ServerConfiguration.Port));
 
             session.BeginRead();
@@ -211,6 +217,7 @@ namespace US.OpenServer
             {
                 session.Close();
                 session = null;
+                IsConnected = false;
             }
         }
 
@@ -238,6 +245,7 @@ namespace US.OpenServer
         /// <param name="ex">An Exception that contains the error the connection was lost.</param>
         private void session_OnConnectionLost(object sender, Exception ex)
         {
+            IsConnected = false;
             if (OnConnectionLost != null)
                 OnConnectionLost(this, ex);
         }
