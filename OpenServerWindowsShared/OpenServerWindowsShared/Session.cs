@@ -250,10 +250,6 @@ namespace US.OpenServer
 
                 stream.BeginRead(buffer, 0, buffer.Length, new AsyncCallback(ReadCallback), null);
             }
-            catch (ObjectDisposedException)
-            {
-                Close();
-            }
             catch (Exception ex)
             {
                 ConnectionLost(ex);
