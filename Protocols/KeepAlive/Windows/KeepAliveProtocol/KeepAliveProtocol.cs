@@ -215,7 +215,6 @@ namespace US.OpenServer.Protocols.KeepAlive
         /// </summary>
         /// <param name="state">An object containing information to be used by the
         /// callback method, or null. This parameter is not used.</param>
-
         private void TimerCallback(object state)
         {
             Exception connectionLostException = null;
@@ -229,10 +228,6 @@ namespace US.OpenServer.Protocols.KeepAlive
                     bw.Write((byte)KeepAliveProtocolCommands.KEEP_ALIVE);
                     Session.Send(ms);
                     Log(Level.Debug, "Sent.");
-                }
-                catch (ObjectDisposedException)
-                {
-                    timer.Dispose();
                 }
                 catch (Exception ex)
                 {
