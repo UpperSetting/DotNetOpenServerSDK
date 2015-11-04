@@ -194,7 +194,7 @@ namespace US.OpenServer.Protocols.KeepAlive
             }
 
             if (dispose)
-                Session.Dispose();
+                Session.ConnectionLost(new Exception("The connection was terminated by the remote end point."));
         }
         #endregion
 
