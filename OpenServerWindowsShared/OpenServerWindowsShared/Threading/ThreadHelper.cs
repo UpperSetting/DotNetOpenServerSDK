@@ -23,7 +23,7 @@ namespace System.Threading
     /// A static helper class the enables a thread to sleep for a specific period of
     /// time, manage drift and supports clock changes.
     /// </summary>
-    public class ThreadHelper
+    public static class ThreadHelper
     {
         /// <summary>
         /// Enables a thread to sleep for a specific period of time, manage drift and
