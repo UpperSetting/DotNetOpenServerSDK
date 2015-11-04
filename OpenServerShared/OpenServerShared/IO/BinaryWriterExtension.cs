@@ -54,6 +54,42 @@ namespace System.IO
         }
 
         /// <summary>
+        /// Writes a bool that specifies if the DateTime? value is not NULL. If not NULL
+        /// writes the DateTime's ticks.
+        /// </summary>
+        /// <param name="bw">The BinaryWriter to write to.</param>
+        /// <param name="value">The DateTime? object to write.</param>
+        public static void Write(this BinaryWriter bw, DateTime? value)
+        {
+            if (value == null || !value.HasValue)
+                bw.Write(false);
+            else
+            {
+                bw.Write(true);
+                bw.WriteDateTime(value.Value);
+            }
+        }
+
+        /// <summary>
+        /// Writes an Int32 that contains the number of Int32s then writes each Int32.
+        /// </summary>
+        /// <param name="bw">The BinaryWriter to write to.</param>
+        /// <param name="value">An array of Int32s to write.</param>
+        public static void WriteInts(this BinaryWriter bw, int[] value)
+        {
+            if (value == null)
+            {
+                bw.Write((int)0);
+            }
+            else
+            {
+                bw.Write(value.Length);
+                foreach (int i in value)
+                    bw.Write(i);
+            }
+        }
+
+        /// <summary>
         /// Writes a string. If the passed value is null, an empty string is written.
         /// </summary>
         /// <param name="bw">The BinaryWriter to write to.</param>
@@ -93,6 +129,23 @@ namespace System.IO
         public static void WriteTimeSpan(this BinaryWriter bw, TimeSpan value)
         {
             bw.Write(value.Ticks);
+        }
+
+        /// <summary>
+        /// Writes a bool that specifies if the TimeSpan? value is not NULL. If not NULL
+        /// writes the TimeSpan's ticks.
+        /// </summary>
+        /// <param name="bw">The BinaryWriter to write to.</param>
+        /// <param name="value">The TimeSpan? object to write.</param>
+        public static void Write(this BinaryWriter bw, TimeSpan? value)
+        {
+            if (value == null || !value.HasValue)
+                bw.Write(false);
+            else
+            {
+                bw.Write(true);
+                bw.WriteTimeSpan(value.Value);
+            }
         }
 
         /// <summary>

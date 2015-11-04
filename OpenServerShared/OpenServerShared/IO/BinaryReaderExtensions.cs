@@ -36,6 +36,34 @@ namespace System.IO
         }
 
         /// <summary>
+        /// Reads a bool that specifies if a DateTime value.  If present reads the DateTime.
+        /// </summary>
+        /// <param name="br">The BinaryReader object to read from.</param>
+        /// <returns>A DateTime? object.</returns>
+        public static DateTime? ReadNullableDateTime(this BinaryReader br)
+        {
+            if (br.ReadBoolean())
+                return br.ReadDateTime();
+            else
+                return null;
+        }
+
+        /// <summary>
+        /// Reads an Int32 that contains the number of Int32s to read then reads each Int32.
+        /// </summary>
+        /// <param name="br">The BinaryReader object to read from.</param>
+        /// <returns>An array of Int32s.</returns>
+        public static int[] ReadInts(this BinaryReader br)
+        {
+            int count = br.ReadInt32();
+            int[] retVal = new int[count];
+            for (int i = 0; i < count; i++)
+                retVal[i] = br.ReadInt32();
+
+            return retVal;
+        }
+
+        /// <summary>
         /// Reads an Int32 that contains the number of strings to read then reads each
         /// string.
         /// </summary>
@@ -59,6 +87,19 @@ namespace System.IO
         public static TimeSpan ReadTimeSpan(this BinaryReader br)
         {
             return new TimeSpan(br.ReadInt64());
+        }
+
+        /// <summary>
+        /// Reads a bool that specifies if a TimeSpan value.  If present reads the TimeSpan.
+        /// </summary>
+        /// <param name="br">The BinaryReader object to read from.</param>
+        /// <returns>A TimeSpan? object.</returns>
+        public static TimeSpan? ReadNullableTimeSpan(this BinaryReader br)
+        {
+            if (br.ReadBoolean())
+                return br.ReadTimeSpan();
+            else
+                return null;
         }
 
         /// <summary>
