@@ -32,4 +32,10 @@ public abstract class AuthenticationProtocolBase extends ProtocolBase
     {
         return userName;
     }
+    
+    protected Object userId;
+    public Object getUserId()
+    {
+        return userId;
+    }
 }
