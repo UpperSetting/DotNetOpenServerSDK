@@ -158,6 +158,26 @@
         </procedure>
       </content>
     </section>
+    
+    
+    <section address="Permissions">
+      <title>Add the Required Permissions</title>
+      <content>
+        <procedure>
+          <title></title>
+          <steps class="ordered">
+            <step>
+              <content>
+                <para>
+                  Open the <legacyBold>AndroidManifest.xml</legacyBold> file then add the following line directly below the manifest element:
+                  <codeInline>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;</codeInline>
+                </para>
+              </content>
+            </step>            
+          </steps>
+        </procedure>
+      </content>
+    </section>
 
     <section address="AddConnectControls">
       <title>Add Controls to Connect to the Server</title>
