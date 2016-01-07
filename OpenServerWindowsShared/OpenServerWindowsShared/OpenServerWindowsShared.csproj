@@ -36,6 +36,7 @@
       <HintPath>..\packages\log4net.2.0.4\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +48,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DBBase.cs" />
+    <Compile Include="Data\SqlServer\SqlServerBase.cs" />
     <Compile Include="Protocols\ProtocolConfigurationSectionHandler.cs" />
     <Compile Include="Configuration\ServerConfigurationSectionHandler.cs" />
     <Compile Include="ConsoleLogger.cs" />
