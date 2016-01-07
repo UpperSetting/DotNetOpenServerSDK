@@ -24,7 +24,7 @@ import com.us.openserver.protocols.AuthenticationProtocolBase;
 
 public class DatabaseAuthProtocol extends AuthenticationProtocolBase
 {
-    public static final int PROTOCOL_IDENTIFIER = 0x0002;
+    public static final int PROTOCOL_IDENTIFIER = 0x0003;
     
     protected DatabaseAuthProtocol()
     {
