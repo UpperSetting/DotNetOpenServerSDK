@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>UpperSetting.OpenServer.Protocols.DatabaseAuth.Client</id>
+        <version>1.0.0.0</version>
+        <title>DotNetOpenServer SDK Windows Authentication Protocol Client DLL</title>
+        <authors>Upper Setting Corporation</authors>
+        <owners>Upper Setting Corporation</owners>
+        <licenseUrl>http://www.UpperSetting.com/Licenses/GNUv3.txt</licenseUrl>
+        <projectUrl>http://www.UpperSetting.com/DotNetOpenServer</projectUrl>
+        <iconUrl>http://www.UpperSetting.com/favicon.png</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <summary>Contains the DotNetOpenServer Database Authentication Protocol Shared implementation for Windows Server, Client and Phone/Mobile applications.</summary>
+<description>The Database Authentication Protocol is included in the DotNetOpenServer SDK to provide server-side access control using a SQL Server database. The Shared assembly contains an abstract base class, DatabaseAuthProtocol, that contains the unique protocol identifier and common functions. The Shared assembly also includes an enumeration, DatabaseAuthProtocolCommands, that contains the available protocol commands. The Server assembly contains a class, DatabaseAuthProtocolServer, that extends the DatabaseAuthProtocol base class. This class implements the server-side functions. The Client assembly contains a single class, DatabaseAuthProtocolClient, that extends the DatabaseAuthProtocol base class.  This class implements the client-side functions.
+
+For more information and Android/Java and iPhone/iPad/iOS and Mac/OSX Objective-C APIs goto:
+
+http://www.UpperSetting.com
+
+</description>
+        <releaseNotes />
+        <copyright>Copyright 2016 Upper Setting Corporation</copyright>
+        <language>en-US</language>
+        <tags>TCP/IP Client/Server Communications Library, Windows Authentication</tags>
+        <dependencies>
+            <dependency id="UpperSetting.OpenServer.Protocols.DatabaseAuth.Shared" version="[1.0.0.0]" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\US.OpenServer.Protocols.DatabaseAuth.Client.dll" target="lib\portable-net451+win81+wpa81\US.OpenServer.Protocols.DatabaseAuth.Client.dll" />
+    </files>
+</package>

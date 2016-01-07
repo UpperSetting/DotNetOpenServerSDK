@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAuthProtocolShared", "DatabaseAuthProtocolShared\DatabaseAuthProtocolShared.csproj", "{5AE34854-83B2-4A46-BF2D-1F8A757417B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAuthProtocolServer", "DatabaseAuthProtocolServer\DatabaseAuthProtocolServer.csproj", "{AD84FE19-B15D-4F42-8EAD-063988D1E738}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAuthProtocolClient", "DatabaseAuthProtocolClient\DatabaseAuthProtocolClient.csproj", "{D6DEE015-A80D-4FFD-B621-EF051883EB8A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AE34854-83B2-4A46-BF2D-1F8A757417B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AE34854-83B2-4A46-BF2D-1F8A757417B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AE34854-83B2-4A46-BF2D-1F8A757417B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AE34854-83B2-4A46-BF2D-1F8A757417B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD84FE19-B15D-4F42-8EAD-063988D1E738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD84FE19-B15D-4F42-8EAD-063988D1E738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD84FE19-B15D-4F42-8EAD-063988D1E738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD84FE19-B15D-4F42-8EAD-063988D1E738}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6DEE015-A80D-4FFD-B621-EF051883EB8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6DEE015-A80D-4FFD-B621-EF051883EB8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6DEE015-A80D-4FFD-B621-EF051883EB8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6DEE015-A80D-4FFD-B621-EF051883EB8A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
