@@ -51,9 +51,9 @@ public class BinaryReader extends ByteArrayInputStream
         return new BigDecimal(readLong());
     }
     
-    public int readInt16()
+    public short readInt16()
     {
-        int retVal = read();
+    	short retVal = (short)read();
         retVal |= read() << 8;
         return retVal;
     }
