@@ -50,6 +50,13 @@ public class BinaryReader extends ByteArrayInputStream
     {
         return new BigDecimal(readLong());
     }
+    
+    public int readInt16()
+    {
+        int retVal = read();
+        retVal |= read() << 8;
+        return retVal;
+    }
 
     public int readInt32()
     {

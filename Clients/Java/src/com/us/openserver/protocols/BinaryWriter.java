@@ -51,6 +51,12 @@ public class BinaryWriter extends ByteArrayOutputStream
         for (int i = 0; i < chars.length; i++)
             write(chars[i]);
     }
+    
+    public void writeInt16(int value)
+    {
+        write((byte)value);
+        write((byte)(value >> 8));        
+    }
 
     public void writeInt(int value)
     {
@@ -59,19 +65,13 @@ public class BinaryWriter extends ByteArrayOutputStream
         write((byte)(value >> 16));
         write((byte)(value >> 24));
     }
-
+    
     public void writeUInt(int value)
     {
         write((byte)value);
         write((byte)(value >> 8));
         write((byte)(value >> 16));
         write((byte)(value >> 24));
-    }
-
-    public void writeUInt16(int value)
-    {
-        write((byte)value);
-        write((byte)(value >> 8));
     }
 
     public void write(GregorianCalendar date)
@@ -95,6 +95,12 @@ public class BinaryWriter extends ByteArrayOutputStream
     public void write(BigDecimal value)
     {
         writeString(value.toString());
+    }
+    
+    public void writeUInt16(int value)
+    {
+        write((byte)value);
+        write((byte)(value >> 8));
     }
     
     public void writeUInt16s(int[] value)
