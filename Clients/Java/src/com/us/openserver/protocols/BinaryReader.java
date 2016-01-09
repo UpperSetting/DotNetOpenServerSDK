@@ -66,6 +66,16 @@ public class BinaryReader extends ByteArrayInputStream
         retVal |= read() << 24;
         return retVal;
     }
+    
+    public int[] readInt32s()
+    {
+    	int count = readInt32();
+        int[] retVal = new int[count];
+        for (int i = 0; i < count; i++)
+            retVal[i] = readInt32();
+
+        return retVal;
+    }
 
     public long readLong()
     {

@@ -66,6 +66,20 @@ public class BinaryWriter extends ByteArrayOutputStream
         write((byte)(value >> 24));
     }
     
+    public void writeInt32s(int[] value)
+    {
+        if (value == null)
+        {
+            write((int)0);
+        }
+        else
+        {
+            write(value.length);
+            for (int i : value)
+            	writeInt(i);
+        }
+    }
+    
     public void writeUInt(int value)
     {
         write((byte)value);
