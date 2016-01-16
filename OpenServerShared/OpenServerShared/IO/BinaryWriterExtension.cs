@@ -48,7 +48,7 @@ namespace System.IO
         /// </summary>
         /// <param name="bw">The BinaryWriter to write to.</param>
         /// <param name="value">The DateTime object to write.</param>
-        public static void WriteDateTime(this BinaryWriter bw, DateTime value)
+        public static void Write(this BinaryWriter bw, DateTime value)
         {
             bw.Write(value.Ticks);
         }
@@ -66,7 +66,7 @@ namespace System.IO
             else
             {
                 bw.Write(true);
-                bw.WriteDateTime(value.Value);
+                bw.Write(value.Value);
             }
         }
 
@@ -75,7 +75,7 @@ namespace System.IO
         /// </summary>
         /// <param name="bw">The BinaryWriter to write to.</param>
         /// <param name="value">An array of Int32s to write.</param>
-        public static void WriteInts(this BinaryWriter bw, int[] value)
+        public static void Write(this BinaryWriter bw, int[] value)
         {
             if (value == null)
             {
@@ -107,7 +107,7 @@ namespace System.IO
         /// </summary>
         /// <param name="bw">The BinaryWriter to write to.</param>
         /// <param name="value">An array of strings to write.</param>
-        public static void WriteStrings(this BinaryWriter bw, string[] value)
+        public static void Write(this BinaryWriter bw, string[] value)
         {
             if (value == null)
             {
@@ -126,7 +126,7 @@ namespace System.IO
         /// </summary>
         /// <param name="bw">The BinaryWriter to write to.</param>
         /// <param name="value">The TimeSpan object to write.</param>
-        public static void WriteTimeSpan(this BinaryWriter bw, TimeSpan value)
+        public static void Write(this BinaryWriter bw, TimeSpan value)
         {
             bw.Write(value.Ticks);
         }
@@ -144,7 +144,7 @@ namespace System.IO
             else
             {
                 bw.Write(true);
-                bw.WriteTimeSpan(value.Value);
+                bw.Write(value.Value);
             }
         }
 
@@ -153,7 +153,7 @@ namespace System.IO
         /// </summary>
         /// <param name="bw">The BinaryWriter to write to.</param>
         /// <param name="value">An array of UInt32s to write.</param>
-        public static void WriteUInts(this BinaryWriter bw, uint[] value)
+        public static void Write(this BinaryWriter bw, uint[] value)
         {
             if (value == null)
             {
@@ -172,7 +172,7 @@ namespace System.IO
         /// </summary>
         /// <param name="bw">The BinaryWriter to write to.</param>
         /// <param name="value">An array of UInt16s to write.</param>
-        public static void WriteUInt16s(this BinaryWriter bw, ushort[] value)
+        public static void Write(this BinaryWriter bw, ushort[] value)
         {
             if (value == null)
             {

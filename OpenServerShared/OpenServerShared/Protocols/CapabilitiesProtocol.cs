@@ -112,7 +112,7 @@ namespace US.OpenServer.Protocols
                         ushort[] protocolIds = Session.GetLocalSupportedProtocolIds();
                         MemoryStream ms = new MemoryStream();
                         BinaryWriter bw = GetBinaryWriter(ms, CapabilitiesProtocolCommands.PROTOCOL_IDS);
-                        bw.WriteUInt16s(protocolIds);
+                        bw.Write(protocolIds);
                         Log(Level.Debug, string.Format("Sent Protocol IDs: {0}", string.Join(", ", protocolIds.ToArray())));
                         Session.Send(ms);
                         break;
