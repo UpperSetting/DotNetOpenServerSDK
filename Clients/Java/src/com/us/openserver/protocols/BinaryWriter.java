@@ -21,7 +21,7 @@ package com.us.openserver.protocols;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 public class BinaryWriter extends ByteArrayOutputStream
 {
@@ -30,7 +30,7 @@ public class BinaryWriter extends ByteArrayOutputStream
         super();
     }
     
-    public void writeBoolean(boolean value)
+    public void write(boolean value)
     {
         write((byte)(value ? 0x01 : 0x00));        
     }
@@ -52,7 +52,7 @@ public class BinaryWriter extends ByteArrayOutputStream
             write(chars[i]);
     }
     
-    public void writeInt16(short value)
+    public void write(short value)
     {
         write((byte)value);
         write((byte)(value >> 8));        
@@ -66,7 +66,7 @@ public class BinaryWriter extends ByteArrayOutputStream
         write((byte)(value >> 24));
     }
     
-    public void writeInt32s(int[] value)
+    public void write(int[] value)
     {
         if (value == null)
         {
@@ -88,9 +88,9 @@ public class BinaryWriter extends ByteArrayOutputStream
         write((byte)(value >> 24));
     }
 
-    public void write(GregorianCalendar date)
+    public void write(Date date)
     {
-        write(date.getTimeInMillis());
+        write(date.getTime());
     }
 
     public void write(long value)
@@ -108,7 +108,7 @@ public class BinaryWriter extends ByteArrayOutputStream
 
     public void write(BigDecimal value)
     {
-        writeString(value.toString());
+    	writeString(value.toString());
     }
     
     public void writeUInt16(int value)

@@ -45,6 +45,22 @@ public class BinaryReader extends ByteArrayInputStream
     {
         return new Date(readLong());
     }
+    
+    public Date readNullableDateTime()
+    {
+        if (readBoolean())
+            return readDateTime();
+        else
+            return null;
+    }
+    
+    public Long readNullableTimeSpan()
+    {
+        if (readBoolean())
+            return readLong();
+        else
+            return null;
+    }
 
     public BigDecimal readDecimal()
     {
