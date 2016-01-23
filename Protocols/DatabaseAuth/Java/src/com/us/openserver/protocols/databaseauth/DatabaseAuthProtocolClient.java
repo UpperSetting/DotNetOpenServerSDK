@@ -32,7 +32,7 @@ public class DatabaseAuthProtocolClient extends DatabaseAuthProtocol
     {
     }
 
-    public boolean authenticate(String userName, String password)
+    public boolean authenticate(String userName, String password) throws IOException
     {
         synchronized (this)
         {
@@ -42,15 +42,35 @@ public class DatabaseAuthProtocolClient extends DatabaseAuthProtocol
             super.userName = userName;
             session.UserName = userName;
 
-            BinaryWriter bw = new BinaryWriter();
+            BinaryWriter bw = createAuthenticatePacket(password);
             try
             {
-                bw.writeUInt16(DatabaseAuthProtocolClient.PROTOCOL_IDENTIFIER);
-                bw.write((byte) DatabaseAuthProtocolCommands.AUTHENTICATE);
-                bw.writeString(userName);
-                bw.writeString(password);
+                session.send(bw.toByteArray());                
+            }
+            catch (IOException ex) { return false; }
+            finally { try { bw.close(); } catch (IOException ex) { } }
+            
+            try { wait(DatabaseAuthProtocolClient.TIMEOUT); }
+            catch (InterruptedException ex) {  }
+
+            return isAuthenticated;
+        }
+    }
     
-                PacketWriter pw = new PacketWriter(session, bw.toByteArray());
+    public boolean authenticateBG(String userName, String password)
+    {
+        synchronized (this)
+        {
+            if (session == null)
+                return false;
+
+            super.userName = userName;
+            session.UserName = userName;
+
+            BinaryWriter bw = createAuthenticatePacket(password);
+            try
+            {
+            	PacketWriter pw = new PacketWriter(session, bw.toByteArray());
                 pw.execute();
             }
             finally { try { bw.close(); } catch (IOException ex) { } }
@@ -60,6 +80,16 @@ public class DatabaseAuthProtocolClient extends DatabaseAuthProtocol
 
             return isAuthenticated;
         }
+    }
+    
+    private BinaryWriter createAuthenticatePacket(String password)
+    {
+    	BinaryWriter bw = new BinaryWriter();
+        bw.writeUInt16(DatabaseAuthProtocolClient.PROTOCOL_IDENTIFIER);
+        bw.write((byte) DatabaseAuthProtocolCommands.AUTHENTICATE);
+        bw.writeString(userName);
+        bw.writeString(password);
+        return bw;
     }
 
     public void onPacketReceived(BinaryReader br)
