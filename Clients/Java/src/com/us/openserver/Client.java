@@ -44,6 +44,14 @@ public class Client
     private Session session;
     public Session getSession() { return session; }
     
+    public boolean getIsConnected() 
+    { 
+    	synchronized (this)
+    	{
+    		return session != null;
+    	}
+    }
+    
     public Client(
             IClientObserver clientObserver,
             ServerConfiguration serverConfiguration,
@@ -87,71 +95,98 @@ public class Client
 
     public void connect() throws Exception
     {
-        SessionOpener sessionOpener = new SessionOpener(this);
-        session = sessionOpener.connect();    
+    	synchronized (this)
+    	{
+	        SessionOpener sessionOpener = new SessionOpener(this);
+	        session = sessionOpener.connect();
+        }
     }
     
     public void connectBackgroundThread() throws Exception
     {
-        SessionOpener sessionOpener = new SessionOpener(this);
-        session = sessionOpener.connectBackgroundThread();
+    	synchronized (this)
+    	{
+	        SessionOpener sessionOpener = new SessionOpener(this);
+	        session = sessionOpener.connectBackgroundThread();
+    	}
     }
     
     public void close()
     {
-        if (session != null)
-        {
-            SessionCloser sessionCloser = new SessionCloser(session);
-            sessionCloser.close();
-            session = null;
-        }
+    	synchronized (this)
+    	{
+	        if (session != null)
+	        {
+	            SessionCloser sessionCloser = new SessionCloser(session);
+	            sessionCloser.close();
+	            session = null;
+	        }
+    	}
     }
     
     public void closeBackgroundThread()
     {
-        if (session != null)
-        {
-            SessionCloser sessionCloser = new SessionCloser(session);
-            sessionCloser.closeBackgroundThread();
-            session = null;
-        }
+    	synchronized (this)
+    	{
+	        if (session != null)
+	        {
+	            SessionCloser sessionCloser = new SessionCloser(session);
+	            sessionCloser.closeBackgroundThread();
+	            session = null;
+	        }
+    	}
     }
     
     public void close(int protocolId)
     {
-        if (session != null)
-        {
-            SessionCloser sessionCloser = new SessionCloser(session);
-            sessionCloser.close(protocolId);
-            session = null;
-        }
+    	synchronized (this)
+    	{
+	        if (session != null)
+	        {
+	            SessionCloser sessionCloser = new SessionCloser(session);
+	            sessionCloser.close(protocolId);
+	        }
+    	}
     }
     
     public void closeBackgroundThread(int protocolId)
     {
-        if (session != null)
-        {
-            SessionCloser sessionCloser = new SessionCloser(session);
-            sessionCloser.closeBackgroundThread(protocolId);
-            session = null;
-        }
+    	synchronized (this)
+    	{
+	        if (session != null)
+	        {
+	            SessionCloser sessionCloser = new SessionCloser(session);
+	            sessionCloser.closeBackgroundThread(protocolId);
+	        }
+    	}
     }
     
     public int[] getServerSupportedProtocolIds()
     {
-        if (session == null)
-            return new int[0];
-
-        return session.getRemoteSupportedProtocolIds();
+    	synchronized (this)
+    	{
+	        if (session == null)
+	            return new int[0];
+	
+	        return session.getRemoteSupportedProtocolIds();
+    	}
     }
     
     public ProtocolBase initialize(int protocolId) throws Exception
     {
-         return session != null ? session.initialize(protocolId, userData) : null;
+    	synchronized (this)
+    	{
+    		return session != null ? session.initialize(protocolId, userData) : null;
+    	}
     }    
     
     public void onConnectionLost(Exception ex)
     {
+    	synchronized (this)
+    	{
+    		session = null;
+    	}
+    	
         if (clientObserver != null)
             clientObserver.onConnectionLost(ex);
     }

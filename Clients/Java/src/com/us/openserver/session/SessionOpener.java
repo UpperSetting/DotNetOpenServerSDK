@@ -93,7 +93,7 @@ public class SessionOpener implements Runnable
             ((SSLSocket)socket).setUseClientMode(true);
         }
         
-        session = new Session(client, socket, socket.getInetAddress().getHostAddress());            
+        session = new Session(client, socket, socket.getInetAddress().getHostAddress()); 
         session.log(Level.Info, String.format("Connected to %1$s:%2$s...", cfg.getHost(), cfg.getPort()));
         session.beginRead();
         

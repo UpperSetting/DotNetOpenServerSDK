@@ -52,7 +52,7 @@ public class BinaryWriter extends ByteArrayOutputStream
             write(chars[i]);
     }
     
-    public void write(short value)
+    public void writeInt16(short value)
     {
         write((byte)value);
         write((byte)(value >> 8));        
