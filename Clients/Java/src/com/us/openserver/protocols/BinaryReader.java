@@ -41,6 +41,14 @@ public class BinaryReader extends ByteArrayInputStream
         return (byte)read();
     }
     
+    public byte[] readBytes()
+    {
+    	int length = readInt32();
+    	byte[] retVal = new byte[length];
+        read(retVal, 0, length);
+        return retVal;
+    }
+    
     public Date readDateTime()
     {
         return new Date(readLong());

@@ -34,6 +34,19 @@ public class BinaryWriter extends ByteArrayOutputStream
     {
         write((byte)(value ? 0x01 : 0x00));        
     }
+    
+    public void writeBytes(byte[] value) throws IOException
+    {
+        if (value == null)
+        {
+            writeInt(0);
+        }
+        else
+        {
+        	writeInt(value.length);
+        	write(value);
+        }
+    }
 
     public void writeString(String value)
     {
