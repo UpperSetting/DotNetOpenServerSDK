@@ -78,7 +78,8 @@ public class SessionOpener implements Runnable
         
         if (!tls.isEnabled())
         {
-            socket = new Socket(cfg.getHost(), cfg.getPort());
+            socket = new Socket();
+            socket.connect(new InetSocketAddress(cfg.getHost(), cfg.getPort()), 3000); 
             setSocketOptions(socket);
         }
         else
