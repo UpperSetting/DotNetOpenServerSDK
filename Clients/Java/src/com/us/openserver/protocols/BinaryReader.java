@@ -21,8 +21,11 @@ package com.us.openserver.protocols;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class BinaryReader extends ByteArrayInputStream
 {
@@ -51,7 +54,13 @@ public class BinaryReader extends ByteArrayInputStream
     
     public Date readDateTime()
     {
-        return new Date(readLong());
+    	final long TICKS_AT_EPOCH = 621355968000000000L;
+        final long TICKS_PER_MILLISECOND = 10000;
+        
+        long ticks = readLong();
+        Date date = new Date((ticks - TICKS_AT_EPOCH) / TICKS_PER_MILLISECOND);
+                
+        return date;
     }
     
     public Date readNullableDateTime()
@@ -103,16 +112,27 @@ public class BinaryReader extends ByteArrayInputStream
 
     public long readLong()
     {
-        long retVal = read();
+		long retVal = read();
         retVal |= read() << 8;
         retVal |= read() << 16;
-        retVal |= read() << 24;
-        retVal |= read() << 32;
-        retVal |= read() << 48;
-        retVal |= read() << 56;
-        retVal |= read() << 64;
+        retVal |= 0x00000000FF000000L & read() << 24;
+        retVal |= 0x000000FF00000000L & ((long)read() << 32);
+        retVal |= 0x0000FF0000000000L & ((long)read() << 40);
+        retVal |= 0x00FF000000000000L & ((long)read() << 48);
+        retVal |= 0xFF00000000000000L & ((long)read() << 56);		
         return retVal;
     }
+    
+//    public BigInteger readUInt64()
+//    {
+//    	byte[] buf = new byte[8];
+//    	int n = 7;
+//    	for (int i = 0; i < 8; i++, n--)
+//    		buf[n] = (byte)read();
+//    	
+//    	BigInteger retVal = new BigInteger(buf);
+//        return retVal;
+//    }
 
     public String readString() throws IOException
     {
