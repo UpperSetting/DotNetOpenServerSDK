@@ -30,8 +30,10 @@ public class KeepAliveProtocol extends ProtocolBase implements Runnable
 {
     public static final int PROTOCOL_IDENTIFIER = 0x0001;
     public static final int INTERVAL = 10000;
+    private static final int IDLE_TIMEOUT = 30000;
     
     private ScheduledExecutorService timer;
+    private long lastHeartBeatReceivedAt = System.currentTimeMillis();
     
     public KeepAliveProtocol()
     {
@@ -96,6 +98,7 @@ public class KeepAliveProtocol extends ProtocolBase implements Runnable
             switch (command)
             {
                 case KeepAliveProtocolCommands.KEEP_ALIVE:
+                	lastHeartBeatReceivedAt = System.currentTimeMillis();
                     log(Level.Debug, "Received.");
                     break;
                 case KeepAliveProtocolCommands.QUIT:
@@ -124,6 +127,9 @@ public class KeepAliveProtocol extends ProtocolBase implements Runnable
         {
             try
             {
+            	if (System.currentTimeMillis() - lastHeartBeatReceivedAt > IDLE_TIMEOUT)
+                    throw new Exception("Idle connection detected.");
+            	
                 BinaryWriter bw = new BinaryWriter();
                 try
                 {
