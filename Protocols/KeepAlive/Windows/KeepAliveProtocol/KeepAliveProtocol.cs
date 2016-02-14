@@ -55,6 +55,11 @@ namespace US.OpenServer.Protocols.KeepAlive
         private const int INTERVAL = 10000;
 
         /// <summary>
+        /// Defines the idle timeout.  This value should be 3 times <see cref="INTERVAL"/>.
+        /// </summary>
+        private const int IDLE_TIMEOUT = 30000;
+
+        /// <summary>
         /// Debug message that is logged when a <see cref="KeepAliveProtocolCommands.KEEP_ALIVE"/> is received.
         /// </summary>
         private const string KEEPALIVE_RECEIVED = "Keep-Alive received.";
@@ -82,6 +87,8 @@ namespace US.OpenServer.Protocols.KeepAlive
         /// command packets.
         /// </summary>
         private Timer timer;
+
+        private DateTime lastHeartBeatReceivedAt = DateTime.Now;
         #endregion
 
         #region Constructor
@@ -180,6 +187,7 @@ namespace US.OpenServer.Protocols.KeepAlive
                 switch (command)
                 {
                     case KeepAliveProtocolCommands.KEEP_ALIVE:
+                        lastHeartBeatReceivedAt = DateTime.Now;
                         if (Session.Logger.LogDebug)
                             Log(Level.Debug, KEEPALIVE_RECEIVED);
                         break;
@@ -222,6 +230,9 @@ namespace US.OpenServer.Protocols.KeepAlive
             {
                 try
                 {
+                    if (DateTime.Now.Ticks - lastHeartBeatReceivedAt.Ticks > IDLE_TIMEOUT)
+                        throw new Exception("Idle connection detected.");
+
                     MemoryStream ms = new MemoryStream();
                     BinaryWriter bw = new BinaryWriter(ms, Encoding.UTF8);
                     bw.Write(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
