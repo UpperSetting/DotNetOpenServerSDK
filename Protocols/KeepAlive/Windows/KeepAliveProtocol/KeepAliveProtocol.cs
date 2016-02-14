@@ -57,7 +57,7 @@ namespace US.OpenServer.Protocols.KeepAlive
         /// <summary>
         /// Defines the idle timeout.  This value should be 3 times <see cref="INTERVAL"/>.
         /// </summary>
-        private const int IDLE_TIMEOUT = 30000;
+        private const int IDLE_TIMEOUT = 300000000;
 
         /// <summary>
         /// Debug message that is logged when a <see cref="KeepAliveProtocolCommands.KEEP_ALIVE"/> is received.
