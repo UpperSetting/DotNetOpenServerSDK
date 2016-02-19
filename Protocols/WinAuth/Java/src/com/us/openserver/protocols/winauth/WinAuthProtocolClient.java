@@ -100,7 +100,7 @@ public class WinAuthProtocolClient extends WinAuthProtocol
                 }
                 
                 default:
-                    log(Level.Error, String.format("Invalid or unsupported command.  Command: %1$s", command));
+                    log(Level.Error, String.format("Invalid or unsupported command.  Command: %d", command));
                     break;
             }
         }

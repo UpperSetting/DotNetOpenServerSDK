@@ -32,6 +32,6 @@ public class HelloProtocol extends ProtocolBase
     
     protected void log(Level level, String message)
     {
-        session.log(level, String.format("[Hello] %1$s", message));
+        session.log(level, String.format("[Hello] %s", message));
     }
 }

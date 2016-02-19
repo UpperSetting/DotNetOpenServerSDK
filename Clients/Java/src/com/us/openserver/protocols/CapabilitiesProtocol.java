@@ -100,7 +100,7 @@ public class CapabilitiesProtocol extends ProtocolBase
                         String str = "";
                         for (int p : protocolIds)
                             str += p + ", ";
-                        log(Level.Debug, String.format("Sent Protocol IDs: %1$s", str));
+                        log(Level.Debug, String.format("Sent Protocol IDs: %s", str));
 
                         try
                         {
@@ -121,7 +121,7 @@ public class CapabilitiesProtocol extends ProtocolBase
                     String str = "";
                     for (int p : supportedRemoteProtocolIds)
                         str += p + ", ";
-                    log(Level.Debug, String.format("Received Protocol IDs: %1$s", str));
+                    log(Level.Debug, String.format("Received Protocol IDs: %s", str));
                     notifyAll();
                 }
                 break;
@@ -143,7 +143,7 @@ public class CapabilitiesProtocol extends ProtocolBase
                 break;
 
             default:
-                log(Level.Error, String.format("Invalid or unsupported command.  Command: %1$s", command));
+                log(Level.Error, String.format("Invalid or unsupported command.  Command: %d", command));
                 break;
         }
 
@@ -153,6 +153,6 @@ public class CapabilitiesProtocol extends ProtocolBase
 
     protected void log(Level level, String message)
     {
-        session.log(level, String.format("[Capabilities] %1$s", message));
+        session.log(level, String.format("[Capabilities] %s", message));
     }    
 }

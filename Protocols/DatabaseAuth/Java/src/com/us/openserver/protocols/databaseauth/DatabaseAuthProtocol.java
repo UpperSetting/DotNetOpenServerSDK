@@ -32,6 +32,6 @@ public class DatabaseAuthProtocol extends AuthenticationProtocolBase
     
     protected void log(Level level, String message)
     {
-        session.log(level, String.format("[DatabaseAuth] %1$s", message));
+        session.log(level, String.format("[DatabaseAuth] %s", message));
     }
 }

@@ -62,7 +62,7 @@ public class Logger
    
     public void log(Exception ex)
     {
-        log(Level.Error, String.format("%1$s\r\n%2$s", ex.getMessage(), ex.getStackTrace()));
+        log(Level.Error, String.format("%s\r\n%s", ex.getMessage(), ex.getStackTrace()));
     }
 }
 

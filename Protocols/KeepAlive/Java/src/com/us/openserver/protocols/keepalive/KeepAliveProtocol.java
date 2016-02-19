@@ -106,7 +106,7 @@ public class KeepAliveProtocol extends ProtocolBase implements Runnable
                     dispose = true;
                     break;
                 default:
-                    log(Level.Error, String.format("Invalid or unsupported command.  Command: %1$s", command));
+                    log(Level.Error, String.format("Invalid or unsupported command.  Command: %d", command));
                     break;
             }
         }
@@ -117,7 +117,7 @@ public class KeepAliveProtocol extends ProtocolBase implements Runnable
 
     protected void log(Level level, String message)
     {
-        session.log(level, String.format("[Keep-Alive] %1$s", message));
+        session.log(level, String.format("[Keep-Alive] %s", message));
     }
 
     public void run()

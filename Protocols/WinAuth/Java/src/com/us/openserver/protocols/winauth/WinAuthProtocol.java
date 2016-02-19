@@ -32,6 +32,6 @@ public class WinAuthProtocol extends AuthenticationProtocolBase
     
     protected void log(Level level, String message)
     {
-        session.log(level, String.format("[WinAuth] %1$s", message));
+        session.log(level, String.format("[WinAuth] %s", message));
     }
 }

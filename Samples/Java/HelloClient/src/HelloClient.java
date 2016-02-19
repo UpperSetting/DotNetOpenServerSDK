@@ -62,7 +62,7 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
             
             int[] protocolIds = client.getServerSupportedProtocolIds();
             for (int protocolId : protocolIds)
-            	System.out.println(String.format("Server Supports Protocol ID: %1$s", protocolId));
+            	System.out.println(String.format("Server Supports Protocol ID: %d", protocolId));
 
             String userName = "TestUser";
             WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);

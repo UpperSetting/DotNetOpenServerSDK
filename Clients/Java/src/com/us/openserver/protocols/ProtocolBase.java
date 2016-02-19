@@ -56,6 +56,6 @@ public abstract class ProtocolBase
     
     protected void log(Level level, String message)
     {
-        session.log(level, String.format("[ProtocolBase] %1$s", message));
+        session.log(level, String.format("[ProtocolBase] %s", message));
     }
 }

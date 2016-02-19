@@ -128,7 +128,7 @@ public class Session implements Runnable
             tmp = isClosed;
             if (!isClosed)
             {
-                log(Level.Critical, String.format("The socket connection has been lost.  %1$s", ex.getMessage()));
+                log(Level.Critical, String.format("The socket connection has been lost.  %s", ex.getMessage()));
                 dispose();
             }
         }
@@ -181,7 +181,7 @@ public class Session implements Runnable
 
                 protocolImplementations.put(protocolId, p);
 
-                log(Level.Debug, String.format("Initializing protocol %1$s...", protocolId));
+                log(Level.Debug, String.format("Initializing protocol %d...", protocolId));
                 p.initialize(this, pc, userData);
             }
             else
@@ -375,7 +375,7 @@ public class Session implements Runnable
     
     public void log(Level level, String message)
     {
-        logger.log(level, String.format("Session [%1$s %2$s] - %3$s", id, address, message));
+        logger.log(level, String.format("Session [%d %s] - %s", id, address, message));
     }
 
     public void log(Exception ex)

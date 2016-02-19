@@ -39,7 +39,7 @@ public class HelloProtocolClient extends HelloProtocol
         synchronized (this)
         {
             serverResponse = br.readString();
-            log(Level.Info, String.format("Server responded: %1$s", serverResponse));
+            log(Level.Info, String.format("Server responded: %s", serverResponse));
             
             notifyAll();
         }
@@ -93,7 +93,7 @@ public class HelloProtocolClient extends HelloProtocol
         BinaryWriter bw = new BinaryWriter();
         bw.writeUInt16(PROTOCOL_IDENTIFIER);
         bw.writeString(message);                        
-        log(Level.Info, String.format("Client says: %1$s", message));
+        log(Level.Info, String.format("Client says: %s", message));
         return bw;
     }
 }

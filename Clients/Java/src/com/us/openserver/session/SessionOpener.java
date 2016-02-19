@@ -95,7 +95,7 @@ public class SessionOpener implements Runnable
         }
         
         session = new Session(client, socket, socket.getInetAddress().getHostAddress()); 
-        session.log(Level.Info, String.format("Connected to %1$s:%2$s...", cfg.getHost(), cfg.getPort()));
+        session.log(Level.Info, String.format("Connected to %s:%d...", cfg.getHost(), cfg.getPort()));
         session.beginRead();
         
         return session;

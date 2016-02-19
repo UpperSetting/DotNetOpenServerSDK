@@ -28,6 +28,6 @@ public class ConsoleLogger extends Logger
         if (level == Level.Debug && !logDebug)
             return;
 
-        System.out.println(String.format("%1$s %2$s", level, message));
+        System.out.println(String.format("%s %s", level, message));
     }
 }
