@@ -21,7 +21,6 @@ package com.us.openserver.protocols;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 
 public class BinaryWriter extends ByteArrayOutputStream
@@ -107,7 +106,9 @@ public class BinaryWriter extends ByteArrayOutputStream
     	final long TICKS_AT_EPOCH = 621355968000000000L;
         final long TICKS_PER_MILLISECOND = 10000;
         
-        long ticks = (date.getTime() *  TICKS_PER_MILLISECOND) + TICKS_AT_EPOCH;
+        long ticks = date != null ? 
+        		(date.getTime() *  TICKS_PER_MILLISECOND) + TICKS_AT_EPOCH : 
+    			0;
         write(ticks);
     }
 

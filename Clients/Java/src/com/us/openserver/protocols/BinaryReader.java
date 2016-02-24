@@ -21,11 +21,8 @@ package com.us.openserver.protocols;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 
 public class BinaryReader extends ByteArrayInputStream
 {
@@ -122,17 +119,6 @@ public class BinaryReader extends ByteArrayInputStream
         retVal |= 0xFF00000000000000L & ((long)read() << 56);		
         return retVal;
     }
-    
-//    public BigInteger readUInt64()
-//    {
-//    	byte[] buf = new byte[8];
-//    	int n = 7;
-//    	for (int i = 0; i < 8; i++, n--)
-//    		buf[n] = (byte)read();
-//    	
-//    	BigInteger retVal = new BigInteger(buf);
-//        return retVal;
-//    }
 
     public String readString() throws IOException
     {
