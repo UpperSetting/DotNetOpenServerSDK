@@ -100,7 +100,7 @@ public class BinaryWriter extends ByteArrayOutputStream
         write((byte)(value >> 16));
         write((byte)(value >> 24));
     }
-
+    
     public void write(Date date)
     {  
     	final long TICKS_AT_EPOCH = 621355968000000000L;
@@ -110,6 +110,17 @@ public class BinaryWriter extends ByteArrayOutputStream
         		(date.getTime() *  TICKS_PER_MILLISECOND) + TICKS_AT_EPOCH : 
     			0;
         write(ticks);
+    }
+
+    public void writeNullable(Date value)
+    {  
+    	if (value == null)
+            write(false);
+        else
+        {
+            write(true);
+            write(value);
+        }
     }
 
     public void write(long value)
@@ -124,14 +135,16 @@ public class BinaryWriter extends ByteArrayOutputStream
         write((byte)(value >> 56));        
     }
     
-//    public void write(BigInteger value)
-//    {
-//    	byte[] buf = value.toByteArray();
-//    	
-//    	int n = 7;
-//    	for (int i = 0; i < 8; i++, n--)
-//    		write((byte)buf[n]);
-//    }
+    public void writeNullable(Long value)
+    {  
+    	if (value == null)
+            write(false);
+        else
+        {
+            write(true);
+            write(value);
+        }
+    }
 
     public void write(BigDecimal value)
     {
