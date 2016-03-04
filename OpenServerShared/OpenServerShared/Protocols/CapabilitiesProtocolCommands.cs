@@ -1,5 +1,5 @@
 ﻿/*
-Copyright 2015 Upper Setting Corporation
+Copyright 2015-2016 Upper Setting Corporation
 
 This file is part of DotNetOpenServer SDK.
 
