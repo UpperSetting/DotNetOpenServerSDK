@@ -16,12 +16,16 @@ namespace US.OpenServer.Protocols.DatabaseAuth
             string cmd = string.Format(Properties.Resources.SQL_AUTHENTICATE, userName);
             DataTable dt = ExecuteQuery(cmd);
             if (dt.Rows.Count < 1)
-                throw new Exception("Username not found.");
+                throw new Exception("Access Denied.  Username not found.");
 
             DataRow dr = dt.Rows[0];
             string actualPassword = GetString(dr, "password");
             if (actualPassword != password)
-                throw new Exception("Access Denied");
+                throw new Exception("Access Denied.  Invalid password.");
+
+            bool isVerified = GetBool(dr, "isVerified");
+            if (!isVerified)
+                throw new Exception("Access Denied.  Your email address is pending verification.  Please check your email for instructions.  Once verified, please try again.");
 
             return GetInt(dr, "id");
         }

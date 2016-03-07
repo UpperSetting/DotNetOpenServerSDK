@@ -1,5 +1,5 @@
 ﻿/*
-Copyright 2015 Upper Setting Corporation
+Copyright 2015-2016 Upper Setting Corporation
 
 This file is part of DotNetOpenServer SDK.
 
@@ -33,6 +33,11 @@ namespace US.OpenServer.Protocols.DatabaseAuth
         /// Defines the maximum number of milliseconds to wait for an authentication request. 
         /// </summary>
         private const int TIMEOUT = 120000;
+
+        /// <summary>
+        /// Contains the last error message.
+        /// </summary>
+        private string lastError;
 
         /// <summary>
         /// Creates a DatabaseAuthProtocolClient object.
@@ -124,8 +129,8 @@ namespace US.OpenServer.Protocols.DatabaseAuth
 
                     case DatabaseAuthProtocolCommands.ERROR:
                         {
-                            string errorMessage = br.ReadString();
-                            Log(Level.Notice, errorMessage);
+                            lastError = br.ReadString();
+                            Log(Level.Notice, lastError);
                             Monitor.PulseAll(this);
                             break;
                         }
@@ -135,6 +140,14 @@ namespace US.OpenServer.Protocols.DatabaseAuth
                         break;
                 }
             }
+        }
+
+        /// <summary>
+        /// Contains the last error message.
+        /// </summary>
+        public string LastError
+        {
+            get { return lastError; }
         }
     }
 }
