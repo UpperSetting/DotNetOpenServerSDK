@@ -40,17 +40,17 @@ namespace US.OpenServer.Protocols.DatabaseAuth
         /// <summary>
         /// User not found error message.
         /// </summary>
-        public const string ERROR_USER_NOT_FOUND = "Access Denied.  Username not found.";
+        public const string ERROR_USER_NOT_FOUND = "User not found.";
 
         /// <summary>
         /// Invalid password error message.
         /// </summary>
-        public const string ERROR_INVALID_PASSWORD = "Access Denied.  Invalid password.";
+        public const string ERROR_INVALID_PASSWORD = "Invalid password.";
 
         /// <summary>
         /// Pending verification error message.
         /// </summary>
-        public const string ERROR_NOT_VERIFIED = "Access Denied.  Your email address is pending verification.  Please check your email for instructions.  Once verified, please try again.";
+        public const string ERROR_NOT_VERIFIED = "Your email address is pending verification.  Please check your email for instructions.  Once verified, please try again.";
 
         /// <summary>
         /// Creates a DatabaseAuthProtocol object.

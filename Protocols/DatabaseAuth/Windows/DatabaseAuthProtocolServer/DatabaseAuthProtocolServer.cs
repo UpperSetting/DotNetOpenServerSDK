@@ -115,6 +115,14 @@ namespace US.OpenServer.Protocols.DatabaseAuth
                                 bw.Write((int)UserId);
                                 Session.Send(ms);
                             }
+                            catch (DatabaseAuthProtocolException ex)
+                            {
+                                Log(Level.Notice, string.Format(@"Access denied.  {0}.  User: {1}", ex.Message, userName));
+
+                                MemoryStream ms = new MemoryStream();
+                                BinaryWriter bw = GetBinaryWriter(ms, ex.ErrorCode);
+                                Session.Send(ms);
+                            }
                             catch (Exception ex)
                             {
                                 Log(Level.Notice, string.Format(@"Access denied.  {0}.  User: {1}", ex.Message, userName));
