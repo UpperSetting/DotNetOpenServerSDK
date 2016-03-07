@@ -41,6 +41,21 @@ namespace US.OpenServer.Protocols.DatabaseAuth
         ACCESS_DENIED = 0x03,
 
         /// <summary>
+        /// Sent by the server in response to a failed authentication attempt.
+        /// </summary>
+        ACCESS_DENIED_USER_NOT_FOUND = 0x04,
+
+        /// <summary>
+        /// Sent by the server in response to a failed authentication attempt.
+        /// </summary>
+        ACCESS_DENIED_INVALID_PASSWORD = 0x05,
+
+        /// <summary>
+        /// Sent by the server in response to a failed authentication attempt.
+        /// </summary>
+        ACCESS_DENIED_EMAIL_NOT_VERIFIED = 0x06,
+
+        /// <summary>
         /// Sent by the server when an authentication attempt errors or an invalid or
         /// unsupported command is received.
         /// </summary>

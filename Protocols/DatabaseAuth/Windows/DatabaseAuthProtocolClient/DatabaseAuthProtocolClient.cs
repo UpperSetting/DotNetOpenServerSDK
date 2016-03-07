@@ -35,9 +35,14 @@ namespace US.OpenServer.Protocols.DatabaseAuth
         private const int TIMEOUT = 120000;
 
         /// <summary>
+        /// Contains the last command result.
+        /// </summary>
+        public DatabaseAuthProtocolCommands LastCommandResult { get; private set; }
+
+        /// <summary>
         /// Contains the last error message.
         /// </summary>
-        private string lastError;
+        public string LastErrorMessage { get; private set; }
 
         /// <summary>
         /// Creates a DatabaseAuthProtocolClient object.
@@ -61,6 +66,10 @@ namespace US.OpenServer.Protocols.DatabaseAuth
                 if (Session == null)
                     return false;
 
+                if (IsAuthenticated)
+                    throw new Exception("Already authenticated.");
+
+                LastErrorMessage = null;
                 UserName = userName;
                 Session.UserName = userName;
 
@@ -111,8 +120,8 @@ namespace US.OpenServer.Protocols.DatabaseAuth
                 if (Session == null)
                     return;
 
-                DatabaseAuthProtocolCommands command = (DatabaseAuthProtocolCommands)br.ReadByte();
-                switch (command)
+                LastCommandResult = (DatabaseAuthProtocolCommands)br.ReadByte();
+                switch (LastCommandResult)
                 {
                     case DatabaseAuthProtocolCommands.AUTHENTICATED:
                         UserId = br.ReadInt32();
@@ -123,31 +132,40 @@ namespace US.OpenServer.Protocols.DatabaseAuth
                         break;
 
                     case DatabaseAuthProtocolCommands.ACCESS_DENIED:
-                        Log(Level.Notice, "Access denied.");
+                        LastErrorMessage = DatabaseAuthProtocol.ERROR_ACCESS_DENIED;
+                        Log(Level.Notice, LastErrorMessage);
+                        Monitor.PulseAll(this);
+                        break;
+
+                    case DatabaseAuthProtocolCommands.ACCESS_DENIED_USER_NOT_FOUND:
+                        LastErrorMessage = DatabaseAuthProtocol.ERROR_USER_NOT_FOUND;
+                        Log(Level.Notice, LastErrorMessage);
+                        Monitor.PulseAll(this);
+                        break;
+
+                    case DatabaseAuthProtocolCommands.ACCESS_DENIED_INVALID_PASSWORD:
+                        LastErrorMessage = DatabaseAuthProtocol.ERROR_INVALID_PASSWORD;
+                        Log(Level.Notice, LastErrorMessage);
+                        Monitor.PulseAll(this);
+                        break;
+
+                    case DatabaseAuthProtocolCommands.ACCESS_DENIED_EMAIL_NOT_VERIFIED:
+                        LastErrorMessage = DatabaseAuthProtocol.ERROR_NOT_VERIFIED;
+                        Log(Level.Notice, LastErrorMessage);
                         Monitor.PulseAll(this);
                         break;
 
                     case DatabaseAuthProtocolCommands.ERROR:
-                        {
-                            lastError = br.ReadString();
-                            Log(Level.Notice, lastError);
-                            Monitor.PulseAll(this);
-                            break;
-                        }
+                        LastErrorMessage = br.ReadString();
+                        Log(Level.Notice, LastErrorMessage);
+                        Monitor.PulseAll(this);
+                        break;
 
                     default:
-                        Log(Level.Error, string.Format("Invalid or unsupported command.  Command: {0}", command));
+                        Log(Level.Error, string.Format("Invalid or unsupported command.  Command: {0}", LastCommandResult));
                         break;
                 }
             }
-        }
-
-        /// <summary>
-        /// Contains the last error message.
-        /// </summary>
-        public string LastError
-        {
-            get { return lastError; }
         }
     }
 }

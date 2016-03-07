@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="DatabaseAuthProtocol.cs" />
     <Compile Include="DatabaseAuthProtocolCommands.cs" />
+    <Compile Include="DatabaseAuthProtocolException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

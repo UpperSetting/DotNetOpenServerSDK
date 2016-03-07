@@ -15,17 +15,17 @@ namespace US.OpenServer.Protocols.DatabaseAuth
         {
             string cmd = string.Format(Properties.Resources.SQL_AUTHENTICATE, userName);
             DataTable dt = ExecuteQuery(cmd);
-            if (dt.Rows.Count < 1)
-                throw new Exception("Access Denied.  Username not found.");
-
+            if (dt.Rows.Count < 1) 
+                throw new DatabaseAuthProtocolException(DatabaseAuthProtocolCommands.ACCESS_DENIED_USER_NOT_FOUND);
+            
             DataRow dr = dt.Rows[0];
             string actualPassword = GetString(dr, "password");
             if (actualPassword != password)
-                throw new Exception("Access Denied.  Invalid password.");
-
+                throw new DatabaseAuthProtocolException(DatabaseAuthProtocolCommands.ACCESS_DENIED_INVALID_PASSWORD);
+            
             bool isVerified = GetBool(dr, "isVerified");
             if (!isVerified)
-                throw new Exception("Access Denied.  Your email address is pending verification.  Please check your email for instructions.  Once verified, please try again.");
+                throw new DatabaseAuthProtocolException(DatabaseAuthProtocolCommands.ACCESS_DENIED_EMAIL_NOT_VERIFIED);
 
             return GetInt(dr, "id");
         }

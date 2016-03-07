@@ -33,6 +33,26 @@ namespace US.OpenServer.Protocols.DatabaseAuth
         public const ushort PROTOCOL_IDENTIFIER = 0x0003;
 
         /// <summary>
+        /// Access denied error message.
+        /// </summary>
+        public const string ERROR_ACCESS_DENIED = "Access Denied.";
+
+        /// <summary>
+        /// User not found error message.
+        /// </summary>
+        public const string ERROR_USER_NOT_FOUND = "Access Denied.  Username not found.";
+
+        /// <summary>
+        /// Invalid password error message.
+        /// </summary>
+        public const string ERROR_INVALID_PASSWORD = "Access Denied.  Invalid password.";
+
+        /// <summary>
+        /// Pending verification error message.
+        /// </summary>
+        public const string ERROR_NOT_VERIFIED = "Access Denied.  Your email address is pending verification.  Please check your email for instructions.  Once verified, please try again.";
+
+        /// <summary>
         /// Creates a DatabaseAuthProtocol object.
         /// </summary>
         protected DatabaseAuthProtocol()
