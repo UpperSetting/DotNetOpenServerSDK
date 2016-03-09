@@ -41,7 +41,7 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
         try
         {
             ServerConfiguration cfg = new ServerConfiguration();
-            //cfg.setHost("yourserver.com");
+            cfg.setHost("uppersetting.com");
             //TlsConfiguration tls = cfg.getTlsConfiguration();
             //tls.setEnabled(true);
                         

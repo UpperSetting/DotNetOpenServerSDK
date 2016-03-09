@@ -34,7 +34,7 @@ public class SessionOpener implements Runnable
 
     public SessionOpener(Client client)
     {
-        this.client  = client;
+        this.client = client;
     }
 
     public Session connectBackgroundThread() throws Exception
@@ -70,8 +70,6 @@ public class SessionOpener implements Runnable
     
     public Session connect() throws Exception
     {
-        client.close();
-        
         Socket socket;
         ServerConfiguration cfg = client.getServerConfiguration();
         TlsConfiguration tls = cfg.getTlsConfiguration();

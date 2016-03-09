@@ -94,7 +94,7 @@ public class Client
     }
 
     public void connect() throws Exception
-    {
+    {    	
     	synchronized (this)
     	{
 	        SessionOpener sessionOpener = new SessionOpener(this);
@@ -103,7 +103,7 @@ public class Client
     }
     
     public void connectBackgroundThread() throws Exception
-    {
+    {    	
     	synchronized (this)
     	{
 	        SessionOpener sessionOpener = new SessionOpener(this);
