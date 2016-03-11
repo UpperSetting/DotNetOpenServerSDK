@@ -253,20 +253,18 @@ namespace US.OpenServer
         /// <param name="ex">An exception that contains the reason the connection was lost.</param>
         public void ConnectionLost(Exception ex)
         {
-            bool tmp;
             lock (syncObject)
             {
-                tmp = IsClosed;
                 if (!IsClosed)
                 {
                     Log(Level.Critical, string.Format(ErrorTypes.CONNECTION_LOST, ex.Message));
                     Dispose();
                 }
             }
-            if (!tmp)
+            if (OnConnectionLost != null)
             {
-                if (OnConnectionLost != null)
-                    OnConnectionLost(this, ex);
+                OnConnectionLost(this, ex);
+                OnConnectionLost = null;
             }
         }
 
