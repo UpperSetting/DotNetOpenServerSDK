@@ -119,8 +119,7 @@ namespace US.OpenServer.Protocols.KeepAlive
 
             lock (this)
             {
-                if (timer != null)
-                    timer.Dispose();
+                CloseTimer();
 
                 timer = new Timer(TimerCallback, null, KeepAliveProtocol.INTERVAL, KeepAliveProtocol.INTERVAL);
             }
@@ -135,8 +134,7 @@ namespace US.OpenServer.Protocols.KeepAlive
         {
             lock (this)
             {
-                if (timer != null)
-                    timer.Dispose();
+                CloseTimer();
 
                 MemoryStream ms = new MemoryStream();
                 BinaryWriter bw = new BinaryWriter(ms, Encoding.UTF8);
@@ -162,8 +160,7 @@ namespace US.OpenServer.Protocols.KeepAlive
         {
             lock (this)
             {
-                if (timer != null)
-                    timer.Dispose();
+                CloseTimer();
             }
         }
 
@@ -242,13 +239,27 @@ namespace US.OpenServer.Protocols.KeepAlive
                 }
                 catch (Exception ex)
                 {
-                    timer.Dispose();
+                    CloseTimer();
                     connectionLostException = ex;
                 }
             }
 
             if (connectionLostException != null)
                 Session.ConnectionLost(connectionLostException);
+        }
+
+
+        /// <summary>
+        /// Disables then disposes the timer
+        /// </summary>
+        private void CloseTimer()
+        {
+            if (timer != null)
+            {
+                timer.Change(Timeout.Infinite, Timeout.Infinite);
+                timer.Dispose();
+                timer = null;
+            }
         }
         #endregion
     }
