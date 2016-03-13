@@ -260,11 +260,11 @@ namespace US.OpenServer
                     Log(Level.Critical, string.Format(ErrorTypes.CONNECTION_LOST, ex.Message));
                     Dispose();
                 }
-            }
-            if (OnConnectionLost != null)
-            {
-                OnConnectionLost(this, ex);
-                OnConnectionLost = null;
+                if (OnConnectionLost != null)
+                {
+                    OnConnectionLost(this, ex);
+                    OnConnectionLost = null;
+                }
             }
         }
 
