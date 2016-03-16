@@ -3,10 +3,18 @@
 //  source: ./com/us/openserver/IClientObserver.java
 //
 
-#ifndef _ComUsOpenserverIClientObserver_H_
-#define _ComUsOpenserverIClientObserver_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("IClientObserver_INCLUDE_ALL")
+#ifdef IClientObserver_RESTRICT
+#define IClientObserver_INCLUDE_ALL 0
+#else
+#define IClientObserver_INCLUDE_ALL 1
+#endif
+#undef IClientObserver_RESTRICT
+
+#if !defined (ComUsOpenserverIClientObserver_) && (IClientObserver_INCLUDE_ALL || defined(ComUsOpenserverIClientObserver_INCLUDE))
+#define ComUsOpenserverIClientObserver_
 
 @class JavaLangException;
 
@@ -20,4 +28,6 @@ J2OBJC_EMPTY_STATIC_INIT(ComUsOpenserverIClientObserver)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverIClientObserver)
 
-#endif // _ComUsOpenserverIClientObserver_H_
+#endif
+
+#pragma pop_macro("IClientObserver_INCLUDE_ALL")

@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/protocols/ProtocolBase.java
 //
 
-
 #include "BinaryReader.h"
 #include "IOSClass.h"
 #include "IOSObjectArray.h"
@@ -33,20 +32,22 @@
 
 - (void)onErrorReceivedWithNSString:(NSString *)message {
   @synchronized(self) {
-    [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Error() withNSString:message];
+    [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Error) withNSString:message];
     [self notifyAll];
   }
 }
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message {
-  [((ComUsOpenserverSessionSession *) nil_chk(session_)) logWithComUsOpenserverLevelEnum:level withNSString:NSString_formatWithNSString_withNSObjectArray_(@"[ProtocolBase] %1$s", [IOSObjectArray newArrayWithObjects:(id[]){ message } count:1 type:NSObject_class_()])];
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message {
+  [((ComUsOpenserverSessionSession *) nil_chk(session_)) logWithComUsOpenserverLevel:level withNSString:NSString_formatWithNSString_withNSObjectArray_(@"[ProtocolBase] %s", [IOSObjectArray newArrayWithObjects:(id[]){ message } count:1 type:NSObject_class_()])];
 }
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   ComUsOpenserverProtocolsProtocolBase_init(self);
   return self;
 }
+J2OBJC_IGNORE_DESIGNATED_END
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
@@ -55,11 +56,11 @@
     { "dispose", NULL, "V", 0x1, NULL, NULL },
     { "onPacketReceivedWithComUsOpenserverProtocolsBinaryReader:", "onPacketReceived", "V", 0x1, "Ljava.io.IOException;", NULL },
     { "onErrorReceivedWithNSString:", "onErrorReceived", "V", 0x1, NULL, NULL },
-    { "logWithComUsOpenserverLevelEnum:withNSString:", "log", "V", 0x4, NULL, NULL },
+    { "logWithComUsOpenserverLevel:withNSString:", "log", "V", 0x4, NULL, NULL },
     { "init", NULL, NULL, 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "session_", NULL, 0x4, "Lcom.us.openserver.session.Session;", NULL, NULL,  },
+    { "session_", NULL, 0x4, "Lcom.us.openserver.session.Session;", NULL, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverProtocolsProtocolBase = { 2, "ProtocolBase", "com.us.openserver.protocols", NULL, 0x401, 7, methods, 1, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverProtocolsProtocolBase;
@@ -68,7 +69,7 @@
 @end
 
 void ComUsOpenserverProtocolsProtocolBase_init(ComUsOpenserverProtocolsProtocolBase *self) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverProtocolsProtocolBase)

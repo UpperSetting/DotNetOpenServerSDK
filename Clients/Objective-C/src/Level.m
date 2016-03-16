@@ -3,46 +3,79 @@
 //  source: ./com/us/openserver/Level.java
 //
 
-
 #include "IOSClass.h"
 #include "J2ObjC_source.h"
 #include "Level.h"
 #include "java/lang/Enum.h"
 #include "java/lang/IllegalArgumentException.h"
 
-__attribute__((unused)) static void ComUsOpenserverLevelEnum_initWithNSString_withInt_(ComUsOpenserverLevelEnum *self, NSString *__name, jint __ordinal);
+__attribute__((unused)) static void ComUsOpenserverLevel_initWithNSString_withInt_(ComUsOpenserverLevel *self, NSString *__name, jint __ordinal);
 
-__attribute__((unused)) static ComUsOpenserverLevelEnum *new_ComUsOpenserverLevelEnum_initWithNSString_withInt_(NSString *__name, jint __ordinal) NS_RETURNS_RETAINED;
+__attribute__((unused)) static ComUsOpenserverLevel *new_ComUsOpenserverLevel_initWithNSString_withInt_(NSString *__name, jint __ordinal) NS_RETURNS_RETAINED;
 
-J2OBJC_INITIALIZED_DEFN(ComUsOpenserverLevelEnum)
+J2OBJC_INITIALIZED_DEFN(ComUsOpenserverLevel)
 
-ComUsOpenserverLevelEnum *ComUsOpenserverLevelEnum_values_[5];
+ComUsOpenserverLevel *ComUsOpenserverLevel_values_[5];
 
-@implementation ComUsOpenserverLevelEnum
+@implementation ComUsOpenserverLevel
 
-- (instancetype)initWithNSString:(NSString *)__name
-                         withInt:(jint)__ordinal {
-  ComUsOpenserverLevelEnum_initWithNSString_withInt_(self, __name, __ordinal);
++ (IOSObjectArray *)values {
+  return ComUsOpenserverLevel_values();
+}
+
++ (ComUsOpenserverLevel *)valueOfWithNSString:(NSString *)name {
+  return ComUsOpenserverLevel_valueOfWithNSString_(name);
+}
+
+- (id)copyWithZone:(NSZone *)zone {
   return self;
 }
 
-IOSObjectArray *ComUsOpenserverLevelEnum_values() {
-  ComUsOpenserverLevelEnum_initialize();
-  return [IOSObjectArray arrayWithObjects:ComUsOpenserverLevelEnum_values_ count:5 type:ComUsOpenserverLevelEnum_class_()];
++ (void)initialize {
+  if (self == [ComUsOpenserverLevel class]) {
+    JreEnum(ComUsOpenserverLevel, Debug) = new_ComUsOpenserverLevel_initWithNSString_withInt_(@"Debug", 0);
+    JreEnum(ComUsOpenserverLevel, Info) = new_ComUsOpenserverLevel_initWithNSString_withInt_(@"Info", 1);
+    JreEnum(ComUsOpenserverLevel, Notice) = new_ComUsOpenserverLevel_initWithNSString_withInt_(@"Notice", 2);
+    JreEnum(ComUsOpenserverLevel, Critical) = new_ComUsOpenserverLevel_initWithNSString_withInt_(@"Critical", 3);
+    JreEnum(ComUsOpenserverLevel, Error) = new_ComUsOpenserverLevel_initWithNSString_withInt_(@"Error", 4);
+    J2OBJC_SET_INITIALIZED(ComUsOpenserverLevel)
+  }
 }
 
-+ (IOSObjectArray *)values {
-  return ComUsOpenserverLevelEnum_values();
++ (const J2ObjcClassInfo *)__metadata {
+  static const J2ObjcFieldInfo fields[] = {
+    { "Debug", "Debug", 0x4019, "Lcom.us.openserver.Level;", &JreEnum(ComUsOpenserverLevel, Debug), NULL, .constantValue.asLong = 0 },
+    { "Info", "Info", 0x4019, "Lcom.us.openserver.Level;", &JreEnum(ComUsOpenserverLevel, Info), NULL, .constantValue.asLong = 0 },
+    { "Notice", "Notice", 0x4019, "Lcom.us.openserver.Level;", &JreEnum(ComUsOpenserverLevel, Notice), NULL, .constantValue.asLong = 0 },
+    { "Critical", "Critical", 0x4019, "Lcom.us.openserver.Level;", &JreEnum(ComUsOpenserverLevel, Critical), NULL, .constantValue.asLong = 0 },
+    { "Error", "Error", 0x4019, "Lcom.us.openserver.Level;", &JreEnum(ComUsOpenserverLevel, Error), NULL, .constantValue.asLong = 0 },
+  };
+  static const char *superclass_type_args[] = {"Lcom.us.openserver.Level;"};
+  static const J2ObjcClassInfo _ComUsOpenserverLevel = { 2, "Level", "com.us.openserver", NULL, 0x4011, 0, NULL, 5, fields, 1, superclass_type_args, 0, NULL, NULL, "Ljava/lang/Enum<Lcom/us/openserver/Level;>;" };
+  return &_ComUsOpenserverLevel;
 }
 
-+ (ComUsOpenserverLevelEnum *)valueOfWithNSString:(NSString *)name {
-  return ComUsOpenserverLevelEnum_valueOfWithNSString_(name);
+@end
+
+void ComUsOpenserverLevel_initWithNSString_withInt_(ComUsOpenserverLevel *self, NSString *__name, jint __ordinal) {
+  JavaLangEnum_initWithNSString_withInt_(self, __name, __ordinal);
 }
 
-ComUsOpenserverLevelEnum *ComUsOpenserverLevelEnum_valueOfWithNSString_(NSString *name) {
-  ComUsOpenserverLevelEnum_initialize();
+ComUsOpenserverLevel *new_ComUsOpenserverLevel_initWithNSString_withInt_(NSString *__name, jint __ordinal) {
+  ComUsOpenserverLevel *self = [ComUsOpenserverLevel alloc];
+  ComUsOpenserverLevel_initWithNSString_withInt_(self, __name, __ordinal);
+  return self;
+}
+
+IOSObjectArray *ComUsOpenserverLevel_values() {
+  ComUsOpenserverLevel_initialize();
+  return [IOSObjectArray arrayWithObjects:ComUsOpenserverLevel_values_ count:5 type:ComUsOpenserverLevel_class_()];
+}
+
+ComUsOpenserverLevel *ComUsOpenserverLevel_valueOfWithNSString_(NSString *name) {
+  ComUsOpenserverLevel_initialize();
   for (int i = 0; i < 5; i++) {
-    ComUsOpenserverLevelEnum *e = ComUsOpenserverLevelEnum_values_[i];
+    ComUsOpenserverLevel *e = ComUsOpenserverLevel_values_[i];
     if ([name isEqual:[e name]]) {
       return e;
     }
@@ -51,44 +84,12 @@ ComUsOpenserverLevelEnum *ComUsOpenserverLevelEnum_valueOfWithNSString_(NSString
   return nil;
 }
 
-- (id)copyWithZone:(NSZone *)zone {
-  return self;
-}
-
-+ (void)initialize {
-  if (self == [ComUsOpenserverLevelEnum class]) {
-    ComUsOpenserverLevelEnum_Debug = new_ComUsOpenserverLevelEnum_initWithNSString_withInt_(@"Debug", 0);
-    ComUsOpenserverLevelEnum_Info = new_ComUsOpenserverLevelEnum_initWithNSString_withInt_(@"Info", 1);
-    ComUsOpenserverLevelEnum_Notice = new_ComUsOpenserverLevelEnum_initWithNSString_withInt_(@"Notice", 2);
-    ComUsOpenserverLevelEnum_Critical = new_ComUsOpenserverLevelEnum_initWithNSString_withInt_(@"Critical", 3);
-    ComUsOpenserverLevelEnum_Error = new_ComUsOpenserverLevelEnum_initWithNSString_withInt_(@"Error", 4);
-    J2OBJC_SET_INITIALIZED(ComUsOpenserverLevelEnum)
+ComUsOpenserverLevel *ComUsOpenserverLevel_fromOrdinal(NSUInteger ordinal) {
+  ComUsOpenserverLevel_initialize();
+  if (ordinal >= 5) {
+    return nil;
   }
+  return ComUsOpenserverLevel_values_[ordinal];
 }
 
-+ (const J2ObjcClassInfo *)__metadata {
-  static const J2ObjcFieldInfo fields[] = {
-    { "Debug", "Debug", 0x4019, "Lcom.us.openserver.Level;", &ComUsOpenserverLevelEnum_Debug, NULL,  },
-    { "Info", "Info", 0x4019, "Lcom.us.openserver.Level;", &ComUsOpenserverLevelEnum_Info, NULL,  },
-    { "Notice", "Notice", 0x4019, "Lcom.us.openserver.Level;", &ComUsOpenserverLevelEnum_Notice, NULL,  },
-    { "Critical", "Critical", 0x4019, "Lcom.us.openserver.Level;", &ComUsOpenserverLevelEnum_Critical, NULL,  },
-    { "Error", "Error", 0x4019, "Lcom.us.openserver.Level;", &ComUsOpenserverLevelEnum_Error, NULL,  },
-  };
-  static const char *superclass_type_args[] = {"Lcom.us.openserver.Level;"};
-  static const J2ObjcClassInfo _ComUsOpenserverLevelEnum = { 2, "Level", "com.us.openserver", NULL, 0x4011, 0, NULL, 5, fields, 1, superclass_type_args, 0, NULL, NULL, "Ljava/lang/Enum<Lcom/us/openserver/Level;>;" };
-  return &_ComUsOpenserverLevelEnum;
-}
-
-@end
-
-void ComUsOpenserverLevelEnum_initWithNSString_withInt_(ComUsOpenserverLevelEnum *self, NSString *__name, jint __ordinal) {
-  (void) JavaLangEnum_initWithNSString_withInt_(self, __name, __ordinal);
-}
-
-ComUsOpenserverLevelEnum *new_ComUsOpenserverLevelEnum_initWithNSString_withInt_(NSString *__name, jint __ordinal) {
-  ComUsOpenserverLevelEnum *self = [ComUsOpenserverLevelEnum alloc];
-  ComUsOpenserverLevelEnum_initWithNSString_withInt_(self, __name, __ordinal);
-  return self;
-}
-
-J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverLevelEnum)
+J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverLevel)

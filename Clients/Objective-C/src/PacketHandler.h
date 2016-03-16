@@ -3,10 +3,21 @@
 //  source: ./com/us/openserver/session/PacketHandler.java
 //
 
-#ifndef _ComUsOpenserverSessionPacketHandler_H_
-#define _ComUsOpenserverSessionPacketHandler_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("PacketHandler_INCLUDE_ALL")
+#ifdef PacketHandler_RESTRICT
+#define PacketHandler_INCLUDE_ALL 0
+#else
+#define PacketHandler_INCLUDE_ALL 1
+#endif
+#undef PacketHandler_RESTRICT
+
+#if !defined (ComUsOpenserverSessionPacketHandler_) && (PacketHandler_INCLUDE_ALL || defined(ComUsOpenserverSessionPacketHandler_INCLUDE))
+#define ComUsOpenserverSessionPacketHandler_
+
+#define JavaLangRunnable_RESTRICT 1
+#define JavaLangRunnable_INCLUDE 1
 #include "java/lang/Runnable.h"
 
 @class ComUsOpenserverProtocolsBinaryReader;
@@ -34,6 +45,10 @@ FOUNDATION_EXPORT void ComUsOpenserverSessionPacketHandler_initWithComUsOpenserv
 
 FOUNDATION_EXPORT ComUsOpenserverSessionPacketHandler *new_ComUsOpenserverSessionPacketHandler_initWithComUsOpenserverSessionSession_withComUsOpenserverProtocolsBinaryReader_(ComUsOpenserverSessionSession *session, ComUsOpenserverProtocolsBinaryReader *br) NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverSessionPacketHandler *create_ComUsOpenserverSessionPacketHandler_initWithComUsOpenserverSessionSession_withComUsOpenserverProtocolsBinaryReader_(ComUsOpenserverSessionSession *session, ComUsOpenserverProtocolsBinaryReader *br);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverSessionPacketHandler)
 
-#endif // _ComUsOpenserverSessionPacketHandler_H_
+#endif
+
+#pragma pop_macro("PacketHandler_INCLUDE_ALL")

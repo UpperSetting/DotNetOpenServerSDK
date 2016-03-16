@@ -3,12 +3,20 @@
 //  source: ./com/us/openserver/Logger.java
 //
 
-#ifndef _ComUsOpenserverLogger_H_
-#define _ComUsOpenserverLogger_H_
-
 #include "J2ObjC_header.h"
 
-@class ComUsOpenserverLevelEnum;
+#pragma push_macro("Logger_INCLUDE_ALL")
+#ifdef Logger_RESTRICT
+#define Logger_INCLUDE_ALL 0
+#else
+#define Logger_INCLUDE_ALL 1
+#endif
+#undef Logger_RESTRICT
+
+#if !defined (ComUsOpenserverLogger_) && (Logger_INCLUDE_ALL || defined(ComUsOpenserverLogger_INCLUDE))
+#define ComUsOpenserverLogger_
+
+@class ComUsOpenserverLevel;
 @class JavaLangException;
 @protocol ComUsOpenserverILoggerObserver;
 
@@ -30,8 +38,8 @@
 
 - (void)logWithJavaLangException:(JavaLangException *)ex;
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message;
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message;
 
 - (void)setILoggerObserverWithComUsOpenserverILoggerObserver:(id<ComUsOpenserverILoggerObserver>)callback;
 
@@ -47,10 +55,16 @@ FOUNDATION_EXPORT void ComUsOpenserverLogger_init(ComUsOpenserverLogger *self);
 
 FOUNDATION_EXPORT ComUsOpenserverLogger *new_ComUsOpenserverLogger_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverLogger *create_ComUsOpenserverLogger_init();
+
 FOUNDATION_EXPORT void ComUsOpenserverLogger_initWithComUsOpenserverILoggerObserver_(ComUsOpenserverLogger *self, id<ComUsOpenserverILoggerObserver> callback);
 
 FOUNDATION_EXPORT ComUsOpenserverLogger *new_ComUsOpenserverLogger_initWithComUsOpenserverILoggerObserver_(id<ComUsOpenserverILoggerObserver> callback) NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverLogger *create_ComUsOpenserverLogger_initWithComUsOpenserverILoggerObserver_(id<ComUsOpenserverILoggerObserver> callback);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverLogger)
 
-#endif // _ComUsOpenserverLogger_H_
+#endif
+
+#pragma pop_macro("Logger_INCLUDE_ALL")
