@@ -3,12 +3,20 @@
 //  source: ./com/us/openserver/protocols/ProtocolBase.java
 //
 
-#ifndef _ComUsOpenserverProtocolsProtocolBase_H_
-#define _ComUsOpenserverProtocolsProtocolBase_H_
-
 #include "J2ObjC_header.h"
 
-@class ComUsOpenserverLevelEnum;
+#pragma push_macro("ProtocolBase_INCLUDE_ALL")
+#ifdef ProtocolBase_RESTRICT
+#define ProtocolBase_INCLUDE_ALL 0
+#else
+#define ProtocolBase_INCLUDE_ALL 1
+#endif
+#undef ProtocolBase_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsProtocolBase_) && (ProtocolBase_INCLUDE_ALL || defined(ComUsOpenserverProtocolsProtocolBase_INCLUDE))
+#define ComUsOpenserverProtocolsProtocolBase_
+
+@class ComUsOpenserverLevel;
 @class ComUsOpenserverProtocolsBinaryReader;
 @class ComUsOpenserverProtocolsProtocolConfiguration;
 @class ComUsOpenserverSessionSession;
@@ -36,8 +44,8 @@
 
 #pragma mark Protected
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message;
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message;
 
 @end
 
@@ -49,4 +57,6 @@ FOUNDATION_EXPORT void ComUsOpenserverProtocolsProtocolBase_init(ComUsOpenserver
 
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsProtocolBase)
 
-#endif // _ComUsOpenserverProtocolsProtocolBase_H_
+#endif
+
+#pragma pop_macro("ProtocolBase_INCLUDE_ALL")

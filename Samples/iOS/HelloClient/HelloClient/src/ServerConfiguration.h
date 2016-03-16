@@ -3,10 +3,18 @@
 //  source: ./com/us/openserver/configuration/ServerConfiguration.java
 //
 
-#ifndef _ComUsOpenserverConfigurationServerConfiguration_H_
-#define _ComUsOpenserverConfigurationServerConfiguration_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("ServerConfiguration_INCLUDE_ALL")
+#ifdef ServerConfiguration_RESTRICT
+#define ServerConfiguration_INCLUDE_ALL 0
+#else
+#define ServerConfiguration_INCLUDE_ALL 1
+#endif
+#undef ServerConfiguration_RESTRICT
+
+#if !defined (ComUsOpenserverConfigurationServerConfiguration_) && (ServerConfiguration_INCLUDE_ALL || defined(ComUsOpenserverConfigurationServerConfiguration_INCLUDE))
+#define ComUsOpenserverConfigurationServerConfiguration_
 
 @class ComUsOpenserverConfigurationTlsConfiguration;
 
@@ -48,6 +56,10 @@ FOUNDATION_EXPORT void ComUsOpenserverConfigurationServerConfiguration_init(ComU
 
 FOUNDATION_EXPORT ComUsOpenserverConfigurationServerConfiguration *new_ComUsOpenserverConfigurationServerConfiguration_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverConfigurationServerConfiguration *create_ComUsOpenserverConfigurationServerConfiguration_init();
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverConfigurationServerConfiguration)
 
-#endif // _ComUsOpenserverConfigurationServerConfiguration_H_
+#endif
+
+#pragma pop_macro("ServerConfiguration_INCLUDE_ALL")

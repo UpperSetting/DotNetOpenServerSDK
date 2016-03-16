@@ -3,17 +3,25 @@
 //  source: ./com/us/openserver/ILoggerObserver.java
 //
 
-#ifndef _ComUsOpenserverILoggerObserver_H_
-#define _ComUsOpenserverILoggerObserver_H_
-
 #include "J2ObjC_header.h"
 
-@class ComUsOpenserverLevelEnum;
+#pragma push_macro("ILoggerObserver_INCLUDE_ALL")
+#ifdef ILoggerObserver_RESTRICT
+#define ILoggerObserver_INCLUDE_ALL 0
+#else
+#define ILoggerObserver_INCLUDE_ALL 1
+#endif
+#undef ILoggerObserver_RESTRICT
+
+#if !defined (ComUsOpenserverILoggerObserver_) && (ILoggerObserver_INCLUDE_ALL || defined(ComUsOpenserverILoggerObserver_INCLUDE))
+#define ComUsOpenserverILoggerObserver_
+
+@class ComUsOpenserverLevel;
 
 @protocol ComUsOpenserverILoggerObserver < NSObject, JavaObject >
 
-- (void)onLogMessageWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                                    withNSString:(NSString *)message;
+- (void)onLogMessageWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                                withNSString:(NSString *)message;
 
 @end
 
@@ -21,4 +29,6 @@ J2OBJC_EMPTY_STATIC_INIT(ComUsOpenserverILoggerObserver)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverILoggerObserver)
 
-#endif // _ComUsOpenserverILoggerObserver_H_
+#endif
+
+#pragma pop_macro("ILoggerObserver_INCLUDE_ALL")

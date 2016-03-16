@@ -3,12 +3,12 @@
 //  source: ./com/us/openserver/IClientObserver.java
 //
 
-
 #include "IClientObserver.h"
 #include "J2ObjC_source.h"
 #include "java/lang/Exception.h"
 
 @interface ComUsOpenserverIClientObserver : NSObject
+
 @end
 
 @implementation ComUsOpenserverIClientObserver

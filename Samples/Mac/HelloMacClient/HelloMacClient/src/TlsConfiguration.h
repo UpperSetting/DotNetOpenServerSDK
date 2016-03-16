@@ -3,10 +3,18 @@
 //  source: ./com/us/openserver/configuration/TlsConfiguration.java
 //
 
-#ifndef _ComUsOpenserverConfigurationTlsConfiguration_H_
-#define _ComUsOpenserverConfigurationTlsConfiguration_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("TlsConfiguration_INCLUDE_ALL")
+#ifdef TlsConfiguration_RESTRICT
+#define TlsConfiguration_INCLUDE_ALL 0
+#else
+#define TlsConfiguration_INCLUDE_ALL 1
+#endif
+#undef TlsConfiguration_RESTRICT
+
+#if !defined (ComUsOpenserverConfigurationTlsConfiguration_) && (TlsConfiguration_INCLUDE_ALL || defined(ComUsOpenserverConfigurationTlsConfiguration_INCLUDE))
+#define ComUsOpenserverConfigurationTlsConfiguration_
 
 @interface ComUsOpenserverConfigurationTlsConfiguration : NSObject
 
@@ -46,6 +54,10 @@ FOUNDATION_EXPORT void ComUsOpenserverConfigurationTlsConfiguration_init(ComUsOp
 
 FOUNDATION_EXPORT ComUsOpenserverConfigurationTlsConfiguration *new_ComUsOpenserverConfigurationTlsConfiguration_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverConfigurationTlsConfiguration *create_ComUsOpenserverConfigurationTlsConfiguration_init();
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverConfigurationTlsConfiguration)
 
-#endif // _ComUsOpenserverConfigurationTlsConfiguration_H_
+#endif
+
+#pragma pop_macro("TlsConfiguration_INCLUDE_ALL")

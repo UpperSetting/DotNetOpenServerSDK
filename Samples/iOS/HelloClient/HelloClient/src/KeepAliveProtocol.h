@@ -3,20 +3,31 @@
 //  source: ./com/us/openserver/protocols/keepalive/KeepAliveProtocol.java
 //
 
-#ifndef _ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_H_
-#define _ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("KeepAliveProtocol_INCLUDE_ALL")
+#ifdef KeepAliveProtocol_RESTRICT
+#define KeepAliveProtocol_INCLUDE_ALL 0
+#else
+#define KeepAliveProtocol_INCLUDE_ALL 1
+#endif
+#undef KeepAliveProtocol_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_) && (KeepAliveProtocol_INCLUDE_ALL || defined(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_INCLUDE))
+#define ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_
+
+#define ProtocolBase_RESTRICT 1
+#define ComUsOpenserverProtocolsProtocolBase_INCLUDE 1
 #include "ProtocolBase.h"
+
+#define JavaLangRunnable_RESTRICT 1
+#define JavaLangRunnable_INCLUDE 1
 #include "java/lang/Runnable.h"
 
-@class ComUsOpenserverLevelEnum;
+@class ComUsOpenserverLevel;
 @class ComUsOpenserverProtocolsBinaryReader;
 @class ComUsOpenserverProtocolsProtocolConfiguration;
 @class ComUsOpenserverSessionSession;
-
-#define ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_PROTOCOL_IDENTIFIER 1
-#define ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_INTERVAL 10000
 
 @interface ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol : ComUsOpenserverProtocolsProtocolBase < JavaLangRunnable >
 
@@ -38,21 +49,29 @@
 
 #pragma mark Protected
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message;
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message;
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol, PROTOCOL_IDENTIFIER, jint)
+inline jint ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_get_PROTOCOL_IDENTIFIER();
+#define ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_PROTOCOL_IDENTIFIER 1
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol, PROTOCOL_IDENTIFIER, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol, INTERVAL, jint)
+inline jint ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_get_INTERVAL();
+#define ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_INTERVAL 10000
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol, INTERVAL, jint)
 
 FOUNDATION_EXPORT void ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_init(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol *self);
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol *new_ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol *create_ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_init();
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol)
 
-#endif // _ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_H_
+#endif
+
+#pragma pop_macro("KeepAliveProtocol_INCLUDE_ALL")

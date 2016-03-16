@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/session/SessionInitializer.java
 //
 
-
 #include "Client.h"
 #include "IOSClass.h"
 #include "J2ObjC_source.h"
@@ -28,9 +27,11 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverSessionSessionInitializer, client_, ComUsOpen
 J2OBJC_FIELD_SETTER(ComUsOpenserverSessionSessionInitializer, p_, ComUsOpenserverProtocolsProtocolBase *)
 J2OBJC_FIELD_SETTER(ComUsOpenserverSessionSessionInitializer, exception_, JavaLangException *)
 
-static jint ComUsOpenserverSessionSessionInitializer_id__;
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverSessionSessionInitializer, id__, jint)
-J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionSessionInitializer, id__, jint)
+inline jint ComUsOpenserverSessionSessionInitializer_get_id();
+inline jint ComUsOpenserverSessionSessionInitializer_set_id(jint value);
+inline jint *ComUsOpenserverSessionSessionInitializer_getRef_id();
+static jint ComUsOpenserverSessionSessionInitializer_id;
+J2OBJC_STATIC_FIELD_PRIMITIVE(ComUsOpenserverSessionSessionInitializer, id, jint)
 
 @implementation ComUsOpenserverSessionSessionInitializer
 
@@ -42,7 +43,7 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionSessionInitializer, id__, j
 
 - (ComUsOpenserverProtocolsProtocolBase *)initializeAsync {
   @synchronized(self) {
-    JavaLangThread *t = new_JavaLangThread_initWithJavaLangRunnable_withNSString_(self, JreStrcat("$I", @"SessionInitializer", ++ComUsOpenserverSessionSessionInitializer_id__));
+    JavaLangThread *t = new_JavaLangThread_initWithJavaLangRunnable_withNSString_(self, JreStrcat("$I", @"SessionInitializer", ++ComUsOpenserverSessionSessionInitializer_id));
     [t start];
     [self waitWithLong:[((ComUsOpenserverConfigurationServerConfiguration *) nil_chk([((ComUsOpenserverClient *) nil_chk(client_)) getServerConfiguration])) getSocketTimeoutInTicks]];
   }
@@ -75,11 +76,11 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionSessionInitializer, id__, j
     { "initialize__WithInt:", "initialize", "Lcom.us.openserver.protocols.ProtocolBase;", 0x1, "Ljava.lang.Exception;", NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "client_", NULL, 0x2, "Lcom.us.openserver.Client;", NULL, NULL,  },
-    { "protocolId_", NULL, 0x2, "I", NULL, NULL,  },
-    { "p_", NULL, 0x2, "Lcom.us.openserver.protocols.ProtocolBase;", NULL, NULL,  },
-    { "exception_", NULL, 0x2, "Ljava.lang.Exception;", NULL, NULL,  },
-    { "id__", "id", 0xa, "I", &ComUsOpenserverSessionSessionInitializer_id__, NULL,  },
+    { "client_", NULL, 0x2, "Lcom.us.openserver.Client;", NULL, NULL, .constantValue.asLong = 0 },
+    { "protocolId_", NULL, 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
+    { "p_", NULL, 0x2, "Lcom.us.openserver.protocols.ProtocolBase;", NULL, NULL, .constantValue.asLong = 0 },
+    { "exception_", NULL, 0x2, "Ljava.lang.Exception;", NULL, NULL, .constantValue.asLong = 0 },
+    { "id", "id", 0xa, "I", &ComUsOpenserverSessionSessionInitializer_id, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverSessionSessionInitializer = { 2, "SessionInitializer", "com.us.openserver.session", NULL, 0x1, 4, methods, 5, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverSessionSessionInitializer;
@@ -88,7 +89,7 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionSessionInitializer, id__, j
 @end
 
 void ComUsOpenserverSessionSessionInitializer_initWithComUsOpenserverClient_withInt_(ComUsOpenserverSessionSessionInitializer *self, ComUsOpenserverClient *client, jint protocolId) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
   self->client_ = client;
   self->protocolId_ = protocolId;
 }
@@ -97,6 +98,10 @@ ComUsOpenserverSessionSessionInitializer *new_ComUsOpenserverSessionSessionIniti
   ComUsOpenserverSessionSessionInitializer *self = [ComUsOpenserverSessionSessionInitializer alloc];
   ComUsOpenserverSessionSessionInitializer_initWithComUsOpenserverClient_withInt_(self, client, protocolId);
   return self;
+}
+
+ComUsOpenserverSessionSessionInitializer *create_ComUsOpenserverSessionSessionInitializer_initWithComUsOpenserverClient_withInt_(ComUsOpenserverClient *client, jint protocolId) {
+  return new_ComUsOpenserverSessionSessionInitializer_initWithComUsOpenserverClient_withInt_(client, protocolId);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverSessionSessionInitializer)

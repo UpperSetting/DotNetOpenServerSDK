@@ -3,10 +3,21 @@
 //  source: ./com/us/openserver/protocols/PacketWriter.java
 //
 
-#ifndef _ComUsOpenserverProtocolsPacketWriter_H_
-#define _ComUsOpenserverProtocolsPacketWriter_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("PacketWriter_INCLUDE_ALL")
+#ifdef PacketWriter_RESTRICT
+#define PacketWriter_INCLUDE_ALL 0
+#else
+#define PacketWriter_INCLUDE_ALL 1
+#endif
+#undef PacketWriter_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsPacketWriter_) && (PacketWriter_INCLUDE_ALL || defined(ComUsOpenserverProtocolsPacketWriter_INCLUDE))
+#define ComUsOpenserverProtocolsPacketWriter_
+
+#define JavaLangRunnable_RESTRICT 1
+#define JavaLangRunnable_INCLUDE 1
 #include "java/lang/Runnable.h"
 
 @class ComUsOpenserverSessionSession;
@@ -34,6 +45,10 @@ FOUNDATION_EXPORT void ComUsOpenserverProtocolsPacketWriter_initWithComUsOpenser
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsPacketWriter *new_ComUsOpenserverProtocolsPacketWriter_initWithComUsOpenserverSessionSession_withByteArray_(ComUsOpenserverSessionSession *session, IOSByteArray *packet) NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsPacketWriter *create_ComUsOpenserverProtocolsPacketWriter_initWithComUsOpenserverSessionSession_withByteArray_(ComUsOpenserverSessionSession *session, IOSByteArray *packet);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsPacketWriter)
 
-#endif // _ComUsOpenserverProtocolsPacketWriter_H_
+#endif
+
+#pragma pop_macro("PacketWriter_INCLUDE_ALL")

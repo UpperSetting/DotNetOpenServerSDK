@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/Client.java
 //
 
-
 #include "Client.h"
 #include "ConsoleLogger.h"
 #include "IClientObserver.h"
@@ -60,6 +59,12 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverClient, session_, ComUsOpenserverSessionSessi
   return session_;
 }
 
+- (jboolean)getIsConnected {
+  @synchronized(self) {
+    return session_ != nil;
+  }
+}
+
 - (instancetype)initWithComUsOpenserverIClientObserver:(id<ComUsOpenserverIClientObserver>)clientObserver
    withComUsOpenserverConfigurationServerConfiguration:(ComUsOpenserverConfigurationServerConfiguration *)serverConfiguration
                                    withJavaUtilHashMap:(JavaUtilHashMap *)protocolConfigurations {
@@ -85,70 +90,88 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverClient, session_, ComUsOpenserverSessionSessi
 }
 
 - (void)connect {
-  ComUsOpenserverSessionSessionOpener *sessionOpener = new_ComUsOpenserverSessionSessionOpener_initWithComUsOpenserverClient_(self);
-  session_ = [sessionOpener connect];
+  @synchronized(self) {
+    ComUsOpenserverSessionSessionOpener *sessionOpener = new_ComUsOpenserverSessionSessionOpener_initWithComUsOpenserverClient_(self);
+    session_ = [sessionOpener connect];
+  }
 }
 
 - (void)connectBackgroundThread {
-  ComUsOpenserverSessionSessionOpener *sessionOpener = new_ComUsOpenserverSessionSessionOpener_initWithComUsOpenserverClient_(self);
-  session_ = [sessionOpener connectBackgroundThread];
+  @synchronized(self) {
+    ComUsOpenserverSessionSessionOpener *sessionOpener = new_ComUsOpenserverSessionSessionOpener_initWithComUsOpenserverClient_(self);
+    session_ = [sessionOpener connectBackgroundThread];
+  }
 }
 
 - (void)close {
-  if (session_ != nil) {
-    ComUsOpenserverSessionSessionCloser *sessionCloser = new_ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(session_);
-    [sessionCloser close];
-    session_ = nil;
+  @synchronized(self) {
+    if (session_ != nil) {
+      ComUsOpenserverSessionSessionCloser *sessionCloser = new_ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(session_);
+      [sessionCloser close];
+      session_ = nil;
+    }
   }
 }
 
 - (void)closeBackgroundThread {
-  if (session_ != nil) {
-    ComUsOpenserverSessionSessionCloser *sessionCloser = new_ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(session_);
-    [sessionCloser closeBackgroundThread];
-    session_ = nil;
+  @synchronized(self) {
+    if (session_ != nil) {
+      ComUsOpenserverSessionSessionCloser *sessionCloser = new_ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(session_);
+      [sessionCloser closeBackgroundThread];
+      session_ = nil;
+    }
   }
 }
 
 - (void)closeWithInt:(jint)protocolId {
-  if (session_ != nil) {
-    ComUsOpenserverSessionSessionCloser *sessionCloser = new_ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(session_);
-    [sessionCloser closeWithInt:protocolId];
-    session_ = nil;
+  @synchronized(self) {
+    if (session_ != nil) {
+      ComUsOpenserverSessionSessionCloser *sessionCloser = new_ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(session_);
+      [sessionCloser closeWithInt:protocolId];
+    }
   }
 }
 
 - (void)closeBackgroundThreadWithInt:(jint)protocolId {
-  if (session_ != nil) {
-    ComUsOpenserverSessionSessionCloser *sessionCloser = new_ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(session_);
-    [sessionCloser closeBackgroundThreadWithInt:protocolId];
-    session_ = nil;
+  @synchronized(self) {
+    if (session_ != nil) {
+      ComUsOpenserverSessionSessionCloser *sessionCloser = new_ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(session_);
+      [sessionCloser closeBackgroundThreadWithInt:protocolId];
+    }
   }
 }
 
 - (IOSIntArray *)getServerSupportedProtocolIds {
-  if (session_ == nil) return [IOSIntArray newArrayWithLength:0];
-  return [((ComUsOpenserverSessionSession *) nil_chk(session_)) getRemoteSupportedProtocolIds];
+  @synchronized(self) {
+    if (session_ == nil) return [IOSIntArray newArrayWithLength:0];
+    return [((ComUsOpenserverSessionSession *) nil_chk(session_)) getRemoteSupportedProtocolIds];
+  }
 }
 
 - (ComUsOpenserverProtocolsProtocolBase *)initialize__WithInt:(jint)protocolId {
-  return session_ != nil ? [session_ initialize__WithInt:protocolId withId:userData_] : nil;
+  @synchronized(self) {
+    return session_ != nil ? [session_ initialize__WithInt:protocolId withId:userData_] : nil;
+  }
 }
 
 - (void)onConnectionLostWithJavaLangException:(JavaLangException *)ex {
+  @synchronized(self) {
+    session_ = nil;
+  }
   if (clientObserver_ != nil) [clientObserver_ onConnectionLostWithJavaLangException:ex];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "getLogger", NULL, "Lcom.us.openserver.Logger;", 0x1, NULL, NULL },
-    { "getProtocolConfigurations", NULL, "Ljava.util.HashMap;", 0x1, NULL, NULL },
+    { "getProtocolConfigurations", NULL, "Ljava.util.HashMap;", 0x1, NULL, "()Ljava/util/HashMap<Ljava/lang/Integer;Lcom/us/openserver/protocols/ProtocolConfiguration;>;" },
     { "getServerConfiguration", NULL, "Lcom.us.openserver.configuration.ServerConfiguration;", 0x1, NULL, NULL },
     { "getUserData", NULL, "Ljava.lang.Object;", 0x1, NULL, NULL },
     { "getSession", NULL, "Lcom.us.openserver.session.Session;", 0x1, NULL, NULL },
-    { "initWithComUsOpenserverIClientObserver:withComUsOpenserverConfigurationServerConfiguration:withJavaUtilHashMap:", "Client", NULL, 0x1, NULL, NULL },
-    { "initWithComUsOpenserverIClientObserver:withComUsOpenserverConfigurationServerConfiguration:withJavaUtilHashMap:withComUsOpenserverLogger:", "Client", NULL, 0x1, NULL, NULL },
-    { "initWithComUsOpenserverIClientObserver:withComUsOpenserverConfigurationServerConfiguration:withJavaUtilHashMap:withComUsOpenserverLogger:withId:", "Client", NULL, 0x1, NULL, NULL },
+    { "getIsConnected", NULL, "Z", 0x1, NULL, NULL },
+    { "initWithComUsOpenserverIClientObserver:withComUsOpenserverConfigurationServerConfiguration:withJavaUtilHashMap:", "Client", NULL, 0x1, NULL, "(Lcom/us/openserver/IClientObserver;Lcom/us/openserver/configuration/ServerConfiguration;Ljava/util/HashMap<Ljava/lang/Integer;Lcom/us/openserver/protocols/ProtocolConfiguration;>;)V" },
+    { "initWithComUsOpenserverIClientObserver:withComUsOpenserverConfigurationServerConfiguration:withJavaUtilHashMap:withComUsOpenserverLogger:", "Client", NULL, 0x1, NULL, "(Lcom/us/openserver/IClientObserver;Lcom/us/openserver/configuration/ServerConfiguration;Ljava/util/HashMap<Ljava/lang/Integer;Lcom/us/openserver/protocols/ProtocolConfiguration;>;Lcom/us/openserver/Logger;)V" },
+    { "initWithComUsOpenserverIClientObserver:withComUsOpenserverConfigurationServerConfiguration:withJavaUtilHashMap:withComUsOpenserverLogger:withId:", "Client", NULL, 0x1, NULL, "(Lcom/us/openserver/IClientObserver;Lcom/us/openserver/configuration/ServerConfiguration;Ljava/util/HashMap<Ljava/lang/Integer;Lcom/us/openserver/protocols/ProtocolConfiguration;>;Lcom/us/openserver/Logger;Ljava/lang/Object;)V" },
     { "connect", NULL, "V", 0x1, "Ljava.lang.Exception;", NULL },
     { "connectBackgroundThread", NULL, "V", 0x1, "Ljava.lang.Exception;", NULL },
     { "close", NULL, "V", 0x1, NULL, NULL },
@@ -160,21 +183,21 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverClient, session_, ComUsOpenserverSessionSessi
     { "onConnectionLostWithJavaLangException:", "onConnectionLost", "V", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "clientObserver_", NULL, 0x2, "Lcom.us.openserver.IClientObserver;", NULL, NULL,  },
-    { "logger_", NULL, 0x2, "Lcom.us.openserver.Logger;", NULL, NULL,  },
-    { "protocolConfigurations_", NULL, 0x2, "Ljava.util.HashMap;", NULL, "Ljava/util/HashMap<Ljava/lang/Integer;Lcom/us/openserver/protocols/ProtocolConfiguration;>;",  },
-    { "serverConfiguration_", NULL, 0x2, "Lcom.us.openserver.configuration.ServerConfiguration;", NULL, NULL,  },
-    { "userData_", NULL, 0x2, "Ljava.lang.Object;", NULL, NULL,  },
-    { "session_", NULL, 0x2, "Lcom.us.openserver.session.Session;", NULL, NULL,  },
+    { "clientObserver_", NULL, 0x2, "Lcom.us.openserver.IClientObserver;", NULL, NULL, .constantValue.asLong = 0 },
+    { "logger_", NULL, 0x2, "Lcom.us.openserver.Logger;", NULL, NULL, .constantValue.asLong = 0 },
+    { "protocolConfigurations_", NULL, 0x2, "Ljava.util.HashMap;", NULL, "Ljava/util/HashMap<Ljava/lang/Integer;Lcom/us/openserver/protocols/ProtocolConfiguration;>;", .constantValue.asLong = 0 },
+    { "serverConfiguration_", NULL, 0x2, "Lcom.us.openserver.configuration.ServerConfiguration;", NULL, NULL, .constantValue.asLong = 0 },
+    { "userData_", NULL, 0x2, "Ljava.lang.Object;", NULL, NULL, .constantValue.asLong = 0 },
+    { "session_", NULL, 0x2, "Lcom.us.openserver.session.Session;", NULL, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _ComUsOpenserverClient = { 2, "Client", "com.us.openserver", NULL, 0x1, 17, methods, 6, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _ComUsOpenserverClient = { 2, "Client", "com.us.openserver", NULL, 0x1, 18, methods, 6, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverClient;
 }
 
 @end
 
 void ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(ComUsOpenserverClient *self, id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations) {
-  (void) ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(self, clientObserver, serverConfiguration, protocolConfigurations, nil, nil);
+  ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(self, clientObserver, serverConfiguration, protocolConfigurations, nil, nil);
 }
 
 ComUsOpenserverClient *new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations) {
@@ -183,8 +206,12 @@ ComUsOpenserverClient *new_ComUsOpenserverClient_initWithComUsOpenserverIClientO
   return self;
 }
 
+ComUsOpenserverClient *create_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations) {
+  return new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_(clientObserver, serverConfiguration, protocolConfigurations);
+}
+
 void ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_(ComUsOpenserverClient *self, id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations, ComUsOpenserverLogger *logger) {
-  (void) ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(self, clientObserver, serverConfiguration, protocolConfigurations, logger, nil);
+  ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(self, clientObserver, serverConfiguration, protocolConfigurations, logger, nil);
 }
 
 ComUsOpenserverClient *new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_(id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations, ComUsOpenserverLogger *logger) {
@@ -193,8 +220,12 @@ ComUsOpenserverClient *new_ComUsOpenserverClient_initWithComUsOpenserverIClientO
   return self;
 }
 
+ComUsOpenserverClient *create_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_(id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations, ComUsOpenserverLogger *logger) {
+  return new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_(clientObserver, serverConfiguration, protocolConfigurations, logger);
+}
+
 void ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(ComUsOpenserverClient *self, id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations, ComUsOpenserverLogger *logger, id userData) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
   self->clientObserver_ = clientObserver;
   if (logger == nil) logger = new_ComUsOpenserverConsoleLogger_init();
   self->logger_ = logger;
@@ -209,6 +240,10 @@ ComUsOpenserverClient *new_ComUsOpenserverClient_initWithComUsOpenserverIClientO
   ComUsOpenserverClient *self = [ComUsOpenserverClient alloc];
   ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(self, clientObserver, serverConfiguration, protocolConfigurations, logger, userData);
   return self;
+}
+
+ComUsOpenserverClient *create_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(id<ComUsOpenserverIClientObserver> clientObserver, ComUsOpenserverConfigurationServerConfiguration *serverConfiguration, JavaUtilHashMap *protocolConfigurations, ComUsOpenserverLogger *logger, id userData) {
+  return new_ComUsOpenserverClient_initWithComUsOpenserverIClientObserver_withComUsOpenserverConfigurationServerConfiguration_withJavaUtilHashMap_withComUsOpenserverLogger_withId_(clientObserver, serverConfiguration, protocolConfigurations, logger, userData);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverClient)

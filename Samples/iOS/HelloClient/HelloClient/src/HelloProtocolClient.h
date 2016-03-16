@@ -3,11 +3,22 @@
 //  source: ./com/us/openserver/protocols/hello/HelloProtocolClient.java
 //
 
-#ifndef _ComUsOpenserverProtocolsHelloHelloProtocolClient_H_
-#define _ComUsOpenserverProtocolsHelloHelloProtocolClient_H_
-
-#include "HelloProtocol.h"
 #include "J2ObjC_header.h"
+
+#pragma push_macro("HelloProtocolClient_INCLUDE_ALL")
+#ifdef HelloProtocolClient_RESTRICT
+#define HelloProtocolClient_INCLUDE_ALL 0
+#else
+#define HelloProtocolClient_INCLUDE_ALL 1
+#endif
+#undef HelloProtocolClient_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsHelloHelloProtocolClient_) && (HelloProtocolClient_INCLUDE_ALL || defined(ComUsOpenserverProtocolsHelloHelloProtocolClient_INCLUDE))
+#define ComUsOpenserverProtocolsHelloHelloProtocolClient_
+
+#define HelloProtocol_RESTRICT 1
+#define ComUsOpenserverProtocolsHelloHelloProtocol_INCLUDE 1
+#include "HelloProtocol.h"
 
 @class ComUsOpenserverProtocolsBinaryReader;
 @protocol ComUsOpenserverProtocolsHelloIHelloProtocolObserver;
@@ -38,6 +49,10 @@ FOUNDATION_EXPORT void ComUsOpenserverProtocolsHelloHelloProtocolClient_init(Com
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsHelloHelloProtocolClient *new_ComUsOpenserverProtocolsHelloHelloProtocolClient_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsHelloHelloProtocolClient *create_ComUsOpenserverProtocolsHelloHelloProtocolClient_init();
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsHelloHelloProtocolClient)
 
-#endif // _ComUsOpenserverProtocolsHelloHelloProtocolClient_H_
+#endif
+
+#pragma pop_macro("HelloProtocolClient_INCLUDE_ALL")

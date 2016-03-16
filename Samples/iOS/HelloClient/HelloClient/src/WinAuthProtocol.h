@@ -3,15 +3,24 @@
 //  source: ./com/us/openserver/protocols/winauth/WinAuthProtocol.java
 //
 
-#ifndef _ComUsOpenserverProtocolsWinauthWinAuthProtocol_H_
-#define _ComUsOpenserverProtocolsWinauthWinAuthProtocol_H_
-
-#include "AuthenticationProtocolBase.h"
 #include "J2ObjC_header.h"
 
-@class ComUsOpenserverLevelEnum;
+#pragma push_macro("WinAuthProtocol_INCLUDE_ALL")
+#ifdef WinAuthProtocol_RESTRICT
+#define WinAuthProtocol_INCLUDE_ALL 0
+#else
+#define WinAuthProtocol_INCLUDE_ALL 1
+#endif
+#undef WinAuthProtocol_RESTRICT
 
-#define ComUsOpenserverProtocolsWinauthWinAuthProtocol_PROTOCOL_IDENTIFIER 2
+#if !defined (ComUsOpenserverProtocolsWinauthWinAuthProtocol_) && (WinAuthProtocol_INCLUDE_ALL || defined(ComUsOpenserverProtocolsWinauthWinAuthProtocol_INCLUDE))
+#define ComUsOpenserverProtocolsWinauthWinAuthProtocol_
+
+#define AuthenticationProtocolBase_RESTRICT 1
+#define ComUsOpenserverProtocolsAuthenticationProtocolBase_INCLUDE 1
+#include "AuthenticationProtocolBase.h"
+
+@class ComUsOpenserverLevel;
 
 @interface ComUsOpenserverProtocolsWinauthWinAuthProtocol : ComUsOpenserverProtocolsAuthenticationProtocolBase
 
@@ -19,19 +28,25 @@
 
 - (instancetype)init;
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message;
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message;
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComUsOpenserverProtocolsWinauthWinAuthProtocol)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsWinauthWinAuthProtocol, PROTOCOL_IDENTIFIER, jint)
+inline jint ComUsOpenserverProtocolsWinauthWinAuthProtocol_get_PROTOCOL_IDENTIFIER();
+#define ComUsOpenserverProtocolsWinauthWinAuthProtocol_PROTOCOL_IDENTIFIER 2
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsWinauthWinAuthProtocol, PROTOCOL_IDENTIFIER, jint)
 
 FOUNDATION_EXPORT void ComUsOpenserverProtocolsWinauthWinAuthProtocol_init(ComUsOpenserverProtocolsWinauthWinAuthProtocol *self);
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsWinauthWinAuthProtocol *new_ComUsOpenserverProtocolsWinauthWinAuthProtocol_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsWinauthWinAuthProtocol *create_ComUsOpenserverProtocolsWinauthWinAuthProtocol_init();
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsWinauthWinAuthProtocol)
 
-#endif // _ComUsOpenserverProtocolsWinauthWinAuthProtocol_H_
+#endif
+
+#pragma pop_macro("WinAuthProtocol_INCLUDE_ALL")

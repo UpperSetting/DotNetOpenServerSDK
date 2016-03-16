@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/session/Session.java
 //
 
-
 #include "AuthenticationProtocolBase.h"
 #include "BinaryReader.h"
 #include "BinaryWriter.h"
@@ -68,9 +67,11 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverSessionSession, syncObject_, id)
 J2OBJC_FIELD_SETTER(ComUsOpenserverSessionSession, os_, JavaIoOutputStream *)
 J2OBJC_FIELD_SETTER(ComUsOpenserverSessionSession, address_, NSString *)
 
-static jint ComUsOpenserverSessionSession_sessionId_;
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverSessionSession, sessionId_, jint)
-J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionSession, sessionId_, jint)
+inline jint ComUsOpenserverSessionSession_get_sessionId();
+inline jint ComUsOpenserverSessionSession_set_sessionId(jint value);
+inline jint *ComUsOpenserverSessionSession_getRef_sessionId();
+static jint ComUsOpenserverSessionSession_sessionId;
+J2OBJC_STATIC_FIELD_PRIMITIVE(ComUsOpenserverSessionSession, sessionId, jint)
 
 __attribute__((unused)) static NSString *ComUsOpenserverSessionSession_toHexStringWithByteArray_withInt_withInt_(ComUsOpenserverSessionSession *self, IOSByteArray *val, jint position, jint length);
 
@@ -85,7 +86,7 @@ __attribute__((unused)) static NSString *ComUsOpenserverSessionSession_toHexStri
 
 - (void)close {
   if (!isClosed_) {
-    isClosed_ = YES;
+    isClosed_ = true;
     @synchronized(protocolImplementations_) {
       for (ComUsOpenserverProtocolsProtocolBase * __strong pl in nil_chk([((JavaUtilHashMap *) nil_chk(protocolImplementations_)) values])) [((ComUsOpenserverProtocolsProtocolBase *) nil_chk(pl)) close];
       [protocolImplementations_ clear];
@@ -117,7 +118,7 @@ __attribute__((unused)) static NSString *ComUsOpenserverSessionSession_toHexStri
 - (void)dispose {
   @synchronized(syncObject_) {
     if (!isClosed_) {
-      isClosed_ = YES;
+      isClosed_ = true;
       @synchronized(protocolImplementations_) {
         for (ComUsOpenserverProtocolsProtocolBase * __strong pl in nil_chk([((JavaUtilHashMap *) nil_chk(protocolImplementations_)) values])) [((ComUsOpenserverProtocolsProtocolBase *) nil_chk(pl)) dispose];
         [protocolImplementations_ clear];
@@ -145,7 +146,7 @@ __attribute__((unused)) static NSString *ComUsOpenserverSessionSession_toHexStri
   @synchronized(syncObject_) {
     tmp = isClosed_;
     if (!isClosed_) {
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Critical() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"The socket connection has been lost.  %1$s", [IOSObjectArray newArrayWithObjects:(id[]){ [((JavaLangException *) nil_chk(ex)) getMessage] } count:1 type:NSObject_class_()])];
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Critical) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"The socket connection has been lost.  %s", [IOSObjectArray newArrayWithObjects:(id[]){ [((JavaLangException *) nil_chk(ex)) getMessage] } count:1 type:NSObject_class_()])];
       [self dispose];
     }
   }
@@ -187,9 +188,9 @@ __attribute__((unused)) static NSString *ComUsOpenserverSessionSession_toHexStri
       if (![((JavaUtilHashMap *) nil_chk(protocolConfigurations_)) containsKeyWithId:JavaLangInteger_valueOfWithInt_(protocolId)]) @throw new_JavaLangException_initWithNSString_(@"Invalid or unsupported protocol.");
       ComUsOpenserverProtocolsProtocolConfiguration *pc = [protocolConfigurations_ getWithId:JavaLangInteger_valueOfWithInt_(protocolId)];
       IOSClass *cls = IOSClass_forName_([((ComUsOpenserverProtocolsProtocolConfiguration *) nil_chk(pc)) getClassPath]);
-      p = (ComUsOpenserverProtocolsProtocolBase *) check_class_cast([((IOSClass *) nil_chk(cls)) newInstance], [ComUsOpenserverProtocolsProtocolBase class]);
+      p = (ComUsOpenserverProtocolsProtocolBase *) cast_chk([((IOSClass *) nil_chk(cls)) newInstance], [ComUsOpenserverProtocolsProtocolBase class]);
       (void) [protocolImplementations_ putWithId:JavaLangInteger_valueOfWithInt_(protocolId) withId:p];
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Debug() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Initializing protocol %1$s...", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangInteger_valueOfWithInt_(protocolId) } count:1 type:NSObject_class_()])];
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Debug) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Initializing protocol %d...", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangInteger_valueOfWithInt_(protocolId) } count:1 type:NSObject_class_()])];
       [((ComUsOpenserverProtocolsProtocolBase *) nil_chk(p)) initialize__WithComUsOpenserverSessionSession:self withComUsOpenserverProtocolsProtocolConfiguration:pc withId:userData];
     }
     else p = [protocolImplementations_ getWithId:JavaLangInteger_valueOfWithInt_(protocolId)];
@@ -210,11 +211,11 @@ __attribute__((unused)) static NSString *ComUsOpenserverSessionSession_toHexStri
       if (![((JavaUtilHashMap *) nil_chk(protocolConfigurations_)) containsKeyWithId:JavaLangInteger_valueOfWithInt_(protocolId)]) @throw new_JavaLangException_initWithNSString_(@"Invalid or unsupported protocol.");
       ComUsOpenserverProtocolsProtocolConfiguration *pc = [protocolConfigurations_ getWithId:JavaLangInteger_valueOfWithInt_(protocolId)];
       IOSClass *cls = IOSClass_forName_([((ComUsOpenserverProtocolsProtocolConfiguration *) nil_chk(pc)) getClassPath]);
-      p = (ComUsOpenserverProtocolsProtocolBase *) check_class_cast([((IOSClass *) nil_chk(cls)) newInstance], [ComUsOpenserverProtocolsProtocolBase class]);
+      p = (ComUsOpenserverProtocolsProtocolBase *) cast_chk([((IOSClass *) nil_chk(cls)) newInstance], [ComUsOpenserverProtocolsProtocolBase class]);
       if (p == nil) @throw new_JavaLangException_initWithNSString_(JreStrcat("$$", @"Unable to create protocol layer.  Class not found.  Class: ", [pc getClassPath]));
       if (!IsAuthenticated_ && !([p isKindOfClass:[ComUsOpenserverProtocolsAuthenticationProtocolBase class]])) @throw new_JavaLangException_initWithNSString_(JreStrcat("$$", @"Unable to add protocol layer.  Access Denied.  Class: ", [pc getClassPath]));
       (void) [protocolImplementations_ putWithId:JavaLangInteger_valueOfWithInt_(protocolId) withId:p];
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Debug() withNSString:JreStrcat("$I$", @"Initializing protocol ", protocolId, @"...")];
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Debug) withNSString:JreStrcat("$I$", @"Initializing protocol ", protocolId, @"...")];
       [((ComUsOpenserverProtocolsProtocolBase *) nil_chk(p)) initialize__WithComUsOpenserverSessionSession:self withComUsOpenserverProtocolsProtocolConfiguration:pc withId:userData_];
     }
   }
@@ -264,7 +265,7 @@ __attribute__((unused)) static NSString *ComUsOpenserverSessionSession_toHexStri
           available -= lengthToRead;
           payloadPosition += lengthToRead;
           if ([packet size] >= ComUsOpenserverProtocolsSessionLayerProtocol_HEADER_LENGTH + payloadLength) {
-            if ([((ComUsOpenserverLogger *) nil_chk(logger_)) getLogPackets]) [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Debug() withNSString:JreStrcat("$$", @"RECV: ", ComUsOpenserverSessionSession_toHexStringWithByteArray_withInt_withInt_(self, [packet toByteArray], 0, [packet size]))];
+            if ([((ComUsOpenserverLogger *) nil_chk(logger_)) getLogPackets]) [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Debug) withNSString:JreStrcat("$$", @"RECV: ", ComUsOpenserverSessionSession_toHexStringWithByteArray_withInt_withInt_(self, [packet toByteArray], 0, [packet size]))];
             ComUsOpenserverProtocolsBinaryReader *br = new_ComUsOpenserverProtocolsBinaryReader_initWithByteArray_([packet toByteArray]);
             [br skipWithLong:ComUsOpenserverProtocolsSessionLayerProtocol_HEADER_LENGTH];
             ComUsOpenserverSessionPacketHandler *packetHandler = new_ComUsOpenserverSessionPacketHandler_initWithComUsOpenserverSessionSession_withComUsOpenserverProtocolsBinaryReader_(self, br);
@@ -290,7 +291,7 @@ __attribute__((unused)) static NSString *ComUsOpenserverSessionSession_toHexStri
     [bw writeUIntWithInt:((IOSByteArray *) nil_chk(buf))->size_];
     [bw writeWithByteArray:buf];
     buf = [bw toByteArray];
-    if ([((ComUsOpenserverLogger *) nil_chk(logger_)) getLogPackets]) [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Debug() withNSString:JreStrcat("$$", @"SEND: ", ComUsOpenserverSessionSession_toHexStringWithByteArray_withInt_withInt_(self, buf, 0, ((IOSByteArray *) nil_chk(buf))->size_))];
+    if ([((ComUsOpenserverLogger *) nil_chk(logger_)) getLogPackets]) [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Debug) withNSString:JreStrcat("$$", @"SEND: ", ComUsOpenserverSessionSession_toHexStringWithByteArray_withInt_withInt_(self, buf, 0, ((IOSByteArray *) nil_chk(buf))->size_))];
     @synchronized(os_) {
       [bw writeToWithJavaIoOutputStream:os_];
     }
@@ -315,13 +316,13 @@ __attribute__((unused)) static NSString *ComUsOpenserverSessionSession_toHexStri
   return ComUsOpenserverSessionSession_toHexStringWithByteArray_withInt_withInt_(self, val, position, length);
 }
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message {
-  [((ComUsOpenserverLogger *) nil_chk(logger_)) logWithComUsOpenserverLevelEnum:level withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Session [%1$s %2$s] - %3$s", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangInteger_valueOfWithInt_(id__), address_, message } count:3 type:NSObject_class_()])];
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message {
+  [((ComUsOpenserverLogger *) nil_chk(logger_)) logWithComUsOpenserverLevel:level withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Session [%d %s] - %s", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangInteger_valueOfWithInt_(id__), address_, message } count:3 type:NSObject_class_()])];
 }
 
 - (void)logWithJavaLangException:(JavaLangException *)ex {
-  [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Error() withNSString:[((JavaLangException *) nil_chk(ex)) getMessage]];
+  [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Error) withNSString:[((JavaLangException *) nil_chk(ex)) getMessage]];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -342,25 +343,25 @@ __attribute__((unused)) static NSString *ComUsOpenserverSessionSession_toHexStri
     { "sendWithByteArray:", "send", "V", 0x1, "Ljava.io.IOException;", NULL },
     { "signalClose", NULL, "V", 0x1, NULL, NULL },
     { "toHexStringWithByteArray:withInt:withInt:", "toHexString", "Ljava.lang.String;", 0x2, NULL, NULL },
-    { "logWithComUsOpenserverLevelEnum:withNSString:", "log", "V", 0x1, NULL, NULL },
+    { "logWithComUsOpenserverLevel:withNSString:", "log", "V", 0x1, NULL, NULL },
     { "logWithJavaLangException:", "log", "V", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "IsAuthenticated_", NULL, 0x1, "Z", NULL, NULL,  },
-    { "UserName_", NULL, 0x1, "Ljava.lang.String;", NULL, NULL,  },
-    { "isClosed_", NULL, 0x2, "Z", NULL, NULL,  },
-    { "client_", NULL, 0x2, "Lcom.us.openserver.Client;", NULL, NULL,  },
-    { "capabilitiesProtocol_", NULL, 0x2, "Lcom.us.openserver.protocols.CapabilitiesProtocol;", NULL, NULL,  },
-    { "protocolConfigurations_", NULL, 0x2, "Ljava.util.HashMap;", NULL, "Ljava/util/HashMap<Ljava/lang/Integer;Lcom/us/openserver/protocols/ProtocolConfiguration;>;",  },
-    { "protocolImplementations_", NULL, 0x2, "Ljava.util.HashMap;", NULL, "Ljava/util/HashMap<Ljava/lang/Integer;Lcom/us/openserver/protocols/ProtocolBase;>;",  },
-    { "logger_", NULL, 0x2, "Lcom.us.openserver.Logger;", NULL, NULL,  },
-    { "is_", NULL, 0x2, "Ljava.io.InputStream;", NULL, NULL,  },
-    { "userData_", NULL, 0x2, "Ljava.lang.Object;", NULL, NULL,  },
-    { "syncObject_", NULL, 0x2, "Ljava.lang.Object;", NULL, NULL,  },
-    { "os_", NULL, 0x2, "Ljava.io.OutputStream;", NULL, NULL,  },
-    { "address_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL,  },
-    { "id__", "id", 0x2, "I", NULL, NULL,  },
-    { "sessionId_", NULL, 0xa, "I", &ComUsOpenserverSessionSession_sessionId_, NULL,  },
+    { "IsAuthenticated_", NULL, 0x1, "Z", NULL, NULL, .constantValue.asLong = 0 },
+    { "UserName_", NULL, 0x1, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
+    { "isClosed_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
+    { "client_", NULL, 0x2, "Lcom.us.openserver.Client;", NULL, NULL, .constantValue.asLong = 0 },
+    { "capabilitiesProtocol_", NULL, 0x2, "Lcom.us.openserver.protocols.CapabilitiesProtocol;", NULL, NULL, .constantValue.asLong = 0 },
+    { "protocolConfigurations_", NULL, 0x2, "Ljava.util.HashMap;", NULL, "Ljava/util/HashMap<Ljava/lang/Integer;Lcom/us/openserver/protocols/ProtocolConfiguration;>;", .constantValue.asLong = 0 },
+    { "protocolImplementations_", NULL, 0x2, "Ljava.util.HashMap;", NULL, "Ljava/util/HashMap<Ljava/lang/Integer;Lcom/us/openserver/protocols/ProtocolBase;>;", .constantValue.asLong = 0 },
+    { "logger_", NULL, 0x2, "Lcom.us.openserver.Logger;", NULL, NULL, .constantValue.asLong = 0 },
+    { "is_", NULL, 0x2, "Ljava.io.InputStream;", NULL, NULL, .constantValue.asLong = 0 },
+    { "userData_", NULL, 0x2, "Ljava.lang.Object;", NULL, NULL, .constantValue.asLong = 0 },
+    { "syncObject_", NULL, 0x2, "Ljava.lang.Object;", NULL, NULL, .constantValue.asLong = 0 },
+    { "os_", NULL, 0x2, "Ljava.io.OutputStream;", NULL, NULL, .constantValue.asLong = 0 },
+    { "address_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
+    { "id__", "id", 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
+    { "sessionId", "sessionId", 0xa, "I", &ComUsOpenserverSessionSession_sessionId, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverSessionSession = { 2, "Session", "com.us.openserver.session", NULL, 0x1, 18, methods, 15, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverSessionSession;
@@ -369,7 +370,7 @@ __attribute__((unused)) static NSString *ComUsOpenserverSessionSession_toHexStri
 @end
 
 void ComUsOpenserverSessionSession_initWithComUsOpenserverClient_withJavaNetSocket_withNSString_(ComUsOpenserverSessionSession *self, ComUsOpenserverClient *client, JavaNetSocket *socket, NSString *address) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
   self->protocolImplementations_ = new_JavaUtilHashMap_init();
   self->syncObject_ = new_NSObject_init();
   self->client_ = client;
@@ -380,13 +381,17 @@ void ComUsOpenserverSessionSession_initWithComUsOpenserverClient_withJavaNetSock
   self->is_ = [((JavaNetSocket *) nil_chk(socket)) getInputStream];
   self->os_ = [socket getOutputStream];
   self->address_ = address;
-  self->id__ = ++ComUsOpenserverSessionSession_sessionId_;
+  self->id__ = ++ComUsOpenserverSessionSession_sessionId;
 }
 
 ComUsOpenserverSessionSession *new_ComUsOpenserverSessionSession_initWithComUsOpenserverClient_withJavaNetSocket_withNSString_(ComUsOpenserverClient *client, JavaNetSocket *socket, NSString *address) {
   ComUsOpenserverSessionSession *self = [ComUsOpenserverSessionSession alloc];
   ComUsOpenserverSessionSession_initWithComUsOpenserverClient_withJavaNetSocket_withNSString_(self, client, socket, address);
   return self;
+}
+
+ComUsOpenserverSessionSession *create_ComUsOpenserverSessionSession_initWithComUsOpenserverClient_withJavaNetSocket_withNSString_(ComUsOpenserverClient *client, JavaNetSocket *socket, NSString *address) {
+  return new_ComUsOpenserverSessionSession_initWithComUsOpenserverClient_withJavaNetSocket_withNSString_(client, socket, address);
 }
 
 NSString *ComUsOpenserverSessionSession_toHexStringWithByteArray_withInt_withInt_(ComUsOpenserverSessionSession *self, IOSByteArray *val, jint position, jint length) {

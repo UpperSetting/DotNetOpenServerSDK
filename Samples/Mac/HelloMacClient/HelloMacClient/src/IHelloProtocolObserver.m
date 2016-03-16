@@ -3,11 +3,11 @@
 //  source: ./com/us/openserver/protocols/hello/IHelloProtocolObserver.java
 //
 
-
 #include "IHelloProtocolObserver.h"
 #include "J2ObjC_source.h"
 
 @interface ComUsOpenserverProtocolsHelloIHelloProtocolObserver : NSObject
+
 @end
 
 @implementation ComUsOpenserverProtocolsHelloIHelloProtocolObserver

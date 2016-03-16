@@ -3,15 +3,24 @@
 //  source: ./com/us/openserver/protocols/hello/HelloProtocol.java
 //
 
-#ifndef _ComUsOpenserverProtocolsHelloHelloProtocol_H_
-#define _ComUsOpenserverProtocolsHelloHelloProtocol_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("HelloProtocol_INCLUDE_ALL")
+#ifdef HelloProtocol_RESTRICT
+#define HelloProtocol_INCLUDE_ALL 0
+#else
+#define HelloProtocol_INCLUDE_ALL 1
+#endif
+#undef HelloProtocol_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsHelloHelloProtocol_) && (HelloProtocol_INCLUDE_ALL || defined(ComUsOpenserverProtocolsHelloHelloProtocol_INCLUDE))
+#define ComUsOpenserverProtocolsHelloHelloProtocol_
+
+#define ProtocolBase_RESTRICT 1
+#define ComUsOpenserverProtocolsProtocolBase_INCLUDE 1
 #include "ProtocolBase.h"
 
-@class ComUsOpenserverLevelEnum;
-
-#define ComUsOpenserverProtocolsHelloHelloProtocol_PROTOCOL_IDENTIFIER 10
+@class ComUsOpenserverLevel;
 
 @interface ComUsOpenserverProtocolsHelloHelloProtocol : ComUsOpenserverProtocolsProtocolBase
 
@@ -19,19 +28,25 @@
 
 - (instancetype)init;
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message;
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message;
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComUsOpenserverProtocolsHelloHelloProtocol)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsHelloHelloProtocol, PROTOCOL_IDENTIFIER, jint)
+inline jint ComUsOpenserverProtocolsHelloHelloProtocol_get_PROTOCOL_IDENTIFIER();
+#define ComUsOpenserverProtocolsHelloHelloProtocol_PROTOCOL_IDENTIFIER 10
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsHelloHelloProtocol, PROTOCOL_IDENTIFIER, jint)
 
 FOUNDATION_EXPORT void ComUsOpenserverProtocolsHelloHelloProtocol_init(ComUsOpenserverProtocolsHelloHelloProtocol *self);
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsHelloHelloProtocol *new_ComUsOpenserverProtocolsHelloHelloProtocol_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsHelloHelloProtocol *create_ComUsOpenserverProtocolsHelloHelloProtocol_init();
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsHelloHelloProtocol)
 
-#endif // _ComUsOpenserverProtocolsHelloHelloProtocol_H_
+#endif
+
+#pragma pop_macro("HelloProtocol_INCLUDE_ALL")

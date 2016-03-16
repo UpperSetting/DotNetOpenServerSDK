@@ -3,26 +3,27 @@
 //  source: ./com/us/openserver/protocols/winauth/WinAuthProtocolCommands.java
 //
 
-
 #include "J2ObjC_source.h"
 #include "WinAuthProtocolCommands.h"
 
 @implementation ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_init(self);
   return self;
 }
+J2OBJC_IGNORE_DESIGNATED_END
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "init", NULL, NULL, 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "AUTHENTICATE_", NULL, 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_AUTHENTICATE },
-    { "AUTHENTICATED_", NULL, 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_AUTHENTICATED },
-    { "ACCESS_DENIED_", NULL, 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_ACCESS_DENIED },
-    { "ERROR_", NULL, 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_ERROR },
+    { "AUTHENTICATE", "AUTHENTICATE", 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_AUTHENTICATE },
+    { "AUTHENTICATED", "AUTHENTICATED", 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_AUTHENTICATED },
+    { "ACCESS_DENIED", "ACCESS_DENIED", 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_ACCESS_DENIED },
+    { "ERROR", "ERROR", 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_ERROR },
   };
   static const J2ObjcClassInfo _ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands = { 2, "WinAuthProtocolCommands", "com.us.openserver.protocols.winauth", NULL, 0x1, 1, methods, 4, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands;
@@ -31,13 +32,17 @@
 @end
 
 void ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_init(ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands *self) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
 }
 
 ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands *new_ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_init() {
   ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands *self = [ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands alloc];
   ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_init(self);
   return self;
+}
+
+ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands *create_ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_init() {
+  return new_ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_init();
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands)

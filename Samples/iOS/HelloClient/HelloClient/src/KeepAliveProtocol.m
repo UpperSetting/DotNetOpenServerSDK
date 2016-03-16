@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/protocols/keepalive/KeepAliveProtocol.java
 //
 
-
 #include "BinaryReader.h"
 #include "BinaryWriter.h"
 #include "IOSObjectArray.h"
@@ -18,6 +17,7 @@
 #include "java/io/IOException.h"
 #include "java/lang/Exception.h"
 #include "java/lang/Integer.h"
+#include "java/lang/System.h"
 #include "java/util/concurrent/Executors.h"
 #include "java/util/concurrent/ScheduledExecutorService.h"
 #include "java/util/concurrent/ScheduledFuture.h"
@@ -26,18 +26,25 @@
 @interface ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol () {
  @public
   id<JavaUtilConcurrentScheduledExecutorService> timer_;
+  jlong lastHeartBeatReceivedAt_;
 }
 
 @end
 
 J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol, timer_, id<JavaUtilConcurrentScheduledExecutorService>)
 
+inline jint ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_get_IDLE_TIMEOUT();
+#define ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_IDLE_TIMEOUT 30000
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol, IDLE_TIMEOUT, jint)
+
 @implementation ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_init(self);
   return self;
 }
+J2OBJC_IGNORE_DESIGNATED_END
 
 - (void)initialize__WithComUsOpenserverSessionSession:(ComUsOpenserverSessionSession *)session
     withComUsOpenserverProtocolsProtocolConfiguration:(ComUsOpenserverProtocolsProtocolConfiguration *)pc
@@ -47,7 +54,7 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol, timer_, 
     self->session_ = session;
     if (timer_ != nil) [timer_ shutdown];
     timer_ = JavaUtilConcurrentExecutors_newScheduledThreadPoolWithInt_(1);
-    (void) [((id<JavaUtilConcurrentScheduledExecutorService>) nil_chk(timer_)) scheduleAtFixedRateWithJavaLangRunnable:self withLong:ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_INTERVAL withLong:ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_INTERVAL withJavaUtilConcurrentTimeUnitEnum:JavaUtilConcurrentTimeUnitEnum_get_MILLISECONDS()];
+    (void) [((id<JavaUtilConcurrentScheduledExecutorService>) nil_chk(timer_)) scheduleAtFixedRateWithJavaLangRunnable:self withLong:ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_INTERVAL withLong:ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_INTERVAL withJavaUtilConcurrentTimeUnit:JreLoadEnum(JavaUtilConcurrentTimeUnit, MILLISECONDS)];
   }
 }
 
@@ -63,7 +70,7 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol, timer_, 
       }
       @catch (JavaIoIOException *ex) {
       }
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Debug() withNSString:@"Quit sent."];
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Debug) withNSString:@"Quit sent."];
     }
     @finally {
       @try {
@@ -82,41 +89,43 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol, timer_, 
 }
 
 - (void)onPacketReceivedWithComUsOpenserverProtocolsBinaryReader:(ComUsOpenserverProtocolsBinaryReader *)br {
-  jboolean dispose = NO;
+  jboolean dispose = false;
   @synchronized(self) {
     if (session_ == nil) return;
     jint command = [((ComUsOpenserverProtocolsBinaryReader *) nil_chk(br)) read];
     switch (command) {
       case ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_KEEP_ALIVE:
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Debug() withNSString:@"Received."];
+      lastHeartBeatReceivedAt_ = JavaLangSystem_currentTimeMillis();
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Debug) withNSString:@"Received."];
       break;
       case ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_QUIT:
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Info() withNSString:@"Quit received."];
-      dispose = YES;
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Info) withNSString:@"Quit received."];
+      dispose = true;
       break;
       default:
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Error() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Invalid or unsupported command.  Command: %1$s", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangInteger_valueOfWithInt_(command) } count:1 type:NSObject_class_()])];
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Error) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Invalid or unsupported command.  Command: %d", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangInteger_valueOfWithInt_(command) } count:1 type:NSObject_class_()])];
       break;
     }
   }
   if (dispose) [((ComUsOpenserverSessionSession *) nil_chk(session_)) dispose];
 }
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message {
-  [((ComUsOpenserverSessionSession *) nil_chk(session_)) logWithComUsOpenserverLevelEnum:level withNSString:NSString_formatWithNSString_withNSObjectArray_(@"[Keep-Alive] %1$s", [IOSObjectArray newArrayWithObjects:(id[]){ message } count:1 type:NSObject_class_()])];
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message {
+  [((ComUsOpenserverSessionSession *) nil_chk(session_)) logWithComUsOpenserverLevel:level withNSString:NSString_formatWithNSString_withNSObjectArray_(@"[Keep-Alive] %s", [IOSObjectArray newArrayWithObjects:(id[]){ message } count:1 type:NSObject_class_()])];
 }
 
 - (void)run {
   JavaLangException *connectionLostException = nil;
   @synchronized(self) {
     @try {
+      if (JavaLangSystem_currentTimeMillis() - lastHeartBeatReceivedAt_ > ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_IDLE_TIMEOUT) @throw new_JavaLangException_initWithNSString_(@"Idle connection detected.");
       ComUsOpenserverProtocolsBinaryWriter *bw = new_ComUsOpenserverProtocolsBinaryWriter_init();
       @try {
         [bw writeUInt16WithInt:ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_PROTOCOL_IDENTIFIER];
         [bw writeWithInt:(jbyte) ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_KEEP_ALIVE];
         [((ComUsOpenserverSessionSession *) nil_chk(session_)) sendWithByteArray:[bw toByteArray]];
-        [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Debug() withNSString:@"Sent."];
+        [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Debug) withNSString:@"Sent."];
       }
       @finally {
         @try {
@@ -141,28 +150,35 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol, timer_, 
     { "close", NULL, "V", 0x1, NULL, NULL },
     { "dispose", NULL, "V", 0x1, NULL, NULL },
     { "onPacketReceivedWithComUsOpenserverProtocolsBinaryReader:", "onPacketReceived", "V", 0x1, NULL, NULL },
-    { "logWithComUsOpenserverLevelEnum:withNSString:", "log", "V", 0x4, NULL, NULL },
+    { "logWithComUsOpenserverLevel:withNSString:", "log", "V", 0x4, NULL, NULL },
     { "run", NULL, "V", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "PROTOCOL_IDENTIFIER_", NULL, 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_PROTOCOL_IDENTIFIER },
-    { "INTERVAL_", NULL, 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_INTERVAL },
-    { "timer_", NULL, 0x2, "Ljava.util.concurrent.ScheduledExecutorService;", NULL, NULL,  },
+    { "PROTOCOL_IDENTIFIER", "PROTOCOL_IDENTIFIER", 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_PROTOCOL_IDENTIFIER },
+    { "INTERVAL", "INTERVAL", 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_INTERVAL },
+    { "IDLE_TIMEOUT", "IDLE_TIMEOUT", 0x1a, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_IDLE_TIMEOUT },
+    { "timer_", NULL, 0x2, "Ljava.util.concurrent.ScheduledExecutorService;", NULL, NULL, .constantValue.asLong = 0 },
+    { "lastHeartBeatReceivedAt_", NULL, 0x2, "J", NULL, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol = { 2, "KeepAliveProtocol", "com.us.openserver.protocols.keepalive", NULL, 0x1, 7, methods, 3, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol = { 2, "KeepAliveProtocol", "com.us.openserver.protocols.keepalive", NULL, 0x1, 7, methods, 5, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol;
 }
 
 @end
 
 void ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_init(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol *self) {
-  (void) ComUsOpenserverProtocolsProtocolBase_init(self);
+  ComUsOpenserverProtocolsProtocolBase_init(self);
+  self->lastHeartBeatReceivedAt_ = JavaLangSystem_currentTimeMillis();
 }
 
 ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol *new_ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_init() {
   ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol *self = [ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol alloc];
   ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_init(self);
   return self;
+}
+
+ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol *create_ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_init() {
+  return new_ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol_init();
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocol)

@@ -3,19 +3,27 @@
 //  source: ./com/us/openserver/protocols/CapabilitiesProtocol.java
 //
 
-#ifndef _ComUsOpenserverProtocolsCapabilitiesProtocol_H_
-#define _ComUsOpenserverProtocolsCapabilitiesProtocol_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("CapabilitiesProtocol_INCLUDE_ALL")
+#ifdef CapabilitiesProtocol_RESTRICT
+#define CapabilitiesProtocol_INCLUDE_ALL 0
+#else
+#define CapabilitiesProtocol_INCLUDE_ALL 1
+#endif
+#undef CapabilitiesProtocol_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsCapabilitiesProtocol_) && (CapabilitiesProtocol_INCLUDE_ALL || defined(ComUsOpenserverProtocolsCapabilitiesProtocol_INCLUDE))
+#define ComUsOpenserverProtocolsCapabilitiesProtocol_
+
+#define ProtocolBase_RESTRICT 1
+#define ComUsOpenserverProtocolsProtocolBase_INCLUDE 1
 #include "ProtocolBase.h"
 
-@class ComUsOpenserverLevelEnum;
+@class ComUsOpenserverLevel;
 @class ComUsOpenserverProtocolsBinaryReader;
 @class ComUsOpenserverSessionSession;
 @class IOSIntArray;
-
-#define ComUsOpenserverProtocolsCapabilitiesProtocol_PROTOCOL_IDENTIFIER 0
-#define ComUsOpenserverProtocolsCapabilitiesProtocol_TIMEOUT 120000
 
 @interface ComUsOpenserverProtocolsCapabilitiesProtocol : ComUsOpenserverProtocolsProtocolBase
 
@@ -32,21 +40,29 @@
 
 #pragma mark Protected
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message;
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message;
 
 @end
 
 J2OBJC_EMPTY_STATIC_INIT(ComUsOpenserverProtocolsCapabilitiesProtocol)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsCapabilitiesProtocol, PROTOCOL_IDENTIFIER, jint)
+inline jint ComUsOpenserverProtocolsCapabilitiesProtocol_get_PROTOCOL_IDENTIFIER();
+#define ComUsOpenserverProtocolsCapabilitiesProtocol_PROTOCOL_IDENTIFIER 0
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsCapabilitiesProtocol, PROTOCOL_IDENTIFIER, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsCapabilitiesProtocol, TIMEOUT, jint)
+inline jint ComUsOpenserverProtocolsCapabilitiesProtocol_get_TIMEOUT();
+#define ComUsOpenserverProtocolsCapabilitiesProtocol_TIMEOUT 120000
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsCapabilitiesProtocol, TIMEOUT, jint)
 
 FOUNDATION_EXPORT void ComUsOpenserverProtocolsCapabilitiesProtocol_initWithComUsOpenserverSessionSession_(ComUsOpenserverProtocolsCapabilitiesProtocol *self, ComUsOpenserverSessionSession *session);
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsCapabilitiesProtocol *new_ComUsOpenserverProtocolsCapabilitiesProtocol_initWithComUsOpenserverSessionSession_(ComUsOpenserverSessionSession *session) NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsCapabilitiesProtocol *create_ComUsOpenserverProtocolsCapabilitiesProtocol_initWithComUsOpenserverSessionSession_(ComUsOpenserverSessionSession *session);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsCapabilitiesProtocol)
 
-#endif // _ComUsOpenserverProtocolsCapabilitiesProtocol_H_
+#endif
+
+#pragma pop_macro("CapabilitiesProtocol_INCLUDE_ALL")

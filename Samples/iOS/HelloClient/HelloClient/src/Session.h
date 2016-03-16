@@ -3,14 +3,25 @@
 //  source: ./com/us/openserver/session/Session.java
 //
 
-#ifndef _ComUsOpenserverSessionSession_H_
-#define _ComUsOpenserverSessionSession_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("Session_INCLUDE_ALL")
+#ifdef Session_RESTRICT
+#define Session_INCLUDE_ALL 0
+#else
+#define Session_INCLUDE_ALL 1
+#endif
+#undef Session_RESTRICT
+
+#if !defined (ComUsOpenserverSessionSession_) && (Session_INCLUDE_ALL || defined(ComUsOpenserverSessionSession_INCLUDE))
+#define ComUsOpenserverSessionSession_
+
+#define JavaLangRunnable_RESTRICT 1
+#define JavaLangRunnable_INCLUDE 1
 #include "java/lang/Runnable.h"
 
 @class ComUsOpenserverClient;
-@class ComUsOpenserverLevelEnum;
+@class ComUsOpenserverLevel;
 @class ComUsOpenserverProtocolsBinaryReader;
 @class ComUsOpenserverProtocolsProtocolBase;
 @class IOSByteArray;
@@ -51,8 +62,8 @@
 
 - (void)logWithJavaLangException:(JavaLangException *)ex;
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message;
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message;
 
 - (void)onCapabilitiesErrorWithInt:(jint)protocolId
                       withNSString:(NSString *)message;
@@ -75,6 +86,10 @@ FOUNDATION_EXPORT void ComUsOpenserverSessionSession_initWithComUsOpenserverClie
 
 FOUNDATION_EXPORT ComUsOpenserverSessionSession *new_ComUsOpenserverSessionSession_initWithComUsOpenserverClient_withJavaNetSocket_withNSString_(ComUsOpenserverClient *client, JavaNetSocket *socket, NSString *address) NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverSessionSession *create_ComUsOpenserverSessionSession_initWithComUsOpenserverClient_withJavaNetSocket_withNSString_(ComUsOpenserverClient *client, JavaNetSocket *socket, NSString *address);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverSessionSession)
 
-#endif // _ComUsOpenserverSessionSession_H_
+#endif
+
+#pragma pop_macro("Session_INCLUDE_ALL")
