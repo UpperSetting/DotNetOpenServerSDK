@@ -24,7 +24,7 @@ using System.Resources;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("Upper Setting Corporation")]
 [assembly: AssemblyProduct("DotNetOpenServer SDK")]
-[assembly: AssemblyCopyright("Copyright © 2015 Upper Setting Corporation")]
+[assembly: AssemblyCopyright("Copyright © 2015-2016 Upper Setting Corporation")]
 [assembly: NeutralResourcesLanguage("en")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
