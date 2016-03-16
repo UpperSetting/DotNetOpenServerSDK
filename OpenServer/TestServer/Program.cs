@@ -57,7 +57,7 @@ namespace TestServer
                     new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolServer)));
 
                 server = new Server(cfg, protocolConfigurations);
-                server.Logger.LogPackets = true;
+                //server.Logger.LogPackets = true;
                 server.Logger.LogToDebuggerOutputView = true;
                 server.Logger.LogDebug = true;
 #endif

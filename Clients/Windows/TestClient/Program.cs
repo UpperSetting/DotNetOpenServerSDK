@@ -35,31 +35,31 @@ namespace TestClient
             Client client = null;
             try
             {
-                #region Load configuration from the app.config
+#if USE_APP_CONFIG
                 client = new Client();
-                #endregion
+#else                
+                ServerConfiguration cfg = new ServerConfiguration();
+                cfg.Host = "localhost";
+                cfg.TlsConfiguration.Enabled = false;
 
-                #region Configure programatically
-                //Logger logger = new Log4NetLogger();
+                Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
+                    new Dictionary<ushort, ProtocolConfiguration>();
 
-                //ServerConfiguration cfg = new ServerConfiguration();
-                //cfg.Host = "localhost";
-                //cfg.TlsConfiguration.Enabled = false;
+                protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
+                    new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
 
-                //Dictionary<ushort, ProtocolConfiguration> protocolConfigurations =
-                //    new Dictionary<ushort, ProtocolConfiguration>();
+                protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER,
+                    new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolClient)));
 
-                //protocolConfigurations.Add(KeepAliveProtocol.PROTOCOL_IDENTIFIER,
-                //    new ProtocolConfiguration(KeepAliveProtocol.PROTOCOL_IDENTIFIER, typeof(KeepAliveProtocol)));
+                protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
+                    new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
 
-                //protocolConfigurations.Add(WinAuthProtocol.PROTOCOL_IDENTIFIER,
-                //    new ProtocolConfiguration(WinAuthProtocol.PROTOCOL_IDENTIFIER, typeof(WinAuthProtocolClient)));
 
-                //protocolConfigurations.Add(HelloProtocol.PROTOCOL_IDENTIFIER,
-                //    new ProtocolConfiguration(HelloProtocol.PROTOCOL_IDENTIFIER, typeof(HelloProtocolClient)));
-
-                //client = new Client(cfg, protocolConfigurations, logger);
-                #endregion
+                client = new Client(cfg, protocolConfigurations);
+                //client.Logger.LogPackets = true;
+                client.Logger.LogToDebuggerOutputView = true;
+                client.Logger.LogDebug = true;
+#endif
 
                 client.Connect();
 
