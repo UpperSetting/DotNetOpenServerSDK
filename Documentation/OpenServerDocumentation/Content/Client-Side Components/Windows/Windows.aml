@@ -213,7 +213,7 @@
                   Create the
                   <codeEntityReference>T:US.OpenServer.Client</codeEntityReference> passing in the
                   <codeEntityReference>T:US.OpenServer.Configuration.ServerConfiguration</codeEntityReference>
-                  and the the Dictionary of
+                  and the Dictionary of
                   <codeEntityReference>T:US.OpenServer.Protocols.ProtocolConfiguration</codeEntityReference> objects.
                 </para>
                 <codeReference>Portable#CreateClient</codeReference>

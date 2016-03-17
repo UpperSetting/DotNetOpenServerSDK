@@ -217,7 +217,7 @@
                 <para>
                   From the <legacyBold>Project navigator</legacyBold> view, click on the
                   <legacyBold>HelloClient</legacyBold> node then select the <legacyBold> Build
-                  Settings </legacyBold> tab. Make the the following changes (substitute the
+                  Settings </legacyBold> tab. Make the following changes (substitute the
                   directory you extracted the J2ObjC files too for $distribution-path):
                 </para>
                 <list class="ordered">
