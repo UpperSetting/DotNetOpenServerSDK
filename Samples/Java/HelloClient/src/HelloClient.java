@@ -65,8 +65,10 @@ public class HelloClient implements IClientObserver, IHelloProtocolObserver
             	System.out.println(String.format("Server Supports Protocol ID: %d", protocolId));
 
             String userName = "TestUser";
+            String password = "T3stus3r";
+            String domain = null;
             WinAuthProtocolClient wap = (WinAuthProtocolClient)client.initialize(WinAuthProtocol.PROTOCOL_IDENTIFIER);
-            if (!wap.authenticate(userName, "T3stus3r", null))
+            if (!wap.authenticate(userName, password, domain))
                 throw new Exception("Access denied.");
 
             client.initialize(KeepAliveProtocol.PROTOCOL_IDENTIFIER);
