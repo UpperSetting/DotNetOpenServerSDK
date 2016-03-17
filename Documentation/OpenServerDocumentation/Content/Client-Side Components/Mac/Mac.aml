@@ -222,16 +222,15 @@
                 </para>
                 <list class="ordered">
                   <listItem><para>In User Header Search Paths, add $distribution-path/include</para></listItem>
-                  <listItem><para>In Library Search Paths, add $distribution-path/lib.</para></listItem>
+                  <listItem><para>In Library Search Paths, add $distribution-path/lib/macosx.</para></listItem>
                   <listItem><para>In Other Linker Flags, add -ljre_emul. (jre_emul is J2ObjC's JRE emulation library).</para></listItem>
                 </list>
                 <para>
                   Finally, select the <legacyBold>Build Phases</legacyBold> tab, open the Link phase and add:
                 </para>
-                  <list class="ordered">
-                  <listItem><para>The libz.dylib library, needed to support java.util.zip.</para></listItem>
-                  <listItem><para>The Security Framework, to support secure hash generation.</para></listItem>
-                  <listItem><para>The libicucore.dylib library, needed to support java.text.</para></listItem>
+                <list class="ordered">
+                  <listItem><para>Foundation.framework</para></listItem>
+                  <listItem><para>Security Framework</para></listItem>
                 </list>
               </content>
             </step>

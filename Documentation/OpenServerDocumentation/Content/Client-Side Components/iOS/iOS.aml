@@ -227,9 +227,9 @@
                   Finally, select the <legacyBold>Build Phases</legacyBold> tab, open the Link phase and add:
                 </para>
                   <list class="ordered">
-                  <listItem><para>The libz.dylib library, needed to support java.util.zip.</para></listItem>
-                  <listItem><para>The Security Framework, to support secure hash generation.</para></listItem>
-                  <listItem><para>The libicucore.dylib library, needed to support java.text.</para></listItem>
+                  <listItem><para>Foundation.framework</para></listItem>
+                  <listItem><para>Security Framework</para></listItem>
+                  <listItem><para>UIKit.framework</para></listItem>
                 </list>
               </content>
             </step>
