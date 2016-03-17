@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/session/PacketHandler.java
 //
 
-
 #include "BinaryReader.h"
 #include "J2ObjC_source.h"
 #include "PacketHandler.h"
@@ -26,9 +25,11 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverSessionPacketHandler, br_, ComUsOpenserverPro
 J2OBJC_FIELD_SETTER(ComUsOpenserverSessionPacketHandler, exception_, JavaLangException *)
 J2OBJC_FIELD_SETTER(ComUsOpenserverSessionPacketHandler, t_, JavaLangThread *)
 
-static jint ComUsOpenserverSessionPacketHandler_id__;
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverSessionPacketHandler, id__, jint)
-J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionPacketHandler, id__, jint)
+inline jint ComUsOpenserverSessionPacketHandler_get_id();
+inline jint ComUsOpenserverSessionPacketHandler_set_id(jint value);
+inline jint *ComUsOpenserverSessionPacketHandler_getRef_id();
+static jint ComUsOpenserverSessionPacketHandler_id;
+J2OBJC_STATIC_FIELD_PRIMITIVE(ComUsOpenserverSessionPacketHandler, id, jint)
 
 @implementation ComUsOpenserverSessionPacketHandler
 
@@ -39,7 +40,7 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionPacketHandler, id__, jint)
 }
 
 - (void)execute {
-  t_ = new_JavaLangThread_initWithJavaLangRunnable_withNSString_(self, JreStrcat("$I", @"PacketHandler", ComUsOpenserverSessionPacketHandler_id__++));
+  t_ = new_JavaLangThread_initWithJavaLangRunnable_withNSString_(self, JreStrcat("$I", @"PacketHandler", ComUsOpenserverSessionPacketHandler_id++));
   [t_ start];
 }
 
@@ -64,11 +65,11 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionPacketHandler, id__, jint)
     { "getException", NULL, "Ljava.lang.Exception;", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "session_", NULL, 0x2, "Lcom.us.openserver.session.Session;", NULL, NULL,  },
-    { "br_", NULL, 0x2, "Lcom.us.openserver.protocols.BinaryReader;", NULL, NULL,  },
-    { "exception_", NULL, 0x2, "Ljava.lang.Exception;", NULL, NULL,  },
-    { "t_", NULL, 0x2, "Ljava.lang.Thread;", NULL, NULL,  },
-    { "id__", "id", 0xa, "I", &ComUsOpenserverSessionPacketHandler_id__, NULL,  },
+    { "session_", NULL, 0x2, "Lcom.us.openserver.session.Session;", NULL, NULL, .constantValue.asLong = 0 },
+    { "br_", NULL, 0x2, "Lcom.us.openserver.protocols.BinaryReader;", NULL, NULL, .constantValue.asLong = 0 },
+    { "exception_", NULL, 0x2, "Ljava.lang.Exception;", NULL, NULL, .constantValue.asLong = 0 },
+    { "t_", NULL, 0x2, "Ljava.lang.Thread;", NULL, NULL, .constantValue.asLong = 0 },
+    { "id", "id", 0xa, "I", &ComUsOpenserverSessionPacketHandler_id, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverSessionPacketHandler = { 2, "PacketHandler", "com.us.openserver.session", NULL, 0x1, 4, methods, 5, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverSessionPacketHandler;
@@ -77,7 +78,7 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionPacketHandler, id__, jint)
 @end
 
 void ComUsOpenserverSessionPacketHandler_initWithComUsOpenserverSessionSession_withComUsOpenserverProtocolsBinaryReader_(ComUsOpenserverSessionPacketHandler *self, ComUsOpenserverSessionSession *session, ComUsOpenserverProtocolsBinaryReader *br) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
   self->session_ = session;
   self->br_ = br;
 }
@@ -86,6 +87,10 @@ ComUsOpenserverSessionPacketHandler *new_ComUsOpenserverSessionPacketHandler_ini
   ComUsOpenserverSessionPacketHandler *self = [ComUsOpenserverSessionPacketHandler alloc];
   ComUsOpenserverSessionPacketHandler_initWithComUsOpenserverSessionSession_withComUsOpenserverProtocolsBinaryReader_(self, session, br);
   return self;
+}
+
+ComUsOpenserverSessionPacketHandler *create_ComUsOpenserverSessionPacketHandler_initWithComUsOpenserverSessionSession_withComUsOpenserverProtocolsBinaryReader_(ComUsOpenserverSessionSession *session, ComUsOpenserverProtocolsBinaryReader *br) {
+  return new_ComUsOpenserverSessionPacketHandler_initWithComUsOpenserverSessionSession_withComUsOpenserverProtocolsBinaryReader_(session, br);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverSessionPacketHandler)

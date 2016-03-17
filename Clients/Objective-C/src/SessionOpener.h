@@ -3,10 +3,21 @@
 //  source: ./com/us/openserver/session/SessionOpener.java
 //
 
-#ifndef _ComUsOpenserverSessionSessionOpener_H_
-#define _ComUsOpenserverSessionSessionOpener_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("SessionOpener_INCLUDE_ALL")
+#ifdef SessionOpener_RESTRICT
+#define SessionOpener_INCLUDE_ALL 0
+#else
+#define SessionOpener_INCLUDE_ALL 1
+#endif
+#undef SessionOpener_RESTRICT
+
+#if !defined (ComUsOpenserverSessionSessionOpener_) && (SessionOpener_INCLUDE_ALL || defined(ComUsOpenserverSessionSessionOpener_INCLUDE))
+#define ComUsOpenserverSessionSessionOpener_
+
+#define JavaLangRunnable_RESTRICT 1
+#define JavaLangRunnable_INCLUDE 1
 #include "java/lang/Runnable.h"
 
 @class ComUsOpenserverClient;
@@ -32,6 +43,10 @@ FOUNDATION_EXPORT void ComUsOpenserverSessionSessionOpener_initWithComUsOpenserv
 
 FOUNDATION_EXPORT ComUsOpenserverSessionSessionOpener *new_ComUsOpenserverSessionSessionOpener_initWithComUsOpenserverClient_(ComUsOpenserverClient *client) NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverSessionSessionOpener *create_ComUsOpenserverSessionSessionOpener_initWithComUsOpenserverClient_(ComUsOpenserverClient *client);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverSessionSessionOpener)
 
-#endif // _ComUsOpenserverSessionSessionOpener_H_
+#endif
+
+#pragma pop_macro("SessionOpener_INCLUDE_ALL")

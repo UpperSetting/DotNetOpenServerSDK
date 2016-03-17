@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/protocols/AuthenticationProtocolBase.java
 //
 
-
 #include "AuthenticationProtocolBase.h"
 #include "J2ObjC_source.h"
 #include "ProtocolBase.h"
@@ -18,29 +17,37 @@
   return userName_;
 }
 
+- (id)getUserId {
+  return userId_;
+}
+
+J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   ComUsOpenserverProtocolsAuthenticationProtocolBase_init(self);
   return self;
 }
+J2OBJC_IGNORE_DESIGNATED_END
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "getIsAuthenticated", NULL, "Z", 0x1, NULL, NULL },
     { "getUserName", NULL, "Ljava.lang.String;", 0x1, NULL, NULL },
+    { "getUserId", NULL, "Ljava.lang.Object;", 0x1, NULL, NULL },
     { "init", NULL, NULL, 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "isAuthenticated_", NULL, 0x4, "Z", NULL, NULL,  },
-    { "userName_", NULL, 0x4, "Ljava.lang.String;", NULL, NULL,  },
+    { "isAuthenticated_", NULL, 0x4, "Z", NULL, NULL, .constantValue.asLong = 0 },
+    { "userName_", NULL, 0x4, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
+    { "userId_", NULL, 0x4, "Ljava.lang.Object;", NULL, NULL, .constantValue.asLong = 0 },
   };
-  static const J2ObjcClassInfo _ComUsOpenserverProtocolsAuthenticationProtocolBase = { 2, "AuthenticationProtocolBase", "com.us.openserver.protocols", NULL, 0x401, 3, methods, 2, fields, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _ComUsOpenserverProtocolsAuthenticationProtocolBase = { 2, "AuthenticationProtocolBase", "com.us.openserver.protocols", NULL, 0x401, 4, methods, 3, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverProtocolsAuthenticationProtocolBase;
 }
 
 @end
 
 void ComUsOpenserverProtocolsAuthenticationProtocolBase_init(ComUsOpenserverProtocolsAuthenticationProtocolBase *self) {
-  (void) ComUsOpenserverProtocolsProtocolBase_init(self);
+  ComUsOpenserverProtocolsProtocolBase_init(self);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverProtocolsAuthenticationProtocolBase)

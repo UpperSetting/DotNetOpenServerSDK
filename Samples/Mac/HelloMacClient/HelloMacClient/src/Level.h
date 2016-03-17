@@ -3,53 +3,71 @@
 //  source: ./com/us/openserver/Level.java
 //
 
-#ifndef _ComUsOpenserverLevel_H_
-#define _ComUsOpenserverLevel_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("Level_INCLUDE_ALL")
+#ifdef Level_RESTRICT
+#define Level_INCLUDE_ALL 0
+#else
+#define Level_INCLUDE_ALL 1
+#endif
+#undef Level_RESTRICT
+
+#if !defined (ComUsOpenserverLevel_) && (Level_INCLUDE_ALL || defined(ComUsOpenserverLevel_INCLUDE))
+#define ComUsOpenserverLevel_
+
+#define JavaLangEnum_RESTRICT 1
+#define JavaLangEnum_INCLUDE 1
 #include "java/lang/Enum.h"
 
-typedef NS_ENUM(NSUInteger, ComUsOpenserverLevel) {
-  ComUsOpenserverLevel_Debug = 0,
-  ComUsOpenserverLevel_Info = 1,
-  ComUsOpenserverLevel_Notice = 2,
-  ComUsOpenserverLevel_Critical = 3,
-  ComUsOpenserverLevel_Error = 4,
+typedef NS_ENUM(NSUInteger, ComUsOpenserverLevel_Enum) {
+  ComUsOpenserverLevel_Enum_Debug = 0,
+  ComUsOpenserverLevel_Enum_Info = 1,
+  ComUsOpenserverLevel_Enum_Notice = 2,
+  ComUsOpenserverLevel_Enum_Critical = 3,
+  ComUsOpenserverLevel_Enum_Error = 4,
 };
 
-@interface ComUsOpenserverLevelEnum : JavaLangEnum < NSCopying >
+@interface ComUsOpenserverLevel : JavaLangEnum < NSCopying >
 
 #pragma mark Package-Private
 
 + (IOSObjectArray *)values;
-FOUNDATION_EXPORT IOSObjectArray *ComUsOpenserverLevelEnum_values();
 
-+ (ComUsOpenserverLevelEnum *)valueOfWithNSString:(NSString *)name;
-FOUNDATION_EXPORT ComUsOpenserverLevelEnum *ComUsOpenserverLevelEnum_valueOfWithNSString_(NSString *name);
++ (ComUsOpenserverLevel *)valueOfWithNSString:(NSString *)name;
 
 - (id)copyWithZone:(NSZone *)zone;
 
 @end
 
-J2OBJC_STATIC_INIT(ComUsOpenserverLevelEnum)
+J2OBJC_STATIC_INIT(ComUsOpenserverLevel)
 
-FOUNDATION_EXPORT ComUsOpenserverLevelEnum *ComUsOpenserverLevelEnum_values_[];
+/*! INTERNAL ONLY - Use enum accessors declared below. */
+FOUNDATION_EXPORT ComUsOpenserverLevel *ComUsOpenserverLevel_values_[];
 
-#define ComUsOpenserverLevelEnum_Debug ComUsOpenserverLevelEnum_values_[ComUsOpenserverLevel_Debug]
-J2OBJC_ENUM_CONSTANT_GETTER(ComUsOpenserverLevelEnum, Debug)
+inline ComUsOpenserverLevel *ComUsOpenserverLevel_get_Debug();
+J2OBJC_ENUM_CONSTANT(ComUsOpenserverLevel, Debug)
 
-#define ComUsOpenserverLevelEnum_Info ComUsOpenserverLevelEnum_values_[ComUsOpenserverLevel_Info]
-J2OBJC_ENUM_CONSTANT_GETTER(ComUsOpenserverLevelEnum, Info)
+inline ComUsOpenserverLevel *ComUsOpenserverLevel_get_Info();
+J2OBJC_ENUM_CONSTANT(ComUsOpenserverLevel, Info)
 
-#define ComUsOpenserverLevelEnum_Notice ComUsOpenserverLevelEnum_values_[ComUsOpenserverLevel_Notice]
-J2OBJC_ENUM_CONSTANT_GETTER(ComUsOpenserverLevelEnum, Notice)
+inline ComUsOpenserverLevel *ComUsOpenserverLevel_get_Notice();
+J2OBJC_ENUM_CONSTANT(ComUsOpenserverLevel, Notice)
 
-#define ComUsOpenserverLevelEnum_Critical ComUsOpenserverLevelEnum_values_[ComUsOpenserverLevel_Critical]
-J2OBJC_ENUM_CONSTANT_GETTER(ComUsOpenserverLevelEnum, Critical)
+inline ComUsOpenserverLevel *ComUsOpenserverLevel_get_Critical();
+J2OBJC_ENUM_CONSTANT(ComUsOpenserverLevel, Critical)
 
-#define ComUsOpenserverLevelEnum_Error ComUsOpenserverLevelEnum_values_[ComUsOpenserverLevel_Error]
-J2OBJC_ENUM_CONSTANT_GETTER(ComUsOpenserverLevelEnum, Error)
+inline ComUsOpenserverLevel *ComUsOpenserverLevel_get_Error();
+J2OBJC_ENUM_CONSTANT(ComUsOpenserverLevel, Error)
 
-J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverLevelEnum)
+FOUNDATION_EXPORT IOSObjectArray *ComUsOpenserverLevel_values();
 
-#endif // _ComUsOpenserverLevel_H_
+FOUNDATION_EXPORT ComUsOpenserverLevel *ComUsOpenserverLevel_valueOfWithNSString_(NSString *name);
+
+FOUNDATION_EXPORT ComUsOpenserverLevel *ComUsOpenserverLevel_fromOrdinal(NSUInteger ordinal);
+
+J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverLevel)
+
+#endif
+
+#pragma pop_macro("Level_INCLUDE_ALL")

@@ -3,14 +3,18 @@
 //  source: ./com/us/openserver/protocols/CapabilitiesProtocolCommands.java
 //
 
-#ifndef _ComUsOpenserverProtocolsCapabilitiesProtocolCommands_H_
-#define _ComUsOpenserverProtocolsCapabilitiesProtocolCommands_H_
-
 #include "J2ObjC_header.h"
 
-#define ComUsOpenserverProtocolsCapabilitiesProtocolCommands_GET_PROTOCOL_IDS 1
-#define ComUsOpenserverProtocolsCapabilitiesProtocolCommands_PROTOCOL_IDS 2
-#define ComUsOpenserverProtocolsCapabilitiesProtocolCommands_ERROR 255
+#pragma push_macro("CapabilitiesProtocolCommands_INCLUDE_ALL")
+#ifdef CapabilitiesProtocolCommands_RESTRICT
+#define CapabilitiesProtocolCommands_INCLUDE_ALL 0
+#else
+#define CapabilitiesProtocolCommands_INCLUDE_ALL 1
+#endif
+#undef CapabilitiesProtocolCommands_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsCapabilitiesProtocolCommands_) && (CapabilitiesProtocolCommands_INCLUDE_ALL || defined(ComUsOpenserverProtocolsCapabilitiesProtocolCommands_INCLUDE))
+#define ComUsOpenserverProtocolsCapabilitiesProtocolCommands_
 
 @interface ComUsOpenserverProtocolsCapabilitiesProtocolCommands : NSObject
 
@@ -22,16 +26,26 @@
 
 J2OBJC_EMPTY_STATIC_INIT(ComUsOpenserverProtocolsCapabilitiesProtocolCommands)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsCapabilitiesProtocolCommands, GET_PROTOCOL_IDS, jint)
+inline jint ComUsOpenserverProtocolsCapabilitiesProtocolCommands_get_GET_PROTOCOL_IDS();
+#define ComUsOpenserverProtocolsCapabilitiesProtocolCommands_GET_PROTOCOL_IDS 1
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsCapabilitiesProtocolCommands, GET_PROTOCOL_IDS, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsCapabilitiesProtocolCommands, PROTOCOL_IDS, jint)
+inline jint ComUsOpenserverProtocolsCapabilitiesProtocolCommands_get_PROTOCOL_IDS();
+#define ComUsOpenserverProtocolsCapabilitiesProtocolCommands_PROTOCOL_IDS 2
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsCapabilitiesProtocolCommands, PROTOCOL_IDS, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsCapabilitiesProtocolCommands, ERROR, jint)
+inline jint ComUsOpenserverProtocolsCapabilitiesProtocolCommands_get_ERROR();
+#define ComUsOpenserverProtocolsCapabilitiesProtocolCommands_ERROR 255
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsCapabilitiesProtocolCommands, ERROR, jint)
 
 FOUNDATION_EXPORT void ComUsOpenserverProtocolsCapabilitiesProtocolCommands_init(ComUsOpenserverProtocolsCapabilitiesProtocolCommands *self);
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsCapabilitiesProtocolCommands *new_ComUsOpenserverProtocolsCapabilitiesProtocolCommands_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsCapabilitiesProtocolCommands *create_ComUsOpenserverProtocolsCapabilitiesProtocolCommands_init();
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsCapabilitiesProtocolCommands)
 
-#endif // _ComUsOpenserverProtocolsCapabilitiesProtocolCommands_H_
+#endif
+
+#pragma pop_macro("CapabilitiesProtocolCommands_INCLUDE_ALL")

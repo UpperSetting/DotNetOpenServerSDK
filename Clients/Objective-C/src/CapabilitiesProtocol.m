@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/protocols/CapabilitiesProtocol.java
 //
 
-
 #include "BinaryReader.h"
 #include "BinaryWriter.h"
 #include "CapabilitiesProtocol.h"
@@ -69,7 +68,7 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsCapabilitiesProtocol, supportedRemot
       [bw writeWithInt:(jbyte) ComUsOpenserverProtocolsCapabilitiesProtocolCommands_ERROR];
       [bw writeWithInt:protocolId];
       [bw writeStringWithNSString:message];
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Notice() withNSString:message];
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Notice) withNSString:message];
       ComUsOpenserverProtocolsPacketWriter *pw = new_ComUsOpenserverProtocolsPacketWriter_initWithComUsOpenserverSessionSession_withByteArray_(session_, [bw toByteArray]);
       [pw execute];
     }
@@ -103,10 +102,10 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsCapabilitiesProtocol, supportedRemot
           jint const *e__ = b__ + a__->size_;
           while (b__ < e__) {
             jint p = *b__++;
-            str = JreStrcat("$$", str, JreStrcat("I$", p, @", "));
+            (void) JreStrAppendStrong(&str, "I$", p, @", ");
           }
         }
-        [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Debug() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Sent Protocol IDs: %1$s", [IOSObjectArray newArrayWithObjects:(id[]){ str } count:1 type:NSObject_class_()])];
+        [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Debug) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Sent Protocol IDs: %s", [IOSObjectArray newArrayWithObjects:(id[]){ str } count:1 type:NSObject_class_()])];
         @try {
           [session_ sendWithByteArray:[bw toByteArray]];
         }
@@ -132,10 +131,10 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsCapabilitiesProtocol, supportedRemot
         jint const *e__ = b__ + a__->size_;
         while (b__ < e__) {
           jint p = *b__++;
-          str = JreStrcat("$$", str, JreStrcat("I$", p, @", "));
+          (void) JreStrAppendStrong(&str, "I$", p, @", ");
         }
       }
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Debug() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Received Protocol IDs: %1$s", [IOSObjectArray newArrayWithObjects:(id[]){ str } count:1 type:NSObject_class_()])];
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Debug) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Received Protocol IDs: %s", [IOSObjectArray newArrayWithObjects:(id[]){ str } count:1 type:NSObject_class_()])];
       [self notifyAll];
     }
     break;
@@ -147,20 +146,20 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsCapabilitiesProtocol, supportedRemot
       }
       @catch (JavaIoIOException *ex) {
       }
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Error() withNSString:errorMessage];
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Error) withNSString:errorMessage];
       [self notifyAll];
     }
     break;
     default:
-    [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Error() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Invalid or unsupported command.  Command: %1$s", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangInteger_valueOfWithInt_(command) } count:1 type:NSObject_class_()])];
+    [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Error) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Invalid or unsupported command.  Command: %d", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangInteger_valueOfWithInt_(command) } count:1 type:NSObject_class_()])];
     break;
   }
   if (errorMessage != nil && ((jint) [errorMessage length]) > 0) [((ComUsOpenserverSessionSession *) nil_chk(session_)) onCapabilitiesErrorWithInt:protocolId withNSString:errorMessage];
 }
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message {
-  [((ComUsOpenserverSessionSession *) nil_chk(session_)) logWithComUsOpenserverLevelEnum:level withNSString:NSString_formatWithNSString_withNSObjectArray_(@"[Capabilities] %1$s", [IOSObjectArray newArrayWithObjects:(id[]){ message } count:1 type:NSObject_class_()])];
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message {
+  [((ComUsOpenserverSessionSession *) nil_chk(session_)) logWithComUsOpenserverLevel:level withNSString:NSString_formatWithNSString_withNSObjectArray_(@"[Capabilities] %s", [IOSObjectArray newArrayWithObjects:(id[]){ message } count:1 type:NSObject_class_()])];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -169,12 +168,12 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsCapabilitiesProtocol, supportedRemot
     { "getRemoteSupportedProtocolIds", NULL, "[I", 0x1, NULL, NULL },
     { "sendErrorWithInt:withNSString:", "sendError", "V", 0x1, NULL, NULL },
     { "onPacketReceivedWithComUsOpenserverProtocolsBinaryReader:", "onPacketReceived", "V", 0x1, NULL, NULL },
-    { "logWithComUsOpenserverLevelEnum:withNSString:", "log", "V", 0x4, NULL, NULL },
+    { "logWithComUsOpenserverLevel:withNSString:", "log", "V", 0x4, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "PROTOCOL_IDENTIFIER_", NULL, 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsCapabilitiesProtocol_PROTOCOL_IDENTIFIER },
-    { "TIMEOUT_", NULL, 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsCapabilitiesProtocol_TIMEOUT },
-    { "supportedRemoteProtocolIds_", NULL, 0x2, "[I", NULL, NULL,  },
+    { "PROTOCOL_IDENTIFIER", "PROTOCOL_IDENTIFIER", 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsCapabilitiesProtocol_PROTOCOL_IDENTIFIER },
+    { "TIMEOUT", "TIMEOUT", 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsCapabilitiesProtocol_TIMEOUT },
+    { "supportedRemoteProtocolIds_", NULL, 0x2, "[I", NULL, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverProtocolsCapabilitiesProtocol = { 2, "CapabilitiesProtocol", "com.us.openserver.protocols", NULL, 0x1, 5, methods, 3, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverProtocolsCapabilitiesProtocol;
@@ -183,7 +182,7 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsCapabilitiesProtocol, supportedRemot
 @end
 
 void ComUsOpenserverProtocolsCapabilitiesProtocol_initWithComUsOpenserverSessionSession_(ComUsOpenserverProtocolsCapabilitiesProtocol *self, ComUsOpenserverSessionSession *session) {
-  (void) ComUsOpenserverProtocolsProtocolBase_init(self);
+  ComUsOpenserverProtocolsProtocolBase_init(self);
   self->session_ = session;
 }
 
@@ -191,6 +190,10 @@ ComUsOpenserverProtocolsCapabilitiesProtocol *new_ComUsOpenserverProtocolsCapabi
   ComUsOpenserverProtocolsCapabilitiesProtocol *self = [ComUsOpenserverProtocolsCapabilitiesProtocol alloc];
   ComUsOpenserverProtocolsCapabilitiesProtocol_initWithComUsOpenserverSessionSession_(self, session);
   return self;
+}
+
+ComUsOpenserverProtocolsCapabilitiesProtocol *create_ComUsOpenserverProtocolsCapabilitiesProtocol_initWithComUsOpenserverSessionSession_(ComUsOpenserverSessionSession *session) {
+  return new_ComUsOpenserverProtocolsCapabilitiesProtocol_initWithComUsOpenserverSessionSession_(session);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverProtocolsCapabilitiesProtocol)

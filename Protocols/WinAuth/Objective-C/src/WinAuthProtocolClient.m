@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/protocols/winauth/WinAuthProtocolClient.java
 //
 
-
 #include "BinaryReader.h"
 #include "BinaryWriter.h"
 #include "IOSObjectArray.h"
@@ -21,16 +20,18 @@
 
 @implementation ComUsOpenserverProtocolsWinauthWinAuthProtocolClient
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   ComUsOpenserverProtocolsWinauthWinAuthProtocolClient_init(self);
   return self;
 }
+J2OBJC_IGNORE_DESIGNATED_END
 
 - (jboolean)authenticateWithNSString:(NSString *)userName
                         withNSString:(NSString *)password
                         withNSString:(NSString *)domain {
   @synchronized(self) {
-    if (session_ == nil) return NO;
+    if (session_ == nil) return false;
     userName_ = userName;
     ((ComUsOpenserverSessionSession *) nil_chk(session_))->UserName_ = userName;
     ComUsOpenserverProtocolsBinaryWriter *bw = new_ComUsOpenserverProtocolsBinaryWriter_init();
@@ -65,20 +66,20 @@
     jint command = [((ComUsOpenserverProtocolsBinaryReader *) nil_chk(br)) readByte];
     switch (command) {
       case ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_AUTHENTICATED:
-      isAuthenticated_ = YES;
-      ((ComUsOpenserverSessionSession *) nil_chk(session_))->IsAuthenticated_ = YES;
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Info() withNSString:@"Authenticated."];
+      isAuthenticated_ = true;
+      ((ComUsOpenserverSessionSession *) nil_chk(session_))->IsAuthenticated_ = true;
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Info) withNSString:@"Authenticated."];
       [self notifyAll];
       break;
       case ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_ACCESS_DENIED:
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Notice() withNSString:@"Access denied."];
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Notice) withNSString:@"Access denied."];
       [self notifyAll];
       break;
       case ComUsOpenserverProtocolsWinauthWinAuthProtocolCommands_ERROR:
       {
         @try {
           NSString *errorMessage = [br readString];
-          [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Notice() withNSString:errorMessage];
+          [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Notice) withNSString:errorMessage];
         }
         @catch (JavaIoIOException *ex) {
         }
@@ -86,7 +87,7 @@
         break;
       }
       default:
-      [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Error() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Invalid or unsupported command.  Command: %1$s", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangInteger_valueOfWithInt_(command) } count:1 type:NSObject_class_()])];
+      [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Error) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Invalid or unsupported command.  Command: %d", [IOSObjectArray newArrayWithObjects:(id[]){ JavaLangInteger_valueOfWithInt_(command) } count:1 type:NSObject_class_()])];
       break;
     }
   }
@@ -99,7 +100,7 @@
     { "onPacketReceivedWithComUsOpenserverProtocolsBinaryReader:", "onPacketReceived", "V", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "TIMEOUT_", NULL, 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsWinauthWinAuthProtocolClient_TIMEOUT },
+    { "TIMEOUT", "TIMEOUT", 0x19, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverProtocolsWinauthWinAuthProtocolClient_TIMEOUT },
   };
   static const J2ObjcClassInfo _ComUsOpenserverProtocolsWinauthWinAuthProtocolClient = { 2, "WinAuthProtocolClient", "com.us.openserver.protocols.winauth", NULL, 0x1, 3, methods, 1, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverProtocolsWinauthWinAuthProtocolClient;
@@ -108,13 +109,17 @@
 @end
 
 void ComUsOpenserverProtocolsWinauthWinAuthProtocolClient_init(ComUsOpenserverProtocolsWinauthWinAuthProtocolClient *self) {
-  (void) ComUsOpenserverProtocolsWinauthWinAuthProtocol_init(self);
+  ComUsOpenserverProtocolsWinauthWinAuthProtocol_init(self);
 }
 
 ComUsOpenserverProtocolsWinauthWinAuthProtocolClient *new_ComUsOpenserverProtocolsWinauthWinAuthProtocolClient_init() {
   ComUsOpenserverProtocolsWinauthWinAuthProtocolClient *self = [ComUsOpenserverProtocolsWinauthWinAuthProtocolClient alloc];
   ComUsOpenserverProtocolsWinauthWinAuthProtocolClient_init(self);
   return self;
+}
+
+ComUsOpenserverProtocolsWinauthWinAuthProtocolClient *create_ComUsOpenserverProtocolsWinauthWinAuthProtocolClient_init() {
+  return new_ComUsOpenserverProtocolsWinauthWinAuthProtocolClient_init();
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverProtocolsWinauthWinAuthProtocolClient)

@@ -3,13 +3,18 @@
 //  source: ./com/us/openserver/protocols/keepalive/KeepAliveProtocolCommands.java
 //
 
-#ifndef _ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_H_
-#define _ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_H_
-
 #include "J2ObjC_header.h"
 
-#define ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_KEEP_ALIVE 1
-#define ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_QUIT 255
+#pragma push_macro("KeepAliveProtocolCommands_INCLUDE_ALL")
+#ifdef KeepAliveProtocolCommands_RESTRICT
+#define KeepAliveProtocolCommands_INCLUDE_ALL 0
+#else
+#define KeepAliveProtocolCommands_INCLUDE_ALL 1
+#endif
+#undef KeepAliveProtocolCommands_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_) && (KeepAliveProtocolCommands_INCLUDE_ALL || defined(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_INCLUDE))
+#define ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_
 
 @interface ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands : NSObject
 
@@ -21,14 +26,22 @@
 
 J2OBJC_EMPTY_STATIC_INIT(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands, KEEP_ALIVE, jint)
+inline jint ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_get_KEEP_ALIVE();
+#define ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_KEEP_ALIVE 1
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands, KEEP_ALIVE, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands, QUIT, jint)
+inline jint ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_get_QUIT();
+#define ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_QUIT 255
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands, QUIT, jint)
 
 FOUNDATION_EXPORT void ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_init(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands *self);
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands *new_ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands *create_ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_init();
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands)
 
-#endif // _ComUsOpenserverProtocolsKeepaliveKeepAliveProtocolCommands_H_
+#endif
+
+#pragma pop_macro("KeepAliveProtocolCommands_INCLUDE_ALL")

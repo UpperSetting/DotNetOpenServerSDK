@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/session/SessionCloser.java
 //
 
-
 #include "J2ObjC_source.h"
 #include "Session.h"
 #include "SessionCloser.h"
@@ -20,9 +19,11 @@
 
 J2OBJC_FIELD_SETTER(ComUsOpenserverSessionSessionCloser, session_, ComUsOpenserverSessionSession *)
 
-static jint ComUsOpenserverSessionSessionCloser_id__;
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverSessionSessionCloser, id__, jint)
-J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionSessionCloser, id__, jint)
+inline jint ComUsOpenserverSessionSessionCloser_get_id();
+inline jint ComUsOpenserverSessionSessionCloser_set_id(jint value);
+inline jint *ComUsOpenserverSessionSessionCloser_getRef_id();
+static jint ComUsOpenserverSessionSessionCloser_id;
+J2OBJC_STATIC_FIELD_PRIMITIVE(ComUsOpenserverSessionSessionCloser, id, jint)
 
 @implementation ComUsOpenserverSessionSessionCloser
 
@@ -50,7 +51,7 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionSessionCloser, id__, jint)
 
 - (void)closeBackgroundThreadWithInt:(jint)protocolId {
   self->protocolId_ = protocolId;
-  JavaLangThread *t = new_JavaLangThread_initWithJavaLangRunnable_withNSString_(self, JreStrcat("$I", @"SessionCloser", ++ComUsOpenserverSessionSessionCloser_id__));
+  JavaLangThread *t = new_JavaLangThread_initWithJavaLangRunnable_withNSString_(self, JreStrcat("$I", @"SessionCloser", ++ComUsOpenserverSessionSessionCloser_id));
   [t start];
 }
 
@@ -68,9 +69,9 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionSessionCloser, id__, jint)
     { "run", NULL, "V", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "session_", NULL, 0x2, "Lcom.us.openserver.session.Session;", NULL, NULL,  },
-    { "protocolId_", NULL, 0x2, "I", NULL, NULL,  },
-    { "id__", "id", 0xa, "I", &ComUsOpenserverSessionSessionCloser_id__, NULL,  },
+    { "session_", NULL, 0x2, "Lcom.us.openserver.session.Session;", NULL, NULL, .constantValue.asLong = 0 },
+    { "protocolId_", NULL, 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
+    { "id", "id", 0xa, "I", &ComUsOpenserverSessionSessionCloser_id, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverSessionSessionCloser = { 2, "SessionCloser", "com.us.openserver.session", NULL, 0x1, 6, methods, 3, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverSessionSessionCloser;
@@ -79,7 +80,7 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionSessionCloser, id__, jint)
 @end
 
 void ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(ComUsOpenserverSessionSessionCloser *self, ComUsOpenserverSessionSession *session) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
   self->session_ = session;
 }
 
@@ -87,6 +88,10 @@ ComUsOpenserverSessionSessionCloser *new_ComUsOpenserverSessionSessionCloser_ini
   ComUsOpenserverSessionSessionCloser *self = [ComUsOpenserverSessionSessionCloser alloc];
   ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(self, session);
   return self;
+}
+
+ComUsOpenserverSessionSessionCloser *create_ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(ComUsOpenserverSessionSession *session) {
+  return new_ComUsOpenserverSessionSessionCloser_initWithComUsOpenserverSessionSession_(session);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverSessionSessionCloser)

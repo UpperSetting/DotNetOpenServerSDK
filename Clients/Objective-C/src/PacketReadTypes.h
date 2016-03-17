@@ -3,14 +3,18 @@
 //  source: ./com/us/openserver/session/PacketReadTypes.java
 //
 
-#ifndef _ComUsOpenserverSessionPacketReadTypes_H_
-#define _ComUsOpenserverSessionPacketReadTypes_H_
-
 #include "J2ObjC_header.h"
 
-#define ComUsOpenserverSessionPacketReadTypes_Header 0
-#define ComUsOpenserverSessionPacketReadTypes_HeaderComplete 1
-#define ComUsOpenserverSessionPacketReadTypes_Payload 2
+#pragma push_macro("PacketReadTypes_INCLUDE_ALL")
+#ifdef PacketReadTypes_RESTRICT
+#define PacketReadTypes_INCLUDE_ALL 0
+#else
+#define PacketReadTypes_INCLUDE_ALL 1
+#endif
+#undef PacketReadTypes_RESTRICT
+
+#if !defined (ComUsOpenserverSessionPacketReadTypes_) && (PacketReadTypes_INCLUDE_ALL || defined(ComUsOpenserverSessionPacketReadTypes_INCLUDE))
+#define ComUsOpenserverSessionPacketReadTypes_
 
 @interface ComUsOpenserverSessionPacketReadTypes : NSObject
 
@@ -22,16 +26,26 @@
 
 J2OBJC_EMPTY_STATIC_INIT(ComUsOpenserverSessionPacketReadTypes)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverSessionPacketReadTypes, Header, jbyte)
+inline jbyte ComUsOpenserverSessionPacketReadTypes_get_Header();
+#define ComUsOpenserverSessionPacketReadTypes_Header 0
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverSessionPacketReadTypes, Header, jbyte)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverSessionPacketReadTypes, HeaderComplete, jbyte)
+inline jbyte ComUsOpenserverSessionPacketReadTypes_get_HeaderComplete();
+#define ComUsOpenserverSessionPacketReadTypes_HeaderComplete 1
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverSessionPacketReadTypes, HeaderComplete, jbyte)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverSessionPacketReadTypes, Payload, jbyte)
+inline jbyte ComUsOpenserverSessionPacketReadTypes_get_Payload();
+#define ComUsOpenserverSessionPacketReadTypes_Payload 2
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverSessionPacketReadTypes, Payload, jbyte)
 
 FOUNDATION_EXPORT void ComUsOpenserverSessionPacketReadTypes_init(ComUsOpenserverSessionPacketReadTypes *self);
 
 FOUNDATION_EXPORT ComUsOpenserverSessionPacketReadTypes *new_ComUsOpenserverSessionPacketReadTypes_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverSessionPacketReadTypes *create_ComUsOpenserverSessionPacketReadTypes_init();
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverSessionPacketReadTypes)
 
-#endif // _ComUsOpenserverSessionPacketReadTypes_H_
+#endif
+
+#pragma pop_macro("PacketReadTypes_INCLUDE_ALL")

@@ -3,15 +3,28 @@
 //  source: ./com/us/openserver/protocols/BinaryWriter.java
 //
 
-#ifndef _ComUsOpenserverProtocolsBinaryWriter_H_
-#define _ComUsOpenserverProtocolsBinaryWriter_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("BinaryWriter_INCLUDE_ALL")
+#ifdef BinaryWriter_RESTRICT
+#define BinaryWriter_INCLUDE_ALL 0
+#else
+#define BinaryWriter_INCLUDE_ALL 1
+#endif
+#undef BinaryWriter_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsBinaryWriter_) && (BinaryWriter_INCLUDE_ALL || defined(ComUsOpenserverProtocolsBinaryWriter_INCLUDE))
+#define ComUsOpenserverProtocolsBinaryWriter_
+
+#define JavaIoByteArrayOutputStream_RESTRICT 1
+#define JavaIoByteArrayOutputStream_INCLUDE 1
 #include "java/io/ByteArrayOutputStream.h"
 
+@class IOSByteArray;
 @class IOSIntArray;
+@class JavaLangLong;
 @class JavaMathBigDecimal;
-@class JavaUtilGregorianCalendar;
+@class JavaUtilDate;
 
 @interface ComUsOpenserverProtocolsBinaryWriter : JavaIoByteArrayOutputStream
 
@@ -21,11 +34,23 @@
 
 - (void)writeWithJavaMathBigDecimal:(JavaMathBigDecimal *)value;
 
-- (void)writeWithJavaUtilGregorianCalendar:(JavaUtilGregorianCalendar *)date;
+- (void)writeWithBoolean:(jboolean)value;
+
+- (void)writeWithJavaUtilDate:(JavaUtilDate *)date;
+
+- (void)writeWithIntArray:(IOSIntArray *)value;
 
 - (void)writeWithLong:(jlong)value;
 
+- (void)writeBytesWithByteArray:(IOSByteArray *)value;
+
 - (void)writeIntWithInt:(jint)value;
+
+- (void)writeInt16WithShort:(jshort)value;
+
+- (void)writeNullableWithJavaUtilDate:(JavaUtilDate *)value;
+
+- (void)writeNullableWithJavaLangLong:(JavaLangLong *)value;
 
 - (void)writeStringWithNSString:(NSString *)value;
 
@@ -43,6 +68,10 @@ FOUNDATION_EXPORT void ComUsOpenserverProtocolsBinaryWriter_init(ComUsOpenserver
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsBinaryWriter *new_ComUsOpenserverProtocolsBinaryWriter_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsBinaryWriter *create_ComUsOpenserverProtocolsBinaryWriter_init();
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsBinaryWriter)
 
-#endif // _ComUsOpenserverProtocolsBinaryWriter_H_
+#endif
+
+#pragma pop_macro("BinaryWriter_INCLUDE_ALL")

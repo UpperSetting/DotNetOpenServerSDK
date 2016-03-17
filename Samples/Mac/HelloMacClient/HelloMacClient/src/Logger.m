@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/Logger.java
 //
 
-
 #include "ILoggerObserver.h"
 #include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
@@ -42,24 +41,26 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverLogger, callback_, id<ComUsOpenserverILoggerO
   self->logPackets_ = logPackets;
 }
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   ComUsOpenserverLogger_init(self);
   return self;
 }
+J2OBJC_IGNORE_DESIGNATED_END
 
 - (instancetype)initWithComUsOpenserverILoggerObserver:(id<ComUsOpenserverILoggerObserver>)callback {
   ComUsOpenserverLogger_initWithComUsOpenserverILoggerObserver_(self, callback);
   return self;
 }
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message {
-  if (level == ComUsOpenserverLevelEnum_get_Debug() && !logDebug_) return;
-  if (callback_ != nil) [callback_ onLogMessageWithComUsOpenserverLevelEnum:level withNSString:message];
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message {
+  if (level == JreLoadEnum(ComUsOpenserverLevel, Debug) && !logDebug_) return;
+  if (callback_ != nil) [callback_ onLogMessageWithComUsOpenserverLevel:level withNSString:message];
 }
 
 - (void)logWithJavaLangException:(JavaLangException *)ex {
-  [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Error() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"%1$s\x0d\n%2$s", [IOSObjectArray newArrayWithObjects:(id[]){ [((JavaLangException *) nil_chk(ex)) getMessage], [ex getStackTrace] } count:2 type:NSObject_class_()])];
+  [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Error) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"%s\x0d\n%s", [IOSObjectArray newArrayWithObjects:(id[]){ [((JavaLangException *) nil_chk(ex)) getMessage], [ex getStackTrace] } count:2 type:NSObject_class_()])];
 }
 
 + (const J2ObjcClassInfo *)__metadata {
@@ -71,13 +72,13 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverLogger, callback_, id<ComUsOpenserverILoggerO
     { "setLogPacketsWithBoolean:", "setLogPackets", "V", 0x1, NULL, NULL },
     { "init", "Logger", NULL, 0x1, NULL, NULL },
     { "initWithComUsOpenserverILoggerObserver:", "Logger", NULL, 0x1, NULL, NULL },
-    { "logWithComUsOpenserverLevelEnum:withNSString:", "log", "V", 0x1, NULL, NULL },
+    { "logWithComUsOpenserverLevel:withNSString:", "log", "V", 0x1, NULL, NULL },
     { "logWithJavaLangException:", "log", "V", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "callback_", NULL, 0x2, "Lcom.us.openserver.ILoggerObserver;", NULL, NULL,  },
-    { "logDebug_", NULL, 0x4, "Z", NULL, NULL,  },
-    { "logPackets_", NULL, 0x4, "Z", NULL, NULL,  },
+    { "callback_", NULL, 0x2, "Lcom.us.openserver.ILoggerObserver;", NULL, NULL, .constantValue.asLong = 0 },
+    { "logDebug_", NULL, 0x4, "Z", NULL, NULL, .constantValue.asLong = 0 },
+    { "logPackets_", NULL, 0x4, "Z", NULL, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverLogger = { 2, "Logger", "com.us.openserver", NULL, 0x1, 9, methods, 3, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverLogger;
@@ -86,7 +87,7 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverLogger, callback_, id<ComUsOpenserverILoggerO
 @end
 
 void ComUsOpenserverLogger_init(ComUsOpenserverLogger *self) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
 }
 
 ComUsOpenserverLogger *new_ComUsOpenserverLogger_init() {
@@ -95,8 +96,12 @@ ComUsOpenserverLogger *new_ComUsOpenserverLogger_init() {
   return self;
 }
 
+ComUsOpenserverLogger *create_ComUsOpenserverLogger_init() {
+  return new_ComUsOpenserverLogger_init();
+}
+
 void ComUsOpenserverLogger_initWithComUsOpenserverILoggerObserver_(ComUsOpenserverLogger *self, id<ComUsOpenserverILoggerObserver> callback) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
   self->callback_ = callback;
 }
 
@@ -104,6 +109,10 @@ ComUsOpenserverLogger *new_ComUsOpenserverLogger_initWithComUsOpenserverILoggerO
   ComUsOpenserverLogger *self = [ComUsOpenserverLogger alloc];
   ComUsOpenserverLogger_initWithComUsOpenserverILoggerObserver_(self, callback);
   return self;
+}
+
+ComUsOpenserverLogger *create_ComUsOpenserverLogger_initWithComUsOpenserverILoggerObserver_(id<ComUsOpenserverILoggerObserver> callback) {
+  return new_ComUsOpenserverLogger_initWithComUsOpenserverILoggerObserver_(callback);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverLogger)

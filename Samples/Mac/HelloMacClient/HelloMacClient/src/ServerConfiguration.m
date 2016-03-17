@@ -3,14 +3,10 @@
 //  source: ./com/us/openserver/configuration/ServerConfiguration.java
 //
 
-
 #include "J2ObjC_source.h"
 #include "ServerConfiguration.h"
 #include "SessionLayerProtocol.h"
 #include "TlsConfiguration.h"
-
-#define ComUsOpenserverConfigurationServerConfiguration_IDLE_TIMEOUT 300
-#define ComUsOpenserverConfigurationServerConfiguration_SOCKET_TIMEOUT 120
 
 @interface ComUsOpenserverConfigurationServerConfiguration () {
  @public
@@ -28,16 +24,22 @@
 J2OBJC_FIELD_SETTER(ComUsOpenserverConfigurationServerConfiguration, host_, NSString *)
 J2OBJC_FIELD_SETTER(ComUsOpenserverConfigurationServerConfiguration, tlsConfiguration_, ComUsOpenserverConfigurationTlsConfiguration *)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverConfigurationServerConfiguration, IDLE_TIMEOUT, jint)
+inline jint ComUsOpenserverConfigurationServerConfiguration_get_IDLE_TIMEOUT();
+#define ComUsOpenserverConfigurationServerConfiguration_IDLE_TIMEOUT 300
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverConfigurationServerConfiguration, IDLE_TIMEOUT, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverConfigurationServerConfiguration, SOCKET_TIMEOUT, jint)
+inline jint ComUsOpenserverConfigurationServerConfiguration_get_SOCKET_TIMEOUT();
+#define ComUsOpenserverConfigurationServerConfiguration_SOCKET_TIMEOUT 120
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverConfigurationServerConfiguration, SOCKET_TIMEOUT, jint)
 
 @implementation ComUsOpenserverConfigurationServerConfiguration
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   ComUsOpenserverConfigurationServerConfiguration_init(self);
   return self;
 }
+J2OBJC_IGNORE_DESIGNATED_END
 
 - (NSString *)getHost {
   return host_;
@@ -106,15 +108,15 @@ J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverConfigurationServerConfiguration, SOCK
     { "setTlsConfigurationWithComUsOpenserverConfigurationTlsConfiguration:", "setTlsConfiguration", "V", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "IDLE_TIMEOUT_", NULL, 0x1a, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverConfigurationServerConfiguration_IDLE_TIMEOUT },
-    { "SOCKET_TIMEOUT_", NULL, 0x1a, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverConfigurationServerConfiguration_SOCKET_TIMEOUT },
-    { "host_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL,  },
-    { "port_", NULL, 0x2, "I", NULL, NULL,  },
-    { "idleTimeout_", NULL, 0x2, "I", NULL, NULL,  },
-    { "idleTimeoutInTicks_", NULL, 0x2, "I", NULL, NULL,  },
-    { "socketTimeout_", NULL, 0x2, "I", NULL, NULL,  },
-    { "socketTimeoutInTicks_", NULL, 0x2, "I", NULL, NULL,  },
-    { "tlsConfiguration_", NULL, 0x2, "Lcom.us.openserver.configuration.TlsConfiguration;", NULL, NULL,  },
+    { "IDLE_TIMEOUT", "IDLE_TIMEOUT", 0x1a, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverConfigurationServerConfiguration_IDLE_TIMEOUT },
+    { "SOCKET_TIMEOUT", "SOCKET_TIMEOUT", 0x1a, "I", NULL, NULL, .constantValue.asInt = ComUsOpenserverConfigurationServerConfiguration_SOCKET_TIMEOUT },
+    { "host_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
+    { "port_", NULL, 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
+    { "idleTimeout_", NULL, 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
+    { "idleTimeoutInTicks_", NULL, 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
+    { "socketTimeout_", NULL, 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
+    { "socketTimeoutInTicks_", NULL, 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
+    { "tlsConfiguration_", NULL, 0x2, "Lcom.us.openserver.configuration.TlsConfiguration;", NULL, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverConfigurationServerConfiguration = { 2, "ServerConfiguration", "com.us.openserver.configuration", NULL, 0x1, 13, methods, 9, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverConfigurationServerConfiguration;
@@ -123,7 +125,7 @@ J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverConfigurationServerConfiguration, SOCK
 @end
 
 void ComUsOpenserverConfigurationServerConfiguration_init(ComUsOpenserverConfigurationServerConfiguration *self) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
   self->host_ = @"localhost";
   self->port_ = ComUsOpenserverProtocolsSessionLayerProtocol_PORT;
   self->idleTimeout_ = ComUsOpenserverConfigurationServerConfiguration_IDLE_TIMEOUT;
@@ -135,6 +137,10 @@ ComUsOpenserverConfigurationServerConfiguration *new_ComUsOpenserverConfiguratio
   ComUsOpenserverConfigurationServerConfiguration *self = [ComUsOpenserverConfigurationServerConfiguration alloc];
   ComUsOpenserverConfigurationServerConfiguration_init(self);
   return self;
+}
+
+ComUsOpenserverConfigurationServerConfiguration *create_ComUsOpenserverConfigurationServerConfiguration_init() {
+  return new_ComUsOpenserverConfigurationServerConfiguration_init();
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverConfigurationServerConfiguration)

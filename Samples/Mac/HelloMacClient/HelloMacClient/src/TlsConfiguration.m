@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/configuration/TlsConfiguration.java
 //
 
-
 #include "J2ObjC_source.h"
 #include "TlsConfiguration.h"
 
@@ -71,10 +70,12 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverConfigurationTlsConfiguration, certificate_, 
   enabled_ = value;
 }
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   ComUsOpenserverConfigurationTlsConfiguration_init(self);
   return self;
 }
+J2OBJC_IGNORE_DESIGNATED_END
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
@@ -93,12 +94,12 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverConfigurationTlsConfiguration, certificate_, 
     { "init", NULL, NULL, 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "enabled_", NULL, 0x2, "Z", NULL, NULL,  },
-    { "certificate_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL,  },
-    { "requireRemoteCertificate_", NULL, 0x2, "Z", NULL, NULL,  },
-    { "allowSelfSignedCertificate_", NULL, 0x2, "Z", NULL, NULL,  },
-    { "checkCertificateRevocation_", NULL, 0x2, "Z", NULL, NULL,  },
-    { "allowCertificateChainErrors_", NULL, 0x2, "Z", NULL, NULL,  },
+    { "enabled_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
+    { "certificate_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
+    { "requireRemoteCertificate_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
+    { "allowSelfSignedCertificate_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
+    { "checkCertificateRevocation_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
+    { "allowCertificateChainErrors_", NULL, 0x2, "Z", NULL, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverConfigurationTlsConfiguration = { 2, "TlsConfiguration", "com.us.openserver.configuration", NULL, 0x1, 13, methods, 6, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverConfigurationTlsConfiguration;
@@ -107,13 +108,17 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverConfigurationTlsConfiguration, certificate_, 
 @end
 
 void ComUsOpenserverConfigurationTlsConfiguration_init(ComUsOpenserverConfigurationTlsConfiguration *self) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
 }
 
 ComUsOpenserverConfigurationTlsConfiguration *new_ComUsOpenserverConfigurationTlsConfiguration_init() {
   ComUsOpenserverConfigurationTlsConfiguration *self = [ComUsOpenserverConfigurationTlsConfiguration alloc];
   ComUsOpenserverConfigurationTlsConfiguration_init(self);
   return self;
+}
+
+ComUsOpenserverConfigurationTlsConfiguration *create_ComUsOpenserverConfigurationTlsConfiguration_init() {
+  return new_ComUsOpenserverConfigurationTlsConfiguration_init();
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverConfigurationTlsConfiguration)

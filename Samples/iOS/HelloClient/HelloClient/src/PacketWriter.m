@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/protocols/PacketWriter.java
 //
 
-
 #include "IOSPrimitiveArray.h"
 #include "J2ObjC_source.h"
 #include "PacketWriter.h"
@@ -26,9 +25,11 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsPacketWriter, packet_, IOSByteArray 
 J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsPacketWriter, exception_, JavaLangException *)
 J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsPacketWriter, t_, JavaLangThread *)
 
-static jint ComUsOpenserverProtocolsPacketWriter_id__;
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsPacketWriter, id__, jint)
-J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverProtocolsPacketWriter, id__, jint)
+inline jint ComUsOpenserverProtocolsPacketWriter_get_id();
+inline jint ComUsOpenserverProtocolsPacketWriter_set_id(jint value);
+inline jint *ComUsOpenserverProtocolsPacketWriter_getRef_id();
+static jint ComUsOpenserverProtocolsPacketWriter_id;
+J2OBJC_STATIC_FIELD_PRIMITIVE(ComUsOpenserverProtocolsPacketWriter, id, jint)
 
 @implementation ComUsOpenserverProtocolsPacketWriter
 
@@ -39,7 +40,7 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverProtocolsPacketWriter, id__, jint)
 }
 
 - (void)execute {
-  t_ = new_JavaLangThread_initWithJavaLangRunnable_withNSString_(self, JreStrcat("$I", @"PacketWriter", ComUsOpenserverProtocolsPacketWriter_id__++));
+  t_ = new_JavaLangThread_initWithJavaLangRunnable_withNSString_(self, JreStrcat("$I", @"PacketWriter", ComUsOpenserverProtocolsPacketWriter_id++));
   [t_ start];
 }
 
@@ -64,11 +65,11 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverProtocolsPacketWriter, id__, jint)
     { "getException", NULL, "Ljava.lang.Exception;", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "session_", NULL, 0x2, "Lcom.us.openserver.session.Session;", NULL, NULL,  },
-    { "packet_", NULL, 0x2, "[B", NULL, NULL,  },
-    { "exception_", NULL, 0x2, "Ljava.lang.Exception;", NULL, NULL,  },
-    { "t_", NULL, 0x2, "Ljava.lang.Thread;", NULL, NULL,  },
-    { "id__", "id", 0xa, "I", &ComUsOpenserverProtocolsPacketWriter_id__, NULL,  },
+    { "session_", NULL, 0x2, "Lcom.us.openserver.session.Session;", NULL, NULL, .constantValue.asLong = 0 },
+    { "packet_", NULL, 0x2, "[B", NULL, NULL, .constantValue.asLong = 0 },
+    { "exception_", NULL, 0x2, "Ljava.lang.Exception;", NULL, NULL, .constantValue.asLong = 0 },
+    { "t_", NULL, 0x2, "Ljava.lang.Thread;", NULL, NULL, .constantValue.asLong = 0 },
+    { "id", "id", 0xa, "I", &ComUsOpenserverProtocolsPacketWriter_id, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverProtocolsPacketWriter = { 2, "PacketWriter", "com.us.openserver.protocols", NULL, 0x1, 4, methods, 5, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverProtocolsPacketWriter;
@@ -77,7 +78,7 @@ J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverProtocolsPacketWriter, id__, jint)
 @end
 
 void ComUsOpenserverProtocolsPacketWriter_initWithComUsOpenserverSessionSession_withByteArray_(ComUsOpenserverProtocolsPacketWriter *self, ComUsOpenserverSessionSession *session, IOSByteArray *packet) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
   self->session_ = session;
   self->packet_ = packet;
 }
@@ -86,6 +87,10 @@ ComUsOpenserverProtocolsPacketWriter *new_ComUsOpenserverProtocolsPacketWriter_i
   ComUsOpenserverProtocolsPacketWriter *self = [ComUsOpenserverProtocolsPacketWriter alloc];
   ComUsOpenserverProtocolsPacketWriter_initWithComUsOpenserverSessionSession_withByteArray_(self, session, packet);
   return self;
+}
+
+ComUsOpenserverProtocolsPacketWriter *create_ComUsOpenserverProtocolsPacketWriter_initWithComUsOpenserverSessionSession_withByteArray_(ComUsOpenserverSessionSession *session, IOSByteArray *packet) {
+  return new_ComUsOpenserverProtocolsPacketWriter_initWithComUsOpenserverSessionSession_withByteArray_(session, packet);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverProtocolsPacketWriter)

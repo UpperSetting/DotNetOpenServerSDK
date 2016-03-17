@@ -3,10 +3,18 @@
 //  source: ./com/us/openserver/protocols/hello/IHelloProtocolObserver.java
 //
 
-#ifndef _ComUsOpenserverProtocolsHelloIHelloProtocolObserver_H_
-#define _ComUsOpenserverProtocolsHelloIHelloProtocolObserver_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("IHelloProtocolObserver_INCLUDE_ALL")
+#ifdef IHelloProtocolObserver_RESTRICT
+#define IHelloProtocolObserver_INCLUDE_ALL 0
+#else
+#define IHelloProtocolObserver_INCLUDE_ALL 1
+#endif
+#undef IHelloProtocolObserver_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsHelloIHelloProtocolObserver_) && (IHelloProtocolObserver_INCLUDE_ALL || defined(ComUsOpenserverProtocolsHelloIHelloProtocolObserver_INCLUDE))
+#define ComUsOpenserverProtocolsHelloIHelloProtocolObserver_
 
 @protocol ComUsOpenserverProtocolsHelloIHelloProtocolObserver < NSObject, JavaObject >
 
@@ -18,4 +26,6 @@ J2OBJC_EMPTY_STATIC_INIT(ComUsOpenserverProtocolsHelloIHelloProtocolObserver)
 
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsHelloIHelloProtocolObserver)
 
-#endif // _ComUsOpenserverProtocolsHelloIHelloProtocolObserver_H_
+#endif
+
+#pragma pop_macro("IHelloProtocolObserver_INCLUDE_ALL")

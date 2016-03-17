@@ -3,10 +3,21 @@
 //  source: ./com/us/openserver/session/SessionInitializer.java
 //
 
-#ifndef _ComUsOpenserverSessionSessionInitializer_H_
-#define _ComUsOpenserverSessionSessionInitializer_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("SessionInitializer_INCLUDE_ALL")
+#ifdef SessionInitializer_RESTRICT
+#define SessionInitializer_INCLUDE_ALL 0
+#else
+#define SessionInitializer_INCLUDE_ALL 1
+#endif
+#undef SessionInitializer_RESTRICT
+
+#if !defined (ComUsOpenserverSessionSessionInitializer_) && (SessionInitializer_INCLUDE_ALL || defined(ComUsOpenserverSessionSessionInitializer_INCLUDE))
+#define ComUsOpenserverSessionSessionInitializer_
+
+#define JavaLangRunnable_RESTRICT 1
+#define JavaLangRunnable_INCLUDE 1
 #include "java/lang/Runnable.h"
 
 @class ComUsOpenserverClient;
@@ -33,6 +44,10 @@ FOUNDATION_EXPORT void ComUsOpenserverSessionSessionInitializer_initWithComUsOpe
 
 FOUNDATION_EXPORT ComUsOpenserverSessionSessionInitializer *new_ComUsOpenserverSessionSessionInitializer_initWithComUsOpenserverClient_withInt_(ComUsOpenserverClient *client, jint protocolId) NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverSessionSessionInitializer *create_ComUsOpenserverSessionSessionInitializer_initWithComUsOpenserverClient_withInt_(ComUsOpenserverClient *client, jint protocolId);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverSessionSessionInitializer)
 
-#endif // _ComUsOpenserverSessionSessionInitializer_H_
+#endif
+
+#pragma pop_macro("SessionInitializer_INCLUDE_ALL")

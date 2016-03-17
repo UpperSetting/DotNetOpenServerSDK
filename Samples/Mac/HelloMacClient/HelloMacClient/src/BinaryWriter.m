@@ -3,19 +3,38 @@
 //  source: ./com/us/openserver/protocols/BinaryWriter.java
 //
 
-
 #include "BinaryWriter.h"
+#include "IOSClass.h"
 #include "IOSPrimitiveArray.h"
 #include "J2ObjC_source.h"
 #include "java/io/ByteArrayOutputStream.h"
+#include "java/io/IOException.h"
+#include "java/io/OutputStream.h"
+#include "java/lang/Long.h"
 #include "java/math/BigDecimal.h"
-#include "java/util/GregorianCalendar.h"
+#include "java/util/Date.h"
 
 @implementation ComUsOpenserverProtocolsBinaryWriter
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   ComUsOpenserverProtocolsBinaryWriter_init(self);
   return self;
+}
+J2OBJC_IGNORE_DESIGNATED_END
+
+- (void)writeWithBoolean:(jboolean)value {
+  [self writeWithInt:(jbyte) (value ? (jint) 0x01 : (jint) 0x00)];
+}
+
+- (void)writeBytesWithByteArray:(IOSByteArray *)value {
+  if (value == nil) {
+    [self writeIntWithInt:0];
+  }
+  else {
+    [self writeIntWithInt:value->size_];
+    [self writeWithByteArray:value];
+  }
 }
 
 - (void)writeStringWithNSString:(NSString *)value {
@@ -24,49 +43,90 @@
   jint num = ((IOSCharArray *) nil_chk(chars))->size_;
   while (num >= 128) {
     [self writeWithInt:(jchar) (num | 128)];
-    RShiftAssignInt(&num, 7);
+    JreRShiftAssignInt(&num, 7);
   }
   [self writeWithInt:(jchar) (num)];
   for (jint i = 0; i < chars->size_; i++) [self writeWithInt:IOSCharArray_Get(chars, i)];
 }
 
+- (void)writeInt16WithShort:(jshort)value {
+  [self writeWithInt:(jbyte) value];
+  [self writeWithInt:(jbyte) (JreRShift32(value, 8))];
+}
+
 - (void)writeIntWithInt:(jint)value {
   [self writeWithInt:(jbyte) value];
-  [self writeWithInt:(jbyte) (RShift32(value, 8))];
-  [self writeWithInt:(jbyte) (RShift32(value, 16))];
-  [self writeWithInt:(jbyte) (RShift32(value, 24))];
+  [self writeWithInt:(jbyte) (JreRShift32(value, 8))];
+  [self writeWithInt:(jbyte) (JreRShift32(value, 16))];
+  [self writeWithInt:(jbyte) (JreRShift32(value, 24))];
+}
+
+- (void)writeWithIntArray:(IOSIntArray *)value {
+  if (value == nil) {
+    [self writeWithInt:(jint) 0];
+  }
+  else {
+    [self writeWithInt:value->size_];
+    {
+      IOSIntArray *a__ = value;
+      jint const *b__ = a__->buffer_;
+      jint const *e__ = b__ + a__->size_;
+      while (b__ < e__) {
+        jint i = *b__++;
+        [self writeIntWithInt:i];
+      }
+    }
+  }
 }
 
 - (void)writeUIntWithInt:(jint)value {
   [self writeWithInt:(jbyte) value];
-  [self writeWithInt:(jbyte) (RShift32(value, 8))];
-  [self writeWithInt:(jbyte) (RShift32(value, 16))];
-  [self writeWithInt:(jbyte) (RShift32(value, 24))];
+  [self writeWithInt:(jbyte) (JreRShift32(value, 8))];
+  [self writeWithInt:(jbyte) (JreRShift32(value, 16))];
+  [self writeWithInt:(jbyte) (JreRShift32(value, 24))];
 }
 
-- (void)writeUInt16WithInt:(jint)value {
-  [self writeWithInt:(jbyte) value];
-  [self writeWithInt:(jbyte) (RShift32(value, 8))];
+- (void)writeWithJavaUtilDate:(JavaUtilDate *)date {
+  jlong TICKS_AT_EPOCH = 621355968000000000LL;
+  jlong TICKS_PER_MILLISECOND = 10000;
+  jlong ticks = date != nil ? ([date getTime] * TICKS_PER_MILLISECOND) + TICKS_AT_EPOCH : 0;
+  [self writeWithLong:ticks];
 }
 
-- (void)writeWithJavaUtilGregorianCalendar:(JavaUtilGregorianCalendar *)date {
-  [self writeWithLong:[((JavaUtilGregorianCalendar *) nil_chk(date)) getTimeInMillis]];
+- (void)writeNullableWithJavaUtilDate:(JavaUtilDate *)value {
+  if (value == nil) [self writeWithBoolean:false];
+  else {
+    [self writeWithBoolean:true];
+    [self writeWithJavaUtilDate:value];
+  }
 }
 
 - (void)writeWithLong:(jlong)value {
   [self writeWithInt:(jbyte) value];
-  [self writeWithInt:(jbyte) (RShift64(value, 8))];
-  [self writeWithInt:(jbyte) (RShift64(value, 16))];
-  [self writeWithInt:(jbyte) (RShift64(value, 24))];
-  [self writeWithInt:(jbyte) (RShift64(value, 32))];
-  [self writeWithInt:(jbyte) (RShift64(value, 40))];
-  [self writeWithInt:(jbyte) (RShift64(value, 48))];
-  [self writeWithInt:(jbyte) (RShift64(value, 56))];
-  [self writeWithInt:(jbyte) (RShift64(value, 64))];
+  [self writeWithInt:(jbyte) (JreRShift64(value, 8))];
+  [self writeWithInt:(jbyte) (JreRShift64(value, 16))];
+  [self writeWithInt:(jbyte) (JreRShift64(value, 24))];
+  [self writeWithInt:(jbyte) (JreRShift64(value, 32))];
+  [self writeWithInt:(jbyte) (JreRShift64(value, 40))];
+  [self writeWithInt:(jbyte) (JreRShift64(value, 48))];
+  [self writeWithInt:(jbyte) (JreRShift64(value, 56))];
+}
+
+- (void)writeNullableWithJavaLangLong:(JavaLangLong *)value {
+  if (value == nil) [self writeWithBoolean:false];
+  else {
+    [self writeWithBoolean:true];
+    [self writeWithLong:[value longLongValue]];
+  }
 }
 
 - (void)writeWithJavaMathBigDecimal:(JavaMathBigDecimal *)value {
   [self writeStringWithNSString:[((JavaMathBigDecimal *) nil_chk(value)) description]];
+}
+
+- (void)writeUInt16WithInt:(jint)value {
+  [self writeWithInt:(jbyte) value];
+  [self writeWithInt:(jbyte) (JreRShift32(value, 8))];
 }
 
 - (void)writeUInt16sWithIntArray:(IOSIntArray *)value {
@@ -90,29 +150,39 @@
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
     { "init", "BinaryWriter", NULL, 0x1, NULL, NULL },
+    { "writeWithBoolean:", "write", "V", 0x1, NULL, NULL },
+    { "writeBytesWithByteArray:", "writeBytes", "V", 0x1, "Ljava.io.IOException;", NULL },
     { "writeStringWithNSString:", "writeString", "V", 0x1, NULL, NULL },
+    { "writeInt16WithShort:", "writeInt16", "V", 0x1, NULL, NULL },
     { "writeIntWithInt:", "writeInt", "V", 0x1, NULL, NULL },
+    { "writeWithIntArray:", "write", "V", 0x1, NULL, NULL },
     { "writeUIntWithInt:", "writeUInt", "V", 0x1, NULL, NULL },
-    { "writeUInt16WithInt:", "writeUInt16", "V", 0x1, NULL, NULL },
-    { "writeWithJavaUtilGregorianCalendar:", "write", "V", 0x1, NULL, NULL },
+    { "writeWithJavaUtilDate:", "write", "V", 0x1, NULL, NULL },
+    { "writeNullableWithJavaUtilDate:", "writeNullable", "V", 0x1, NULL, NULL },
     { "writeWithLong:", "write", "V", 0x1, NULL, NULL },
+    { "writeNullableWithJavaLangLong:", "writeNullable", "V", 0x1, NULL, NULL },
     { "writeWithJavaMathBigDecimal:", "write", "V", 0x1, NULL, NULL },
+    { "writeUInt16WithInt:", "writeUInt16", "V", 0x1, NULL, NULL },
     { "writeUInt16sWithIntArray:", "writeUInt16s", "V", 0x1, NULL, NULL },
   };
-  static const J2ObjcClassInfo _ComUsOpenserverProtocolsBinaryWriter = { 2, "BinaryWriter", "com.us.openserver.protocols", NULL, 0x1, 9, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
+  static const J2ObjcClassInfo _ComUsOpenserverProtocolsBinaryWriter = { 2, "BinaryWriter", "com.us.openserver.protocols", NULL, 0x1, 15, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverProtocolsBinaryWriter;
 }
 
 @end
 
 void ComUsOpenserverProtocolsBinaryWriter_init(ComUsOpenserverProtocolsBinaryWriter *self) {
-  (void) JavaIoByteArrayOutputStream_init(self);
+  JavaIoByteArrayOutputStream_init(self);
 }
 
 ComUsOpenserverProtocolsBinaryWriter *new_ComUsOpenserverProtocolsBinaryWriter_init() {
   ComUsOpenserverProtocolsBinaryWriter *self = [ComUsOpenserverProtocolsBinaryWriter alloc];
   ComUsOpenserverProtocolsBinaryWriter_init(self);
   return self;
+}
+
+ComUsOpenserverProtocolsBinaryWriter *create_ComUsOpenserverProtocolsBinaryWriter_init() {
+  return new_ComUsOpenserverProtocolsBinaryWriter_init();
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverProtocolsBinaryWriter)

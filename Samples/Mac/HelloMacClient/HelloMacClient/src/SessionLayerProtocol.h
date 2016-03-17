@@ -3,16 +3,18 @@
 //  source: ./com/us/openserver/protocols/SessionLayerProtocol.java
 //
 
-#ifndef _ComUsOpenserverProtocolsSessionLayerProtocol_H_
-#define _ComUsOpenserverProtocolsSessionLayerProtocol_H_
-
 #include "J2ObjC_header.h"
 
-#define ComUsOpenserverProtocolsSessionLayerProtocol_PROTOCAL_IDENTIFIER 21843
-#define ComUsOpenserverProtocolsSessionLayerProtocol_PROTOCOL_IDENTIFIER_LENGTH 2
-#define ComUsOpenserverProtocolsSessionLayerProtocol_LENGTH_LENGTH 4
-#define ComUsOpenserverProtocolsSessionLayerProtocol_HEADER_LENGTH 6
-#define ComUsOpenserverProtocolsSessionLayerProtocol_PORT 21843
+#pragma push_macro("SessionLayerProtocol_INCLUDE_ALL")
+#ifdef SessionLayerProtocol_RESTRICT
+#define SessionLayerProtocol_INCLUDE_ALL 0
+#else
+#define SessionLayerProtocol_INCLUDE_ALL 1
+#endif
+#undef SessionLayerProtocol_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsSessionLayerProtocol_) && (SessionLayerProtocol_INCLUDE_ALL || defined(ComUsOpenserverProtocolsSessionLayerProtocol_INCLUDE))
+#define ComUsOpenserverProtocolsSessionLayerProtocol_
 
 @interface ComUsOpenserverProtocolsSessionLayerProtocol : NSObject
 
@@ -24,20 +26,34 @@
 
 J2OBJC_EMPTY_STATIC_INIT(ComUsOpenserverProtocolsSessionLayerProtocol)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsSessionLayerProtocol, PROTOCAL_IDENTIFIER, jint)
+inline jint ComUsOpenserverProtocolsSessionLayerProtocol_get_PROTOCAL_IDENTIFIER();
+#define ComUsOpenserverProtocolsSessionLayerProtocol_PROTOCAL_IDENTIFIER 21843
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsSessionLayerProtocol, PROTOCAL_IDENTIFIER, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsSessionLayerProtocol, PROTOCOL_IDENTIFIER_LENGTH, jint)
+inline jint ComUsOpenserverProtocolsSessionLayerProtocol_get_PROTOCOL_IDENTIFIER_LENGTH();
+#define ComUsOpenserverProtocolsSessionLayerProtocol_PROTOCOL_IDENTIFIER_LENGTH 2
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsSessionLayerProtocol, PROTOCOL_IDENTIFIER_LENGTH, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsSessionLayerProtocol, LENGTH_LENGTH, jint)
+inline jint ComUsOpenserverProtocolsSessionLayerProtocol_get_LENGTH_LENGTH();
+#define ComUsOpenserverProtocolsSessionLayerProtocol_LENGTH_LENGTH 4
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsSessionLayerProtocol, LENGTH_LENGTH, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsSessionLayerProtocol, HEADER_LENGTH, jint)
+inline jint ComUsOpenserverProtocolsSessionLayerProtocol_get_HEADER_LENGTH();
+#define ComUsOpenserverProtocolsSessionLayerProtocol_HEADER_LENGTH 6
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsSessionLayerProtocol, HEADER_LENGTH, jint)
 
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverProtocolsSessionLayerProtocol, PORT, jint)
+inline jint ComUsOpenserverProtocolsSessionLayerProtocol_get_PORT();
+#define ComUsOpenserverProtocolsSessionLayerProtocol_PORT 21843
+J2OBJC_STATIC_FIELD_CONSTANT(ComUsOpenserverProtocolsSessionLayerProtocol, PORT, jint)
 
 FOUNDATION_EXPORT void ComUsOpenserverProtocolsSessionLayerProtocol_init(ComUsOpenserverProtocolsSessionLayerProtocol *self);
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsSessionLayerProtocol *new_ComUsOpenserverProtocolsSessionLayerProtocol_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsSessionLayerProtocol *create_ComUsOpenserverProtocolsSessionLayerProtocol_init();
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsSessionLayerProtocol)
 
-#endif // _ComUsOpenserverProtocolsSessionLayerProtocol_H_
+#endif
+
+#pragma pop_macro("SessionLayerProtocol_INCLUDE_ALL")

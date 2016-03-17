@@ -3,12 +3,12 @@
 //  source: ./com/us/openserver/session/SessionOpener.java
 //
 
-
 #include "Client.h"
 #include "IOSClass.h"
 #include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
 #include "Level.h"
+#include "MyTrustManager.h"
 #include "ServerConfiguration.h"
 #include "Session.h"
 #include "SessionOpener.h"
@@ -17,8 +17,13 @@
 #include "java/lang/Integer.h"
 #include "java/lang/Thread.h"
 #include "java/net/InetAddress.h"
+#include "java/net/InetSocketAddress.h"
 #include "java/net/Socket.h"
 #include "java/net/SocketException.h"
+#include "javax/net/ssl/SSLContext.h"
+#include "javax/net/ssl/SSLSocket.h"
+#include "javax/net/ssl/SSLSocketFactory.h"
+#include "javax/net/ssl/TrustManager.h"
 
 @interface ComUsOpenserverSessionSessionOpener () {
  @public
@@ -35,9 +40,11 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverSessionSessionOpener, client_, ComUsOpenserve
 J2OBJC_FIELD_SETTER(ComUsOpenserverSessionSessionOpener, session_, ComUsOpenserverSessionSession *)
 J2OBJC_FIELD_SETTER(ComUsOpenserverSessionSessionOpener, exception_, JavaLangException *)
 
-static jint ComUsOpenserverSessionSessionOpener_id__;
-J2OBJC_STATIC_FIELD_GETTER(ComUsOpenserverSessionSessionOpener, id__, jint)
-J2OBJC_STATIC_FIELD_REF_GETTER(ComUsOpenserverSessionSessionOpener, id__, jint)
+inline jint ComUsOpenserverSessionSessionOpener_get_id();
+inline jint ComUsOpenserverSessionSessionOpener_set_id(jint value);
+inline jint *ComUsOpenserverSessionSessionOpener_getRef_id();
+static jint ComUsOpenserverSessionSessionOpener_id;
+J2OBJC_STATIC_FIELD_PRIMITIVE(ComUsOpenserverSessionSessionOpener, id, jint)
 
 __attribute__((unused)) static void ComUsOpenserverSessionSessionOpener_setSocketOptionsWithJavaNetSocket_(ComUsOpenserverSessionSessionOpener *self, JavaNetSocket *socket);
 
@@ -50,7 +57,7 @@ __attribute__((unused)) static void ComUsOpenserverSessionSessionOpener_setSocke
 
 - (ComUsOpenserverSessionSession *)connectBackgroundThread {
   @synchronized(self) {
-    JavaLangThread *t = new_JavaLangThread_initWithJavaLangRunnable_withNSString_(self, JreStrcat("$I", @"SessionOpenThread", ++ComUsOpenserverSessionSessionOpener_id__));
+    JavaLangThread *t = new_JavaLangThread_initWithJavaLangRunnable_withNSString_(self, JreStrcat("$I", @"SessionOpenThread", ++ComUsOpenserverSessionSessionOpener_id));
     [t start];
     [self waitWithLong:[((ComUsOpenserverConfigurationServerConfiguration *) nil_chk([((ComUsOpenserverClient *) nil_chk(client_)) getServerConfiguration])) getSocketTimeoutInTicks]];
   }
@@ -71,19 +78,24 @@ __attribute__((unused)) static void ComUsOpenserverSessionSessionOpener_setSocke
 }
 
 - (ComUsOpenserverSessionSession *)connect {
-  [((ComUsOpenserverClient *) nil_chk(client_)) close];
   JavaNetSocket *socket;
-  ComUsOpenserverConfigurationServerConfiguration *cfg = [client_ getServerConfiguration];
+  ComUsOpenserverConfigurationServerConfiguration *cfg = [((ComUsOpenserverClient *) nil_chk(client_)) getServerConfiguration];
   ComUsOpenserverConfigurationTlsConfiguration *tls = [((ComUsOpenserverConfigurationServerConfiguration *) nil_chk(cfg)) getTlsConfiguration];
   if (![((ComUsOpenserverConfigurationTlsConfiguration *) nil_chk(tls)) isEnabled]) {
-    socket = new_JavaNetSocket_initWithNSString_withInt_([cfg getHost], [cfg getPort]);
+    socket = new_JavaNetSocket_init();
+    [socket connectWithJavaNetSocketAddress:new_JavaNetInetSocketAddress_initWithNSString_withInt_([cfg getHost], [cfg getPort]) withInt:3000];
     ComUsOpenserverSessionSessionOpener_setSocketOptionsWithJavaNetSocket_(self, socket);
   }
   else {
-    @throw new_JavaLangException_initWithNSString_(@"SSL/TLS 1.2 not implemented yet.");
+    JavaxNetSslSSLContext *sslContext = JavaxNetSslSSLContext_getInstanceWithNSString_(@"TLS");
+    [((JavaxNetSslSSLContext *) nil_chk(sslContext)) init__WithJavaxNetSslKeyManagerArray:nil withJavaxNetSslTrustManagerArray:[IOSObjectArray newArrayWithObjects:(id[]){ new_ComUsOpenserverSessionMyTrustManager_initWithJavaSecurityKeyStore_(nil) } count:1 type:JavaxNetSslTrustManager_class_()] withJavaSecuritySecureRandom:nil];
+    JavaxNetSslSSLSocketFactory *socketFactory = [sslContext getSocketFactory];
+    socket = [((JavaxNetSslSSLSocketFactory *) nil_chk(socketFactory)) createSocketWithNSString:[cfg getHost] withInt:[cfg getPort]];
+    ComUsOpenserverSessionSessionOpener_setSocketOptionsWithJavaNetSocket_(self, socket);
+    [((JavaxNetSslSSLSocket *) nil_chk(((JavaxNetSslSSLSocket *) cast_chk(socket, [JavaxNetSslSSLSocket class])))) setUseClientModeWithBoolean:true];
   }
   session_ = new_ComUsOpenserverSessionSession_initWithComUsOpenserverClient_withJavaNetSocket_withNSString_(client_, socket, [((JavaNetInetAddress *) nil_chk([((JavaNetSocket *) nil_chk(socket)) getInetAddress])) getHostAddress]);
-  [session_ logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Info() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Connected to %1$s:%2$s...", [IOSObjectArray newArrayWithObjects:(id[]){ [cfg getHost], JavaLangInteger_valueOfWithInt_([cfg getPort]) } count:2 type:NSObject_class_()])];
+  [session_ logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Info) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Connected to %s:%d...", [IOSObjectArray newArrayWithObjects:(id[]){ [cfg getHost], JavaLangInteger_valueOfWithInt_([cfg getPort]) } count:2 type:NSObject_class_()])];
   [session_ beginRead];
   return session_;
 }
@@ -101,10 +113,10 @@ __attribute__((unused)) static void ComUsOpenserverSessionSessionOpener_setSocke
     { "setSocketOptionsWithJavaNetSocket:", "setSocketOptions", "V", 0x2, "Ljava.net.SocketException;", NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "client_", NULL, 0x2, "Lcom.us.openserver.Client;", NULL, NULL,  },
-    { "session_", NULL, 0x2, "Lcom.us.openserver.session.Session;", NULL, NULL,  },
-    { "exception_", NULL, 0x2, "Ljava.lang.Exception;", NULL, NULL,  },
-    { "id__", "id", 0xa, "I", &ComUsOpenserverSessionSessionOpener_id__, NULL,  },
+    { "client_", NULL, 0x2, "Lcom.us.openserver.Client;", NULL, NULL, .constantValue.asLong = 0 },
+    { "session_", NULL, 0x2, "Lcom.us.openserver.session.Session;", NULL, NULL, .constantValue.asLong = 0 },
+    { "exception_", NULL, 0x2, "Ljava.lang.Exception;", NULL, NULL, .constantValue.asLong = 0 },
+    { "id", "id", 0xa, "I", &ComUsOpenserverSessionSessionOpener_id, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverSessionSessionOpener = { 2, "SessionOpener", "com.us.openserver.session", NULL, 0x1, 5, methods, 4, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverSessionSessionOpener;
@@ -113,7 +125,7 @@ __attribute__((unused)) static void ComUsOpenserverSessionSessionOpener_setSocke
 @end
 
 void ComUsOpenserverSessionSessionOpener_initWithComUsOpenserverClient_(ComUsOpenserverSessionSessionOpener *self, ComUsOpenserverClient *client) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
   self->client_ = client;
 }
 
@@ -123,10 +135,14 @@ ComUsOpenserverSessionSessionOpener *new_ComUsOpenserverSessionSessionOpener_ini
   return self;
 }
 
+ComUsOpenserverSessionSessionOpener *create_ComUsOpenserverSessionSessionOpener_initWithComUsOpenserverClient_(ComUsOpenserverClient *client) {
+  return new_ComUsOpenserverSessionSessionOpener_initWithComUsOpenserverClient_(client);
+}
+
 void ComUsOpenserverSessionSessionOpener_setSocketOptionsWithJavaNetSocket_(ComUsOpenserverSessionSessionOpener *self, JavaNetSocket *socket) {
   [((JavaNetSocket *) nil_chk(socket)) setSoTimeoutWithInt:[((ComUsOpenserverConfigurationServerConfiguration *) nil_chk([((ComUsOpenserverClient *) nil_chk(self->client_)) getServerConfiguration])) getSocketTimeoutInTicks]];
-  [socket setSoLingerWithBoolean:YES withInt:10];
-  [socket setTcpNoDelayWithBoolean:YES];
+  [socket setSoLingerWithBoolean:true withInt:10];
+  [socket setTcpNoDelayWithBoolean:true];
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverSessionSessionOpener)

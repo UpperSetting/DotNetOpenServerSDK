@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/protocols/ProtocolConfiguration.java
 //
 
-
 #include "J2ObjC_source.h"
 #include "ProtocolConfiguration.h"
 
@@ -19,10 +18,12 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsProtocolConfiguration, classPath_, N
 
 @implementation ComUsOpenserverProtocolsProtocolConfiguration
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   ComUsOpenserverProtocolsProtocolConfiguration_init(self);
   return self;
 }
+J2OBJC_IGNORE_DESIGNATED_END
 
 - (instancetype)initWithInt:(jint)id_
                withNSString:(NSString *)classPath {
@@ -56,8 +57,8 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsProtocolConfiguration, classPath_, N
     { "setClassPathWithNSString:", "setClassPath", "V", 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "id__", "id", 0x2, "I", NULL, NULL,  },
-    { "classPath_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL,  },
+    { "id__", "id", 0x2, "I", NULL, NULL, .constantValue.asLong = 0 },
+    { "classPath_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverProtocolsProtocolConfiguration = { 2, "ProtocolConfiguration", "com.us.openserver.protocols", NULL, 0x1, 6, methods, 2, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverProtocolsProtocolConfiguration;
@@ -66,7 +67,7 @@ J2OBJC_FIELD_SETTER(ComUsOpenserverProtocolsProtocolConfiguration, classPath_, N
 @end
 
 void ComUsOpenserverProtocolsProtocolConfiguration_init(ComUsOpenserverProtocolsProtocolConfiguration *self) {
-  (void) NSObject_init(self);
+  NSObject_init(self);
 }
 
 ComUsOpenserverProtocolsProtocolConfiguration *new_ComUsOpenserverProtocolsProtocolConfiguration_init() {
@@ -75,8 +76,12 @@ ComUsOpenserverProtocolsProtocolConfiguration *new_ComUsOpenserverProtocolsProto
   return self;
 }
 
+ComUsOpenserverProtocolsProtocolConfiguration *create_ComUsOpenserverProtocolsProtocolConfiguration_init() {
+  return new_ComUsOpenserverProtocolsProtocolConfiguration_init();
+}
+
 void ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(ComUsOpenserverProtocolsProtocolConfiguration *self, jint id_, NSString *classPath) {
-  (void) ComUsOpenserverProtocolsProtocolConfiguration_init(self);
+  ComUsOpenserverProtocolsProtocolConfiguration_init(self);
   self->id__ = id_;
   self->classPath_ = classPath;
 }
@@ -85,6 +90,10 @@ ComUsOpenserverProtocolsProtocolConfiguration *new_ComUsOpenserverProtocolsProto
   ComUsOpenserverProtocolsProtocolConfiguration *self = [ComUsOpenserverProtocolsProtocolConfiguration alloc];
   ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(self, id_, classPath);
   return self;
+}
+
+ComUsOpenserverProtocolsProtocolConfiguration *create_ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(jint id_, NSString *classPath) {
+  return new_ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(id_, classPath);
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverProtocolsProtocolConfiguration)

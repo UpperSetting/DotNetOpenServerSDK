@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/protocols/hello/HelloProtocolClient.java
 //
 
-
 #include "BinaryReader.h"
 #include "BinaryWriter.h"
 #include "HelloProtocol.h"
@@ -43,7 +42,7 @@ __attribute__((unused)) static ComUsOpenserverProtocolsBinaryWriter *ComUsOpense
 - (void)onPacketReceivedWithComUsOpenserverProtocolsBinaryReader:(ComUsOpenserverProtocolsBinaryReader *)br {
   @synchronized(self) {
     serverResponse_ = [((ComUsOpenserverProtocolsBinaryReader *) nil_chk(br)) readString];
-    [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Info() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Server responded: %1$s", [IOSObjectArray newArrayWithObjects:(id[]){ serverResponse_ } count:1 type:NSObject_class_()])];
+    [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Info) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Server responded: %s", [IOSObjectArray newArrayWithObjects:(id[]){ serverResponse_ } count:1 type:NSObject_class_()])];
     [self notifyAll];
   }
   if (callbackInterface_ != nil) [callbackInterface_ onHelloCompleteWithNSString:serverResponse_];
@@ -97,10 +96,12 @@ __attribute__((unused)) static ComUsOpenserverProtocolsBinaryWriter *ComUsOpense
   return ComUsOpenserverProtocolsHelloHelloProtocolClient_CreateCommandPacketWithNSString_(self, message);
 }
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   ComUsOpenserverProtocolsHelloHelloProtocolClient_init(self);
   return self;
 }
+J2OBJC_IGNORE_DESIGNATED_END
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
@@ -114,8 +115,8 @@ __attribute__((unused)) static ComUsOpenserverProtocolsBinaryWriter *ComUsOpense
     { "init", NULL, NULL, 0x1, NULL, NULL },
   };
   static const J2ObjcFieldInfo fields[] = {
-    { "callbackInterface_", NULL, 0x2, "Lcom.us.openserver.protocols.hello.IHelloProtocolObserver;", NULL, NULL,  },
-    { "serverResponse_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL,  },
+    { "callbackInterface_", NULL, 0x2, "Lcom.us.openserver.protocols.hello.IHelloProtocolObserver;", NULL, NULL, .constantValue.asLong = 0 },
+    { "serverResponse_", NULL, 0x2, "Ljava.lang.String;", NULL, NULL, .constantValue.asLong = 0 },
   };
   static const J2ObjcClassInfo _ComUsOpenserverProtocolsHelloHelloProtocolClient = { 2, "HelloProtocolClient", "com.us.openserver.protocols.hello", NULL, 0x1, 8, methods, 2, fields, 0, NULL, 0, NULL, NULL, NULL };
   return &_ComUsOpenserverProtocolsHelloHelloProtocolClient;
@@ -127,18 +128,22 @@ ComUsOpenserverProtocolsBinaryWriter *ComUsOpenserverProtocolsHelloHelloProtocol
   ComUsOpenserverProtocolsBinaryWriter *bw = new_ComUsOpenserverProtocolsBinaryWriter_init();
   [bw writeUInt16WithInt:ComUsOpenserverProtocolsHelloHelloProtocol_PROTOCOL_IDENTIFIER];
   [bw writeStringWithNSString:message];
-  [self logWithComUsOpenserverLevelEnum:ComUsOpenserverLevelEnum_get_Info() withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Client says: %1$s", [IOSObjectArray newArrayWithObjects:(id[]){ message } count:1 type:NSObject_class_()])];
+  [self logWithComUsOpenserverLevel:JreLoadEnum(ComUsOpenserverLevel, Info) withNSString:NSString_formatWithNSString_withNSObjectArray_(@"Client says: %s", [IOSObjectArray newArrayWithObjects:(id[]){ message } count:1 type:NSObject_class_()])];
   return bw;
 }
 
 void ComUsOpenserverProtocolsHelloHelloProtocolClient_init(ComUsOpenserverProtocolsHelloHelloProtocolClient *self) {
-  (void) ComUsOpenserverProtocolsHelloHelloProtocol_init(self);
+  ComUsOpenserverProtocolsHelloHelloProtocol_init(self);
 }
 
 ComUsOpenserverProtocolsHelloHelloProtocolClient *new_ComUsOpenserverProtocolsHelloHelloProtocolClient_init() {
   ComUsOpenserverProtocolsHelloHelloProtocolClient *self = [ComUsOpenserverProtocolsHelloHelloProtocolClient alloc];
   ComUsOpenserverProtocolsHelloHelloProtocolClient_init(self);
   return self;
+}
+
+ComUsOpenserverProtocolsHelloHelloProtocolClient *create_ComUsOpenserverProtocolsHelloHelloProtocolClient_init() {
+  return new_ComUsOpenserverProtocolsHelloHelloProtocolClient_init();
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverProtocolsHelloHelloProtocolClient)

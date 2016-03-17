@@ -3,14 +3,26 @@
 //  source: ./com/us/openserver/protocols/BinaryReader.java
 //
 
-#ifndef _ComUsOpenserverProtocolsBinaryReader_H_
-#define _ComUsOpenserverProtocolsBinaryReader_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("BinaryReader_INCLUDE_ALL")
+#ifdef BinaryReader_RESTRICT
+#define BinaryReader_INCLUDE_ALL 0
+#else
+#define BinaryReader_INCLUDE_ALL 1
+#endif
+#undef BinaryReader_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsBinaryReader_) && (BinaryReader_INCLUDE_ALL || defined(ComUsOpenserverProtocolsBinaryReader_INCLUDE))
+#define ComUsOpenserverProtocolsBinaryReader_
+
+#define JavaIoByteArrayInputStream_RESTRICT 1
+#define JavaIoByteArrayInputStream_INCLUDE 1
 #include "java/io/ByteArrayInputStream.h"
 
 @class IOSByteArray;
 @class IOSIntArray;
+@class JavaLangLong;
 @class JavaMathBigDecimal;
 @class JavaUtilDate;
 
@@ -24,13 +36,23 @@
 
 - (jbyte)readByte;
 
+- (IOSByteArray *)readBytes;
+
 - (JavaUtilDate *)readDateTime;
 
 - (JavaMathBigDecimal *)readDecimal;
 
+- (jshort)readInt16;
+
 - (jint)readInt32;
 
+- (IOSIntArray *)readInt32s;
+
 - (jlong)readLong;
+
+- (JavaUtilDate *)readNullableDateTime;
+
+- (JavaLangLong *)readNullableTimeSpan;
 
 - (NSString *)readString;
 
@@ -46,6 +68,10 @@ FOUNDATION_EXPORT void ComUsOpenserverProtocolsBinaryReader_initWithByteArray_(C
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsBinaryReader *new_ComUsOpenserverProtocolsBinaryReader_initWithByteArray_(IOSByteArray *buf) NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsBinaryReader *create_ComUsOpenserverProtocolsBinaryReader_initWithByteArray_(IOSByteArray *buf);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsBinaryReader)
 
-#endif // _ComUsOpenserverProtocolsBinaryReader_H_
+#endif
+
+#pragma pop_macro("BinaryReader_INCLUDE_ALL")

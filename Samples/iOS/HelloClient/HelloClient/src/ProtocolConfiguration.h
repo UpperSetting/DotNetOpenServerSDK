@@ -3,10 +3,18 @@
 //  source: ./com/us/openserver/protocols/ProtocolConfiguration.java
 //
 
-#ifndef _ComUsOpenserverProtocolsProtocolConfiguration_H_
-#define _ComUsOpenserverProtocolsProtocolConfiguration_H_
-
 #include "J2ObjC_header.h"
+
+#pragma push_macro("ProtocolConfiguration_INCLUDE_ALL")
+#ifdef ProtocolConfiguration_RESTRICT
+#define ProtocolConfiguration_INCLUDE_ALL 0
+#else
+#define ProtocolConfiguration_INCLUDE_ALL 1
+#endif
+#undef ProtocolConfiguration_RESTRICT
+
+#if !defined (ComUsOpenserverProtocolsProtocolConfiguration_) && (ProtocolConfiguration_INCLUDE_ALL || defined(ComUsOpenserverProtocolsProtocolConfiguration_INCLUDE))
+#define ComUsOpenserverProtocolsProtocolConfiguration_
 
 @interface ComUsOpenserverProtocolsProtocolConfiguration : NSObject
 
@@ -35,10 +43,16 @@ FOUNDATION_EXPORT void ComUsOpenserverProtocolsProtocolConfiguration_init(ComUsO
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsProtocolConfiguration *new_ComUsOpenserverProtocolsProtocolConfiguration_init() NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsProtocolConfiguration *create_ComUsOpenserverProtocolsProtocolConfiguration_init();
+
 FOUNDATION_EXPORT void ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(ComUsOpenserverProtocolsProtocolConfiguration *self, jint id_, NSString *classPath);
 
 FOUNDATION_EXPORT ComUsOpenserverProtocolsProtocolConfiguration *new_ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(jint id_, NSString *classPath) NS_RETURNS_RETAINED;
 
+FOUNDATION_EXPORT ComUsOpenserverProtocolsProtocolConfiguration *create_ComUsOpenserverProtocolsProtocolConfiguration_initWithInt_withNSString_(jint id_, NSString *classPath);
+
 J2OBJC_TYPE_LITERAL_HEADER(ComUsOpenserverProtocolsProtocolConfiguration)
 
-#endif // _ComUsOpenserverProtocolsProtocolConfiguration_H_
+#endif
+
+#pragma pop_macro("ProtocolConfiguration_INCLUDE_ALL")

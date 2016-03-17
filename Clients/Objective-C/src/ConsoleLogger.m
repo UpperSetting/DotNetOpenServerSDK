@@ -3,7 +3,6 @@
 //  source: ./com/us/openserver/ConsoleLogger.java
 //
 
-
 #include "ConsoleLogger.h"
 #include "IOSObjectArray.h"
 #include "J2ObjC_source.h"
@@ -14,21 +13,23 @@
 
 @implementation ComUsOpenserverConsoleLogger
 
-- (void)logWithComUsOpenserverLevelEnum:(ComUsOpenserverLevelEnum *)level
-                           withNSString:(NSString *)message {
-  [super logWithComUsOpenserverLevelEnum:level withNSString:message];
-  if (level == ComUsOpenserverLevelEnum_get_Debug() && !logDebug_) return;
-  [((JavaIoPrintStream *) nil_chk(JavaLangSystem_get_out_())) printlnWithNSString:NSString_formatWithNSString_withNSObjectArray_(@"%1$s %2$s", [IOSObjectArray newArrayWithObjects:(id[]){ level, message } count:2 type:NSObject_class_()])];
+- (void)logWithComUsOpenserverLevel:(ComUsOpenserverLevel *)level
+                       withNSString:(NSString *)message {
+  [super logWithComUsOpenserverLevel:level withNSString:message];
+  if (level == JreLoadEnum(ComUsOpenserverLevel, Debug) && !logDebug_) return;
+  [((JavaIoPrintStream *) nil_chk(JreLoadStatic(JavaLangSystem, out))) printlnWithNSString:NSString_formatWithNSString_withNSObjectArray_(@"%s %s", [IOSObjectArray newArrayWithObjects:(id[]){ level, message } count:2 type:NSObject_class_()])];
 }
 
+J2OBJC_IGNORE_DESIGNATED_BEGIN
 - (instancetype)init {
   ComUsOpenserverConsoleLogger_init(self);
   return self;
 }
+J2OBJC_IGNORE_DESIGNATED_END
 
 + (const J2ObjcClassInfo *)__metadata {
   static const J2ObjcMethodInfo methods[] = {
-    { "logWithComUsOpenserverLevelEnum:withNSString:", "log", "V", 0x1, NULL, NULL },
+    { "logWithComUsOpenserverLevel:withNSString:", "log", "V", 0x1, NULL, NULL },
     { "init", NULL, NULL, 0x1, NULL, NULL },
   };
   static const J2ObjcClassInfo _ComUsOpenserverConsoleLogger = { 2, "ConsoleLogger", "com.us.openserver", NULL, 0x1, 2, methods, 0, NULL, 0, NULL, 0, NULL, NULL, NULL };
@@ -38,13 +39,17 @@
 @end
 
 void ComUsOpenserverConsoleLogger_init(ComUsOpenserverConsoleLogger *self) {
-  (void) ComUsOpenserverLogger_init(self);
+  ComUsOpenserverLogger_init(self);
 }
 
 ComUsOpenserverConsoleLogger *new_ComUsOpenserverConsoleLogger_init() {
   ComUsOpenserverConsoleLogger *self = [ComUsOpenserverConsoleLogger alloc];
   ComUsOpenserverConsoleLogger_init(self);
   return self;
+}
+
+ComUsOpenserverConsoleLogger *create_ComUsOpenserverConsoleLogger_init() {
+  return new_ComUsOpenserverConsoleLogger_init();
 }
 
 J2OBJC_CLASS_TYPE_LITERAL_SOURCE(ComUsOpenserverConsoleLogger)
