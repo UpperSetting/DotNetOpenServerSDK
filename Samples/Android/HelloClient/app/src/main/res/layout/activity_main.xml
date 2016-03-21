@@ -1,90 +1,56 @@
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#ff000000">
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TableRow
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp">
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="Host/IP: "
-            android:gravity="center_vertical|end"
-            android:textColor="#ffffffff"
-            android:layout_marginEnd="8dp"
-            android:labelFor="@+id/txtHost"/>
+        android:orientation="vertical"
+        >
 
-        <EditText
-            android:id="@+id/txtHost"
-            android:layout_width="200dp"
-            android:layout_height="fill_parent"
-            android:textColor="#ffffffff"
-            android:background="#ffafafaf"
-            android:inputType="text"
-            />
-    </TableRow>
+        <!-- Host Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/txtFullName"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:hint="Full Name"/>
+        </android.support.design.widget.TextInputLayout>
 
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_marginBottom="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_margin="16dp">
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="Username:"
-            android:gravity="center_vertical|end"
-            android:textColor="#ffffffff"
-            android:layout_marginEnd="8dp"
-            android:labelFor="@+id/txtUserName"/>
+            <Button
+                android:id="@+id/btnHello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:text="Say Hello"
+                android:onClick="sayHello"
+                android:layout_margin="4dp"/>
 
-        <EditText
-            android:id="@+id/txtUserName"
-            android:layout_width = "fill_parent"
-            android:layout_height = "fill_parent"
-            android:textColor="#ffffffff"
-            android:background="#ffafafaf"
-            android:inputType="text"/>
-    </TableRow>
+        </LinearLayout>
 
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_marginBottom="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_margin="16dp">
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="Password:"
-            android:gravity="center_vertical|end"
-            android:textColor="#ffffffff"
-            android:layout_marginEnd="8dp"
-            android:labelFor="@+id/txtPassword"/>
-
-        <EditText
-            android:id="@+id/txtPassword"
-            android:layout_width = "fill_parent"
-            android:layout_height = "fill_parent"
-            android:textColor="#ffffffff"
-            android:background="#ffafafaf"
-            android:inputType="textPassword"/>
-    </TableRow>
-
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:gravity="center_horizontal">
-        <Button
-            android:id="@+id/btnConnect"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:onClick="onConnect"
-            android:text="Connect"
-            />
-
-    </TableRow>
-</TableLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lvwMessages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</layout>
