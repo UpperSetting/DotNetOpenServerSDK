@@ -331,6 +331,9 @@ public class Session implements Runnable
     
             synchronized (os)
             {
+            	if (isClosed)
+            		throw new IOException("The connection has been closed.");
+            	
                 bw.writeTo(os);
             }
         }
