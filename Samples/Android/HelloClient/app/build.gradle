@@ -12,8 +12,8 @@ android {
         applicationId "com.us.openserver.helloclient"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 40
-        versionName "1.40"
+        versionCode 0
+        versionName "1.0"
     }
 
     buildTypes {
