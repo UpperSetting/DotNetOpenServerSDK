@@ -315,7 +315,7 @@ namespace US.OpenServer
         public void Send(MemoryStream payload)
         {
             if (IsClosed)
-                throw new Exception("Sorry the connection has been lost.");
+                throw new Exception("The connection has been closed.");
 
             MemoryStream ms = new MemoryStream();
             BinaryWriter bw = new BinaryWriter(ms, Encoding.UTF8);

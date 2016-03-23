@@ -318,22 +318,23 @@ public class Session implements Runnable
     
     public void send(byte[] buf) throws IOException
     {
+    	if (isClosed)
+    		throw new IOException("The connection has been closed.");
+    	
         BinaryWriter bw = new BinaryWriter();
         try
         {
             bw.writeUInt16(SessionLayerProtocol.PROTOCAL_IDENTIFIER);
             bw.writeUInt(buf.length);
             bw.write(buf);
-    
+            
             buf = bw.toByteArray();
+            
             if (logger.getLogPackets())
                 log(Level.Debug, "SEND: " + toHexString(buf, 0, buf.length));
-    
+            
             synchronized (os)
             {
-            	if (isClosed)
-            		throw new IOException("The connection has been closed.");
-            	
                 bw.writeTo(os);
             }
         }
