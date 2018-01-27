@@ -36,6 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\..\..\..\OpenServerShared\OpenServerShared\OpenServerShared.csproj">
+      <Project>{28525b70-8554-4541-a703-5efd768b782b}</Project>
+      <Name>OpenServerShared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HelloProtocolShared\HelloProtocolShared.csproj">
       <Project>{1ddfb921-c2ce-4b4b-8b67-edd6e6e8e9a7}</Project>
       <Name>HelloProtocolShared</Name>
@@ -44,11 +48,6 @@
   <ItemGroup>
     <Compile Include="HelloProtocolClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="US.OpenServer.Shared">
-      <HintPath>..\..\..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>

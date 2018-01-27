@@ -37,12 +37,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="US.OpenServer.Shared">
-      <HintPath>..\..\..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="US.OpenServer.Windows.Shared">
-      <HintPath>..\..\..\..\bin\Windows\US.OpenServer.Windows.Shared.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseAuthProtocolServer.cs" />
@@ -55,6 +49,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\OpenServerShared\OpenServerShared\OpenServerShared.csproj">
+      <Project>{28525b70-8554-4541-a703-5efd768b782b}</Project>
+      <Name>OpenServerShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\OpenServerWindowsShared\OpenServerWindowsShared\OpenServerWindowsShared.csproj">
+      <Project>{fd59cea4-c9ee-470c-9c49-934785967ee5}</Project>
+      <Name>OpenServerWindowsShared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DatabaseAuthProtocolShared\DatabaseAuthProtocolShared.csproj">
       <Project>{5ae34854-83b2-4a46-bf2d-1f8a757417b7}</Project>
       <Name>DatabaseAuthProtocolShared</Name>
@@ -65,6 +67,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

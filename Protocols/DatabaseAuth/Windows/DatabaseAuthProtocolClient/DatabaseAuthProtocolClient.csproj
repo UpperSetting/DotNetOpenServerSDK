@@ -37,15 +37,16 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="US.OpenServer.Shared">
-      <HintPath>..\..\..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseAuthProtocolClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\OpenServerShared\OpenServerShared\OpenServerShared.csproj">
+      <Project>{28525b70-8554-4541-a703-5efd768b782b}</Project>
+      <Name>OpenServerShared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DatabaseAuthProtocolShared\DatabaseAuthProtocolShared.csproj">
       <Project>{5ae34854-83b2-4a46-bf2d-1f8a757417b7}</Project>
       <Name>DatabaseAuthProtocolShared</Name>

@@ -40,16 +40,16 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="US.OpenServer.Shared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HelloProtocolServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\OpenServerShared\OpenServerShared\OpenServerShared.csproj">
+      <Project>{28525b70-8554-4541-a703-5efd768b782b}</Project>
+      <Name>OpenServerShared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HelloProtocolShared\HelloProtocolShared.csproj">
       <Project>{1ddfb921-c2ce-4b4b-8b67-edd6e6e8e9a7}</Project>
       <Name>HelloProtocolShared</Name>

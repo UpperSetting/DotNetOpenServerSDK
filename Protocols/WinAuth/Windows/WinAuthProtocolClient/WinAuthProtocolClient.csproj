@@ -39,15 +39,14 @@
     <Compile Include="WinAuthProtocolClient.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\OpenServerShared\OpenServerShared\OpenServerShared.csproj">
+      <Project>{28525b70-8554-4541-a703-5efd768b782b}</Project>
+      <Name>OpenServerShared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinAuthProtocolShared\WinAuthProtocolShared.csproj">
       <Project>{5b876e49-a1bf-46d4-8588-ab5f1534f24a}</Project>
       <Name>WinAuthProtocolShared</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="US.OpenServer.Shared">
-      <HintPath>..\..\..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>

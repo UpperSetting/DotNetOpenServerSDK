@@ -35,9 +35,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -46,28 +45,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="US.OpenServer.Protocols.Hello.Server">
-      <HintPath>..\..\bin\Windows\US.OpenServer.Protocols.Hello.Server.dll</HintPath>
-    </Reference>
-    <Reference Include="US.OpenServer.Protocols.Hello.Shared">
-      <HintPath>..\..\bin\Portable\US.OpenServer.Protocols.Hello.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="US.OpenServer.Protocols.KeepAlive">
-      <HintPath>..\..\bin\Portable\US.OpenServer.Protocols.KeepAlive.dll</HintPath>
-    </Reference>
-    <Reference Include="US.OpenServer.Protocols.WinAuth.Server">
-      <HintPath>..\..\bin\Windows\US.OpenServer.Protocols.WinAuth.Server.dll</HintPath>
-    </Reference>
-    <Reference Include="US.OpenServer.Protocols.WinAuth.Shared">
-      <HintPath>..\..\bin\Portable\US.OpenServer.Protocols.WinAuth.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="US.OpenServer.Shared">
-      <HintPath>..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="US.OpenServer.Windows.Shared, Version=1.0.0.19, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Windows\US.OpenServer.Windows.Shared.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -80,6 +57,34 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\OpenServerShared\OpenServerShared\OpenServerShared.csproj">
+      <Project>{28525b70-8554-4541-a703-5efd768b782b}</Project>
+      <Name>OpenServerShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpenServerWindowsShared\OpenServerWindowsShared\OpenServerWindowsShared.csproj">
+      <Project>{fd59cea4-c9ee-470c-9c49-934785967ee5}</Project>
+      <Name>OpenServerWindowsShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Protocols\Hello\Windows\HelloProtocolServer\HelloProtocolServer.csproj">
+      <Project>{42af4f16-8bc6-4063-b9e4-b00f6eca3bb7}</Project>
+      <Name>HelloProtocolServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Protocols\Hello\Windows\HelloProtocolShared\HelloProtocolShared.csproj">
+      <Project>{1ddfb921-c2ce-4b4b-8b67-edd6e6e8e9a7}</Project>
+      <Name>HelloProtocolShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Protocols\KeepAlive\Windows\KeepAliveProtocol\KeepAliveProtocol.csproj">
+      <Project>{b1dfe41b-1232-4c36-8587-61c17db40152}</Project>
+      <Name>KeepAliveProtocol</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Protocols\WinAuth\Windows\WinAuthProtocolServer\WinAuthProtocolServer.csproj">
+      <Project>{099e0c10-e92a-4d63-9522-1edac8e53be9}</Project>
+      <Name>WinAuthProtocolServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Protocols\WinAuth\Windows\WinAuthProtocolShared\WinAuthProtocolShared.csproj">
+      <Project>{5b876e49-a1bf-46d4-8588-ab5f1534f24a}</Project>
+      <Name>WinAuthProtocolShared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenServer\OpenServer.csproj">
       <Project>{bd8ce1fd-0702-4ced-9592-5b81d55e13a9}</Project>
       <Name>OpenServer</Name>

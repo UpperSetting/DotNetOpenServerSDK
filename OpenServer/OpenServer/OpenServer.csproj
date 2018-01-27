@@ -41,16 +41,23 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="US.OpenServer.Shared">
-      <HintPath>..\..\bin\Portable\US.OpenServer.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="US.OpenServer.Windows.Shared">
-      <HintPath>..\..\bin\Windows\US.OpenServer.Windows.Shared.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Server.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\OpenServerShared\OpenServerShared\OpenServerShared.csproj">
+      <Project>{28525b70-8554-4541-a703-5efd768b782b}</Project>
+      <Name>OpenServerShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OpenServerWindowsShared\OpenServerWindowsShared\OpenServerWindowsShared.csproj">
+      <Project>{fd59cea4-c9ee-470c-9c49-934785967ee5}</Project>
+      <Name>OpenServerWindowsShared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
