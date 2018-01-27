@@ -45,9 +45,6 @@
     <Compile Include="WinAuthProtocolConfigurationServer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\..\OpenServerShared\OpenServerShared\OpenServerShared.csproj">
       <Project>{28525b70-8554-4541-a703-5efd768b782b}</Project>
       <Name>OpenServerShared</Name>
